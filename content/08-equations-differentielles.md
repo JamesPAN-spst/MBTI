@@ -1,4 +1,4 @@
-本章的核心是 **Cauchy–Lipschitz 定理**（俄、英文献称 Picard–Lindelöf 定理）：在适当的正则性条件下，初值问题有唯一解。线性方程的情形在法国 MP 大纲中是必修主干；非线性情形在 L2 给出陈述与证明思路，详细理论属于 L3 的常微分方程课程。全章 $I$ 是区间，$\K = \R$ 或 $\C$，$\M_n(\K)$ 上取一个次乘范数（例如算子范数 {@norme-subordonnee}）。
+本章的核心是 **Cauchy–Lipschitz 定理**（英文文献称 Picard–Lindelöf 定理，俄文文献常称 Пикар 定理或存在唯一性定理）：在适当的正则性条件下，初值问题有唯一解。线性方程的情形在法国 MP 大纲中是必修主干；非线性情形在 L2 给出陈述与证明思路，详细理论属于 L3 的常微分方程课程。全章 $I$ 是区间，$\K = \R$ 或 $\C$，$\M_n(\K)$ 上取一个次乘范数（例如算子范数 {@norme-subordonnee}）。
 
 ## 线性方程组的 Cauchy–Lipschitz 定理
 
@@ -120,7 +120,7 @@ $$\begin{cases}\lambda_1'y_1 + \lambda_2'y_2 = 0\\ \lambda_1'y_1' + \lambda_2'y_
 :::
 
 ::: proof
-第一个条件给出 $y' = \lambda_1y_1' + \lambda_2y_2'$；再求导，$y'' = \lambda_1y_1'' + \lambda_2y_2'' + \lambda_1'y_1' + \lambda_2'y_2'$。代入方程，$y_1, y_2$ 的齐次部分消去，剩下 $\lambda_1'y_1' + \lambda_2'y_2' = c$。由 Liouville 公式 $W \ne 0$，方程组有唯一解（Cramer 法则）。这本质上是 {@solution-coef-constants} 在伴随方程组上的应用。
+第一个条件给出 $y' = \lambda_1y_1' + \lambda_2y_2'$；再求导，$y'' = \lambda_1y_1'' + \lambda_2y_2'' + \lambda_1'y_1' + \lambda_2'y_2'$。代入方程，$y_1, y_2$ 的齐次部分消去，剩下 $\lambda_1'y_1' + \lambda_2'y_2' = c$。由 Liouville 公式 $W \ne 0$，方程组有唯一解（Cramer 法则）。这与 Duhamel 公式 {@solution-coef-constants} 是同一个想法（让齐次解的「常数」随 $t$ 变化），只是推广到了变系数方程。
 :::
 
 ::: ex zh="共振" lvl=1
@@ -176,8 +176,8 @@ $f(y) = 3y^{2/3}$ 在 $y = 0$ 处连续但不 Lipschitz（导数在 $0$ 处趋�
 最大解的区间可以是有界的。$y' = y^2$，$y(0) = 1$ 的解 $y = \frac{1}{1 - t}$ 在 $t \to 1^-$ 时爆破。$f(y) = y^2$ 是 $\Cc^1$ 的，但不是全局 Lipschitz 的。
 :::
 
-::: thm id=sortie-compact zh="爆破判据（逃离紧集定理）" en="Blow-up alternative" fr="Théorème de sortie de tout compact" ru="Теорема о продолжении решения" lvl=3 ref="Demailly, *Analyse numérique et équations différentielles*，第 V 章"
-设 $x$ 是最大解，定义在 $]\alpha, \beta[$ 上，$\beta < +\infty$。则当 $t \to \beta^-$ 时，$(t, x(t))$ 最终离开 $U$ 的任何紧子集。特别地，若 $U = \R \times \R^n$，则 $\norm{x(t)} \to +\infty$。推论：若 $f$ 有界，或 $\norm{f(t, x)} \le a(t) + b(t)\norm x$，则最大解定义在整个 $\R$ 上。
+::: thm id=sortie-compact zh="爆破判据（逃离紧集定理）" en="Blow-up alternative" fr="Théorème de sortie de tout compact" ru="Теорема о продолжении решения" lvl=3 ref="Demailly, *Analyse numérique et équations différentielles*（EDP Sciences）"
+设 $x$ 是最大解，定义在 $]\alpha, \beta[$ 上，$\beta < +\infty$。则当 $t \to \beta^-$ 时，$(t, x(t))$ 最终离开 $U$ 的任何紧子集。特别地，若 $U = \R \times \R^n$，则 $\norm{x(t)} \to +\infty$。推论：若 $U = \R \times \R^n$，且 $f$ 有界或 $\norm{f(t, x)} \le a(t) + b(t)\norm x$（$a, b$ 连续），则最大解定义在整个 $\R$ 上。
 :::
 
 ::: thm id=cauchy-peano zh="Cauchy–Peano 定理" en="Peano existence theorem" fr="Théorème de Cauchy–Peano–Arzelà" ru="Теорема Пеано" lvl=3 ref="Hartman, *Ordinary Differential Equations*，第 II 章"

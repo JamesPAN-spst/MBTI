@@ -39,9 +39,17 @@ const MACROS = {
 const errors = [];
 const escapeHtml = (s) => s.replace(/[&<>"]/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;' }[c]));
 
+// 法式区间 ]a, b[、[a, b[、]a, b]：KaTeX 默认把 ] 当右括号、[ 当左括号，
+// 导致 ∈ 之后缺间距、]-r 中的减号被当成二元运算。这里按位置把它们改成正确的定界符类型。
+const OPEN_BRACKET = /(?<![\\A-Za-z0-9}\)\]|])\]/g;
+const CLOSE_BRACKET = /(?<![\\])(?<!\\(?:right|left|big|Big|bigg|Bigg))\[(?=\s|,|\)|\\(?:times|to|setminus|subset|cap|cup)\b|$)/g;
+const frenchIntervals = (src) => src
+  .replace(OPEN_BRACKET, '\\mathopen{]}')
+  .replace(CLOSE_BRACKET, '\\mathclose{[}');
+
 function tex(src, display, env) {
   try {
-    return katex.renderToString(src, {
+    return katex.renderToString(frenchIntervals(src), {
       displayMode: display, macros: { ...MACROS }, throwOnError: true, strict: 'ignore',
     });
   } catch (e) {
@@ -207,7 +215,7 @@ ${crumb ? '<button class="pill" id="proof-toggle" type="button">展开全部证�
 const SEMESTERS = { S3: 'Semestre 3 · 第三学期', S4: 'Semestre 4 · 第四学期' };
 
 function chapterPage(ch, html, env, prev, next) {
-  const toc = env.toc.map((s) => `<li><a href="#${s.id}"><span>${s.num}</span>${s.title}</a></li>`).join('\n');
+  const toc = env.toc.map((s) => `<li><a href="#${s.id}"><span class="toc-num">${s.num}</span><span>${s.title}</span></a></li>`).join('\n');
   const pager = (c, dir) => c
     ? `<a class="pager-${dir}" href="${c.slug}.html"><small>${dir === 'prev' ? '上一章' : '下一章'}</small>${c.num}. ${c.zh}</a>`
     : '<span></span>';

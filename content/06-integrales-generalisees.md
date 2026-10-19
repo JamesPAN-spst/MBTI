@@ -141,7 +141,7 @@ $$\int_I f_n \xrightarrow[n \to \infty]{} \int_I f.$$
 控制条件不能省略。$f_n = n\,\mathbf{1}_{]0, 1/n]}$ 在 $]0, 1]$ 上逐点收敛到 $0$，但 $\int f_n = 1$。任何控制函数都必须满足 $\varphi \ge \sup_n f_n$，而 $\sup_n f_n(t) \ge \frac{1}{2t}$ 在 $]0, 1]$ 上不可积。{@cex-bosse} 也是同样的现象。
 :::
 
-::: thm id=integration-terme-a-terme zh="逐项积分定理" en="Term-by-term integration theorem" fr="Théorème d'intégration terme à terme" ru="Теорема о почленном интегрировании ряда" lvl=3 ref="L3 积分论（单调收敛定理的推论）；Gourdon, *Analyse*，第 4 章"
+::: thm id=integration-terme-a-terme zh="逐项积分定理" en="Term-by-term integration theorem" fr="Théorème d'intégration terme à terme" ru="Теорема о почленном интегрировании ряда" lvl=3 ref="L3 积分论（单调收敛定理的推论）；Rudin, *Real and Complex Analysis*，定理 1.38"
 设 $f_n$ 在 $I$ 上分段连续且可积，$\sum f_n$ 逐点收敛到分段连续的函数 $f$，并且
 $$\sum_{n}\int_I \abs{f_n} < +\infty.$$
 则 $f$ 在 $I$ 上可积，且 $\displaystyle\int_I \sum_n f_n = \sum_n\int_I f_n$。

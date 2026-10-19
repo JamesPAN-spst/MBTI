@@ -65,7 +65,7 @@ $\abs{f(x) - \ell} \le \abs{f(x) - f_n(x)} + \abs{f_n(x) - \ell_n} + \abs{\ell_n
 :::
 
 ::: sketch
-不妨设 $g_n = f_n - f \ge 0$ 递减到 $0$。若 $\norm{g_n}_\infty \ge \eps$ 对所有 $n$ 成立，取 $x_n$ 使 $g_n(x_n) \ge \eps$，抽取收敛子列 $x_{\varphi(n)} \to x$。对固定的 $m$ 和 $\varphi(n) \ge m$，由单调性 $g_m(x_{\varphi(n)}) \ge g_{\varphi(n)}(x_{\varphi(n)}) \ge \eps$，令 $n \to \infty$ 得 $g_m(x) \ge \eps$，与 $g_m(x) \to 0$ 矛盾。
+令 $g_n = \abs{f_n - f}$。它连续、非负，且由单调性，对每个 $x$，$(g_n(x))$ 递减到 $0$（单调方向可以随 $x$ 变化）。若 $\norm{g_n}_\infty \ge \eps$ 对所有 $n$ 成立，取 $x_n$ 使 $g_n(x_n) \ge \eps$，抽取收敛子列 $x_{\varphi(n)} \to x$。对固定的 $m$ 和 $\varphi(n) \ge m$，由单调性 $g_m(x_{\varphi(n)}) \ge g_{\varphi(n)}(x_{\varphi(n)}) \ge \eps$，令 $n \to \infty$ 得 $g_m(x) \ge \eps$，与 $g_m(x) \to 0$ 矛盾。
 :::
 
 ## 积分与求导
@@ -131,7 +131,7 @@ $g$ 连续（一致极限），所以 $f$ 是 $\Cc^1$ 的且 $f' = g$。闭子�
 :::
 
 ::: ex id=zeta-regularite lvl=1 zh="ζ 函数的正则性"
-$\zeta(s) = \sum_{n \ge 1} n^{-s}$ 在 $]1, +\infty[$ 上是 $\Cc^\infty$ 的。实际上，在 $[a, +\infty[$（$a > 1$）上 $\abs{n^{-s}} \le n^{-a}$，所以级数正规收敛；$k$ 阶导数的级数 $\sum (-\ln n)^k n^{-s}$ 在同样的区间上被 $(\ln n)^k n^{-a}$ 控制，也正规收敛。而 $\zeta$ 在 $]1, +\infty[$ 上不一致收敛：否则由 {@double-limite}，$\lim_{s \to 1^+} \zeta(s)$ 会等于 $\sum \frac1n$，但后者发散。用级数–积分比较可以得到 $\zeta(s) \sim \frac{1}{s - 1}$（$s \to 1^+$）。
+$\zeta(s) = \sum_{n \ge 1} n^{-s}$ 在 $]1, +\infty[$ 上是 $\Cc^\infty$ 的。实际上，在 $[a, +\infty[$（$a > 1$）上 $\abs{n^{-s}} \le n^{-a}$，所以级数正规收敛；$k$ 阶导数的级数 $\sum (-\ln n)^k n^{-s}$ 在同样的区间上被 $(\ln n)^k n^{-a}$ 控制，也正规收敛。但这个级数在整个 $]1, +\infty[$ 上不一致收敛：否则由 {@double-limite}，$\lim_{s \to 1^+} \zeta(s)$ 会等于 $\sum \frac1n$，但后者发散。用级数–积分比较可以得到 $\zeta(s) \sim \frac{1}{s - 1}$（$s \to 1^+$）。
 :::
 
 ::: ex id=ex-alternee-unif lvl=1

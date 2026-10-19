@@ -179,7 +179,7 @@ code { font-family: var(--mono); font-size: 0.88em; background: var(--surface-2)
 .toc li a, .toc-mobile li a {
   display: flex; gap: 10px; padding: 6px 10px; border-radius: 8px; color: var(--muted); line-height: 1.45;
 }
-.toc li a span, .toc-mobile li a span { font-variant-numeric: tabular-nums; min-width: 2.2em; }
+.toc-num { font-variant-numeric: tabular-nums; min-width: 2.2em; flex: none; }
 .toc li a:hover { background: var(--surface-2); color: var(--text); text-decoration: none; }
 .toc li a.active { color: var(--accent); background: color-mix(in srgb, var(--accent) 10%, transparent); }
 .toc-mobile { display: none; }

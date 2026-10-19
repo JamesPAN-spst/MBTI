@@ -40,7 +40,7 @@ $\Cc^1$ 双射未必是微分同胚：$x \mapsto x^3$ 是 $\R$ 上的 $\Cc^\inft
 $\Phi(r, \theta) = (r\cos\theta, r\sin\theta)$，$\det J_\Phi = r$。$\Phi$ 是从 $]0, +\infty[ \times ]-\pi, \pi[$ 到 $\R^2 \setminus (\R_- \times \{0\})$ 的 $\Cc^\infty$ 微分同胚（由 {@inversion-globale}）。但 $\Phi$ 在 $]0, +\infty[ \times \R$ 上处处是局部微分同胚，而不是单射：局部可逆不蕴含整体可逆。
 :::
 
-::: thm id=hadamard-global zh="Hadamard 整体逆定理" en="Hadamard's global inverse function theorem" fr="Théorème d'inversion globale de Hadamard" ru="Теорема Адамара" lvl=3 ref="Krantz–Parks, *The Implicit Function Theorem*，§6.2"
+::: thm id=hadamard-global zh="Hadamard 整体逆定理" en="Hadamard's global inverse function theorem" fr="Théorème d'inversion globale de Hadamard" ru="Теорема Адамара" lvl=3 ref="Krantz–Parks, *The Implicit Function Theorem*（Birkhäuser）"
 若 $f : \R^n \to \R^n$ 是 $\Cc^1$ 的，$\dd f(x)$ 处处可逆，且 $f$ 是**真映射**（紧集的原像是紧集；等价地 $\norm{f(x)} \to \infty$ 当 $\norm x \to \infty$），则 $f$ 是 $\R^n$ 到自身的微分同胚。
 :::
 
@@ -75,7 +75,7 @@ $$J_F = \begin{pmatrix}I_n & 0\\ \partial_xg & \partial_yg\end{pmatrix},$$
 不需要显式解出 $\varphi$。对恒等式 $g(x, \varphi(x)) = 0$ 求导，解出 $\varphi'$；再求导得 $\varphi''$。例：$x^2 + y^2 = 1$ 在 $y > 0$ 处，$2x + 2yy' = 0$，$y' = -\frac xy$；再求导，$1 + y'^2 + yy'' = 0$，$y'' = -\frac{1}{y^3}$。
 :::
 
-## ℝⁿ 的子流形
+## $\R^n$ 的子流形
 
 ::: def id=def-sous-variete zh="子流形" en="Submanifold of $\mathbb{R}^n$" fr="Sous-variété de $\mathbb{R}^n$" ru="Подмногообразие $\mathbb{R}^n$"
 $M \subset \R^n$ 是 $d$ 维 $\Cc^k$ **子流形**，如果对每个 $a \in M$，存在 $a$ 的开邻域 $U$ 和 $\Cc^k$ 映射 $g : U \to \R^{n-d}$，使 $M \cap U = g^{-1}(0)$，并且 $\dd g(a)$ 是满射（**淹没**，submersion）。

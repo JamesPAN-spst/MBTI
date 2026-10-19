@@ -226,7 +226,7 @@ $$\Big|\sum_{k=0}^{n} \e^{\ii k\theta}\Big| = \Big|\frac{1 - \e^{\ii(n+1)\theta}
 ::: proof
 设 $s \in \R$（无穷的情形类似）。把正项和负项分开：$p_n = \max(u_n, 0)$，$q_n = \max(-u_n, 0)$。由于 $\sum u_n$ 收敛而 $\sum \abs{u_n} = \sum (p_n + q_n)$ 发散，$\sum p_n$ 和 $\sum q_n$ 都发散到 $+\infty$（若其中一个收敛，另一个等于它与 $\sum u_n$ 的组合，也收敛，矛盾）。
 
-贪心构造：按原顺序依次取正项，直到部分和首次 $> s$；再依次取负项，直到部分和首次 $\le s$；如此交替。因为 $\sum p_n = \sum q_n = +\infty$，每一步都在有限步内完成，且每个项最终都被使用，所以这确实是一个重排。
+贪心构造：把下标分成两组，$u_n \ge 0$ 的项（称为非负项）和 $u_n < 0$ 的项（负项）。按原顺序依次取非负项，直到部分和首次 $> s$；再依次取负项，直到部分和首次 $\le s$；如此交替。因为 $\sum p_n = \sum q_n = +\infty$，每一步都在有限步内完成，且每个项最终都被使用，所以这确实是一个重排。
 
 每次「越过」$s$ 后，部分和与 $s$ 的距离不超过最后加入的那一项的绝对值。由于 $u_n \to 0$，且每一轮都至少用到一个新的正项和一个新的负项，这些「越界量」趋于 $0$，所以部分和收敛到 $s$。
 :::
@@ -297,7 +297,7 @@ $$\sum_{n=0}^\infty c_n = \Big(\sum_{n=0}^\infty a_n\Big)\Big(\sum_{n=0}^\infty 
 族 $(a_p b_q)_{(p,q) \in \N^2}$ 可和：由 {@fubini-series} 的非负情形，$\sum_{p,q} \abs{a_p}\abs{b_q} = \sum \abs{a_p} \sum \abs{b_q} < \infty$。按「行」划分得到 $\sum_p a_p \sum_q b_q$；按反对角线 $I_n = \{(p,q) : p + q = n\}$ 划分得到 $\sum_n c_n$。由 {@paquets} 两者相等，且 $\sum \abs{c_n} \le \sum_n \sum_{I_n} \abs{a_p b_q} < \infty$。
 :::
 
-::: thm id=mertens zh="Mertens 定理" en="Mertens' theorem" fr="Théorème de Mertens" ru="Теорема Мертенса" lvl=3 ref="Hardy, *Divergent Series*，§10"
+::: thm id=mertens zh="Mertens 定理" en="Mertens' theorem" fr="Théorème de Mertens" ru="Теорема Мертенса" lvl=3 ref="Rudin, *Principles of Mathematical Analysis*，定理 3.50"
 只要 $\sum a_n$ 绝对收敛、$\sum b_n$ 收敛，Cauchy 乘积就收敛到两和之积。
 :::
 
@@ -326,5 +326,5 @@ Euler 在 1734 年得到 $\zeta(2) = \frac{\pi^2}{6}$（第 5 章用 Parseval �
 ::: open zh="未解决问题"
 1. **Euler 常数 $\gamma$ 是否为无理数？** 至今未知。
 2. **$\zeta(5)$ 是否为无理数？** 至今未知。
-3. **Erdős 等差数列猜想**：若正整数集 $A$ 满足 $\sum_{a \in A} \frac1a = +\infty$，则 $A$ 含有任意长的等差数列。素数的情形由 Green–Tao 定理（2004）解决；由 {@euler-produit}，素数正好满足这个条件。
+3. **Erdős 等差数列猜想**：若正整数集 $A$ 满足 $\sum_{a \in A} \frac1a = +\infty$，则 $A$ 含有任意长的等差数列。素数的情形由 Green–Tao 定理（2004）解决；由 {@euler-produit}，素数正好满足这个条件。三项等差数列的情形由 Bloom–Sisask（2020）证明，一般情形仍未解决。
 :::

@@ -21,7 +21,7 @@
 :::
 
 ::: thm id=limite-parametre zh="含参积分的极限" lvl=1
-若 $f(x, t) \to \ell(t)$（$x \to a$，$a \in \overline{A}$，可以是 $\pm\infty$）逐点成立，且控制条件成立，则 $\int_I f(x, t)\,\dd t \to \int_I \ell(t)\,\dd t$。
+若 $f(x, t) \to \ell(t)$（$x \to a$，$a \in \overline{A}$，可以是 $\pm\infty$）逐点成立，$\ell$ 分段连续，且控制条件成立，则 $\int_I f(x, t)\,\dd t \to \int_I \ell(t)\,\dd t$。
 :::
 
 ::: proof
@@ -95,7 +95,7 @@ $$\frac{(n-1)^x (n-1)!}{x(x+1)\cdots(x+n-1)} \le f(x) \le \frac{n^x(n-1)!}{x(x+1
 $$\Gamma(x) = \lim_{n \to \infty}\frac{n^x\, n!}{x(x+1)\cdots(x+n)}.$$
 :::
 
-::: thm id=complements zh="余元公式" en="Euler's reflection formula" fr="Formule des compléments" ru="Формула дополнения" lvl=3 ref="Gourdon, *Analyse*，第 4 章；Artin, *The Gamma Function*"
+::: thm id=complements zh="余元公式" en="Euler's reflection formula" fr="Formule des compléments" ru="Формула дополнения" lvl=3 ref="Stein–Shakarchi, *Complex Analysis*，第 6 章；Artin, *The Gamma Function*"
 对 $0 < x < 1$，$\Gamma(x)\Gamma(1 - x) = \dfrac{\pi}{\sin\pi x}$。特别地 $\Gamma(\frac12) = \sqrt\pi$（也可以直接由 Gauss 积分得到，见 {@gauss}）。
 :::
 

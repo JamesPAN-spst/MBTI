@@ -1,4 +1,4 @@
-本章是整个 L2 的语言基础。法国 MP 大纲把它放在分析部分的最前面：后面讨论函数列的一致收敛、幂级数、微分学时，都把对象看成某个赋范空间里的点。全章约定 $\K = \R$ 或 $\C$，$E, F$ 是 $\K$-向量空间。
+本章是整个 L2 的语言基础。法国 MP 大纲在讲级数和函数列之前先讲它：后面讨论函数列的一致收敛、幂级数、微分学时，都把对象看成某个赋范空间里的点。全章约定 $\K = \R$ 或 $\C$，$E, F$ 是 $\K$-向量空间。
 
 ## 范数与距离
 
@@ -91,7 +91,7 @@ $E$ 上的两个范数 $N_1, N_2$ **等价**，如果存在 $\alpha, \beta > 0$�
 在 $\Cc([0,1], \R)$ 上，$\norm{\cdot}_1$ 与 $\norm{\cdot}_\infty$ 不等价。取 $f_n(x) = x^n$：$\norm{f_n}_\infty = 1$，而 $\norm{f_n}_1 = \frac{1}{n+1} \to 0$。所以 $(f_n)$ 对 $\norm{\cdot}_1$ 收敛到 $0$，但对 $\norm{\cdot}_\infty$ 不收敛到 $0$。无穷维空间中，「收敛」依赖于范数的选取。
 :::
 
-::: def zh="聚点（数列的值）" en="Cluster point of a sequence" fr="Valeur d'adhérence" ru="Частичный предел"
+::: def zh="数列的聚点" en="Cluster point of a sequence" fr="Valeur d'adhérence" ru="Частичный предел"
 $a$ 称为 $(u_n)$ 的**聚点**（valeur d'adhérence），如果存在子列 $u_{\varphi(n)} \to a$。
 :::
 
@@ -353,10 +353,10 @@ $A$ **道路连通**，如果任意两点 $a, b \in A$ 之间有连续道路 $\g
 设 $U_n$ 是稠密开集，$B_0$ 是任一开球。由稠密性 $B_0 \cap U_1 \ne \varnothing$，它是开集，含一个闭球 $\overline{B}_1$，半径 $\le 1$。依次取 $\overline{B}_{n} \subset B_{n-1} \cap U_n$，半径 $\le \frac1n$。球心构成 Cauchy 列，极限属于所有 $\overline{B}_n$，从而属于 $B_0 \cap \bigcap U_n$。
 :::
 
-::: thm id=banach-nulle-part zh="处处不可导函数的普遍性" en="Generic continuous functions are nowhere differentiable" fr="Les fonctions continues nulle part dérivables sont génériques" ru="Типичная непрерывная функция нигде не дифференцируема" lvl=3 ref="Banach (1931)；Brezis, *Analyse fonctionnelle*，第 2 章习题"
+::: thm id=banach-nulle-part zh="处处不可导函数的普遍性" en="Generic continuous functions are nowhere differentiable" fr="Les fonctions continues nulle part dérivables sont génériques" ru="Типичная непрерывная функция нигде не дифференцируема" lvl=3 ref="Banach, *Studia Math.* 3 (1931)；Oxtoby, *Measure and Category*，第 11 章"
 在 $(\Cc([0,1]), \norm{\cdot}_\infty)$ 中，处处不可导的函数构成一个稠密 $G_\delta$ 集（可数个稠密开集的交）。从 Baire 的意义上说，「绝大多数」连续函数处处不可导。
 :::
 
 ::: hist zh="Banach 的基问题"
-Banach 在 1932 年问：可分 Banach 空间是否都有 Schauder 基？这个问题悬而未决四十年，直到 Per Enflo 在 1973 年构造出反例。Mazur 曾为与之等价的「逼近问题」悬赏一只活鹅，Enflo 领取了这份奖品。
+Banach 在 1932 年问：可分 Banach 空间是否都有 Schauder 基？这个问题悬而未决四十年，直到 Per Enflo 在 1973 年构造出反例。Mazur 曾为与之密切相关的「逼近问题」（Scottish Book 第 153 题）悬赏一只活鹅。Enflo 构造的空间不具有逼近性质，而有 Schauder 基的空间一定具有逼近性质，所以同时回答了两个问题；他也因此领取了这只鹅。
 :::

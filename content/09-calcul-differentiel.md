@@ -155,7 +155,7 @@ $$\Delta = hk\,\frac{\partial^2 f}{\partial y\,\partial x}(\theta h, \theta' k).
 ::: cex id=cex-schwarz lvl=1
 连续性条件不能省略。令 $f(x, y) = \dfrac{xy(x^2 - y^2)}{x^2 + y^2}$，$f(0, 0) = 0$（Peano 的例子）。计算得 $\frac{\partial f}{\partial x}(0, y) = -y$，$\frac{\partial f}{\partial y}(x, 0) = x$，所以
 $$\frac{\partial^2 f}{\partial y\,\partial x}(0, 0) = -1,\qquad\frac{\partial^2 f}{\partial x\,\partial y}(0, 0) = 1.$$
-$f$ 是 $\Cc^1$ 的，二阶偏导数在原点之外存在，但在原点不连续。
+$f$ 是 $\Cc^1$ 的，二阶偏导数处处存在，但在原点不连续。
 :::
 
 ::: thm id=taylor-young zh="二阶 Taylor–Young 公式" en="Second-order Taylor formula" fr="Formule de Taylor–Young à l'ordre 2" ru="Формула Тейлора второго порядка" lvl=1

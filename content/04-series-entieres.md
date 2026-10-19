@@ -125,15 +125,15 @@ $\Cc^\infty$ 不蕴含可展开。令 $f(x) = \e^{-1/x^2}$（$x \ne 0$），$f(0
 ::: thm id=taylor-reste zh="用 Taylor 余项证明可展开" lvl=1
 设 $f \in \Cc^\infty(]-r, r[)$。若 Taylor 公式的积分余项
 $$R_n(x) = \int_0^x \frac{(x-t)^n}{n!} f^{(n+1)}(t)\,\dd t$$
-对每个 $x \in ]-r, r[$ 趋于 $0$，则 $f$ 在 $]-r, r[$ 上可展开为幂级数。特别地，若存在 $M$，使 $\abs{f^{(n)}} \le M$ 对一切 $n$ 成立，则 $f$ 在 $\R$ 上可展开。
+对每个 $x \in ]-r, r[$ 趋于 $0$，则 $f$ 在 $]-r, r[$ 上可展开为幂级数。特别地，若 $f \in \Cc^\infty(\R)$，且对每个 $A > 0$ 存在 $M_A$，使 $\abs{f^{(n)}(x)} \le M_A$ 对一切 $n$ 和一切 $\abs{x} \le A$ 成立，则 $f$ 在 $\R$ 上可展开。
 :::
 
 ::: proof
-第一部分就是 Taylor 公式 $f(x) = \sum_{k \le n} \frac{f^{(k)}(0)}{k!}x^k + R_n(x)$。第二部分：$\abs{R_n(x)} \le M\frac{\abs{x}^{n+1}}{(n+1)!} \to 0$。
+第一部分就是 Taylor 公式 $f(x) = \sum_{k \le n} \frac{f^{(k)}(0)}{k!}x^k + R_n(x)$。第二部分：取 $A = \abs{x}$，$\abs{R_n(x)} \le M_A\frac{\abs{x}^{n+1}}{(n+1)!} \to 0$。
 :::
 
 ::: ex id=dse-usuels zh="常用展开" lvl=1
-由 {@taylor-reste}（导数一致有界）：
+由 {@taylor-reste}（在每个 $[-A, A]$ 上各阶导数一致有界：$\exp$ 的界是 $\e^A$，$\sin$、$\cos$ 的界是 $1$）：
 $$\e^x = \sum_{n \ge 0} \frac{x^n}{n!},\quad \cos x = \sum_{n \ge 0} \frac{(-1)^n x^{2n}}{(2n)!},\quad \sin x = \sum_{n \ge 0} \frac{(-1)^n x^{2n+1}}{(2n+1)!}\qquad (x \in \R).$$
 由几何级数逐项积分：
 $$\ln(1 + x) = \sum_{n \ge 1} \frac{(-1)^{n+1}}{n} x^n,\qquad \Arctan x = \sum_{n \ge 0} \frac{(-1)^n}{2n+1} x^{2n+1}\qquad (\abs{x} < 1).$$
@@ -156,7 +156,7 @@ $$(1 + x)^\alpha = \sum_{n \ge 0} \binom{\alpha}{n} x^n,\qquad \binom{\alpha}{n}
 3. **微分方程**：找到 $f$ 满足的线性微分方程，代入未知的幂级数，求系数递推关系（如二项式级数、Bessel 函数）。最后必须验证收敛半径 $> 0$，并用解的唯一性（第 8 章）说明幂级数确实等于 $f$。
 :::
 
-::: thm id=borel zh="Borel 引理" en="Borel's lemma" fr="Lemme de Borel" ru="Лемма Бореля" lvl=3 ref="Hörmander, *The Analysis of Linear Partial Differential Operators I*，定理 1.2.6"
+::: thm id=borel zh="Borel 引理" en="Borel's lemma" fr="Lemme de Borel" ru="Лемма Бореля" lvl=3 ref="Hörmander, *The Analysis of Linear Partial Differential Operators I*，§1.2"
 对任意实数列 $(c_n)$，存在 $f \in \Cc^\infty(\R)$，使 $f^{(n)}(0) = c_n$ 对一切 $n$ 成立。因此 Taylor 级数可以有任意的系数，收敛半径甚至可以是 $0$。
 :::
 
