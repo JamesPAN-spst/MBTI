@@ -1,0 +1,14 @@
+{
+  "name": "analyse-l2",
+  "private": true,
+  "type": "module",
+  "description": "数学分析 L2 学习网页（静态站点，构建产物输出到 docs/）",
+  "scripts": {
+    "build": "node scripts/build.mjs"
+  },
+  "devDependencies": {
+    "katex": "0.16.11",
+    "markdown-it": "14.1.0",
+    "markdown-it-container": "4.0.0"
+  }
+}
