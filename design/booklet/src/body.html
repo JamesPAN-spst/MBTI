@@ -1,0 +1,39 @@
+<div class="app">
+  <header class="bar">
+    <button class="brand" id="brand" type="button" aria-label="回到封面"><b><i>风格</i>样品册</b><span>Style Specimens · 2nd ed.</span></button>
+    <div class="bar-title" id="bar-title"></div>
+    <button class="tbtn" id="motion-btn" type="button" aria-pressed="true" title="暂停或恢复样品里的动画"><svg class="mo-on" viewBox="0 0 24 24" aria-hidden="true"><path d="M7 5v14M17 5v14"/></svg><svg class="mo-off" viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5l11 7-11 7z"/></svg><span>动效 开</span></button>
+    <button class="tbtn" id="toc-btn" type="button">目录</button>
+    <button class="tbtn fav-count" id="fav-btn" type="button" aria-label="我的收藏"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 20.5S3.5 15.3 3.5 9.6C3.5 6.8 5.6 4.8 8.1 4.8c1.6 0 3 .8 3.9 2.1.9-1.3 2.3-2.1 3.9-2.1 2.5 0 4.6 2 4.6 4.8 0 5.7-8.5 10.9-8.5 10.9z"/></svg><span id="fav-n">0</span></button>
+    <div class="pager">
+      <button class="pbtn" id="prev" type="button" aria-label="上一页"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+      <span class="pno" id="pno" aria-live="polite"></span>
+      <button class="pbtn" id="next" type="button" aria-label="下一页"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+    </div>
+  </header>
+  <main class="stage" id="stage"></main>
+</div>
+
+<dialog class="lb" id="lb" aria-labelledby="lb-name">
+  <div class="lb-in">
+    <div class="lb-main"><div class="t-stage lb-stage"></div></div>
+    <aside class="lb-side">
+      <div class="lb-head">
+        <code class="t-code" id="lb-code"></code>
+        <span class="lb-pos" id="lb-pos"></span>
+        <button class="pbtn" id="lb-prev" type="button" aria-label="上一个样品"><svg viewBox="0 0 24 24"><path d="M15 5l-7 7 7 7"/></svg></button>
+        <button class="pbtn" id="lb-next" type="button" aria-label="下一个样品"><svg viewBox="0 0 24 24"><path d="M9 5l7 7-7 7"/></svg></button>
+        <button class="pbtn" id="lb-x" type="button" aria-label="关闭"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button>
+      </div>
+      <h2 id="lb-name"></h2>
+      <p class="t-en" id="lb-en"></p>
+      <p class="lb-desc" id="lb-desc"></p>
+      <ul class="t-kw" id="lb-kw"></ul>
+      <div class="lb-links" id="lb-links"></div>
+      <div class="lb-css" id="lb-css" hidden><div class="lb-css-h"><span>CSS 要点</span><button type="button" id="lb-copy">复制 CSS</button></div><pre><code></code></pre></div>
+      <div class="lb-actions"><button id="lb-fav" type="button"></button></div>
+    </aside>
+  </div>
+</dialog>
+
+<!--TEMPLATES-->

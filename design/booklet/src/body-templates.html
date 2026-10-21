@@ -1,0 +1,251 @@
+<!-- ========== 01 学术手稿 ========== -->
+<template id="tpl-tufte">
+<div class="sp sp-tufte">
+  <h1>Taylor 多项式如何逼近正弦</h1>
+  <p class="subtitle">第 4 章　幂级数</p>
+  <section>
+    <p><span class="newthought">把正弦的幂级数截断</span>到 $N$ 阶，就得到一个多项式 $T_N$。$N$ 越大，$T_N$ 贴合 $\sin x$ 的区间越长<button class="sn-ref" type="button" aria-label="旁注 1">1</button><span class="sidenote"><span class="sn-num">1</span>Euler 在 1748 年的《无穷小分析引论》中系统使用了这类展开。</span>；在任何有界区间上，误差都趋于零。</p>
+    $$\sin x = \sum_{k \ge 0} \frac{(-1)^k\, x^{2k+1}}{(2k+1)!} = x - \frac{x^3}{3!} + \frac{x^5}{5!} - \cdots$$
+    <figure>
+      <figcaption class="marginnote">图 1　灰线是 $\sin x$，黑线是 $T_N$。当前 $N =$ <span class="n-out num">7</span>，在 $[-\pi, \pi]$ 上的最大误差为 <span class="err-out num">0.0752</span>。</figcaption>
+      <svg class="plot" role="img" aria-label="正弦与 Taylor 多项式的图像"></svg>
+      <div class="ctrl"><label for="n-tufte">阶数 $N$</label><input id="n-tufte" class="n-range" type="range" min="1" max="19" step="2" value="7"></div>
+    </figure>
+    <p><span class="sc">定理 4.17</span>（Taylor 展开的判据）　设 $f \in \mathcal{C}^\infty(\mathbb{R})$。若对每个 $A > 0$，存在 $M_A$，使 $|f^{(n)}(x)| \le M_A$ 对一切 $n$ 和 $|x| \le A$ 成立，则对一切 $x$，$f(x) = \sum_{n \ge 0} \frac{f^{(n)}(0)}{n!}\, x^n$。</p>
+    <p><button class="proof-toggle" type="button" aria-expanded="false">证明</button><button class="sn-ref" type="button" aria-label="旁注 2">2</button><span class="sidenote"><span class="sn-num">2</span>Lagrange 余项：误差等于第 $N+1$ 阶导数在 $0$ 与 $x$ 之间某点的值，乘以 $x^{N+1}/(N+1)!$。</span></p>
+    <div class="proof" hidden><p>取 $A = |x|$。由 Lagrange 余项，$|f(x) - T_N(x)| \le M_A \dfrac{|x|^{N+1}}{(N+1)!}$，右边随 $N \to \infty$ 趋于 $0$。<span class="qed">∎</span></p></div>
+  </section>
+</div>
+</template>
+
+<!-- ========== 02 研究期刊 ========== -->
+<template id="tpl-journal">
+<div class="sp sp-journal">
+  <h1>Taylor 多项式如何逼近正弦</h1>
+  <p class="j-desc">截断幂级数得到的多项式，在任何有界区间上一致逼近正弦。下图可以直接操作。</p>
+  <div class="j-byline">
+    <div><h4>章节</h4><p>第 4 章 · 幂级数</p></div>
+    <div><h4>证明等级</h4><p>★ 完整证明</p></div>
+    <div><h4>更新</h4><p>2026 年 10 月 20 日</p></div>
+    <div><h4>引用</h4><p>定理 4.17</p></div>
+  </div>
+  <div class="j-body">
+    <p>把 $\sin x$ 的幂级数截断到 $N$ 阶，就得到一个多项式 $T_N$。$N$ 越大，$T_N$ 贴合 $\sin x$ 的区间越长<span class="fn" tabindex="0">1<span class="fn-pop">Euler 在 1748 年的《无穷小分析引论》中系统使用了这类展开。</span></span>；在任何有界区间上，误差都趋于零 [1]。</p>
+    $$\sin x = \sum_{k \ge 0} \frac{(-1)^k\, x^{2k+1}}{(2k+1)!}$$
+    <figure class="j-fig">
+      <svg class="plot" role="img" aria-label="正弦、Taylor 多项式与误差区域"></svg>
+      <div class="j-ctrl"><label for="n-journal">阶数 N</label><input id="n-journal" class="n-range" type="range" min="1" max="19" step="2" value="7"><span>N = <b class="n-out num">7</b>　·　$[-\pi, \pi]$ 上最大误差 <b class="err-out num">0.0752</b></span></div>
+      <figcaption><b>图 1</b>　灰线为 $\sin x$，蓝线为 $T_N$，橙色区域是两者之差。增大 $N$，橙色区域向两侧退去。</figcaption>
+    </figure>
+    <div class="j-thm">
+      <p><b>定理 4.17</b>（Taylor 展开的判据）设 $f \in \mathcal{C}^\infty(\mathbb{R})$。若对每个 $A > 0$，存在 $M_A$，使 $|f^{(n)}(x)| \le M_A$ 对一切 $n$ 和 $|x| \le A$ 成立，则 $f$ 在 $\mathbb{R}$ 上等于它的 Taylor 级数。</p>
+      <button class="proof-toggle" type="button" aria-expanded="false">证明</button>
+      <div class="proof" hidden><p>取 $A = |x|$。由 Lagrange 余项，$|f(x) - T_N(x)| \le M_A \dfrac{|x|^{N+1}}{(N+1)!} \to 0$。∎</p></div>
+    </div>
+    <p class="j-refs">[1] L. Euler, <i>Introductio in analysin infinitorum</i>, 1748.</p>
+  </div>
+</div>
+</template>
+
+<!-- ========== 03 可探索解释 ========== -->
+<template id="tpl-explore">
+<div class="sp sp-explore">
+  <p class="x-kicker">第 4 章 · 幂级数</p>
+  <h1>一个多项式，能把正弦模仿多远？</h1>
+  <p class="x-lede">蓝线是 $T_N$：把 $\sin x$ 的幂级数截断到 $N$ 阶得到的多项式。橙色是它和正弦的差。<b>拖动下面的橙色数字</b>，看看会发生什么。</p>
+  <div class="x-figure"><svg class="plot" role="img" aria-label="正弦与 Taylor 多项式，标出最大误差"></svg></div>
+  <p class="x-reactive">当阶数取 <span class="scrub" role="slider" tabindex="0" aria-label="阶数 N" aria-valuemin="1" aria-valuemax="19" aria-valuenow="7">7</span> 时，在 $[-\pi, \pi]$ 上最大误差是 <span class="x-hl err-out num">0.0752</span>；在 $|x| \le$ <span class="x-hl reach-out num">2.7</span> 的范围内，两条曲线的差小于 $0.01$。</p>
+  <p class="x-try">试一试：把数字拖到 19，蓝线能贴着正弦走到第几个波峰？</p>
+  <div class="x-why">
+    <h2>为什么误差会消失？</h2>
+    <ol class="x-steps">
+      <li><span>Lagrange 余项告诉我们：$\sin x - T_N(x) = \dfrac{\sin^{(N+1)}(c)}{(N+1)!}\, x^{N+1}$，其中 $c$ 在 $0$ 与 $x$ 之间。</span></li>
+      <li hidden><span>$\sin$ 的每一阶导数都是 $\pm\sin$ 或 $\pm\cos$，所以 $|\sin^{(N+1)}(c)| \le 1$。</span></li>
+      <li hidden><span>于是 $|\sin x - T_N(x)| \le \dfrac{|x|^{N+1}}{(N+1)!}$。阶乘比任何幂增长得都快，右边趋于 $0$。这正是定理 4.17 在正弦上的特例。</span></li>
+    </ol>
+    <button class="x-next" type="button">下一步</button>
+  </div>
+</div>
+</template>
+
+<!-- ========== 04 黑板动画 ========== -->
+<template id="tpl-chalk">
+<div class="sp sp-chalk">
+  <p class="c-chapter">第 4 章　幂级数</p>
+  <h1>Taylor 多项式如何逼近正弦</h1>
+  <div class="c-stage"><svg class="plot" role="img" aria-label="深色背景上的正弦与 Taylor 多项式"></svg></div>
+  <div class="c-legend">$\color{#58C4DD}\sin x$　　$\color{#F7D96F}T_N(x)$</div>
+  <div class="c-controls">
+    <button class="c-play" type="button">播放</button>
+    <input id="n-chalk" class="n-range" type="range" min="1" max="19" step="2" value="7" aria-label="阶数 N">
+    <span>$N =$ <span class="n-out num">7</span></span>
+  </div>
+  <div class="c-eq">$$\color{#58C4DD}{\sin x} \;=\; \color{#F7D96F}{x - \frac{x^3}{3!} + \frac{x^5}{5!} - \frac{x^7}{7!}} \;+\; \color{#CD853F}{R_7(x)}$$<p class="c-eqnote">上式取 $N = 7$：黄色是多项式，棕色是余项。</p></div>
+  <div class="c-thm">
+    <p class="c-label">定理 4.17</p>
+    <p>若 $f$ 的各阶导数在每个有界区间上一致有界，则 $f$ 等于它的 Taylor 级数。余项 $\color{#CD853F}{R_N}$ 满足 $|R_N(x)| \le M_A \dfrac{|x|^{N+1}}{(N+1)!}$。</p>
+    <button class="proof-toggle" type="button" aria-expanded="false">看证明</button>
+    <div class="proof" hidden><p>取 $A = |x|$，用 Lagrange 余项，$\color{#CD853F}{|R_N(x)|} \le M_A \dfrac{|x|^{N+1}}{(N+1)!}$。阶乘增长得比幂快，所以 $\color{#CD853F}{R_N(x)} \to 0$。∎</p></div>
+  </div>
+</div>
+</template>
+
+<!-- ========== 05 发布会 ========== -->
+<template id="tpl-keynote">
+<div class="sp sp-keynote">
+  <section class="k-hero">
+    <p class="k-eyebrow">幂级数</p>
+    <h1>无穷多项。<br>一条正弦。</h1>
+    <p class="k-sub">截断到第 N 项，就是一个多项式。项越多，贴合得越远。</p>
+    <div class="k-links"><button class="k-link" type="button" data-goto="proof">阅读证明 ›</button><button class="k-link" type="button" data-goto="plot">看它如何逼近 ›</button></div>
+  </section>
+  <section class="k-bento">
+    <div class="k-tile k-plot" data-anchor="plot">
+      <p class="k-small">正弦与它的 Taylor 多项式</p>
+      <svg class="plot" role="img" aria-label="黑底上的正弦与 Taylor 多项式"></svg>
+      <div class="k-seg" role="group" aria-label="选择阶数">
+        <button type="button" data-n="3">N = 3</button><button type="button" data-n="7">7</button><button type="button" data-n="11">11</button><button type="button" data-n="19">19</button>
+      </div>
+    </div>
+    <div class="k-tile k-num"><p class="k-small">收敛半径</p><p class="k-big">∞</p><p class="k-note">在整条实轴上收敛。</p></div>
+    <div class="k-tile k-err"><p class="k-small">[−π, π] 上的最大误差</p><p class="k-mid err-out num">0.0752</p><p class="k-note">当前 N = <span class="n-out num">7</span></p></div>
+    <div class="k-tile k-formula"><p class="k-small">公式</p>$$\sin x = \sum_{k \ge 0} \frac{(-1)^k\, x^{2k+1}}{(2k+1)!}$$</div>
+    <div class="k-tile k-year"><p class="k-small">首次系统使用</p><p class="k-big">1748</p><p class="k-note">Euler《无穷小分析引论》</p></div>
+  </section>
+  <section class="k-thm" data-anchor="proof">
+    <p class="k-small">定理 4.17</p>
+    <h2>Taylor 展开的判据</h2>
+    <p>设 $f \in \mathcal{C}^\infty(\mathbb{R})$。若在每个区间 $[-A, A]$ 上，$f$ 的各阶导数有同一个上界 $M_A$，那么 $f$ 在整条实轴上等于它的 Taylor 级数。</p>
+    <button class="proof-toggle k-pill" type="button" aria-expanded="false">阅读证明</button>
+    <div class="proof" hidden><p>取 $A = |x|$。由 Lagrange 余项，$|f(x) - T_N(x)| \le M_A \dfrac{|x|^{N+1}}{(N+1)!}$，当 $N \to \infty$ 时趋于 $0$。</p></div>
+  </section>
+</div>
+</template>
+
+<!-- ========== 06 暗色工程 ========== -->
+<template id="tpl-darktech">
+<div class="sp sp-dark" tabindex="0" aria-label="暗色工程风格样品，按 [ 或 ] 调整阶数">
+  <div class="d-top"><span>analysis / ch04 / <b>taylor-sin.md</b></span><span class="d-status"><i></i>已校对</span></div>
+  <h1>Taylor 多项式如何逼近正弦</h1>
+  <p class="d-lede">把 $\sin x$ 的幂级数截断到 $N$ 阶，得到多项式 $T_N$。在任何有界区间上，$T_N \to \sin$ 一致成立。</p>
+  <div class="d-card d-feature">
+    <div class="d-card-head"><span>FIGURE 4.3</span><span>阶数 <kbd>[</kbd> <kbd>]</kbd></span></div>
+    <svg class="plot" role="img" aria-label="暗色背景上的正弦与 Taylor 多项式"></svg>
+    <div class="d-ctrl d-mono"><input id="n-dark" class="n-range" type="range" min="1" max="19" step="2" value="7" aria-label="阶数 N"><span>N=<b class="n-out num">7</b></span><span>max|err|=<b class="err-out num">0.0752</b></span></div>
+  </div>
+  <div class="d-card">
+    <div class="d-card-head"><span>THEOREM 4.17</span><span class="d-anchor">#thm-4-17</span></div>
+    <p style="margin:0 0 12px">若 $f \in \mathcal{C}^\infty(\mathbb{R})$ 的各阶导数在每个 $[-A, A]$ 上有公共上界 $M_A$，则 $f$ 等于它的 Taylor 级数。</p>
+    <button class="proof-toggle d-btn" type="button" aria-expanded="false">proof</button>
+    <div class="proof" hidden>取 $A = |x|$，Lagrange 余项给出 $|f(x) - T_N(x)| \le M_A |x|^{N+1}/(N+1)! \to 0$。</div>
+  </div>
+</div>
+</template>
+
+<!-- ========== 07 杂志专题 ========== -->
+<template id="tpl-editorial">
+<div class="sp sp-ed">
+  <p class="e-label">数学 · Mathematics</p>
+  <h1>一个多项式，怎样学会了正弦</h1>
+  <p class="e-deck">只用原点处的各阶导数，Taylor 多项式就能在越来越长的区间上复原正弦曲线。它为什么从不失手？</p>
+  <p class="e-byline">文 / 本书编辑部　·　2026 年 10 月 20 日　·　阅读约 4 分钟</p>
+  <figure class="e-fig">
+    <div class="e-art"><svg class="plot" role="img" aria-label="杂志插图风格的正弦与 Taylor 多项式"></svg></div>
+    <figcaption><span>拖动滑块增加阶数：$N =$ <b class="n-out num">7</b>　<input id="n-ed" class="n-range" type="range" min="1" max="19" step="2" value="7" aria-label="阶数 N"></span><span class="e-credit">交互图形</span></figcaption>
+  </figure>
+  <div class="e-cols">
+    <p class="e-drop">把正弦函数的幂级数截断到第 $N$ 阶，就得到一个多项式。在原点附近，它和正弦几乎重合；离原点越远，偏差越大。</p>
+    <p>增加阶数，贴合的区间随之变长。阶数为 7 时，多项式在 $[-\pi, \pi]$ 上的最大误差约为 0.075；阶数为 19 时，误差已不到十亿分之一。</p>
+    <blockquote class="e-pull">它只知道原点附近的事，却能在整条实轴上复原正弦。</blockquote>
+    <p>原因藏在一个不等式里：误差不超过 $\frac{|x|^{N+1}}{(N+1)!}$。分母的阶乘增长得比任何幂都快，所以只要阶数足够高，再远的地方也能贴上。</p>
+  </div>
+  <aside class="e-box">
+    <p class="e-box-label">延伸阅读　定理 4.17</p>
+    <p>若 $f$ 的各阶导数在每个有界区间上一致有界，则 $f$ 在整条实轴上等于它的 Taylor 级数。</p>
+    <button class="proof-toggle" type="button" aria-expanded="false">阅读证明</button>
+    <div class="proof" hidden><p>取 $A = |x|$。由 Lagrange 余项，$|f(x) - T_N(x)| \le M_A \frac{|x|^{N+1}}{(N+1)!}$，它随 $N$ 增大趋于零。</p></div>
+  </aside>
+</div>
+</template>
+
+<!-- ========== 08 瑞士网格 ========== -->
+<template id="tpl-swiss">
+<div class="sp sp-swiss">
+  <button class="s-gridbtn" type="button" aria-pressed="false">显示网格</button>
+  <div class="s-grid">
+    <div class="s-overlay" hidden><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span><span></span></div>
+    <p class="s-num">4.3</p>
+    <h1 class="s-title">Taylor 多项式<br>与正弦</h1>
+    <p class="s-meta">第 4 章<br>幂级数</p>
+    <p class="s-lede">把 $\sin x$ 的幂级数截断到 $N$ 阶，得到多项式 $T_N$。阶数越高，贴合的区间越长。在任何有界区间上，误差趋于零。</p>
+    <p class="s-cap">图 1<br>黑：$\sin x$<br>红：$T_N$<br>N = <span class="n-out num">7</span><br>最大误差 <span class="err-out num">0.0752</span></p>
+    <div class="s-fig"><svg class="plot" role="img" aria-label="网格版式中的正弦与 Taylor 多项式"></svg></div>
+    <div class="s-ctrl"><label for="n-swiss">N</label><input id="n-swiss" class="n-range" type="range" min="1" max="19" step="2" value="7"></div>
+    <div class="s-big"><span>R</span><span>=</span><span>∞</span><small>收敛半径</small></div>
+    <p class="s-label">定理<br>4.17</p>
+    <div class="s-thm">
+      <p>若 $f \in \mathcal{C}^\infty(\mathbb{R})$ 的各阶导数在每个 $[-A, A]$ 上有公共上界 $M_A$，则 $f$ 在 $\mathbb{R}$ 上等于它的 Taylor 级数。</p>
+      <button class="proof-toggle" type="button" aria-expanded="false">证明</button>
+      <div class="proof" hidden><p>取 $A = |x|$。Lagrange 余项给出 $|f(x) - T_N(x)| \le M_A \dfrac{|x|^{N+1}}{(N+1)!} \to 0$。</p></div>
+    </div>
+  </div>
+</div>
+</template>
+
+<!-- ========== 09 和风留白 ========== -->
+<template id="tpl-wa">
+<div class="sp sp-wa">
+  <div class="w-layout">
+    <header class="w-vert"><span class="w-ch">第四章</span><h1>幂级数</h1></header>
+    <div class="w-main">
+      <p class="w-kicker">泰勒多项式与正弦</p>
+      <p>把正弦的幂级数截断到 $N$ 阶，便得到一个多项式。阶数渐高，它与正弦相伴的路也渐长。在任何有限的区间里，两者终将难以分辨。</p>
+      <figure class="w-fig">
+        <svg class="plot" role="img" aria-label="留白风格的正弦与 Taylor 多项式"></svg>
+        <figcaption>灰为正弦，朱为 $T_N$。最大误差 <span class="err-out num">0.0752</span></figcaption>
+        <div class="w-ctrl"><label for="n-wa">阶</label><output class="n-out num">7</output><input id="n-wa" class="n-range" type="range" min="1" max="19" step="2" value="7"></div>
+      </figure>
+      <div class="w-thm">
+        <span class="w-seal">定理</span>
+        <div>
+          <p class="w-thm-name">4.17　泰勒展开的判据</p>
+          <p>若 $f$ 的各阶导数在每个有界区间上一致有界，则 $f$ 在整条实轴上等于它的泰勒级数。</p>
+          <button class="proof-toggle" type="button" aria-expanded="false" aria-label="展开证明">证</button>
+          <div class="proof" hidden><p>取 $A = |x|$，由 Lagrange 余项，$|f(x) - T_N(x)| \le M_A \dfrac{|x|^{N+1}}{(N+1)!}$，其值随 $N$ 增大而趋于零。</p></div>
+        </div>
+      </div>
+      <p class="w-note">一七四八年，Euler 在《无穷小分析引论》中系统地使用了这类展开。</p>
+    </div>
+  </div>
+</div>
+</template>
+
+<!-- ========== 10 新粗野 ========== -->
+<template id="tpl-brutal">
+<div class="sp sp-brutal">
+  <div class="b-box b-head">
+    <span class="b-sticker">第 4 章</span>
+    <h1>Taylor 多项式 vs 正弦</h1>
+    <p>把正弦的幂级数截断到 $N$ 阶，得到一个多项式。点按钮加项，看它能追正弦追多远。</p>
+  </div>
+  <div class="b-box b-plot">
+    <svg class="plot" role="img" aria-label="粗边框风格的正弦与 Taylor 多项式"></svg>
+    <div class="b-ctrl">
+      <button class="b-btn" type="button" data-d="-2">N −</button>
+      <span class="b-n">N = <span class="n-out num">7</span></span>
+      <button class="b-btn" type="button" data-d="2">N +</button>
+    </div>
+  </div>
+  <div class="b-row">
+    <div class="b-box b-stat"><p>[−π, π] 上最大误差</p><p class="b-big err-out num">0.0752</p></div>
+    <div class="b-box b-stat white"><p>收敛半径</p><p class="b-big">∞</p></div>
+  </div>
+  <div class="b-box b-thm">
+    <p class="b-tag">定理 4.17</p>
+    <p>若 $f$ 的各阶导数在每个有界区间上一致有界，则 $f$ 等于它的 Taylor 级数。</p>
+    <button class="proof-toggle b-btn" type="button" aria-expanded="false">看证明 ↓</button>
+    <div class="proof" hidden>取 $A = |x|$。Lagrange 余项：$|f(x) - T_N(x)| \le M_A \dfrac{|x|^{N+1}}{(N+1)!} \to 0$。搞定。</div>
+  </div>
+</div>
+</template>
+
