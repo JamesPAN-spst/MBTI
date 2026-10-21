@@ -6,6 +6,10 @@
 
 构建产物在 `docs/`，是纯静态页面，直接用浏览器打开 `docs/index.html` 即可。也可以在仓库设置中把 GitHub Pages 的来源设为 `main` 分支的 `/docs` 目录。
 
+## 风格样品册
+
+`design/booklet/` 是挑选网站视觉风格用的互动册子：10 种整体风格 + 233 个带编号的零件样品（背景艺术、配色、字体、排版、布局、质感、按钮、文本框、动效、页面切换、大企业设计语言）。构建到 `docs/booklet/index.html`，说明见 [design/booklet/README.md](design/booklet/README.md)。
+
 ## 目录结构
 
 ```
@@ -16,14 +20,16 @@ src/assets/         样式、页面脚本、交互演示（原生 canvas，无�
 scripts/build.mjs   构建脚本：content/*.md → docs/*.html
 docs/               构建产物（提交到仓库，供直接浏览与 GitHub Pages 使用）
 plan/syllabus.md    四国课程调研与全程目录
+design/booklet/     风格样品册（源码与构建脚本）
 ```
 
 ## 构建
 
 ```sh
 npm install
-npm run build                 # 全部章节
+npm run build                 # 全部章节，随后构建风格样品册
 ONLY=01-evn npm run build     # 只构建部分章节（写作时预览）
+npm run booklet               # 只构建风格样品册
 ```
 
 公式在构建时由 KaTeX 渲染，任何 TeX 错误、未定义的交叉引用或未闭合的块都会让构建失败。

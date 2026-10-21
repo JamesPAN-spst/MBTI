@@ -1,0 +1,22 @@
+# R 大企业参考：各家专有字体的 Google Fonts 近似替代（原型 → 替代）
+# SF Pro（Apple）、Linear/Polaris/Arco 本就用 Inter，Nike 正文 Helvetica Now → Inter
+Inter:wght@300;400;500;600;700
+# Google Sans → Roboto（Material 3 默认字体）；Netflix Sans 的界面小字也借用它
+Roboto:wght@400;500;700
+# Segoe UI（Fluent）→ Open Sans
+Open+Sans:wght@400;600;700
+# IBM Carbon 的原生字体（开源）
+IBM+Plex+Sans:wght@300;400;600
+IBM+Plex+Mono:wght@400
+# GitHub 系统字体栈里的 Noto Sans
+Noto+Sans:wght@400;500;600
+# Söhne（Stripe）→ Inter Tight
+Inter+Tight:wght@400;500;600
+# Circular / Spotify Mix → Figtree
+Figtree:wght@400;500;700;800
+# Airbnb Cereal → Plus Jakarta Sans
+Plus+Jakarta+Sans:wght@400;500;600;700;800
+# Futura Condensed Extra Bold（Nike）→ Anton
+Anton
+# Gotham / Universal Sans（Tesla）→ Montserrat
+Montserrat:wght@300;400;500;600

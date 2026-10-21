@@ -1,0 +1,23 @@
+# F 字体：西文分类的近似替代字体
+# 与其他章节同名的字体（Jost、Caveat、LXGW WenKai TC、Inter 等）参数保持一致，整本组装时不会冲突
+Libre+Baskerville:wght@400;700
+Playfair+Display:wght@400;700
+Roboto+Slab:wght@300..700
+Libre+Franklin:wght@400;700
+Inter:wght@300;400;500;600;700
+Jost:wght@500;700
+Bebas+Neue
+Caveat:wght@600;700
+Great+Vibes
+UnifrakturMaguntia
+Press+Start+2P
+# 中文字体（Google 按需分片加载）
+LXGW+WenKai+TC
+Huninn
+Ma+Shan+Zheng
+Zhi+Mang+Xing
+Liu+Jian+Mao+Cao
+Long+Cang
+ZCOOL+KuaiLe
+ZCOOL+QingKe+HuangYou
+ZCOOL+XiaoWei
