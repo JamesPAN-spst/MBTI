@@ -27,6 +27,7 @@
   --tex-hi: none;         /* 金箔的反光层 */
   --mottle: none;         /* 宣纸云状的深浅 */
   --art-shadow: drop-shadow(0 16px 22px rgba(60, 48, 30, .16)) drop-shadow(0 2px 3px rgba(60, 48, 30, .12));
+  --art-op: .82; --art-blend: multiply; --art-filter: saturate(.7) sepia(.14) contrast(.9) brightness(1.04);
   --foil: linear-gradient(115deg, #6b4f1e 0%, #b8974f 18%, #8f6c2a 34%, #cfb06a 50%, #866326 66%, #b99a55 84%, #74571f 100%);
   --f-body: "EB Garamond", "Noto Serif SC", "Songti SC", "STSong", serif;
   --f-note: "EB Garamond", "LXGW WenKai TC", "Kaiti SC", "STKaiti", serif;
@@ -47,7 +48,7 @@
     --paper: #0d0c0a; --paper-2: #070605; --paper-3: #16140f;
     --ink: #c9a86b; --ink-2: #93805c; --ink-3: #66593f; --line: #2b261d;
     --qing: #86b3ad; --qing-soft: rgba(134, 179, 173, .10); --zhu: #d4735e; --zhu-soft: rgba(212, 115, 94, .12);
-    --xiang: #e6c97f; --on-zhu: #0d0c0a; --glass: rgba(13, 12, 10, .74); --art-shadow: drop-shadow(0 0 28px rgba(201, 168, 107, .14)); --art-shadow: drop-shadow(0 0 28px rgba(201, 168, 107, .14));
+    --xiang: #e6c97f; --on-zhu: #0d0c0a; --glass: rgba(13, 12, 10, .74); --art-shadow: drop-shadow(0 0 28px rgba(201, 168, 107, .14)); --art-op: .5; --art-blend: screen; --art-filter: saturate(.65) sepia(.25) brightness(.8); --art-op: .5; --art-blend: screen; --art-filter: saturate(.65) sepia(.25) brightness(.8);
     --shadow: 0 1px 1px rgba(0, 0, 0, .5), 0 10px 24px -10px rgba(0, 0, 0, .8), 0 30px 60px -30px rgba(0, 0, 0, .9);
     --inset: inset 0 2px 5px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(201, 168, 107, .08);
     --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .79 0 0 0 0 .66 0 0 0 0 .42 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -66,10 +67,10 @@
 }
 
 * { box-sizing: border-box; }
-html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; background: var(--paper); }
 body {
   margin: 0; position: relative; isolation: isolate; color: var(--ink);
-  background-color: var(--paper); background-image: var(--tex), var(--mottle), var(--grain); background-size: 900px 900px, 1600px 1600px, 220px 220px;
+  background-color: var(--paper); min-height: 100%;
   font-family: var(--f-body); font-size: 17px; line-height: 1.75;
   font-kerning: normal; text-autospace: normal; -webkit-font-smoothing: antialiased;
 }
@@ -174,10 +175,7 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .c-facts div { display: flex; align-items: baseline; gap: 5px; }
 .c-facts dt { font-variant-numeric: lining-nums tabular-nums; color: var(--ink); font-size: 19px; }
 .c-facts dd { margin: 0; }
-.c-art { position: absolute; z-index: 1; right: max(16px, 4vw); bottom: 34px; width: min(34vw, 480px); margin: 0; pointer-events: none; will-change: transform; animation: art-in 1.3s var(--ease-out) .35s both; }
-.c-art img { display: block; width: 100%; height: auto; filter: var(--art-shadow); }
-@keyframes art-in { from { opacity: 0; transform: translate3d(24px, 12px, 0); } }
-.c-seal { position: absolute; left: -30px; top: 30%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.c-seal { display: flex; align-items: flex-start; gap: 10px; margin-top: 8px; }
 .vtext { writing-mode: vertical-rl; letter-spacing: .3em; font-size: 15px; color: var(--ink-2); }
 .seal { width: 46px; height: 46px; flex: none; }
 .marquee { position: absolute; left: 0; right: 0; bottom: 0; border-top: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 70%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); overflow: hidden; height: 48px; display: flex; align-items: center; }
@@ -473,6 +471,16 @@ table.alloc tr.grp td { padding-top: 22px; border-bottom: 1px solid var(--ink-3)
 .mt span { font-size: 14px; color: var(--ink-2); }
 .mt code { display: block; font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-3); margin-top: 4px; }
 
+/* ———— 纸的层次：纸色 → 插画（印在纸里）→ 纤维、云纹、金箔 → 金箔反光 → 正文 ———— */
+.paper-tex { position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: var(--tex), var(--mottle), var(--grain); background-size: 900px 900px, 1600px 1600px, 220px 220px; }
+.paper-clip { position: absolute; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; opacity: var(--art-op); mix-blend-mode: var(--art-blend); }
+.paper-art { position: absolute; top: 40px; right: -5vw; width: min(50vw, 700px); aspect-ratio: 1100 / 1226; will-change: transform; }
+.paper-art img { position: absolute; inset: 0; width: 100%; height: 100%; filter: var(--art-filter); }
+/* 边缘：外圈是模糊的一层，内圈是清晰的一层，两层叠起来从清晰过渡到模糊再淡出 */
+.paper-art .pa-blur { filter: var(--art-filter) blur(9px); -webkit-mask-image: radial-gradient(closest-side, #000 50%, transparent 100%); mask-image: radial-gradient(closest-side, #000 50%, transparent 100%); }
+.paper-art .pa-sharp { -webkit-mask-image: radial-gradient(closest-side, #000 38%, transparent 78%); mask-image: radial-gradient(closest-side, #000 38%, transparent 78%); }
+
 /* ———— 烫金宣纸（K17 + M29）：金箔在指针附近反光 ———— */
 body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background-image: var(--tex-hi); background-size: 900px 900px;
@@ -503,7 +511,7 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
 .ills.other .ill-why { grid-column: 1; }
 
 /* ———— 编号标注模式 ———— */
-[data-k]:not(.tb):not(.cover):not(.mtn):not(.c-art):not(.c-seal) { position: relative; }
+[data-k]:not(.tb):not(.cover):not(.mtn):not(.paper-art) { position: relative; }
 :root[data-annot="on"] [data-k] { outline: 1px dashed var(--zhu); outline-offset: 4px; }
 :root[data-annot="on"] [data-k]::before { content: attr(data-k); position: absolute; z-index: 30; top: -14px; left: -4px; font: 500 10.5px/1.6 var(--f-mono); letter-spacing: .02em; color: var(--on-zhu); background: var(--zhu); padding: 0 6px; border-radius: 3px; white-space: nowrap; pointer-events: none; }
 :root[data-annot="on"] .cover[data-k]::before { top: 70px; left: max(16px, env(safe-area-inset-left, 0px)); }
@@ -537,7 +545,8 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
   .c-text { padding-left: 0; }
   .c-side { justify-self: start; text-align: left; order: -1; padding-right: 0; }
   .c-num { font-size: 120px; }
-  .c-art { position: relative; right: auto; bottom: auto; width: min(76%, 320px); margin: -24px auto 64px; }
+  .paper-art { width: 80vw; right: -10vw; top: 52px; }
+  .paper-clip { opacity: calc(var(--art-op) * .75); }
   .c-seal { display: none; }
   .brand span, .annot-l { display: none; }
   .tb-in { gap: 6px; }
@@ -562,6 +571,13 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
   .mq-track { animation: none; }
 }
 </style>
+
+<!-- 纸下的插画（印在宣纸里，金箔在它上面）与纸纹 -->
+<div class="paper-clip" aria-hidden="true"><div class="paper-art" id="paper-art" data-k="插画 12 渔翁 · 印在纸下 · 边缘羽化">
+  <img class="pa-blur" src="img/12-yuweng.webp" alt="" decoding="async">
+  <img class="pa-sharp" src="img/12-yuweng.webp" alt="" decoding="async">
+</div></div>
+<div class="paper-tex" aria-hidden="true"></div>
 
 <!-- 印章（K06 超椭圆） -->
 <svg width="0" height="0" style="position:absolute" aria-hidden="true">
@@ -627,12 +643,9 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
     </div>
     <div class="c-side">
       <p class="c-num" aria-hidden="true" data-n="4" data-k="F03 迪多尼 · 烫金 · K11 长投影">4</p>
+      <div class="c-seal" data-k="S09 竖排 · 朱印"><span class="vtext">第四章　幂级数</span><svg class="seal" aria-hidden="true"><use href="#seal"/></svg></div>
     </div>
   </div>
-  <figure class="c-art" id="c-art" data-k="插画 12 蓑笠渔翁 · M24 视差">
-    <img src="img/12-yuweng.webp" alt="蓑笠渔翁坐在小舟上垂钓，身旁一只鸬鹚，舟下是浪花" width="1100" height="1226" decoding="async">
-    <div class="c-seal" data-k="S09 竖排 · 朱印"><span class="vtext">第四章　幂级数</span><svg class="seal" aria-hidden="true"><use href="#seal"/></svg></div>
-  </figure>
   <div class="marquee" data-k="M28 跑马灯：常用展开">
     <span class="mq-label eyebrow">常用展开</span>
     <div class="mq-track" aria-label="常用幂级数展开">
@@ -1159,7 +1172,7 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
   // ———— 封面：水墨远山（A12），四层画布做视差（M24） ————
   const cover = $('.cover');
   const layers = $$('.mtn');
-  const art = $('#c-art');
+  const art = $('#paper-art');
   function rng(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
   function noise1(seed, n) { const r = rng(seed); const v = Array.from({ length: n + 2 }, r); return (t) => { const i = Math.floor(t), f = t - i; const u = (1 - Math.cos(f * Math.PI)) / 2; return v[i % (n + 2)] * (1 - u) + v[(i + 1) % (n + 2)] * u; }; }
   const LAYERS = [
@@ -1239,7 +1252,7 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
       ticking = false;
       const y = Math.min(scrollY, cover.offsetHeight);
       layers.forEach((cv, i) => { cv.style.transform = `translate3d(0, ${y * [0.42, 0.3, 0.18, 0.06][i]}px, 0)`; });
-      art.style.transform = `translate3d(0, ${y * 0.1}px, 0)`;
+      art.style.transform = `translate3d(0, ${y * 0.18}px, 0)`;
     });
   }, { passive: true });
 
@@ -1630,7 +1643,7 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
     ['S09 和风留白', '大面积留白、竖排章名、朱印；封面和左侧页边。', 'm', 1],
     ['艺术风格与背景'],
     ['A18 宋式雅色', '全站配色的来源：天青、月白、秋香、朱砂。', 'm', 1],
-    ['A12 水墨', '第 4 章封面底纹：远山渐淡，前面是渔翁插画（示范页）。', 's', 1],
+    ['A12 水墨', '第 4 章封面底纹：远山渐淡；渔翁插画印在纸下、金箔之下（示范页）。', 's', 1],
     ['A14 侘寂', '图 4.2 收敛圆画成不闭合的圆相；第 6 章封面。', 's', 1],
     ['A35 手绘笔记', '交互图上的手写批注和箭头；第 2 章封面。', 's', 1],
     ['A34 等高线', '学习记录的底纹；第 9 章封面底纹（等值线与梯度）。', 's', 1],
