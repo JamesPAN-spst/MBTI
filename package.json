@@ -4,8 +4,9 @@
   "type": "module",
   "description": "数学分析 L2 学习网页（静态站点，构建产物输出到 docs/）",
   "scripts": {
-    "build": "node scripts/build.mjs && node design/booklet/build.mjs",
-    "booklet": "node design/booklet/build.mjs"
+    "build": "node scripts/build.mjs && node design/booklet/build.mjs && node design/songzhi/build.mjs",
+    "booklet": "node design/booklet/build.mjs",
+    "songzhi": "node design/songzhi/build.mjs"
   },
   "devDependencies": {
     "katex": "0.16.11",

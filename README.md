@@ -10,6 +10,10 @@
 
 `design/booklet/` 是挑选网站视觉风格用的互动册子：10 种整体风格 + 233 个带编号的零件样品（背景艺术、配色、字体、排版、布局、质感、按钮、文本框、动效、页面切换、大企业设计语言）。构建到 `docs/booklet/index.html`，说明见 [design/booklet/README.md](design/booklet/README.md)。
 
+## 设计方案「宋纸手稿」
+
+`design/songzhi/` 是按样品册里的收藏做的设计方案与示范页（第 4 章 §4.1 收敛半径），构建到 `docs/songzhi/index.html`；页内「设计方案」视图写明了配色、字体、排版参数和每个收藏编号的用处。插画素材在 `design/assets/`，说明见 [design/assets/README.md](design/assets/README.md)。
+
 ## 目录结构
 
 ```
@@ -21,15 +25,18 @@ scripts/build.mjs   构建脚本：content/*.md → docs/*.html
 docs/               构建产物（提交到仓库，供直接浏览与 GitHub Pages 使用）
 plan/syllabus.md    四国课程调研与全程目录
 design/booklet/     风格样品册（源码与构建脚本）
+design/songzhi/     设计方案「宋纸手稿」示范页
+design/assets/      插画素材：raw/ 原图，illustrations/ 处理后的 WebP
 ```
 
 ## 构建
 
 ```sh
 npm install
-npm run build                 # 全部章节，随后构建风格样品册
+npm run build                 # 全部章节，随后构建风格样品册与示范页
 ONLY=01-evn npm run build     # 只构建部分章节（写作时预览）
 npm run booklet               # 只构建风格样品册
+npm run songzhi               # 只构建「宋纸手稿」示范页
 ```
 
 公式在构建时由 KaTeX 渲染，任何 TeX 错误、未定义的交叉引用或未闭合的块都会让构建失败。
