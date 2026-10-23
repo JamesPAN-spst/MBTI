@@ -502,23 +502,21 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
 :root[data-theme="dark"] .c-title span i { background: var(--foil); background-size: 220% 100%; background-position: calc(var(--gx, .5) * 100%) 50%; -webkit-background-clip: text; background-clip: text; color: transparent; transition: background-position .5s var(--ease-out); }
 @media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .c-title span i { background: var(--foil); background-size: 220% 100%; background-position: calc(var(--gx, .5) * 100%) 50%; -webkit-background-clip: text; background-clip: text; color: transparent; transition: background-position .5s var(--ease-out); } }
 
+.rules { margin: 0 0 18px; padding-left: 1.4em; display: grid; gap: 4px; color: var(--ink-2); max-width: 44em; }
+.rules b { color: var(--ink); font-weight: 600; }
+.pool-bar { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 20px; font-size: 14px; color: var(--ink-2); margin: 6px 0 4px; }
+.pool-bar em, .ill .tag { font-style: normal; font-size: 12px; color: var(--zhu); border: 1px dashed currentColor; border-radius: 99px; padding: 0 7px; white-space: nowrap; }
 .ill-h { font-size: 13px; font-variant-caps: all-small-caps; letter-spacing: .16em; color: var(--ink-3); font-weight: 400; margin: 26px 0 12px; }
-.ills { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 22px 18px; }
-.ill { margin: 0; display: grid; gap: 10px; align-content: start; }
-.ill-img { aspect-ratio: 1; display: grid; place-items: center; border-radius: 14px; border: 1px solid var(--line); background: var(--paper-2) var(--tex); background-size: 900px; overflow: hidden; padding: 10px; }
+.ills { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 18px 14px; }
+.ill { margin: 0; display: grid; gap: 8px; align-content: start; }
+.ill-img { position: relative; aspect-ratio: 1; display: grid; place-items: center; border-radius: 14px; border: 1px solid var(--line); background: var(--paper-2) var(--tex); background-size: 900px; overflow: hidden; padding: 10px; transition: border-color .3s; }
 .ill-img img { max-width: 100%; max-height: 100%; width: auto; height: auto; filter: var(--art-shadow); transition: transform .5s var(--ease-out); }
 .ill:hover .ill-img img { transform: scale(1.04); }
-.ill.cur .ill-img { border-color: var(--zhu); }
-.ill figcaption { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; align-items: baseline; }
+.ill.on .ill-img { border-color: var(--zhu); }
+.ill .tag { position: absolute; z-index: 1; top: 8px; left: 8px; background: var(--paper-3); }
+.ill figcaption { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 8px; }
 .ill figcaption b { font-weight: 600; font-size: 15px; }
-.ill-no { font-family: var(--f-num); font-size: 22px; color: var(--ink-3); grid-row: span 3; font-variant-numeric: lining-nums; line-height: 1.1; }
-.ill.cur .ill-no { color: var(--zhu); }
-.ill-nm { font-size: 14px; color: var(--ink-2); }
-.ill-nm code { font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-3); margin-left: 8px; }
-.ill-why { font-size: 14px; line-height: 1.65; color: var(--ink-2); grid-column: 2; }
-.ill-why em { font-style: normal; font-size: 12px; color: var(--zhu); border: 1px dashed currentColor; border-radius: 99px; padding: 0 7px; margin-left: 6px; white-space: nowrap; }
-.ills.other figcaption { grid-template-columns: minmax(0, 1fr); }
-.ills.other .ill-why { grid-column: 1; }
+.ill-face { font-size: 12.5px; color: var(--ink-3); white-space: nowrap; }
 
 /* ———— 编号标注模式 ———— */
 [data-k]:not(.tb):not(.cover):not(.mtn):not(.deco):not(.c-num) { position: relative; }
@@ -864,13 +862,13 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z"/></svg></span></span>
   <div class="plan-in">
     <p class="eyebrow"><b>Proposition</b>　·　数学分析 L2 网站设计方案　·　v1</p>
     <h1>宋纸手稿</h1>
-    <p class="lede">像一本写在洒金宣纸上的讲义：大量留白，旁注说话，正文用宋体配 Garamond，颜色只有墨、天青和一点朱砂。每章封面一幅与本章数学相呼应的传统画，是全站唯一的重笔；其余地方都很安静，把注意力留给公式和证明。</p>
+    <p class="lede">像一本写在洒金宣纸上的讲义：大量留白，旁注说话，正文用宋体配 Garamond，颜色只有墨、天青和一点朱砂。二十幅工笔插画印在纸下、金箔之下，隔一段出现一幅，让版面不死板；每次打开抽到的都不一样。公式和证明始终在最上层。</p>
 
     <h2><span class="no">1</span>取舍原则</h2>
     <p class="sub">你收藏了 90 个样品，它们不可能同时出现在一页上。我按三档分配，保证每页只有一个主角：</p>
     <div class="tiers">
       <div class="tier"><h3>主调</h3><p>每一页都在：S01 学术手稿 + S09 和风留白，A18 宋式雅色，C14 墨水与纸，宋体 + Garamond，旁注版心，细线与纸纹。</p></div>
-      <div class="tier"><h3>场景</h3><p>只在特定位置出现：每章封面的画、记忆卡的翻转、答题的长按、暗色模式的极光、首页的轮播与整页吸附。</p></div>
+      <div class="tier"><h3>场景</h3><p>只在特定位置出现：纸下的插画、记忆卡的翻转、答题的长按、暗色模式的极光、首页的轮播与整页吸附。</p></div>
       <div class="tier"><h3>暂缓</h3><p>与「纸面」冲突或会抢正文风头的：整套新拟态、涟漪、立方体切换等。它们在表里写明了原因，你可以推翻。</p></div>
     </div>
 
@@ -915,12 +913,15 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z"/></svg></span></span>
       <tbody id="alloc"></tbody>
     </table></div>
 
-    <h2><span class="no">6</span>二十幅插画，各有去处</h2>
-    <p class="sub">你给的二十幅工笔插画（红、青、金、米白，正好对上朱砂、天青、秋香、宣纸）是全站唯一的彩色。十一幅中式的做各章封面的主角，每幅都和那一章的数学有一层关系；之前选的艺术风格退到后面，做封面的底纹。剩下九幅放在首页、徽章、404 等处：日式的四幅都留给练习和游戏化的部分，不进正文。</p>
-    <h3 class="ill-h">章节封面</h3>
-    <div class="ills" id="ills"></div>
-    <h3 class="ill-h">其余九幅</h3>
-    <div class="ills other" id="ills-other"></div>
+    <h2><span class="no">6</span>二十幅插画，一个池子</h2>
+    <p class="sub">不再一章配一幅。二十幅放进同一个池子，每次打开页面随机抽出十几幅，隔一段放一张，印在宣纸下面、金箔下面。抽的时候只守三条规矩：</p>
+    <ol class="rules">
+      <li><b>面朝页面里面。</b>朝右的放在左边，朝左的放在右边；山水楼阁不分方向，两边都行。</li>
+      <li><b>同一次不重复，相邻两幅不同类。</b>人物和瑞兽出场多一些，山水楼阁少一些。</li>
+      <li><b>封面只抽朝右的人物或瑞兽，</b>因为封面的画在左上角，要看向章名。</li>
+    </ol>
+    <div class="pool-bar"><span>标了<em>本次</em>的，是这次打开页面抽中的。</span><button class="btn quiet" type="button" id="reshuffle">换一批</button></div>
+    <div id="pool"></div>
     <p class="sub" style="margin-top:14px">处理：二十幅都清理了透明通道，歌舞伎和青龙两幅原图把「透明格子」画进了像素里，已经去掉；统一裁边、压成 WebP，大图每张约 300–450KB，缩略图约 50KB。原图保留在仓库的 <code>design/assets/raw/</code>。</p>
 
     <h2><span class="no">7</span>动效规范</h2>
@@ -1236,22 +1237,31 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z"/></svg></span></span>
     }
     return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">${o.join('')}</svg>`;
   }
-  const RATIO = { '12-yuweng': 1226 / 1100, '09-baota': 1, '04-fenghuang': 1, '20-qinglong': 1, '17-feitian': 1320 / 1056, '07-gongdian': 997 / 1100, '08-yuanlin': 1098 / 1100, '16-xingzhe': 1299 / 1100, '06-pubu': 1051 / 1100, '03-yutu': 1101 / 1100, '18-gongmen': 1007 / 1100 };
+  // 插画池：[文件, 名字, 类别, 朝向, 高宽比]。朝向 r：面朝右，放左边；l：面朝左，放右边；''：不分方向
+  const POOL = [
+    ['10-shinv', '执扇仕女', '人物', 'l', 1.255], ['11-fuqin', '抚琴高士', '人物', 'l', 1.25], ['12-yuweng', '蓑笠渔翁', '人物', 'r', 1.115],
+    ['13-pipa', '琵琶仕女', '人物', 'r', 1.244], ['14-chengsan', '撑伞', '人物', 'r', 1.325], ['15-sanxian', '三味线', '人物', 'l', 1.202],
+    ['16-xingzhe', '行者', '人物', 'r', 1.181], ['17-feitian', '飞天', '人物', 'r', 1.25], ['19-gewuji', '歌舞伎', '人物', 'l', 1.228],
+    ['01-jiuweihu', '九尾狐', '瑞兽', 'l', 1], ['02-qilin', '麒麟', '瑞兽', 'l', 1.006], ['03-yutu', '玉兔捣药', '瑞兽', 'r', 1.001],
+    ['04-fenghuang', '凤凰', '瑞兽', 'l', 1], ['05-tiangou', '天狗', '瑞兽', 'l', .998], ['20-qinglong', '青龙', '瑞兽', 'l', 1],
+    ['06-pubu', '山水瀑布', '山水楼阁', '', .955], ['07-gongdian', '宫殿', '山水楼阁', '', .906], ['08-yuanlin', '园林月洞门', '山水楼阁', '', .998],
+    ['09-baota', '宝塔山水', '山水楼阁', '', 1], ['18-gongmen', '宫门', '山水楼阁', '', .915]
+  ];
   const nth = (sel, i) => () => document.querySelectorAll(sel)[i];
   const DECOS = [
-    { view: 'demo', img: '12-yuweng', at: () => $('#top'), dy: 12, side: 'left', w: [300, .42, 620], over: .03, cover: true },
-    { view: 'demo', img: '09-baota', at: () => $('#h41'), dy: 40, side: 'right', w: [260, .34, 520], over: .3, soft: true },
-    { view: 'demo', img: '04-fenghuang', at: () => $('#fig41'), dy: 140, side: 'left', w: [260, .34, 520], over: .32, soft: true },
-    { view: 'demo', img: '20-qinglong', at: () => $('#hadamard'), dy: 20, side: 'right', w: [260, .34, 520], over: .3, soft: true },
+    { view: 'demo', pick: true, at: () => $('#top'), dy: 12, side: 'left', w: [300, .42, 620], over: .03, cover: true },
+    { view: 'demo', pick: true, at: () => $('#h41'), dy: 40, side: 'right', w: [260, .34, 520], over: .3, soft: true },
+    { view: 'demo', pick: true, at: () => $('#fig41'), dy: 140, side: 'left', w: [260, .34, 520], over: .32, soft: true },
+    { view: 'demo', pick: true, at: () => $('#hadamard'), dy: 20, side: 'right', w: [260, .34, 520], over: .3, soft: true },
     { view: 'demo', svg: zaojing, at: () => $('#ex46'), dy: 40, side: 'left', w: [220, .28, 420], over: .36, soft: true, ratio: 1, medal: true },
-    { view: 'demo', img: '17-feitian', at: () => $('#exo'), dy: 80, side: 'right', w: [240, .3, 460], over: .3, soft: true },
+    { view: 'demo', pick: true, at: () => $('#exo'), dy: 80, side: 'right', w: [240, .3, 460], over: .3, soft: true },
     { view: 'demo', band: true, at: () => $('.next'), dy: -40, h: 240, soft: true },
-    { view: 'plan', img: '07-gongdian', at: () => $('#view-plan'), dy: 20, side: 'right', w: [280, .36, 560], over: .12 },
-    { view: 'plan', img: '08-yuanlin', at: nth('.plan h2', 2), dy: 0, side: 'left', w: [240, .3, 460], over: .4, soft: true },
-    { view: 'plan', img: '16-xingzhe', at: nth('.plan h2', 4), dy: 40, side: 'right', w: [240, .3, 460], over: .4, soft: true },
-    { view: 'plan', img: '06-pubu', at: nth('#alloc tr', 28), dy: 0, side: 'left', w: [240, .3, 460], over: .4, soft: true },
-    { view: 'plan', img: '03-yutu', at: nth('#alloc tr', 62), dy: 0, side: 'right', w: [240, .3, 460], over: .4, soft: true },
-    { view: 'plan', img: '18-gongmen', at: nth('#alloc tr', 96), dy: 0, side: 'left', w: [240, .3, 460], over: .4, soft: true },
+    { view: 'plan', pick: true, at: () => $('#view-plan'), dy: 20, side: 'right', w: [280, .36, 560], over: .12 },
+    { view: 'plan', pick: true, at: nth('.plan h2', 2), dy: 0, side: 'left', w: [240, .3, 460], over: .4, soft: true },
+    { view: 'plan', pick: true, at: nth('.plan h2', 4), dy: 40, side: 'right', w: [240, .3, 460], over: .4, soft: true },
+    { view: 'plan', pick: true, at: nth('#alloc tr', 28), dy: 0, side: 'left', w: [240, .3, 460], over: .4, soft: true },
+    { view: 'plan', pick: true, at: nth('#alloc tr', 62), dy: 0, side: 'right', w: [240, .3, 460], over: .4, soft: true },
+    { view: 'plan', pick: true, at: nth('#alloc tr', 88), dy: 0, side: 'left', w: [240, .3, 460], over: .4, soft: true },
     { view: 'plan', svg: zaojing, at: nth('.plan h2', 6), dy: 0, side: 'right', w: [200, .26, 400], over: .45, soft: true, ratio: 1, medal: true },
     { view: 'plan', band: true, at: () => $('.qs'), dy: 120, h: 220, soft: true }
   ];
@@ -1260,8 +1270,7 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z"/></svg></span></span>
   DECOS.forEach((d) => {
     const el = document.createElement('div');
     el.className = `deco${d.soft ? ' soft' : ''}${d.band ? ' band' : ''}${d.medal ? ' medal' : ''}`;
-    if (d.img) el.innerHTML = `<img class="pa-blur" src="img/${d.img}.webp" alt="" decoding="async"><img class="pa-sharp" src="img/${d.img}.webp" alt="" decoding="async">`;
-    else if (d.svg) el.innerHTML = d.svg();
+    if (d.svg) el.innerHTML = d.svg();
     d.el = el;
     if (d.cover) coverDeco = el;
     decoLayer.appendChild(el);
@@ -1282,11 +1291,37 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z"/></svg></span></span>
         return;
       }
       const w = narrow ? W * (d.cover ? .74 : .7) : Math.max(d.w[0], Math.min(d.w[2], W * d.w[1]));
-      const ratio = d.ratio || RATIO[d.img] || 1;
+      const ratio = d.ratio || d.item?.[4] || 1;
       const over = narrow && !d.cover ? .45 : d.over;
       Object.assign(d.el.style, { top: `${top}px`, width: `${w}px`, height: `${w * ratio}px`, left: d.side === 'left' ? `${-w * over}px` : 'auto', right: d.side === 'right' ? `${-w * over}px` : 'auto' });
     });
   }
+  // 抽签：按种子打乱，山水楼阁往后排；每个位置取第一幅朝向合适、且与上一幅不同类的
+  function drawPicks(seed) {
+    const R = rng(seed);
+    const order = POOL.map((p) => ({ p, k: R() + (p[2] === '山水楼阁' ? .55 : 0) })).sort((a, b) => a.k - b.k).map((x) => x.p);
+    const used = new Set();
+    let prev = '';
+    DECOS.filter((d) => d.pick).forEach((d) => {
+      const need = d.side === 'left' ? 'r' : 'l';
+      const fits = (q) => !used.has(q[0]) && (d.cover ? q[3] === need : q[3] === need || q[3] === '');
+      const p = order.find((q) => fits(q) && q[2] !== prev) || order.find(fits);
+      used.add(p[0]); prev = p[2]; d.item = p;
+      d.el.innerHTML = `<img class="pa-blur" src="img/${p[0]}.webp" alt="" decoding="async"><img class="pa-sharp" src="img/${p[0]}.webp" alt="" decoding="async">`;
+      d.el.dataset.k = `插画 ${p[1]} · 随机 · 印在纸下`;
+    });
+    renderPool(used);
+    layoutDecos();
+  }
+  function renderPool(used) {
+    const face = { r: '面朝右 · 放左边', l: '面朝左 · 放右边', '': '不分方向' };
+    $('#pool').innerHTML = ['人物', '瑞兽', '山水楼阁'].map((kind) => {
+      const items = POOL.filter((p) => p[2] === kind);
+      return `<h3 class="ill-h">${kind} · ${items.length}</h3><div class="ills">${items.map(([f, nm, , fc]) => `<figure class="ill${used.has(f) ? ' on' : ''}"><div class="ill-img">${used.has(f) ? '<span class="tag">本次</span>' : ''}<img src="img/${f}-sm.webp" alt="${nm}" loading="lazy" decoding="async"></div><figcaption><b>${nm}</b><span class="ill-face">${face[fc]}</span></figcaption></figure>`).join('')}</div>`;
+    }).join('');
+  }
+  $('#reshuffle').addEventListener('click', () => drawPicks((Math.random() * 2 ** 32) >>> 0));
+  drawPicks(SEED ^ 0x9e3779b9);
   new ResizeObserver(() => layoutDecos()).observe(document.body);
   document.fonts?.ready.then(layoutDecos);
   layoutDecos();
@@ -1858,33 +1893,6 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z"/></svg></span></span>
   ];
   $('#alloc').innerHTML = ALLOC.map((r) => r.length === 1 ? `<tr class="grp"><td colspan="3">${r[0]}</td></tr>`
     : `<tr><td>${(r[0].includes('|') ? r[0] : r[0].replace(' ', '|')).replace('|', '<br>')}</td><td>${r[1]}</td><td>${T(r[2])}${r[3] ? ' ' + DEMO : ''}</td></tr>`).join('');
-  const ILL = [
-    [1, '赋范向量空间的拓扑', '18-gongmen', '宫门', '全书的第一道门；宫门左右对称，像范数的对称性 ‖−x‖ = ‖x‖。', 'A04'],
-    [2, '数项级数与可和族', '06-pubu', '山水瀑布', '涓滴汇成江河：部分和一项一项地累积。', 'A35'],
-    [3, '函数列与函数项级数', '01-jiuweihu', '九尾狐', '九条尾巴收成一只狐：函数列收敛到一个函数。', 'A01'],
-    [4, '幂级数', '12-yuweng', '蓑笠渔翁', '钓线放得多远，就是收敛半径；线外浪急，级数发散。', 'A12'],
-    [5, 'Fourier 级数', '11-fuqin', '抚琴高士', '琴弦的泛音就是谐波：一个音分解成无穷多个正弦。', 'A11'],
-    [6, '任意区间上的积分', '17-feitian', '飞天', '飞向无穷远：积分区间可以没有尽头。', 'A14'],
-    [7, '含参变量积分', '03-yutu', '玉兔捣药', '月里藏着 π：Γ(½) = √π；杵一起一落，像参数连续变化。', 'A26'],
-    [8, '微分方程', '04-fenghuang', '凤凰', '浴火重生：y′ = y 的解 eˣ 永远长回它自己。', 'A25'],
-    [9, '多元微分学', '09-baota', '宝塔山水', '群山是二元函数的图像，塔的每一层是一条等高线。', 'A34'],
-    [10, '局部逆、隐函数与条件极值', '08-yuanlin', '园林月洞门', '拱桥和水中倒影合成一轮满月：映射与它的逆。', 'A33'],
-    [11, '重积分', '07-gongdian', '宫殿', '层层台阶与屋檐：逐层累加的 Fubini。', 'A16']
-  ];
-  const ILL_OTHER = [
-    ['20-qinglong', '青龙', '首页主视觉：龙从浪中升起，后面接各章封面的轮播（P17）。'],
-    ['02-qilin', '麒麟', '读完一章得到的「瑞兽徽章」，放在学习记录里。'],
-    ['16-xingzhe', '行者', '学习路线：从第 1 章走到第 11 章的课程地图。'],
-    ['10-shinv', '执扇仕女', '「关于本站」和序言页。'],
-    ['13-pipa', '琵琶仕女', '每章题记旁的小插图。'],
-    ['05-tiangou', '天狗', '404 页：天狗把这一页吃掉了（天狗食月）。'],
-    ['19-gewuji', '歌舞伎', '练习「挑战模式」的关主之一（C10 游戏化区）。'],
-    ['14-chengsan', '撑伞', '挑战模式关主之二。'],
-    ['15-sanxian', '三味线', '挑战模式关主之三。']
-  ];
-  const card = (f, alt, body) => `<figure class="ill"><div class="ill-img"><img src="img/${f}-sm.webp" alt="${alt}" loading="lazy" decoding="async"></div><figcaption>${body}</figcaption></figure>`;
-  $('#ills').innerHTML = ILL.map(([n, t, f, nm, why, a]) => card(f, nm, `<span class="ill-no">${n}</span><b>${t}</b><span class="ill-nm">${nm}<code>底纹 ${a}</code></span><span class="ill-why">${why}${n === 4 ? '<em>示范页</em>' : ''}</span>`).replace('<figure class="ill">', `<figure class="ill${n === 4 ? ' cur' : ''}">`)).join('');
-  $('#ills-other').innerHTML = ILL_OTHER.map(([f, nm, use]) => card(f, nm, `<b>${nm}</b><span class="ill-why">${use}</span>`)).join('');
 })();
 </script>
 </body>

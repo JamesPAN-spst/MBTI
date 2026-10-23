@@ -43,13 +43,8 @@ const out = path.resolve(process.env.OUT || path.join(root, 'docs/songzhi/index.
 mkdirSync(path.join(path.dirname(out), 'img'), { recursive: true });
 writeFileSync(out, html);
 
-// 页面里引用的插画：img/NN-name(.webp|-sm.webp)，以及 DECOS 里 img: 'NN-name' 的大图
-const used = [...new Set([
-  ...[...src.matchAll(/img\/([\w-]+\.webp)/g)].map((m) => m[1]),
-  ...[...src.matchAll(/img: '([\w-]+)'/g)].map((m) => `${m[1]}.webp`)   // 纸下装饰表 DECOS 里的插画
-])];
+// 插画池在页面打开时随机抽取，所以把全部插画（大图 + 缩略图）都复制过去
 const ills = path.join(root, 'design/assets/illustrations');
-const all = readdirSync(ills);
 let copied = 0;
-for (const f of all.filter((f) => f.endsWith('-sm.webp') || used.includes(f))) { copyFileSync(path.join(ills, f), path.join(path.dirname(out), 'img', f)); copied++; }
+for (const f of readdirSync(ills).filter((f) => f.endsWith('.webp'))) { copyFileSync(path.join(ills, f), path.join(path.dirname(out), 'img', f)); copied++; }
 console.log(`katex ${count} · ${(html.length / 1024).toFixed(0)} KB · ${copied} 张插画 → ${out}`);
