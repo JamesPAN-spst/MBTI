@@ -1,0 +1,1755 @@
+<title>宋纸手稿</title>
+<meta name="claude:viewport-fit-sides" content="cover">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=EB+Garamond:ital,wght@0,400..700;1,400..700&family=Noto+Serif+SC:wght@200..900&family=LXGW+WenKai+TC&family=Zhi+Mang+Xing&family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..900;1,6..96,400..900&family=Great+Vibes&family=Long+Cang&family=Caveat:wght@500;600&family=JetBrains+Mono:wght@400;500&display=swap">
+<style>
+/* 宋纸手稿：Tufte 式旁注版心（正文约 35 字一行）+ 宋式雅色；全站唯一的重笔在章节封面（水墨远山 + 行书章名），其余处处克制 */
+:root {
+  --paper: #f5f2e9;        /* 宣纸 */
+  --paper-2: #ebe6d8;      /* 纸背、凹处 */
+  --paper-3: #fbf9f3;      /* 浮起的一张纸 */
+  --ink: #23211d;          /* 墨 */
+  --ink-2: #5d594f;        /* 淡墨 */
+  --ink-3: #8a8578;        /* 极淡墨：只用于大字或装饰 */
+  --line: #d8d1bf;         /* 发丝线 */
+  --qing: #3e6e74;         /* 天青：一切可以点的东西 */
+  --qing-soft: rgba(62, 110, 116, .10);
+  --zhu: #ad3a2c;          /* 朱砂：印、关键处、发散 */
+  --zhu-soft: rgba(173, 58, 44, .10);
+  --xiang: #a2843c;        /* 秋香：星级、记号 */
+  --on-zhu: #fbf6ec;
+  --glass: rgba(245, 242, 233, .72);
+  --shadow: 0 1px 1px rgba(60, 48, 30, .05), 0 8px 18px -8px rgba(60, 48, 30, .20), 0 28px 56px -28px rgba(60, 48, 30, .26);
+  --inset: inset 0 2px 4px rgba(60, 48, 30, .12), inset 0 0 0 1px rgba(60, 48, 30, .08);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .35 0 0 0 0 .28 0 0 0 0 .18 0 0 0 .09 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  --tex: none;            /* 洒金宣纸：纤维 + 金箔，由脚本生成 */
+  --tex-hi: none;         /* 金箔的反光层 */
+  --mottle: none;         /* 宣纸云状的深浅 */
+  --art-shadow: drop-shadow(0 16px 22px rgba(60, 48, 30, .16)) drop-shadow(0 2px 3px rgba(60, 48, 30, .12));
+  --foil: linear-gradient(115deg, #6b4f1e 0%, #b8974f 18%, #8f6c2a 34%, #cfb06a 50%, #866326 66%, #b99a55 84%, #74571f 100%);
+  --f-body: "EB Garamond", "Noto Serif SC", "Songti SC", "STSong", serif;
+  --f-note: "EB Garamond", "LXGW WenKai TC", "Kaiti SC", "STKaiti", serif;
+  --f-brush: "Zhi Mang Xing", "Noto Serif SC", serif;
+  --f-num: "Bodoni Moda", "Didot", "EB Garamond", serif;
+  --f-script: "Great Vibes", "EB Garamond", cursive;
+  --f-hand: "Caveat", "Long Cang", cursive;
+  --f-hand-zh: "Long Cang", "LXGW WenKai TC", cursive;
+  --f-mono: "JetBrains Mono", ui-monospace, Menlo, monospace;
+  --ease-out: cubic-bezier(.22, .61, .36, 1);      /* M04 缓出：入场、展开 */
+  --ease-io: cubic-bezier(.65, 0, .35, 1);         /* M05 缓入缓出：移动、翻转 */
+  --main: 630px;   /* 17px × 约 37 字 */
+  --gap: 44px;
+  --side: 250px;
+}
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    --paper: #0d0c0a; --paper-2: #070605; --paper-3: #16140f;
+    --ink: #c9a86b; --ink-2: #93805c; --ink-3: #66593f; --line: #2b261d;
+    --qing: #86b3ad; --qing-soft: rgba(134, 179, 173, .10); --zhu: #d4735e; --zhu-soft: rgba(212, 115, 94, .12);
+    --xiang: #e6c97f; --on-zhu: #0d0c0a; --glass: rgba(13, 12, 10, .74); --art-shadow: drop-shadow(0 0 28px rgba(201, 168, 107, .14)); --art-shadow: drop-shadow(0 0 28px rgba(201, 168, 107, .14));
+    --shadow: 0 1px 1px rgba(0, 0, 0, .5), 0 10px 24px -10px rgba(0, 0, 0, .8), 0 30px 60px -30px rgba(0, 0, 0, .9);
+    --inset: inset 0 2px 5px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(201, 168, 107, .08);
+    --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .79 0 0 0 0 .66 0 0 0 0 .42 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    color-scheme: dark;
+  }
+}
+:root[data-theme="dark"] {
+  --paper: #0d0c0a; --paper-2: #070605; --paper-3: #16140f;
+  --ink: #c9a86b; --ink-2: #93805c; --ink-3: #66593f; --line: #2b261d;
+  --qing: #86b3ad; --qing-soft: rgba(134, 179, 173, .10); --zhu: #d4735e; --zhu-soft: rgba(212, 115, 94, .12);
+  --xiang: #e6c97f; --on-zhu: #0d0c0a; --glass: rgba(13, 12, 10, .74); --art-shadow: drop-shadow(0 0 28px rgba(201, 168, 107, .14));
+  --shadow: 0 1px 1px rgba(0, 0, 0, .5), 0 10px 24px -10px rgba(0, 0, 0, .8), 0 30px 60px -30px rgba(0, 0, 0, .9);
+  --inset: inset 0 2px 5px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(201, 168, 107, .08);
+  --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .79 0 0 0 0 .66 0 0 0 0 .42 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+  color-scheme: dark;
+}
+
+* { box-sizing: border-box; }
+html { scroll-behavior: smooth; scroll-padding-top: 80px; }
+body {
+  margin: 0; position: relative; isolation: isolate; color: var(--ink);
+  background-color: var(--paper); background-image: var(--tex), var(--mottle), var(--grain); background-size: 900px 900px, 1600px 1600px, 220px 220px;
+  font-family: var(--f-body); font-size: 17px; line-height: 1.75;
+  font-kerning: normal; text-autospace: normal; -webkit-font-smoothing: antialiased;
+}
+button, input { font: inherit; color: inherit; }
+button { cursor: pointer; }
+a { color: inherit; }
+:focus-visible { outline: 2px solid var(--qing); outline-offset: 3px; border-radius: 4px; }
+[hidden] { display: none !important; }
+.sr { position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%); white-space: nowrap; }
+.katex { font-size: 1em; }
+.katex-display { overflow-x: auto; overflow-y: hidden; padding: 2px 0; margin: .8em 0; }
+p .katex, li .katex, dd .katex, td .katex { margin-inline: .14em; }   /* T15：公式与汉字之间留白 */
+body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-area-inset-top, 0px); z-index: 60; background: var(--paper); }
+
+/* ———— 小标签（T12：全大写/小型大写加字距） ———— */
+.eyebrow { font-variant-caps: all-small-caps; letter-spacing: .16em; font-size: 15px; color: var(--ink-2); margin: 0; font-feature-settings: "lnum"; }
+.eyebrow b { color: var(--zhu); font-weight: 500; }
+
+/* ———— 顶栏：毛玻璃（K15） ———— */
+.tb {
+  position: sticky; top: env(safe-area-inset-top, 0px); z-index: 50;
+  background: var(--glass); backdrop-filter: blur(16px) saturate(1.3); -webkit-backdrop-filter: blur(16px) saturate(1.3);
+  border-bottom: 1px solid var(--line);
+  padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px));
+}
+.tb-in { max-width: 1240px; margin: 0 auto; height: 56px; display: flex; align-items: center; gap: 14px; }
+.brand { display: flex; align-items: center; gap: 10px; text-decoration: none; white-space: nowrap; }
+.brand svg { width: 30px; height: 30px; flex: none; }
+.brand b { font-weight: 600; font-size: 16px; letter-spacing: .04em; }
+.brand span { font-variant-caps: all-small-caps; letter-spacing: .14em; color: var(--ink-2); font-size: 15px; }
+.crumb { font-size: 14px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; min-width: 0; flex: 1; }
+.crumb i { font-style: normal; color: var(--ink-3); margin: 0 .5em; }
+.tb-tools { display: flex; align-items: center; gap: 6px; }
+.progress { position: absolute; left: 0; right: 0; bottom: -1px; height: 2px; background: var(--zhu); transform-origin: 0 50%; transform: scaleX(0); }
+@supports (animation-timeline: scroll()) {
+  .progress { animation: grow linear both; animation-timeline: scroll(root); }
+  @keyframes grow { to { transform: scaleX(1); } }
+}
+
+/* 幽灵按钮（B03）：图标工具 */
+.ghost { width: 36px; height: 36px; display: grid; place-items: center; border: 0; border-radius: 10px; background: transparent; color: var(--ink-2); transition: background .16s var(--ease-out), color .16s; }
+.ghost:hover { background: var(--qing-soft); color: var(--ink); }
+.ghost:active { transform: scale(.94); }
+.ghost svg { width: 19px; height: 19px; fill: none; stroke: currentColor; stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round; }
+
+/* 分段控件（B19） */
+.seg { position: relative; display: inline-grid; grid-auto-flow: column; grid-auto-columns: 1fr; padding: 3px; border-radius: 11px; background: var(--paper-2); box-shadow: var(--inset); }
+.seg button { position: relative; z-index: 1; border: 0; background: none; padding: 4px 14px; border-radius: 8px; font-size: 14px; color: var(--ink-2); white-space: nowrap; transition: color .2s; }
+.seg button[aria-checked="true"] { color: var(--ink); }
+.seg .thumb { position: absolute; top: 3px; bottom: 3px; left: 3px; border-radius: 8px; background: var(--paper-3); box-shadow: 0 1px 2px rgba(0, 0, 0, .12), 0 0 0 1px var(--line); transition: transform .32s var(--ease-io), width .32s var(--ease-io); }
+
+/* 开关（B20） */
+.sw { display: inline-flex; align-items: center; gap: 8px; font-size: 14px; color: var(--ink-2); cursor: pointer; white-space: nowrap; user-select: none; }
+.sw input { appearance: none; margin: 0; width: 34px; height: 20px; border-radius: 99px; background: var(--paper-2); box-shadow: var(--inset); position: relative; cursor: pointer; transition: background .24s var(--ease-out); flex: none; }
+.sw input::after { content: ""; position: absolute; top: 2px; left: 2px; width: 16px; height: 16px; border-radius: 50%; background: var(--paper-3); box-shadow: 0 1px 3px rgba(0, 0, 0, .25); transition: transform .28s var(--ease-io); }
+.sw input:checked { background: var(--qing); }
+.sw input:checked::after { transform: translateX(14px); }
+
+/* 主按钮：描边 + 填充扫过（B02 + B13） */
+.btn { --c: var(--ink); position: relative; isolation: isolate; overflow: hidden; display: inline-flex; align-items: center; gap: 10px; padding: 10px 22px; border: 1px solid var(--c); border-radius: 2px; background: transparent; color: var(--c); font-size: 16px; letter-spacing: .06em; text-decoration: none; white-space: nowrap; transition: color .38s var(--ease-out), border-color .2s; }
+.btn::before { content: ""; position: absolute; inset: 0; z-index: -1; background: var(--c); transform: scaleX(0); transform-origin: right; transition: transform .42s var(--ease-out); }
+.btn:hover, .btn:focus-visible { color: var(--paper); }
+.btn:hover::before, .btn:focus-visible::before { transform: scaleX(1); transform-origin: left; }
+.btn:active { transform: translateY(1px); }
+.btn:disabled { opacity: .4; cursor: not-allowed; }
+.btn:disabled::before { display: none; }
+.btn.zhu { --c: var(--zhu); }
+.btn.quiet { border-color: var(--line); }
+.btn svg { width: 16px; height: 16px; stroke: currentColor; fill: none; stroke-width: 1.6; }
+
+/* 下划线链接（B11） */
+.ul { color: var(--qing); text-decoration: none; background: linear-gradient(currentColor, currentColor) 0 100% / 0 1px no-repeat, linear-gradient(var(--line), var(--line)) 0 100% / 100% 1px no-repeat; transition: background-size .3s var(--ease-out); padding-bottom: 1px; }
+.ul:hover, .ul:focus-visible { background-size: 100% 1px, 100% 1px; }
+
+/* ———— 封面（L10 + L05 + A12） ———— */
+.cover { position: relative; overflow: hidden; min-height: min(84vh, 760px); border-bottom: 1px solid var(--line); isolation: isolate; }
+.sky { position: absolute; inset: 0; z-index: -3; background: linear-gradient(to bottom, transparent 30%, var(--paper-2) 100%); }
+.aurora { position: absolute; inset: -20% -10% 30%; z-index: -3; opacity: 0; pointer-events: none; filter: blur(40px);
+  background: radial-gradient(40% 50% at 20% 40%, rgba(201, 168, 107, .38), transparent 70%), radial-gradient(35% 45% at 62% 28%, rgba(170, 112, 62, .32), transparent 70%), radial-gradient(30% 40% at 86% 45%, rgba(212, 115, 94, .20), transparent 70%);
+  animation: aurora 26s var(--ease-io) infinite alternate; }
+:root[data-theme="dark"] .aurora { opacity: .5; }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .aurora { opacity: .5; } }
+@keyframes aurora { to { transform: translate3d(6%, 4%, 0) scale(1.08) rotate(3deg); } }
+.mtn { position: absolute; left: 0; width: 100%; height: 100%; top: 0; z-index: -2; pointer-events: none; will-change: transform; }
+.cover-in {
+  position: relative; max-width: 1240px; margin: 0 auto; min-height: inherit;
+  padding: 72px max(16px, env(safe-area-inset-right, 0px)) 120px max(16px, env(safe-area-inset-left, 0px));
+  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; gap: 24px;
+}
+.c-text { padding-left: clamp(0px, 6vw, 96px); padding-top: clamp(8px, 4vh, 48px); }
+.c-title { font-family: var(--f-brush); font-weight: 400; font-size: clamp(88px, 13vw, 176px); line-height: .9; margin: 18px 0 0; display: flex; letter-spacing: -.02em; }
+.c-title span { display: inline-block; overflow: hidden; padding: 0 .02em .12em; }
+.c-title span i { display: inline-block; font-style: normal; animation: rise 1s var(--ease-out) both; animation-delay: calc(var(--i) * .12s + .15s); }
+@keyframes rise { from { transform: translateY(105%); } }
+.c-fr { font-family: var(--f-script); font-size: clamp(30px, 3.4vw, 44px); line-height: 1; color: var(--ink-2); margin: 8px 0 0 .3em; animation: fade 1.2s var(--ease-out) .7s both; }
+.c-abs { max-width: 26em; color: var(--ink-2); margin: 26px 0 30px; animation: fade 1s var(--ease-out) .9s both; }
+.c-cta { display: flex; flex-wrap: wrap; gap: 12px; animation: fade 1s var(--ease-out) 1.05s both; }
+@keyframes fade { from { opacity: 0; transform: translateY(10px); } }
+.c-side { justify-self: start; display: grid; gap: 18px; padding-top: 8px; }
+.c-num { font-family: var(--f-num); font-optical-sizing: auto; font-weight: 400; font-size: clamp(150px, 19vw, 260px); line-height: .8; margin: 0; }
+.c-facts { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: -10px 0 26px; font-size: 14px; color: var(--ink-2); animation: fade 1s var(--ease-out) 1s both; }
+.c-facts div { display: flex; align-items: baseline; gap: 5px; }
+.c-facts dt { font-variant-numeric: lining-nums tabular-nums; color: var(--ink); font-size: 19px; }
+.c-facts dd { margin: 0; }
+.c-art { position: absolute; z-index: 1; right: max(16px, 4vw); bottom: 34px; width: min(34vw, 480px); margin: 0; pointer-events: none; will-change: transform; animation: art-in 1.3s var(--ease-out) .35s both; }
+.c-art img { display: block; width: 100%; height: auto; filter: var(--art-shadow); }
+@keyframes art-in { from { opacity: 0; transform: translate3d(24px, 12px, 0); } }
+.c-seal { position: absolute; left: -30px; top: 30%; display: flex; flex-direction: column; align-items: center; gap: 10px; }
+.vtext { writing-mode: vertical-rl; letter-spacing: .3em; font-size: 15px; color: var(--ink-2); }
+.seal { width: 46px; height: 46px; flex: none; }
+.marquee { position: absolute; left: 0; right: 0; bottom: 0; border-top: 1px solid var(--line); background: color-mix(in srgb, var(--paper) 70%, transparent); backdrop-filter: blur(6px); -webkit-backdrop-filter: blur(6px); overflow: hidden; height: 48px; display: flex; align-items: center; }
+.mq-label { position: relative; z-index: 2; flex: none; padding: 0 16px 0 max(16px, env(safe-area-inset-left, 0px)); height: 100%; display: flex; align-items: center; background: var(--paper); border-right: 1px solid var(--line); }
+.mq-track { display: flex; width: max-content; animation: marquee 70s linear infinite; }
+.marquee:hover .mq-track { animation-play-state: paused; }
+.mq-track > span { padding: 0 28px; white-space: nowrap; color: var(--ink-2); font-size: 16px; }
+.mq-track > span + span::before { content: "·"; margin-right: 28px; color: var(--ink-3); }
+@keyframes marquee { to { transform: translateX(-50%); } }
+
+/* ———— 正文版心（L04） ———— */
+.wrap { max-width: 1240px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); display: grid; grid-template-columns: 96px minmax(0, 1fr); gap: 0 clamp(24px, 4vw, 56px); }
+.rail { position: relative; }
+.rail-in { position: sticky; top: 104px; display: flex; flex-direction: column; align-items: center; gap: 16px; padding-top: 74px; }
+.rail .vtext { font-size: 14px; color: var(--ink-3); }
+.rail .seal { width: 30px; height: 30px; opacity: .9; }
+article.body { width: var(--main); max-width: 100%; padding-block: 72px 40px; counter-reset: sn; }
+article h2 { font-size: 34px; line-height: 1.3; font-weight: 600; margin: 6px 0 28px; letter-spacing: .02em; text-wrap: balance; }
+article h2 .fr { display: block; font-style: italic; font-weight: 400; font-size: 20px; color: var(--ink-2); letter-spacing: 0; margin-top: 2px; }
+article p { margin: 0 0 1em; }
+article strong { font-weight: 600; }
+.lead::first-letter { font-family: var(--f-brush); float: left; font-size: 3.4em; line-height: .9; margin: .06em .1em 0 0; color: var(--zhu); }
+
+/* 旁注（L04）：桌面浮在右侧页边；窄屏点编号从底部弹出（P03） */
+.snref { counter-increment: sn; display: inline-block; border: 0; background: none; padding: 0 1px; color: var(--zhu); font: inherit; font-size: .62em; vertical-align: .62em; line-height: 1; cursor: default; font-variant-numeric: lining-nums; }
+.snref::after { content: counter(sn); }
+.sn { float: right; clear: right; width: var(--side); margin-right: calc(-1 * (var(--side) + var(--gap))); margin-bottom: 14px;
+  font-family: var(--f-note); font-size: 15px; line-height: 1.7; color: var(--ink-2); position: relative; }
+.sn .n { color: var(--zhu); font-family: var(--f-body); margin-right: .35em; font-variant-numeric: lining-nums; }
+.sn.fig { color: var(--ink-2); }
+.wide { width: calc(var(--main) + var(--gap) + var(--side)); max-width: calc(100vw - 32px); }
+
+/* 定理块（K07 细线） */
+.blk { border-top: 1px solid var(--ink); border-bottom: 1px solid var(--line); padding: 12px 0 14px; margin: 30px 0; clear: none; }
+.blk-h { display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px; }
+.blk-kind { font-variant-numeric: lining-nums; font-variant-caps: all-small-caps; letter-spacing: .12em; color: var(--zhu); font-size: 16px; white-space: nowrap; }
+.blk.def .blk-kind { color: var(--qing); }
+.blk-name { font-weight: 600; font-size: 18px; }
+.stars { color: var(--xiang); font-size: 13px; letter-spacing: .1em; cursor: help; }
+.blk-act { margin-left: auto; display: flex; gap: 2px; align-self: center; }
+.blk-tri { font-size: 14px; font-style: italic; color: var(--ink-3); margin: 0 0 8px !important; }
+.blk-tri span + span::before { content: " · "; font-style: normal; }
+.blk-b > :last-child { margin-bottom: 0; }
+.blk ol { margin: 0; padding-left: 1.4em; }
+.blk ol li { padding-left: .2em; }
+.proof { margin-top: 10px; }
+.proof-h { font-variant-caps: all-small-caps; letter-spacing: .12em; color: var(--ink-2); font-size: 16px; }
+.qed { display: inline-block; width: .5em; height: .5em; background: var(--zhu); margin-left: .4em; vertical-align: .05em; }
+details.proof summary { list-style: none; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; color: var(--qing); font-size: 15px; }
+details.proof summary::-webkit-details-marker { display: none; }
+details.proof summary::before { content: ""; width: 7px; height: 7px; border-right: 1.5px solid currentColor; border-bottom: 1.5px solid currentColor; transform: rotate(-45deg); transition: transform .25s var(--ease-out); }
+details.proof[open] summary::before { transform: rotate(45deg); }
+details.proof .pf { padding-top: 8px; animation: fade .4s var(--ease-out); }
+
+/* 点赞微交互（B22）、复制（B23） */
+.like { position: relative; }
+.like svg { transition: transform .3s var(--ease-out); }
+.like[aria-pressed="true"] { color: var(--zhu); }
+.like[aria-pressed="true"] svg { fill: currentColor; animation: pop .45s var(--ease-out); }
+@keyframes pop { 40% { transform: scale(1.35); } }
+.like i { position: absolute; left: 50%; top: 50%; width: 4px; height: 4px; margin: -2px; border-radius: 50%; background: var(--zhu); opacity: 0; pointer-events: none; }
+.like.burst i { animation: burst .55s var(--ease-out); }
+@keyframes burst { 0% { opacity: 1; transform: rotate(var(--a)) translateY(0); } 100% { opacity: 0; transform: rotate(var(--a)) translateY(-18px); } }
+.copy .ok { display: none; }
+.copy.done .ok { display: block; color: var(--qing); }
+.copy.done .cp { display: none; }
+.tip { position: absolute; bottom: calc(100% + 6px); left: 50%; transform: translate(-50%, 4px); opacity: 0; pointer-events: none; white-space: nowrap; font-size: 12px; background: var(--ink); color: var(--paper); padding: 2px 8px; border-radius: 4px; transition: opacity .2s, transform .2s var(--ease-out); }
+.copy.done .tip { opacity: 1; transform: translate(-50%, 0); }
+
+/* 标签页（P08） */
+.tabs { margin-top: 6px; }
+.tablist { position: relative; display: flex; gap: 22px; border-bottom: 1px solid var(--line); margin-bottom: 12px; }
+.tablist button { border: 0; background: none; padding: 6px 0; font-size: 15px; color: var(--ink-2); }
+.tablist button[aria-selected="true"] { color: var(--ink); }
+.tablist .ind { position: absolute; bottom: -1px; height: 2px; left: 0; background: var(--qing); transition: transform .34s var(--ease-io), width .34s var(--ease-io); }
+.tabpanel { animation: slide-in .32s var(--ease-out); }
+.tabpanel.back { animation-name: slide-in-l; }
+@keyframes slide-in { from { opacity: 0; transform: translateX(14px); } }
+@keyframes slide-in-l { from { opacity: 0; transform: translateX(-14px); } }
+
+/* 记忆卡：3D 翻转（P10）+ 倾斜（M16） */
+.card3d { display: block; perspective: 900px; width: 100%; max-width: var(--side); }
+.flip { position: relative; display: grid; width: 100%; aspect-ratio: 5 / 3.4; border: 0; padding: 0; background: none; text-align: left; transform-style: preserve-3d; transition: transform .7s var(--ease-io); transform: rotateX(var(--rx, 0deg)) rotateY(calc(var(--ry, 0deg) + var(--flip, 0deg))); }
+.flip.on { --flip: 180deg; }
+.face { grid-area: 1 / 1; backface-visibility: hidden; -webkit-backface-visibility: hidden; border-radius: 14px; padding: 14px 16px; display: grid; align-content: space-between; background: var(--paper-3); box-shadow: var(--shadow); border: 1px solid var(--line); }
+.face.back { transform: rotateY(180deg); }
+.face small { font-variant-caps: all-small-caps; letter-spacing: .14em; color: var(--ink-3); font-family: var(--f-body); font-size: 13px; }
+.face .q { font-size: 30px; font-family: var(--f-num); text-align: center; }
+.face .hint { font-family: var(--f-note); font-size: 13px; color: var(--ink-2); }
+
+/* 交互图 */
+.figure { margin: 34px 0; }
+.fig-ctl { display: flex; flex-wrap: wrap; align-items: center; gap: 12px 20px; margin-bottom: 10px; }
+.fig-ctl .seg button { font-size: 15px; padding: 3px 12px; }
+.plot { display: block; width: 100%; height: auto; touch-action: pan-y; cursor: crosshair; }
+.plot text { font-family: var(--f-body); fill: var(--ink-3); font-size: 13px; }
+.plot .ax { stroke: var(--ink-3); stroke-width: 1; }
+.plot .tk { stroke: var(--ink-3); stroke-width: 1; }
+.plot .band { fill: var(--qing-soft); transition: opacity .3s; }
+.plot .rline { stroke: var(--qing); stroke-width: 1; stroke-dasharray: 3 4; }
+.plot .sum { fill: none; stroke: var(--ink-3); stroke-width: 1.6; }
+.plot .sn-in { fill: none; stroke: var(--ink); stroke-width: 2.3; stroke-linejoin: round; }
+.plot .sn-out { fill: none; stroke: var(--zhu); stroke-width: 2.3; stroke-linejoin: round; }
+.plot .hand { font-family: var(--f-hand); font-size: 24px; fill: var(--qing); }
+.plot .hand-zh { font-family: var(--f-hand-zh); font-size: 21px; fill: var(--zhu); }
+.plot .arrow { fill: none; stroke-width: 1.4; stroke-linecap: round; }
+.plot .cross { stroke: var(--ink-3); stroke-width: 1; stroke-dasharray: 2 3; }
+.plot .dot-s { fill: var(--ink); }
+.plot .dot-f { fill: var(--paper); stroke: var(--ink-3); stroke-width: 1.5; }
+.fig-foot { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 24px; margin-top: 4px; font-size: 15px; color: var(--ink-2); }
+.range { display: flex; align-items: center; gap: 12px; }
+.range input { appearance: none; width: 200px; height: 20px; background: none; margin: 0; }
+.range input::-webkit-slider-runnable-track { height: 1px; background: var(--ink-3); }
+.range input::-moz-range-track { height: 1px; background: var(--ink-3); }
+.range input::-webkit-slider-thumb { appearance: none; width: 16px; height: 16px; margin-top: -8px; border-radius: 3px; background: var(--zhu); box-shadow: 0 0 0 3px var(--paper); }
+.range input::-moz-range-thumb { width: 16px; height: 16px; border: 0; border-radius: 3px; background: var(--zhu); }
+.range output { font-variant-numeric: tabular-nums lining-nums; min-width: 2ch; color: var(--ink); }
+.readout { font-variant-numeric: tabular-nums lining-nums; }
+.readout em { font-style: normal; color: var(--zhu); }
+figcaption { font-size: 15px; color: var(--ink-2); margin-top: 10px; line-height: 1.7; }
+figcaption b { font-weight: 600; color: var(--ink); margin-right: .6em; }
+
+/* 圆相（A14）旁图 */
+.enso { display: block; position: relative; width: 100%; max-width: var(--side); aspect-ratio: 1; }
+.enso svg { position: absolute; inset: 0; width: 100%; height: 100%; overflow: visible; }
+.enso .lab { position: absolute; font-family: var(--f-note); font-size: 13px; color: var(--ink-2); white-space: nowrap; transform: translate(-50%, -50%); line-height: 1.3; text-align: center; }
+.enso .lab.zhu { color: var(--zhu); }
+.draw { transition: stroke-dashoffset 1.6s var(--ease-io), opacity .6s; }
+
+/* 例题：墨块擦除揭晓（P12） */
+.reveal-list { list-style: none; margin: 0; padding: 0; }
+.reveal-list li { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1.3fr); align-items: center; gap: 16px; padding: 10px 0; border-bottom: 1px dotted var(--line); }
+.reveal-list li:last-child { border-bottom: 0; }
+.ans { position: relative; min-height: 44px; display: flex; align-items: center; }
+.ans .a { font-size: 16px; }
+.ans .a b { font-weight: 600; margin-right: .5em; }
+.ink { position: absolute; inset: 2px 0; border: 0; padding: 0 14px; border-radius: 2px 14px 3px 10px / 8px 3px 12px 4px; background: var(--ink); color: var(--paper); font-family: var(--f-note); font-size: 14px; text-align: left; clip-path: inset(0 0 0 0); transition: clip-path .6s var(--ease-io); }
+.ink:hover { background: color-mix(in srgb, var(--ink) 88%, var(--qing)); }
+.ink.gone { clip-path: inset(0 0 0 100%); pointer-events: none; }
+.reveal-all { margin-top: 10px; }
+
+/* 练习：答案输入（I16 + K13）、长按提交（B24） */
+.exo { margin: 40px 0; padding: 22px 24px 24px; background: var(--paper-3); border: 1px solid var(--line); border-radius: 18px; box-shadow: var(--shadow); }
+.exo .blk-kind { color: var(--qing); }
+.answer { display: flex; flex-wrap: wrap; align-items: center; gap: 12px; margin-top: 16px; }
+.field { display: flex; align-items: center; gap: 8px; padding: 0 14px; height: 48px; border-radius: 12px; background: var(--paper-2); box-shadow: var(--inset); min-width: 0; flex: 1 1 220px; max-width: 320px; transition: box-shadow .2s; }
+.field:focus-within { box-shadow: var(--inset), 0 0 0 2px var(--qing); }
+.field label { font-style: italic; color: var(--ink-2); white-space: nowrap; }
+.field input { border: 0; background: none; outline: none; min-width: 0; flex: 1; font-size: 19px; font-variant-numeric: lining-nums; }
+.field.bad { animation: shake .4s var(--ease-io); box-shadow: var(--inset), 0 0 0 2px var(--zhu); }
+@keyframes shake { 25% { transform: translateX(-5px); } 75% { transform: translateX(5px); } }
+.hold { --p: 0; position: relative; }
+.hold .ring { width: 18px; height: 18px; border-radius: 50%; background: conic-gradient(currentColor calc(var(--p) * 1turn), transparent 0); box-shadow: inset 0 0 0 1.5px currentColor; flex: none; }
+.verdict { min-height: 1.75em; margin-top: 12px; font-size: 16px; display: flex; align-items: center; gap: 12px; }
+.verdict .loader { display: inline-flex; gap: 5px; }
+.verdict .loader i { width: 6px; height: 6px; border-radius: 50%; background: var(--ink-2); animation: dot 1s var(--ease-io) infinite; }
+.verdict .loader i:nth-child(2) { animation-delay: .15s; } .verdict .loader i:nth-child(3) { animation-delay: .3s; }
+@keyframes dot { 50% { transform: translateY(-6px); opacity: .4; } }
+.stamp { display: inline-grid; place-items: center; width: 48px; height: 48px; border: 2px solid var(--zhu); color: var(--zhu); font-weight: 700; font-size: 20px; border-radius: 6px; transform: rotate(-8deg); animation: stamp .45s cubic-bezier(.3, 1.6, .5, 1); flex: none; }
+@keyframes stamp { from { transform: rotate(-8deg) scale(2.2); opacity: 0; } }
+.hint-text { font-family: var(--f-note); color: var(--ink-2); font-size: 16px; margin: 12px 0 0; min-height: 1.7em; }
+.hint-text .caret { display: inline-block; width: 1px; height: 1em; background: var(--ink-2); vertical-align: -.12em; margin-left: 2px; animation: blink 1s steps(1) infinite; }
+@keyframes blink { 50% { opacity: 0; } }
+.solution { margin-top: 16px; padding-top: 14px; border-top: 1px dashed var(--line); clip-path: inset(0 100% 0 0); transition: clip-path .9s var(--ease-io); }
+.solution.show { clip-path: inset(0 0 0 0); }
+
+/* 学习记录（L11 + A34 + M19） */
+.dash { position: relative; margin: 56px 0 24px; padding: 26px 26px 22px; border-radius: 18px; overflow: hidden; border: 1px solid var(--line); isolation: isolate; }
+.dash canvas { position: absolute; inset: 0; width: 100%; height: 100%; z-index: -1; }
+.dash-h { display: flex; justify-content: space-between; align-items: baseline; gap: 12px; flex-wrap: wrap; }
+.dash-h h3 { margin: 0; font-size: 20px; font-weight: 600; }
+.chip { font-size: 12px; font-family: var(--f-body); color: var(--ink-2); border: 1px solid var(--line); border-radius: 99px; padding: 1px 10px; background: var(--paper); }
+.stats { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 12px; margin: 18px 0; }
+.stat { background: color-mix(in srgb, var(--paper-3) 80%, transparent); border: 1px solid var(--line); border-radius: 14px; padding: 12px 14px; }
+.stat .v { font-family: var(--f-num); font-size: 40px; line-height: 1.1; font-variant-numeric: lining-nums tabular-nums; }
+.stat .v small { font-family: var(--f-body); font-size: 16px; color: var(--ink-2); margin-left: 2px; }
+.stat .l { font-size: 14px; color: var(--ink-2); }
+.strip { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 6px; align-items: end; height: 64px; }
+.strip i { display: block; border-radius: 3px 3px 0 0; background: var(--line); position: relative; height: 100%; }
+.strip i b { position: absolute; left: 0; right: 0; bottom: 0; height: var(--h); border-radius: 3px 3px 0 0; background: var(--ink-2); }
+.strip i.cur b { background: var(--zhu); }
+.strip-l { display: grid; grid-template-columns: repeat(11, minmax(0, 1fr)); gap: 6px; font-size: 12px; color: var(--ink-3); text-align: center; margin-top: 4px; font-variant-numeric: lining-nums; }
+
+/* 下一节 */
+.next { display: flex; justify-content: space-between; align-items: center; gap: 16px; flex-wrap: wrap; padding: 26px 0 80px; border-top: 1px solid var(--line); margin-top: 24px; }
+.next small { display: block; color: var(--ink-3); font-size: 13px; letter-spacing: .1em; }
+
+/* ———— 翻书（P15） ———— */
+.turn { position: fixed; inset: 0; z-index: 80; perspective: 2400px; pointer-events: none; }
+.turn .under { position: absolute; inset: 0; background: var(--paper) var(--grain); display: grid; place-items: center; padding: 24px; pointer-events: auto; opacity: 0; transition: opacity .2s; }
+.turn.on .under { opacity: 1; }
+.turn .leafp { position: absolute; inset: 0; transform-origin: 0 50%; background: var(--paper) var(--grain); box-shadow: 0 0 60px rgba(0, 0, 0, .25); transition: transform 1.05s var(--ease-io); display: grid; place-items: center; backface-visibility: hidden; -webkit-backface-visibility: hidden; }
+.turn .leafp::after { content: ""; position: absolute; inset: 0; background: linear-gradient(to left, rgba(0, 0, 0, .18), transparent 30%); opacity: 0; transition: opacity 1.05s var(--ease-io); }
+.turn.go .leafp { transform: rotateY(-180deg); }
+.turn.go .leafp::after { opacity: 1; }
+.stub { max-width: 34em; text-align: center; }
+.stub h2 { font-size: 30px; font-weight: 600; margin: 8px 0 12px; }
+.stub p { color: var(--ink-2); }
+
+/* ———— 搜索（P14 模糊过渡 + I09 无边框大字号 + I03 下划线） ———— */
+.search { position: fixed; inset: 0; z-index: 90; display: grid; align-items: start; justify-items: center; padding: calc(12vh + env(safe-area-inset-top, 0px)) max(16px, env(safe-area-inset-right, 0px)) 24px max(16px, env(safe-area-inset-left, 0px)); background: color-mix(in srgb, var(--paper) 55%, transparent); backdrop-filter: blur(18px); -webkit-backdrop-filter: blur(18px); animation: blur-in .28s var(--ease-out); }
+@keyframes blur-in { from { backdrop-filter: blur(0); -webkit-backdrop-filter: blur(0); background: transparent; } }
+.search-box { width: min(680px, 100%); }
+.search-in { display: flex; align-items: center; gap: 12px; border-bottom: 1px solid var(--ink-2); padding-bottom: 6px; }
+.search-in input { flex: 1; min-width: 0; border: 0; background: none; outline: none; font-size: clamp(24px, 4vw, 34px); font-weight: 300; font-family: var(--f-body); }
+.search-in input::placeholder { color: var(--ink-3); }
+.results { list-style: none; margin: 14px 0 0; padding: 0; max-height: 55vh; overflow: auto; }
+.results li button { width: 100%; display: grid; grid-template-columns: 4.5em minmax(0, 1fr) auto; gap: 12px; align-items: baseline; text-align: left; border: 0; background: none; padding: 10px 8px; border-radius: 8px; }
+.results li button:hover, .results li button.act { background: var(--qing-soft); }
+.results .k { font-variant-caps: all-small-caps; letter-spacing: .1em; color: var(--zhu); font-size: 15px; }
+.results .s { font-size: 13px; color: var(--ink-3); white-space: nowrap; }
+.results .none { padding: 10px 8px; color: var(--ink-2); }
+
+/* ———— 目录抽屉（P06 + M21） ———— */
+.scrim { position: fixed; inset: 0; z-index: 70; background: rgba(20, 18, 14, .32); opacity: 0; pointer-events: none; transition: opacity .3s var(--ease-out); }
+.scrim.on { opacity: 1; pointer-events: auto; }
+.drawer { position: fixed; z-index: 75; top: 0; bottom: 0; left: 0; width: min(360px, 86vw); background: var(--paper) var(--grain); border-right: 1px solid var(--line); box-shadow: var(--shadow); transform: translateX(-102%); visibility: hidden; transition: transform .42s var(--ease-io), visibility 0s .42s; overflow: auto; padding: calc(70px + env(safe-area-inset-top, 0px)) 24px 32px max(24px, env(safe-area-inset-left, 0px)); }
+.drawer.on { transform: none; visibility: visible; transition: transform .42s var(--ease-io); }
+.drawer h3 { margin: 0 0 8px; font-size: 13px; font-variant-caps: all-small-caps; letter-spacing: .16em; color: var(--ink-3); font-weight: 400; }
+.drawer ol { list-style: none; margin: 0 0 28px; padding: 0; }
+.drawer li a, .drawer li span { display: grid; grid-template-columns: 2.6em 1fr; padding: 7px 0; text-decoration: none; border-bottom: 1px solid var(--line); font-size: 16px; }
+.drawer li a:hover { color: var(--qing); }
+.drawer li .no { color: var(--ink-3); font-variant-numeric: lining-nums; }
+.drawer li.cur a, .drawer li.cur span { color: var(--zhu); }
+.drawer li.off span { color: var(--ink-3); }
+.burger svg line { transition: transform .35s var(--ease-io), opacity .2s; transform-origin: 12px 12px; }
+.burger[aria-expanded="true"] .l1 { transform: translateY(5px) rotate(45deg); }
+.burger[aria-expanded="true"] .l2 { opacity: 0; }
+.burger[aria-expanded="true"] .l3 { transform: translateY(-5px) rotate(-45deg); }
+.burger { position: relative; z-index: 80; }
+
+/* ———— 底部弹出（P03）：窄屏旁注 ———— */
+.sheet { position: fixed; z-index: 85; left: 0; right: 0; bottom: 0; max-height: 60vh; overflow: auto; background: var(--paper-3); border-radius: 18px 18px 0 0; box-shadow: 0 -10px 40px rgba(0, 0, 0, .2); padding: 10px max(20px, env(safe-area-inset-right, 0px)) calc(24px + env(safe-area-inset-bottom, 0px)) max(20px, env(safe-area-inset-left, 0px)); transform: translateY(105%); visibility: hidden; transition: transform .42s var(--ease-io), visibility 0s .42s; font-family: var(--f-note); color: var(--ink-2); font-size: 16px; }
+.sheet.on { transform: none; visibility: visible; transition: transform .42s var(--ease-io); }
+.sheet::before { content: ""; display: block; width: 40px; height: 4px; border-radius: 2px; background: var(--line); margin: 0 auto 14px; }
+
+/* ———— 设计方案视图 ———— */
+.plan { padding-block: 64px 96px; }
+.plan-in { max-width: 980px; margin: 0 auto; padding-left: max(16px, env(safe-area-inset-left, 0px)); padding-right: max(16px, env(safe-area-inset-right, 0px)); }
+.plan h1 { font-family: var(--f-brush); font-weight: 400; font-size: clamp(64px, 9vw, 112px); line-height: 1; margin: 12px 0 8px; }
+.plan .lede { font-size: 20px; line-height: 1.8; max-width: 34em; color: var(--ink-2); margin: 0 0 8px; }
+.plan h2 { font-size: 24px; font-weight: 600; margin: 64px 0 6px; display: flex; align-items: baseline; gap: 14px; }
+.plan h2 .no { font-family: var(--f-num); color: var(--zhu); font-size: 30px; font-weight: 400; font-variant-numeric: lining-nums; }
+.plan .sub { color: var(--ink-2); margin: 0 0 22px; max-width: 40em; }
+.tiers { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 14px; }
+.tier { border-top: 2px solid var(--ink); padding-top: 12px; }
+.tier:nth-child(2) { border-color: var(--qing); }
+.tier:nth-child(3) { border-color: var(--line); }
+.tier h3 { margin: 0 0 4px; font-size: 17px; }
+.tier p { margin: 0; font-size: 15px; color: var(--ink-2); line-height: 1.7; }
+.swatches { display: grid; grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 16px 14px; }
+.swatch .chipc { height: 64px; border-radius: 10px; box-shadow: inset 0 0 0 1px rgba(128, 128, 128, .25); display: grid; grid-template-columns: 1fr 1fr; overflow: hidden; }
+.swatch b { display: block; margin-top: 8px; font-weight: 600; font-size: 15px; }
+.swatch span { display: block; font-size: 13px; color: var(--ink-2); line-height: 1.5; }
+.swatch code { font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-3); }
+.fonts { display: grid; gap: 0; }
+.font-row { display: grid; grid-template-columns: 10em minmax(0, 1fr) 7em; gap: 18px; align-items: baseline; padding: 14px 0; border-bottom: 1px solid var(--line); }
+.font-row .role { font-size: 14px; color: var(--ink-2); }
+.font-row .role b { display: block; color: var(--ink); font-size: 16px; font-weight: 600; }
+.font-row .spec { font-size: 26px; line-height: 1.3; min-width: 0; overflow-wrap: anywhere; }
+.font-row .src { font-family: var(--f-mono); font-size: 12px; color: var(--ink-3); text-align: right; }
+.params { display: grid; grid-template-columns: repeat(auto-fill, minmax(180px, 1fr)); gap: 12px; }
+.param { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; background: var(--paper-3); }
+.param .v { font-family: var(--f-num); font-size: 30px; line-height: 1.2; font-variant-numeric: lining-nums; }
+.param .l { font-size: 14px; color: var(--ink-2); }
+.param code { font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-3); }
+.tbl-wrap { overflow-x: auto; border-top: 1px solid var(--ink); }
+table.alloc { width: 100%; border-collapse: collapse; font-size: 15px; min-width: 640px; }
+table.alloc th, table.alloc td { text-align: left; vertical-align: top; padding: 9px 10px; border-bottom: 1px solid var(--line); line-height: 1.6; }
+table.alloc thead th { font-variant-caps: all-small-caps; letter-spacing: .12em; color: var(--ink-3); font-weight: 400; font-size: 14px; }
+table.alloc td:first-child { font-family: var(--f-mono); font-size: 12.5px; white-space: nowrap; color: var(--ink-2); }
+table.alloc tr.grp td { padding-top: 22px; border-bottom: 1px solid var(--ink-3); font-family: var(--f-body); font-size: 16px; font-weight: 600; color: var(--ink); }
+.st { display: inline-block; font-size: 12px; padding: 0 8px; border-radius: 99px; border: 1px solid currentColor; white-space: nowrap; line-height: 1.6; }
+.st.main { color: var(--ink); }
+.st.scene { color: var(--qing); }
+.st.hold { color: var(--ink-3); }
+.st.demo { color: var(--zhu); border-style: dashed; }
+.covers { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: 0 28px; }
+.cv { display: grid; grid-template-columns: 2.4em minmax(0, 1fr); gap: 2px 10px; padding: 12px 0; border-bottom: 1px solid var(--line); }
+.cv .no { font-family: var(--f-num); font-size: 26px; line-height: 1.1; color: var(--ink-3); grid-row: span 2; font-variant-numeric: lining-nums; }
+.cv b { font-weight: 600; }
+.cv b code { font-family: var(--f-mono); font-size: 12px; color: var(--zhu); margin-left: 6px; font-weight: 400; }
+.cv span { font-size: 14px; color: var(--ink-2); line-height: 1.65; }
+.cv.cur .no { color: var(--zhu); }
+.qs { counter-reset: q; display: grid; gap: 12px; padding: 0; margin: 0; list-style: none; }
+.qs li { counter-increment: q; display: grid; grid-template-columns: 2em minmax(0, 1fr); gap: 4px 10px; padding: 14px 16px; border-radius: 12px; background: var(--paper-3); border: 1px solid var(--line); }
+.qs li::before { content: counter(q); font-family: var(--f-num); font-size: 24px; color: var(--zhu); line-height: 1.2; }
+.qs b { font-weight: 600; }
+.qs p { margin: 2px 0 0; color: var(--ink-2); font-size: 15px; grid-column: 2; }
+.motion-tbl { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+.mt { border: 1px solid var(--line); border-radius: 12px; padding: 12px 14px; }
+.mt b { display: block; font-weight: 600; }
+.mt span { font-size: 14px; color: var(--ink-2); }
+.mt code { display: block; font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-3); margin-top: 4px; }
+
+/* ———— 烫金宣纸（K17 + M29）：金箔在指针附近反光 ———— */
+body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
+  background-image: var(--tex-hi); background-size: 900px 900px;
+  -webkit-mask-image: radial-gradient(240px circle at var(--mx, -999px) var(--my, -999px), #000 0%, rgba(0, 0, 0, .55) 38%, transparent 100%);
+  mask-image: radial-gradient(240px circle at var(--mx, -999px) var(--my, -999px), #000 0%, rgba(0, 0, 0, .55) 38%, transparent 100%); }
+.exo, .face, .param, .qs li { background-image: var(--tex), var(--mottle); background-size: 900px 900px, 1600px 1600px; }
+.c-num::after { content: attr(data-n); position: absolute; inset: 0; z-index: -1; color: transparent; text-shadow: 1px 1px 0 var(--paper-2), 2px 2px 0 var(--paper-2), 3px 3px 0 var(--paper-2), 4px 4px 0 var(--paper-2), 5px 5px 0 var(--paper-2), 6px 6px 0 var(--paper-2), 7px 7px 0 var(--paper-2), 8px 8px 0 var(--paper-2), 9px 9px 0 var(--paper-2), 10px 10px 0 var(--paper-2), 11px 11px 0 var(--paper-2), 12px 12px 0 var(--paper-2), 13px 13px 0 var(--paper-2), 14px 14px 0 var(--paper-2); }
+.c-num { color: transparent; background: var(--foil); background-size: 220% 100%; background-position: calc(var(--gx, .5) * 100%) 50%; -webkit-background-clip: text; background-clip: text; transition: background-position .5s var(--ease-out); }
+:root[data-theme="dark"] .c-title span i { background: var(--foil); background-size: 220% 100%; background-position: calc(var(--gx, .5) * 100%) 50%; -webkit-background-clip: text; background-clip: text; color: transparent; transition: background-position .5s var(--ease-out); }
+@media (prefers-color-scheme: dark) { :root:not([data-theme="light"]) .c-title span i { background: var(--foil); background-size: 220% 100%; background-position: calc(var(--gx, .5) * 100%) 50%; -webkit-background-clip: text; background-clip: text; color: transparent; transition: background-position .5s var(--ease-out); } }
+
+.ill-h { font-size: 13px; font-variant-caps: all-small-caps; letter-spacing: .16em; color: var(--ink-3); font-weight: 400; margin: 26px 0 12px; }
+.ills { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 22px 18px; }
+.ill { margin: 0; display: grid; gap: 10px; align-content: start; }
+.ill-img { aspect-ratio: 1; display: grid; place-items: center; border-radius: 14px; border: 1px solid var(--line); background: var(--paper-2) var(--tex); background-size: 900px; overflow: hidden; padding: 10px; }
+.ill-img img { max-width: 100%; max-height: 100%; width: auto; height: auto; filter: var(--art-shadow); transition: transform .5s var(--ease-out); }
+.ill:hover .ill-img img { transform: scale(1.04); }
+.ill.cur .ill-img { border-color: var(--zhu); }
+.ill figcaption { display: grid; grid-template-columns: auto minmax(0, 1fr); gap: 2px 10px; align-items: baseline; }
+.ill figcaption b { font-weight: 600; font-size: 15px; }
+.ill-no { font-family: var(--f-num); font-size: 22px; color: var(--ink-3); grid-row: span 3; font-variant-numeric: lining-nums; line-height: 1.1; }
+.ill.cur .ill-no { color: var(--zhu); }
+.ill-nm { font-size: 14px; color: var(--ink-2); }
+.ill-nm code { font-family: var(--f-mono); font-size: 11.5px; color: var(--ink-3); margin-left: 8px; }
+.ill-why { font-size: 14px; line-height: 1.65; color: var(--ink-2); grid-column: 2; }
+.ill-why em { font-style: normal; font-size: 12px; color: var(--zhu); border: 1px dashed currentColor; border-radius: 99px; padding: 0 7px; margin-left: 6px; white-space: nowrap; }
+.ills.other figcaption { grid-template-columns: minmax(0, 1fr); }
+.ills.other .ill-why { grid-column: 1; }
+
+/* ———— 编号标注模式 ———— */
+[data-k]:not(.tb):not(.cover):not(.mtn):not(.c-art):not(.c-seal) { position: relative; }
+:root[data-annot="on"] [data-k] { outline: 1px dashed var(--zhu); outline-offset: 4px; }
+:root[data-annot="on"] [data-k]::before { content: attr(data-k); position: absolute; z-index: 30; top: -14px; left: -4px; font: 500 10.5px/1.6 var(--f-mono); letter-spacing: .02em; color: var(--on-zhu); background: var(--zhu); padding: 0 6px; border-radius: 3px; white-space: nowrap; pointer-events: none; }
+:root[data-annot="on"] .cover[data-k]::before { top: 70px; left: max(16px, env(safe-area-inset-left, 0px)); }
+:root[data-annot="on"] .tb[data-k]::before { top: auto; bottom: -10px; left: 50%; transform: translateX(-50%); }
+
+/* 圆形展开换主题（P13） */
+::view-transition-old(root), ::view-transition-new(root) { animation: none; mix-blend-mode: normal; }
+::view-transition-new(root) { animation: circle .7s var(--ease-io); }
+@keyframes circle { from { clip-path: circle(0 at var(--tx, 50%) var(--ty, 0)); } to { clip-path: circle(var(--tr, 150vmax) at var(--tx, 50%) var(--ty, 0)); } }
+
+/* ———— 响应式 ———— */
+@media (max-width: 1180px) {
+  :root { --main: 580px; --gap: 36px; --side: 220px; }
+  .wrap { grid-template-columns: 64px minmax(0, 1fr); }
+}
+@media (max-width: 1000px) {
+  :root { --gap: 0px; --side: 0px; }
+  .wrap { grid-template-columns: minmax(0, 1fr); }
+  .rail { display: none; }
+  article.body { width: auto; max-width: 640px; margin: 0 auto; }
+  .sn { display: none; }
+  .sn.keep { display: block; float: none; width: auto; margin: 22px 0; max-width: 320px; }
+  .snref { cursor: pointer; font-size: .7em; padding: 0 3px; background: var(--zhu-soft); border-radius: 3px; margin-left: 1px; }
+  .wide { width: 100%; max-width: 100%; }
+  .card3d, .enso { margin-inline: auto; max-width: 260px; }
+  .crumb { display: none; }
+}
+@media (max-width: 760px) {
+  body { font-size: 16px; }
+  .cover-in { grid-template-columns: minmax(0, 1fr); padding-top: 40px; padding-bottom: 96px; }
+  .c-text { padding-left: 0; }
+  .c-side { justify-self: start; text-align: left; order: -1; padding-right: 0; }
+  .c-num { font-size: 120px; }
+  .c-art { position: relative; right: auto; bottom: auto; width: min(76%, 320px); margin: -24px auto 64px; }
+  .c-seal { display: none; }
+  .brand span, .annot-l { display: none; }
+  .tb-in { gap: 6px; }
+  .seg button { padding: 4px 10px; }
+  article h2 { font-size: 28px; }
+  .stats { grid-template-columns: minmax(0, 1fr); }
+  .stat { display: flex; align-items: baseline; justify-content: space-between; }
+  .reveal-list li { grid-template-columns: minmax(0, 1fr); gap: 6px; }
+  .tiers { grid-template-columns: minmax(0, 1fr); }
+  .font-row { grid-template-columns: minmax(0, 1fr); gap: 4px; }
+  .font-row .src { text-align: left; }
+  .exo { padding: 18px 16px 20px; }
+  .range input { width: 150px; }
+}
+@media (max-width: 420px) {
+  .tb .seg button { padding: 4px 8px; font-size: 13px; }
+  .brand b { display: none; }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation-duration: .001ms !important; animation-iteration-count: 1 !important; transition-duration: .001ms !important; }
+  html { scroll-behavior: auto; }
+  .mq-track { animation: none; }
+}
+</style>
+
+<!-- 印章（K06 超椭圆） -->
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs>
+    <symbol id="seal" viewBox="0 0 100 100">
+      <path d="M50 2C88 2 98 12 98 50S88 98 50 98 2 88 2 50 12 2 50 2z" fill="var(--zhu)"/>
+      <path d="M50 9C82 9 91 18 91 50S82 91 50 91 9 82 9 50 18 9 50 9z" fill="none" stroke="var(--on-zhu)" stroke-width="2.2" opacity=".85"/>
+      <text x="50" y="68" text-anchor="middle" font-size="52" font-weight="700" fill="var(--on-zhu)" font-family="Noto Serif SC, serif">析</text>
+    </symbol>
+  </defs>
+</svg>
+
+<header class="tb" data-k="K15 毛玻璃 · M27 滚动进度">
+  <div class="tb-in">
+    <button class="ghost burger" id="burger" type="button" aria-label="打开目录" aria-expanded="false" aria-controls="drawer" data-k="P06 · M21">
+      <svg viewBox="0 0 24 24"><line class="l1" x1="5" y1="7" x2="19" y2="7"/><line class="l2" x1="5" y1="12" x2="19" y2="12"/><line class="l3" x1="5" y1="17" x2="19" y2="17"/></svg>
+    </button>
+    <a class="brand" href="#top" aria-label="数学分析 L2"><svg aria-hidden="true"><use href="#seal"/></svg><b>数学分析</b><span>licence 2</span></a>
+    <div class="crumb">第 4 章 幂级数<i>/</i>§ 4.1 收敛半径</div>
+    <div class="seg" id="view-seg" role="radiogroup" aria-label="视图" data-k="B19 分段控件">
+      <span class="thumb" aria-hidden="true"></span>
+      <button type="button" role="radio" aria-checked="true" data-view="demo">示范页</button>
+      <button type="button" role="radio" aria-checked="false" data-view="plan">设计方案</button>
+    </div>
+    <div class="tb-tools">
+      <button class="ghost" id="search-btn" type="button" aria-label="搜索（快捷键 /）" data-k="P14 · I09">
+        <svg viewBox="0 0 24 24"><circle cx="11" cy="11" r="6.5"/><path d="M16 16l4.5 4.5"/></svg>
+      </button>
+      <button class="ghost" id="theme-btn" type="button" aria-label="切换亮色或暗色" data-k="P13 圆形展开">
+        <svg viewBox="0 0 24 24"><path d="M20 14.5A8 8 0 0 1 9.5 4a8 8 0 1 0 10.5 10.5z"/></svg>
+      </button>
+      <label class="sw" title="在页面上标出每处用到的样品编号"><input type="checkbox" role="switch" id="annot"><span class="annot-l">编号</span></label>
+    </div>
+  </div>
+  <div class="progress" id="progress"></div>
+</header>
+
+<div id="view-demo">
+<!-- ———— 章节封面 ———— -->
+<header class="cover" id="top" data-k="L10 全屏首屏 · L05 不对称 · A12 水墨底纹 · M24 视差 · A25/M30 暗色光晕">
+  <div class="sky"></div>
+  <div class="aurora" aria-hidden="true"></div>
+  <canvas class="mtn" data-layer="0" aria-hidden="true"></canvas>
+  <canvas class="mtn" data-layer="1" aria-hidden="true"></canvas>
+  <canvas class="mtn" data-layer="2" aria-hidden="true"></canvas>
+  <canvas class="mtn" data-layer="3" aria-hidden="true"></canvas>
+  <div class="cover-in">
+    <div class="c-text">
+      <p class="eyebrow" data-k="T12 小标签加字距"><b>Chapitre IV</b>　·　Licence 2　·　Semestre 3</p>
+      <h1 class="c-title" aria-label="幂级数" data-k="F20 行书 · M22 遮罩显现 · M14 交错"><span aria-hidden="true"><i style="--i:0">幂</i></span><span aria-hidden="true"><i style="--i:1">级</i></span><span aria-hidden="true"><i style="--i:2">数</i></span></h1>
+      <p class="c-fr" data-k="F12 花体">Séries entières</p>
+      <p class="c-abs">收敛半径、Abel 引理与 Cauchy–Hadamard 公式、逐项求导与积分、常用展开、复指数与 π 的分析定义。</p>
+      <dl class="c-facts">
+        <div><dt>6</dt><dd>节</dd></div>
+        <div><dt>16</dt><dd>条定理、命题与推论</dd></div>
+        <div><dt>3</dt><dd>个定义</dd></div>
+        <div><dt>6</dt><dd>个例子</dd></div>
+      </dl>
+      <div class="c-cta">
+        <a class="btn zhu" href="#s41" data-k="B13 填充扫过 · B02 描边">开始本章 <svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></a>
+        <button class="btn quiet" type="button" data-open-drawer>本章目录</button>
+      </div>
+    </div>
+    <div class="c-side">
+      <p class="c-num" aria-hidden="true" data-n="4" data-k="F03 迪多尼 · 烫金 · K11 长投影">4</p>
+    </div>
+  </div>
+  <figure class="c-art" id="c-art" data-k="插画 12 蓑笠渔翁 · M24 视差">
+    <img src="img/12-yuweng.webp" alt="蓑笠渔翁坐在小舟上垂钓，身旁一只鸬鹚，舟下是浪花" width="1100" height="1226" decoding="async">
+    <div class="c-seal" data-k="S09 竖排 · 朱印"><span class="vtext">第四章　幂级数</span><svg class="seal" aria-hidden="true"><use href="#seal"/></svg></div>
+  </figure>
+  <div class="marquee" data-k="M28 跑马灯：常用展开">
+    <span class="mq-label eyebrow">常用展开</span>
+    <div class="mq-track" aria-label="常用幂级数展开">
+      <span>$e^x=\sum \frac{x^n}{n!}$</span><span>$\frac1{1-x}=\sum x^n$</span><span>$\ln(1+x)=\sum \frac{(-1)^{n+1}}{n}x^n$</span><span>$\sin x=\sum \frac{(-1)^n x^{2n+1}}{(2n+1)!}$</span><span>$\cos x=\sum \frac{(-1)^n x^{2n}}{(2n)!}$</span><span>$(1+x)^\alpha=\sum \binom{\alpha}{n}x^n$</span><span>$\arctan x=\sum \frac{(-1)^n x^{2n+1}}{2n+1}$</span>
+      <span aria-hidden="true">$e^x=\sum \frac{x^n}{n!}$</span><span aria-hidden="true">$\frac1{1-x}=\sum x^n$</span><span aria-hidden="true">$\ln(1+x)=\sum \frac{(-1)^{n+1}}{n}x^n$</span><span aria-hidden="true">$\sin x=\sum \frac{(-1)^n x^{2n+1}}{(2n+1)!}$</span><span aria-hidden="true">$\cos x=\sum \frac{(-1)^n x^{2n}}{(2n)!}$</span><span aria-hidden="true">$(1+x)^\alpha=\sum \binom{\alpha}{n}x^n$</span><span aria-hidden="true">$\arctan x=\sum \frac{(-1)^n x^{2n+1}}{2n+1}$</span>
+    </div>
+  </div>
+</header>
+
+<!-- ———— 正文 ———— -->
+<div class="wrap">
+  <aside class="rail" aria-hidden="true"><div class="rail-in" data-k="S09 竖排留白"><svg class="seal"><use href="#seal"/></svg><span class="vtext">第四章　幂级数　·　收敛半径</span></div></aside>
+  <article class="body" data-k="L04 旁注版心 · T03 行距 1.75 · 17px 每行约 37 字 · F15 宋体 + F01 Garamond · K17 烫金宣纸 · M29 金箔反光">
+    <section id="s41" aria-labelledby="h41">
+      <p class="eyebrow">§ 4.1</p>
+      <h2 id="h41">收敛半径<span class="fr">Rayon de convergence</span></h2>
+
+      <p class="lead">幂级数是最重要的一类函数项级数：它们在收敛圆盘内部有极好的性质（正规收敛、无穷次可导、可以逐项运算），并且大部分初等函数都能写成幂级数。<button class="snref" type="button" aria-label="旁注 1" data-sn="sn1"></button><span class="sn" id="sn1" data-k="F17 楷体旁注"><span class="n">1</span>法国大纲（MP 2021）用幂级数<b>定义</b>复指数函数，再由它严格地定义 cos、sin 和 π——见本章第 4 节。</span>全章中 $(a_n)$ 是复数列，$z$ 是复变量。读这一节时，建议先拖一拖图 4.1，再回来读证明。</p>
+
+      <div class="blk" id="lemme-abel" data-k="K07 细线 · B22 收藏 · B23 复制">
+        <div class="blk-h">
+          <span class="blk-kind">引理 4.1</span><span class="blk-name">Abel 引理</span><span class="stars" title="★ 必修主干，给出完整证明">★</span>
+          <span class="blk-act">
+            <button class="ghost like" type="button" aria-pressed="false" aria-label="收藏 Abel 引理"><svg viewBox="0 0 24 24"><path d="M12 20.5S3.5 15.3 3.5 9.6C3.5 6.8 5.6 4.8 8.1 4.8c1.6 0 3 .8 3.9 2.1.9-1.3 2.3-2.1 3.9-2.1 2.5 0 4.6 2 4.6 4.8 0 5.7-8.5 10.9-8.5 10.9z"/></svg></button>
+            <button class="ghost copy" type="button" aria-label="复制 LaTeX" data-tex="\text{若 } (a_n z_0^n) \text{ 有界，则对一切 } |z|<|z_0|,\ \sum a_n z^n \text{ 绝对收敛。}"><svg class="cp" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="12" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg><svg class="ok" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="tip">已复制 LaTeX</span></button>
+          </span>
+        </div>
+        <p class="blk-tri"><span>Abel's lemma</span><span>Lemme d'Abel</span><span>Лемма Абеля</span></p>
+        <div class="blk-b"><p>若 $(a_n z_0^n)$ 有界，则对一切 $\lvert z\rvert < \lvert z_0\rvert$，$\sum a_n z^n$ 绝对收敛。</p></div>
+        <details class="proof">
+          <summary>证明</summary>
+          <div class="pf"><p>设 $\lvert a_n z_0^n\rvert \le M$。则 $\lvert a_n z^n\rvert = \lvert a_n z_0^n\rvert \cdot \big\lvert \tfrac{z}{z_0}\big\rvert^n \le M q^n$，其中 $q = \lvert z/z_0\rvert < 1$，与几何级数比较即得。<span class="qed"></span></p></div>
+        </details>
+      </div>
+
+      <div class="blk def" id="def-rayon" data-k="K07 · 定义用天青">
+        <div class="blk-h"><span class="blk-kind">定义 4.2</span><span class="blk-name">收敛半径</span></div>
+        <p class="blk-tri"><span>Radius of convergence</span><span>Rayon de convergence</span><span>Радиус сходимости</span></p>
+        <div class="blk-b">
+          <span class="sn"><span class="n">2</span>上确界可能是 $+\infty$（例如 $\sum z^n/n!$），也可能是 $0$（例如 $\sum n!\,z^n$）：两种极端都会在例 4.6 里出现。</span>
+          <p>幂级数 $\sum a_n z^n$ 的<strong>收敛半径</strong><button class="snref" type="button" aria-label="旁注 2" data-sn="sn2"></button>
+          $$R = \sup\{\, r \ge 0 : (a_n r^n) \text{ 有界} \,\} \in [0, +\infty].$$
+          $D(0, R) = \{\lvert z\rvert < R\}$ 称为<strong>收敛圆盘</strong>；实变量时称 $]-R, R[$ 为收敛区间。</p>
+        </div>
+      </div>
+
+      <figure class="figure wide" id="fig41" data-k="M20 描线 · B19 分段 · B20 开关 · A35 手写批注 · F11/F22 手写体">
+        <div class="fig-ctl">
+          <div class="seg" id="series-seg" role="radiogroup" aria-label="选择幂级数">
+            <span class="thumb" aria-hidden="true"></span>
+            <button type="button" role="radio" aria-checked="true" data-s="geo">$\sum x^n$</button>
+            <button type="button" role="radio" aria-checked="false" data-s="exp">$\sum \frac{x^n}{n!}$</button>
+            <button type="button" role="radio" aria-checked="false" data-s="cat">$\sum \binom{2n}{n} x^n$</button>
+          </div>
+          <label class="sw"><input type="checkbox" role="switch" id="band-sw" checked>显示收敛区间</label>
+        </div>
+        <svg class="plot" id="plot" viewBox="0 0 924 380" preserveAspectRatio="xMinYMin meet" role="img" aria-label="部分和与和函数的图像"></svg>
+        <div class="fig-foot">
+          <div class="range"><label for="nrange">项数 <i>N</i></label><input id="nrange" type="range" min="0" max="30" value="8"><output id="nout" for="nrange">8</output></div>
+          <span class="readout" id="readout" aria-live="polite">把指针移到图上读数</span>
+        </div>
+        <figcaption><b>图 4.1</b>部分和 $S_N(x)=\sum_{n\le N} a_n x^n$（墨线）与和函数（淡墨）。收敛区间外的部分画成朱色：那里 $N$ 越大，$S_N$ 离得越远。</figcaption>
+      </figure>
+
+      <div class="blk" id="rayon-carac" data-k="K07 · B22 · B23">
+        <span class="sn fig keep" data-k="A14 圆相 · M20 描线">
+          <span class="enso" id="enso">
+            <svg viewBox="0 0 250 250" aria-hidden="true"></svg>
+            <span class="lab" style="left:50%;top:44%">$\lvert z\rvert<R$<br>绝对收敛</span>
+            <span class="lab zhu" style="left:84%;top:13%">圆周上<br>一切皆有可能</span>
+            <span class="lab" style="left:50%;top:96%">$\lvert z\rvert>R$：粗发散</span>
+          </span>
+          <span style="display:block;margin-top:14px"><span class="n">图 4.2</span>收敛圆。圆周上什么都可能发生，所以画成一个不闭合的圆相。</span>
+        </span>
+        <div class="blk-h">
+          <span class="blk-kind">定理 4.3</span><span class="blk-name">收敛半径的刻画</span><span class="stars" title="★ 必修主干，给出完整证明">★</span>
+          <span class="blk-act">
+            <button class="ghost like" type="button" aria-pressed="true" aria-label="收藏 收敛半径的刻画"><svg viewBox="0 0 24 24"><path d="M12 20.5S3.5 15.3 3.5 9.6C3.5 6.8 5.6 4.8 8.1 4.8c1.6 0 3 .8 3.9 2.1.9-1.3 2.3-2.1 3.9-2.1 2.5 0 4.6 2 4.6 4.8 0 5.7-8.5 10.9-8.5 10.9z"/></svg></button>
+          </span>
+        </div>
+        <div class="blk-b">
+          <ol>
+            <li>若 $\lvert z\rvert < R$，$\sum a_n z^n$ 绝对收敛；</li>
+            <li>若 $\lvert z\rvert > R$，$\sum a_n z^n$ 粗发散（$a_n z^n$ 无界）；</li>
+            <li>在圆周 $\lvert z\rvert = R$ 上可能出现任何情况。</li>
+          </ol>
+        </div>
+        <details class="proof">
+          <summary>证明</summary>
+          <div class="pf"><ol>
+            <li>取 $\lvert z\rvert < r < R$ 且 $(a_n r^n)$ 有界，用 <a class="ul" href="#lemme-abel" data-k="B11 下划线链接">Abel 引理</a>。</li>
+            <li>由 $R$ 的定义，$(a_n z^n)$ 无界。</li>
+            <li>$\sum z^n$（$R = 1$）在圆周上处处发散；$\sum \frac{z^n}{n^2}$ 在圆周上处处绝对收敛；$\sum \frac{z^n}{n}$ 在 $z = 1$ 发散，在其余点收敛。<span class="qed"></span></li>
+          </ol></div>
+        </details>
+      </div>
+
+      <div class="blk" id="hadamard" data-k="P08 标签页 · K07">
+        <span class="sn keep">
+          <span class="card3d">
+            <button class="flip" id="flip" type="button" aria-label="记忆卡：点按翻面" data-k="P10 3D 翻转 · M16 倾斜 · K08 柔和投影">
+              <span class="face front"><small>记忆卡 · 点按翻面</small><span class="q">$\frac1R = \;?$</span><span class="hint">Cauchy–Hadamard</span></span>
+              <span class="face back"><small>答案</small><span class="q">$\frac1R=\limsup \lvert a_n\rvert^{1/n}$</span><span class="hint">是 limsup，不是 lim：数列 $\lvert a_n\rvert^{1/n}$ 未必有极限。</span></span>
+            </button>
+          </span>
+        </span>
+        <div class="blk-h">
+          <span class="blk-kind">定理 4.4</span><span class="blk-name">Cauchy–Hadamard 公式</span><span class="stars" title="★ 必修主干，给出完整证明">★</span>
+          <span class="blk-act">
+            <button class="ghost like" type="button" aria-pressed="false" aria-label="收藏 Cauchy–Hadamard 公式"><svg viewBox="0 0 24 24"><path d="M12 20.5S3.5 15.3 3.5 9.6C3.5 6.8 5.6 4.8 8.1 4.8c1.6 0 3 .8 3.9 2.1.9-1.3 2.3-2.1 3.9-2.1 2.5 0 4.6 2 4.6 4.8 0 5.7-8.5 10.9-8.5 10.9z"/></svg></button>
+            <button class="ghost copy" type="button" aria-label="复制 LaTeX" data-tex="\frac{1}{R} = \limsup_{n \to \infty} |a_n|^{1/n}"><svg class="cp" viewBox="0 0 24 24"><rect x="8" y="8" width="11" height="12" rx="2"/><path d="M5 15V6a2 2 0 0 1 2-2h8"/></svg><svg class="ok" viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7.5"/></svg><span class="tip">已复制 LaTeX</span></button>
+          </span>
+        </div>
+        <p class="blk-tri"><span>Cauchy–Hadamard theorem</span><span>Formule de Cauchy–Hadamard</span><span>Формула Коши–Адамара</span></p>
+        <div class="tabs" id="tabs">
+          <div class="tablist" role="tablist" aria-label="定理 4.4">
+            <button type="button" role="tab" aria-selected="true" aria-controls="tp1" id="tb1">陈述</button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="tp2" id="tb2" tabindex="-1">证明 <span class="stars">★</span></button>
+            <button type="button" role="tab" aria-selected="false" aria-controls="tp3" id="tb3" tabindex="-1">直观</button>
+            <span class="ind" aria-hidden="true"></span>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="tp1" aria-labelledby="tb1">
+            $$\frac1R = \limsup_{n \to \infty} \lvert a_n\rvert^{1/n}$$
+            <p>（约定 $\frac10 = \infty$，$\frac1\infty = 0$）。</p>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="tp2" aria-labelledby="tb2" hidden>
+            <p>记 $L = \limsup \lvert a_n\rvert^{1/n}$。若 $\lvert z\rvert L < 1$，取 $q$ 使 $\lvert z\rvert L < q < 1$，则从某项起 $\lvert a_n\rvert^{1/n}\lvert z\rvert < q$，即 $\lvert a_n z^n\rvert < q^n$，级数收敛，所以 $R \ge \lvert z\rvert$。</p>
+            <p>若 $\lvert z\rvert L > 1$，则有无穷多个 $n$ 使 $\lvert a_n z^n\rvert > 1$，级数发散，所以 $R \le \lvert z\rvert$。两者合起来得 $R = 1/L$。<span class="qed"></span></p>
+          </div>
+          <div class="tabpanel" role="tabpanel" id="tp3" aria-labelledby="tb3" hidden>
+            <p>系数的「增长率」决定半径：若 $\lvert a_n\rvert \approx \rho^n$，那么 $\lvert a_n z^n\rvert \approx (\rho\lvert z\rvert)^n$，它是一个几何级数，恰好在 $\lvert z\rvert < 1/\rho$ 时收敛。$\limsup$ 取的是这个增长率最坏的那一部分。</p>
+          </div>
+        </div>
+      </div>
+
+      <div class="blk" id="dalembert-rayon">
+        <div class="blk-h"><span class="blk-kind">命题 4.5</span><span class="blk-name">用比值计算收敛半径</span><span class="stars" title="★ 必修主干，给出完整证明">★</span></div>
+        <p class="blk-tri"><span>Ratio test for the radius</span><span>Règle de d'Alembert</span><span>Признак Даламбера</span></p>
+        <div class="blk-b"><p>若 $a_n \ne 0$ 且 $\Big\lvert\dfrac{a_{n+1}}{a_n}\Big\rvert \to \ell \in [0, +\infty]$，则 $R = \dfrac{1}{\ell}$。</p></div>
+      </div>
+
+      <div class="blk" id="ex46" data-k="P12 擦除揭晓">
+        <div class="blk-h"><span class="blk-kind">例 4.6</span><span class="blk-name">先猜，再揭晓</span></div>
+        <ul class="reveal-list">
+          <li><span>$\sum \dfrac{z^n}{n!}$</span><span class="ans"><span class="a"><b>$R=\infty$</b>比值 $\frac{1}{n+1}\to 0$</span><button class="ink" type="button">点按揭晓</button></span></li>
+          <li><span>$\sum n!\,z^n$</span><span class="ans"><span class="a"><b>$R=0$</b>比值 $n+1\to\infty$</span><button class="ink" type="button">点按揭晓</button></span></li>
+          <li><span>$\sum \dbinom{2n}{n} z^n$</span><span class="ans"><span class="a"><b>$R=\frac14$</b>比值 $\frac{(2n+1)(2n+2)}{(n+1)^2}\to 4$</span><button class="ink" type="button">点按揭晓</button></span></li>
+          <li><span>$\sum z^{n^2}$</span><span class="ans"><span class="a"><b>$R=1$</b>系数多为 0，比值法失效，用定理 4.4</span><button class="ink" type="button">点按揭晓</button></span></li>
+        </ul>
+        <button class="btn quiet reveal-all" type="button" id="reveal-all">全部揭晓</button>
+      </div>
+
+      <section class="exo" id="exo" aria-labelledby="exo-h" data-k="I16 答案输入 · K13 内凹 · B24 长按提交 · M18 打字机 · M23 加载">
+        <div class="blk-h"><span class="blk-kind" id="exo-h">练习 4.1</span><span class="stars" title="基础题">★</span></div>
+        <p style="margin:6px 0 0">求幂级数 $\displaystyle\sum_{n\ge1} n^2\, 3^n x^n$ 的收敛半径 $R$。</p>
+        <form class="answer" id="ans-form" autocomplete="off">
+          <div class="field" id="field"><label for="ans">R =</label><input id="ans" inputmode="decimal" placeholder="例如 2 或 1/2" spellcheck="false"></div>
+          <button class="btn hold" id="hold" type="button" aria-describedby="hold-tip"><span class="ring" aria-hidden="true"></span><span>长按提交</span></button>
+          <button class="ghost" id="hint-btn" type="button" aria-label="提示" title="提示"><svg viewBox="0 0 24 24"><path d="M9 18h6M10 21h4M12 3a6 6 0 0 0-3.6 10.8c.6.5 1 1.2 1 2V16h5.2v-.2c0-.8.4-1.5 1-2A6 6 0 0 0 12 3z"/></svg></button>
+          <span class="sr" id="hold-tip">按住约一秒提交；键盘用户按住空格键。</span>
+        </form>
+        <p class="hint-text" id="hint" aria-live="polite"></p>
+        <div class="verdict" id="verdict" aria-live="polite"></div>
+        <div class="solution" id="solution" hidden>
+          <p class="proof-h">解答</p>
+          <p>$a_n = n^2 3^n$，比值 $\Big\lvert\dfrac{a_{n+1}}{a_n}\Big\rvert = 3\Big(\dfrac{n+1}{n}\Big)^2 \to 3$，由命题 4.5，$R = \dfrac13$。也可以说：$n^2$ 不改变收敛半径（多项式因子的 $n$ 次根趋于 1），只剩 $3^n$ 决定一切。<span class="qed"></span></p>
+        </div>
+      </section>
+    </section>
+
+    <section class="dash" id="dash" aria-labelledby="dash-h" data-k="L11 仪表盘 · A34 等高线 · M19 数字滚动">
+      <canvas aria-hidden="true"></canvas>
+      <div class="dash-h"><h3 id="dash-h">本章学习记录</h3><span class="chip">示例数据</span></div>
+      <div class="stats">
+        <div class="stat"><div class="v"><span data-count="4">4</span><small>/ 6 节</small></div><div class="l">已读</div></div>
+        <div class="stat"><div class="v"><span data-count="3">3</span><small>条</small></div><div class="l">收藏的定理</div></div>
+        <div class="stat"><div class="v"><span data-count="82">82</span><small>%</small></div><div class="l">练习正确率</div></div>
+      </div>
+      <div class="strip" aria-label="全书各章进度（示例）">
+        <i style="--h:100%"><b></b></i><i style="--h:100%"><b></b></i><i style="--h:85%"><b></b></i><i class="cur" style="--h:66%"><b></b></i><i style="--h:20%"><b></b></i><i style="--h:0%"><b></b></i><i style="--h:0%"><b></b></i><i style="--h:10%"><b></b></i><i style="--h:0%"><b></b></i><i style="--h:0%"><b></b></i><i style="--h:0%"><b></b></i>
+      </div>
+      <div class="strip-l" aria-hidden="true"><span>1</span><span>2</span><span>3</span><span>4</span><span>5</span><span>6</span><span>7</span><span>8</span><span>9</span><span>10</span><span>11</span></div>
+    </section>
+
+    <nav class="next" aria-label="翻页">
+      <a class="ul" href="#top">回到本章封面</a>
+      <button class="btn" id="turn-btn" type="button" data-k="P15 翻书 · B13"><span><small>下一节 · § 4.2</small>和函数的正则性</span><svg viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6"/></svg></button>
+    </nav>
+  </article>
+</div>
+</div>
+
+<!-- ———— 设计方案 ———— -->
+<main class="plan" id="view-plan" hidden>
+  <div class="plan-in">
+    <p class="eyebrow"><b>Proposition</b>　·　数学分析 L2 网站设计方案　·　v1</p>
+    <h1>宋纸手稿</h1>
+    <p class="lede">像一本写在洒金宣纸上的讲义：大量留白，旁注说话，正文用宋体配 Garamond，颜色只有墨、天青和一点朱砂。每章封面一幅与本章数学相呼应的传统画，是全站唯一的重笔；其余地方都很安静，把注意力留给公式和证明。</p>
+
+    <h2><span class="no">1</span>取舍原则</h2>
+    <p class="sub">你收藏了 90 个样品，它们不可能同时出现在一页上。我按三档分配，保证每页只有一个主角：</p>
+    <div class="tiers">
+      <div class="tier"><h3>主调</h3><p>每一页都在：S01 学术手稿 + S09 和风留白，A18 宋式雅色，C14 墨水与纸，宋体 + Garamond，旁注版心，细线与纸纹。</p></div>
+      <div class="tier"><h3>场景</h3><p>只在特定位置出现：每章封面的画、记忆卡的翻转、答题的长按、暗色模式的极光、首页的轮播与整页吸附。</p></div>
+      <div class="tier"><h3>暂缓</h3><p>与「纸面」冲突或会抢正文风头的：整套新拟态、涟漪、立方体切换等。它们在表里写明了原因，你可以推翻。</p></div>
+    </div>
+
+    <h2><span class="no">2</span>颜色</h2>
+    <p class="sub">亮色底取 C14 墨水与纸，强调色取自 A18 宋式雅色；暗色按你的选择用纯墨黑配暗金字，像黑漆描金的漆器，远山也改成金色描绘。每个色块左半是亮色、右半是暗色。</p>
+    <div class="swatches">
+      <div class="swatch"><div class="chipc"><i style="background:#f5f2e9"></i><i style="background:#0d0c0a"></i></div><b>宣纸 / 墨黑</b><span>页面底色</span><code>#f5f2e9 / #0d0c0a</code></div>
+      <div class="swatch"><div class="chipc"><i style="background:#23211d"></i><i style="background:#c9a86b"></i></div><b>墨 / 暗金</b><span>正文、公式</span><code>#23211d / #c9a86b</code></div>
+      <div class="swatch"><div class="chipc"><i style="background:#5d594f"></i><i style="background:#93805c"></i></div><b>淡墨 / 古铜</b><span>旁注、说明、次要文字</span><code>#5d594f / #93805c</code></div>
+      <div class="swatch"><div class="chipc"><i style="background:#3e6e74"></i><i style="background:#86b3ad"></i></div><b>天青</b><span>一切可以点的：链接、开关、定义</span><code>#3e6e74 / #86b3ad</code></div>
+      <div class="swatch"><div class="chipc"><i style="background:#ad3a2c"></i><i style="background:#d4735e"></i></div><b>朱砂</b><span>印章、定理标签、发散、阅读进度</span><code>#ad3a2c / #d4735e</code></div>
+      <div class="swatch"><div class="chipc"><i style="background:#a2843c"></i><i style="background:#e6c97f"></i></div><b>秋香 / 亮金</b><span>只用于 ★ 证明等级</span><code>#a2843c / #e6c97f</code></div>
+    </div>
+    <p class="sub" style="margin-top:16px">C10 70 年代复古只留给「练习」里的游戏化部分（连胜、徽章），不进正文。所有文字色与底色的对比度都在 4.5 : 1 以上。</p>
+
+    <h2><span class="no">3</span>字体</h2>
+    <p class="sub">西文字母走 Garamond，汉字走宋体，浏览器按字符自动分配，所以中西混排天然协调（F01 + F15）。</p>
+    <div class="fonts">
+      <div class="font-row"><div class="role"><b>正文、标题</b>Noto Serif SC + EB Garamond</div><div class="spec" style="font-family:var(--f-body)">一致收敛 Uniform convergence</div><div class="src">F15 · F01 · F26</div></div>
+      <div class="font-row"><div class="role"><b>旁注、提示</b>霞鹜文楷 + EB Garamond</div><div class="spec" style="font-family:var(--f-note)">先拖一拖图，再回来读证明</div><div class="src">F17</div></div>
+      <div class="font-row"><div class="role"><b>章名（只在封面）</b>Zhi Mang Xing 行书</div><div class="spec" style="font-family:var(--f-brush);font-size:40px">幂级数</div><div class="src">F20</div></div>
+      <div class="font-row"><div class="role"><b>章号、大数字</b>Bodoni Moda</div><div class="spec" style="font-family:var(--f-num)">4 · 82%</div><div class="src">F03</div></div>
+      <div class="font-row"><div class="role"><b>法文章名（只在封面）</b>Great Vibes</div><div class="spec" style="font-family:var(--f-script);font-size:34px">Séries entières</div><div class="src">F12</div></div>
+      <div class="font-row"><div class="role"><b>图上的手写批注</b>Caveat / 龙藏体</div><div class="spec"><span style="font-family:var(--f-hand)">R = 1</span>　<span style="font-family:var(--f-hand-zh)">这里发散</span></div><div class="src">F11 · F22</div></div>
+    </div>
+    <p class="sub" style="margin-top:12px">字重（F26）：正文 400，定理名 600，章节标题 600，封面数字 400 细线体。行书和花体只出现在封面，正文里一次也不用。</p>
+
+    <h2><span class="no">4</span>排版参数</h2>
+    <div class="params">
+      <div class="param"><div class="v">17 px</div><div class="l">正文字号（手机 16）</div><code>font-size: 17px</code></div>
+      <div class="param"><div class="v">1.75</div><div class="l">行距 · T03</div><code>line-height: 1.75</code></div>
+      <div class="param"><div class="v">37 字</div><div class="l">行宽 · 比 T06 稍密</div><code>width: 630px</code></div>
+      <div class="param"><div class="v">1 em</div><div class="l">段间距，不缩进</div><code>margin: 0 0 1em</code></div>
+      <div class="param"><div class="v">.16 em</div><div class="l">小标签字距 · T12</div><code>all-small-caps</code></div>
+      <div class="param"><div class="v">⅛ em</div><div class="l">中西文、公式与汉字之间 · T15</div><code>text-autospace</code></div>
+    </div>
+
+    <h2><span class="no">5</span>每一处用到了哪个收藏</h2>
+    <p class="sub">「示范页」标着朱色虚线的，在左边的示范页里能直接看到；打开顶栏的「编号」开关，示范页上会标出每处对应的编号。</p>
+    <div class="tbl-wrap"><table class="alloc">
+      <thead><tr><th>编号</th><th>用在哪里</th><th>档位</th></tr></thead>
+      <tbody id="alloc"></tbody>
+    </table></div>
+
+    <h2><span class="no">6</span>二十幅插画，各有去处</h2>
+    <p class="sub">你给的二十幅工笔插画（红、青、金、米白，正好对上朱砂、天青、秋香、宣纸）是全站唯一的彩色。十一幅中式的做各章封面的主角，每幅都和那一章的数学有一层关系；之前选的艺术风格退到后面，做封面的底纹。剩下九幅放在首页、徽章、404 等处：日式的四幅都留给练习和游戏化的部分，不进正文。</p>
+    <h3 class="ill-h">章节封面</h3>
+    <div class="ills" id="ills"></div>
+    <h3 class="ill-h">其余九幅</h3>
+    <div class="ills other" id="ills-other"></div>
+    <p class="sub" style="margin-top:14px">处理：二十幅都清理了透明通道，歌舞伎和青龙两幅原图把「透明格子」画进了像素里，已经去掉；统一裁边、压成 WebP，大图每张约 300–450KB，缩略图约 50KB。原图保留在仓库的 <code>design/assets/raw/</code>。</p>
+
+    <h2><span class="no">7</span>动效规范</h2>
+    <p class="sub">只有两条缓动曲线、三档时长；所有动效在系统开启「减少动态效果」时自动关闭。</p>
+    <div class="motion-tbl">
+      <div class="mt"><b>缓出 · M04</b><span>入场、展开、弹出</span><code>cubic-bezier(.22,.61,.36,1)</code></div>
+      <div class="mt"><b>缓入缓出 · M05</b><span>位置移动、翻转、抽屉</span><code>cubic-bezier(.65,0,.35,1)</code></div>
+      <div class="mt"><b>160–240 ms</b><span>悬停、开关、复制反馈</span><code>按钮、图标</code></div>
+      <div class="mt"><b>320–450 ms</b><span>标签页、抽屉、底部弹出</span><code>组件级</code></div>
+      <div class="mt"><b>700–1050 ms</b><span>翻书、主题切换、封面入场</span><code>页面级，一页最多一个</code></div>
+    </div>
+
+    <h2><span class="no">8</span>需要你拍板的事</h2>
+    <ol class="qs">
+      <li><b>每章一幅不同的画，还是全站统一水墨？</b><p>现方案是每章一幅（第 6 节）。如果你觉得太花，可以全站统一用水墨，只换山形和题字。</p></li>
+      <li><b>暗色模式：已定纯墨黑 + 暗金字</b><p>底色 #0d0c0a，正文 #c9a86b，次要文字古铜 #93805c；远山与等高线也改为金色描绘，封面天空是一层很淡的暖金光晕。</p></li>
+      <li><b>正文字号：已定 17px</b><p>按你的习惯改密一点：每行约 37 字，行距仍是 1.75，手机上 16px。</p></li>
+    </ol>
+  </div>
+</main>
+
+<!-- ———— 浮层 ———— -->
+<div class="scrim" id="scrim"></div>
+<nav class="drawer" id="drawer" aria-label="目录" aria-hidden="true">
+  <h3>第 4 章 · 幂级数</h3>
+  <ol>
+    <li class="cur"><a href="#s41" data-close><span class="no">4.1</span>收敛半径</a></li>
+    <li class="off"><span><span class="no">4.2</span>和函数的正则性</span></li>
+    <li class="off"><span><span class="no">4.3</span>幂级数展开</span></li>
+    <li class="off"><span><span class="no">4.4</span>复指数与 π 的定义</span></li>
+    <li class="off"><span><span class="no">4.5</span>交互：Taylor 多项式</span></li>
+    <li class="off"><span><span class="no">4.6</span>应用：生成函数与微分方程</span></li>
+  </ol>
+  <h3>全书</h3>
+  <ol>
+    <li class="off"><span><span class="no">1</span>赋范向量空间的拓扑</span></li>
+    <li class="off"><span><span class="no">2</span>数项级数与可和族</span></li>
+    <li class="off"><span><span class="no">3</span>函数列与函数项级数</span></li>
+    <li class="cur"><a href="#top" data-close><span class="no">4</span>幂级数</a></li>
+    <li class="off"><span><span class="no">5</span>Fourier 级数</span></li>
+    <li class="off"><span><span class="no">6</span>任意区间上的积分</span></li>
+    <li class="off"><span><span class="no">7</span>含参变量积分</span></li>
+    <li class="off"><span><span class="no">8</span>微分方程</span></li>
+    <li class="off"><span><span class="no">9</span>多元微分学</span></li>
+    <li class="off"><span><span class="no">10</span>局部逆、隐函数与条件极值</span></li>
+    <li class="off"><span><span class="no">11</span>重积分</span></li>
+  </ol>
+  <p style="font-size:13px;color:var(--ink-3)">示范页只排了 § 4.1，其余为灰色。</p>
+</nav>
+
+<div class="search" id="search" role="dialog" aria-modal="true" aria-label="搜索" hidden>
+  <div class="search-box">
+    <div class="search-in"><input id="q" type="search" placeholder="搜索定理、定义、例子…" autocomplete="off" spellcheck="false"><button class="ghost" id="search-x" type="button" aria-label="关闭搜索"><svg viewBox="0 0 24 24"><path d="M6 6l12 12M18 6L6 18"/></svg></button></div>
+    <ul class="results" id="results"></ul>
+  </div>
+</div>
+
+<div class="sheet" id="sheet" role="dialog" aria-label="旁注" aria-hidden="true"></div>
+
+<div class="turn" id="turn" hidden>
+  <div class="under">
+    <div class="stub">
+      <p class="eyebrow">§ 4.2</p>
+      <h2>和函数的正则性</h2>
+      <p>示范页只排了 § 4.1。刚才看到的是章节之间的「翻书」切换（P15）：纸张绕着书脊翻过去，下一页在下面等着。</p>
+      <button class="btn" id="turn-back" type="button"><svg viewBox="0 0 24 24"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>翻回 § 4.1</button>
+    </div>
+  </div>
+  <div class="leafp"><div class="stub"><p class="eyebrow">§ 4.1</p><h2>收敛半径</h2></div></div>
+</div>
+
+<script>
+(() => {
+  'use strict';
+  const $ = (s, r = document) => r.querySelector(s);
+  const $$ = (s, r = document) => [...r.querySelectorAll(s)];
+  const root = document.documentElement;
+  const reduce = matchMedia('(prefers-reduced-motion: reduce)');
+  const css = (v) => getComputedStyle(root).getPropertyValue(v).trim();
+  const isDark = () => root.dataset.theme ? root.dataset.theme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches;
+  const store = {
+    get(k, d) { try { const v = localStorage.getItem(k); return v === null ? d : JSON.parse(v); } catch { return d; } },
+    set(k, v) { try { localStorage.setItem(k, JSON.stringify(v)); } catch { /* 无痕模式下忽略 */ } }
+  };
+
+  // ———— 分段控件（B19）：滑块跟着选中项走 ————
+  function segment(el, onPick) {
+    const thumb = $('.thumb', el);
+    const btns = $$('button', el);
+    const place = () => {
+      const b = btns.find((x) => x.getAttribute('aria-checked') === 'true');
+      if (!b) return;
+      thumb.style.width = `${b.offsetWidth}px`;
+      thumb.style.transform = `translateX(${b.offsetLeft - 3}px)`;
+    };
+    const pick = (b, fire = true) => {
+      btns.forEach((x) => { x.setAttribute('aria-checked', String(x === b)); x.tabIndex = x === b ? 0 : -1; });
+      place();
+      if (fire) onPick(b);
+    };
+    btns.forEach((b) => b.addEventListener('click', () => pick(b)));
+    el.addEventListener('keydown', (e) => {
+      const i = btns.findIndex((x) => x.getAttribute('aria-checked') === 'true');
+      if (e.key === 'ArrowRight' || e.key === 'ArrowLeft') {
+        e.preventDefault();
+        const b = btns[(i + (e.key === 'ArrowRight' ? 1 : btns.length - 1)) % btns.length];
+        pick(b); b.focus();
+      }
+    });
+    new ResizeObserver(place).observe(el);
+    document.fonts?.ready.then(place);
+    place();
+    return { pick: (pred, fire) => { const b = btns.find(pred); if (b) pick(b, fire); } };
+  }
+
+  // ———— 视图：示范页 / 设计方案 ————
+  const views = { demo: $('#view-demo'), plan: $('#view-plan') };
+  const viewSeg = segment($('#view-seg'), (b) => show(b.dataset.view, true));
+  function show(v, push) {
+    Object.entries(views).forEach(([k, el]) => { el.hidden = k !== v; });
+    if (push) { try { history.replaceState(null, '', `#${v}`); } catch { /* 忽略 */ } }
+    window.scrollTo({ top: 0, behavior: 'auto' });
+    if (v === 'demo') requestAnimationFrame(() => { sizeCover(); plot.redraw(); });
+  }
+  const start = location.hash.slice(1);
+  if (start === 'plan') { viewSeg.pick((b) => b.dataset.view === 'plan', false); show('plan'); }
+  addEventListener('hashchange', () => { const h = location.hash.slice(1); if (h === 'plan' || h === 'demo') { viewSeg.pick((b) => b.dataset.view === h, false); show(h); } });
+
+  // ———— 编号标注 ————
+  const annot = $('#annot');
+  annot.checked = store.get('annot', false);
+  const setAnnot = () => { root.dataset.annot = annot.checked ? 'on' : 'off'; store.set('annot', annot.checked); };
+  annot.addEventListener('change', setAnnot);
+  setAnnot();
+
+  // ———— 主题：圆形展开（P13） ————
+  const themeBtn = $('#theme-btn');
+  const themeListeners = [];
+  const onTheme = (f) => themeListeners.push(f);
+  new MutationObserver(() => themeListeners.forEach((f) => f())).observe(root, { attributes: true, attributeFilter: ['data-theme'] });
+  matchMedia('(prefers-color-scheme: dark)').addEventListener('change', () => themeListeners.forEach((f) => f()));
+  themeBtn.addEventListener('click', (e) => {
+    const next = isDark() ? 'light' : 'dark';
+    const r = themeBtn.getBoundingClientRect();
+    const x = r.left + r.width / 2, y = r.top + r.height / 2;
+    root.style.setProperty('--tx', `${x}px`);
+    root.style.setProperty('--ty', `${y}px`);
+    root.style.setProperty('--tr', `${Math.hypot(Math.max(x, innerWidth - x), Math.max(y, innerHeight - y))}px`);
+    const apply = () => { root.dataset.theme = next; };
+    if (document.startViewTransition && !reduce.matches) document.startViewTransition(apply);
+    else apply();
+  });
+
+  // ———— 阅读进度（M27）：不支持滚动时间线时用脚本 ————
+  if (!CSS.supports('animation-timeline: scroll()')) {
+    const bar = $('#progress');
+    const upd = () => { const h = document.documentElement.scrollHeight - innerHeight; bar.style.transform = `scaleX(${h > 0 ? scrollY / h : 0})`; };
+    addEventListener('scroll', upd, { passive: true }); upd();
+  }
+
+  // ———— 烫金宣纸（K17）：纤维、云状深浅、洒金箔片；另画一层金箔反光（M29） ————
+  // 每次打开页面换一个随机种子：纸纹、金箔、远山、圆相、等高线都会不同；切换亮暗时沿用同一个种子
+  const SEED = (crypto.getRandomValues ? crypto.getRandomValues(new Uint32Array(1))[0] : Math.random() * 2 ** 32) >>> 0;
+  const paperCache = {};
+  function paperTextures() {
+    const dark = isDark();
+    if (paperCache[dark]) return paperCache[dark];
+    const T = 900, S = Math.min(devicePixelRatio || 1, 2);
+    const mk = (w, h) => { const c = document.createElement('canvas'); c.width = w; c.height = h; return [c, c.getContext('2d')]; };
+    const R = rng(SEED);
+    const flecks = [];
+    // 细长、大小接近的金箔丝，按抖动网格分布，疏密均匀
+    const G = 16, cell = T / G;
+    for (let i = 0; i < G; i++) for (let j = 0; j < G; j++) {
+      flecks.push({ x: (i + .15 + R() * .7) * cell, y: (j + .15 + R() * .7) * cell, s: 2.1 + R() * 1.6, rot: R() * Math.PI, k: 4 + Math.floor(R() * 3), st: .17 + R() * .15, al: R(), sd: Math.floor(R() * 1e9) });
+    }
+    // 少量稍大的金箔片：每张纸十来片，仍然偏细长
+    for (let i = 0; i < 12; i++) {
+      flecks.push({ x: R() * T, y: R() * T, s: 4.5 + R() * 2.5, rot: R() * Math.PI, k: 5 + Math.floor(R() * 3), st: .3 + R() * .2, al: .3 + R() * .5, sd: Math.floor(R() * 1e9) });
+    }
+    const OFF = [-T, 0, T];
+    const near = (v, s) => (v < s + 2 ? [0, T] : v > T - s - 2 ? [0, -T] : [0]);
+    const flake = (g, f, fill, edge) => {
+      const r = rng(f.sd);
+      for (const dx of near(f.x, f.s)) for (const dy of near(f.y, f.s)) {
+        const cx = f.x + dx, cy = f.y + dy;
+        g.beginPath();
+        for (let i = 0; i < f.k; i++) {
+          const t = (i / f.k) * Math.PI * 2 + (r() - .5) * .5;
+          const rad = f.s * (.55 + .45 * r());
+          const lx = Math.cos(t) * rad, ly = Math.sin(t) * rad * f.st;   // 先压扁成细条，再整体旋转
+          const px = cx + lx * Math.cos(f.rot) - ly * Math.sin(f.rot), py = cy + lx * Math.sin(f.rot) + ly * Math.cos(f.rot);
+          i ? g.lineTo(px, py) : g.moveTo(px, py);
+        }
+        g.closePath();
+        g.fillStyle = fill(g, cx, cy, f); g.fill();
+        if (edge && f.s > 2) { g.strokeStyle = edge; g.lineWidth = .4; g.stroke(); }
+      }
+    };
+    const TONES = ['150,114,48', '172,134,60', '190,154,84', '134,100,40'];
+    const gold = (lo, hi) => (g, cx, cy, f) => {
+      return `rgba(${TONES[f.sd % 4]},${lo + (hi - lo) * f.al})`;
+      const gr = g.createLinearGradient(cx - f.s, cy - f.s, cx + f.s, cy + f.s);
+      const a = lo + (hi - lo) * f.al;
+      gr.addColorStop(0, `rgba(150,110,40,${a})`); gr.addColorStop(.35, `rgba(236,206,128,${a})`);
+      gr.addColorStop(.55, `rgba(184,141,62,${a})`); gr.addColorStop(.8, `rgba(246,226,160,${a})`); gr.addColorStop(1, `rgba(160,122,48,${a})`);
+      return gr;
+    };
+    // 纤维 + 金箔
+    const [c, g] = mk(T * S, T * S); g.scale(S, S);
+    g.lineCap = 'round';
+    for (let i = 0; i < 260; i++) {
+      const x = R() * T, y = R() * T, len = 8 + R() * 46, a = R() * Math.PI, bend = (R() - .5) * 14;
+      const light = R() > .35;
+      g.strokeStyle = dark ? (light ? 'rgba(201,168,107,.055)' : 'rgba(0,0,0,.35)') : (light ? 'rgba(255,255,250,.62)' : 'rgba(120,96,56,.07)');
+      g.lineWidth = .35 + R() * .6;
+      for (const dx of OFF) for (const dy of OFF) {
+        const x0 = x + dx, y0 = y + dy, x1 = x0 + Math.cos(a) * len, y1 = y0 + Math.sin(a) * len;
+        if (Math.max(x0, x1) < -60 || Math.min(x0, x1) > T + 60 || Math.max(y0, y1) < -60 || Math.min(y0, y1) > T + 60) continue;
+        g.beginPath(); g.moveTo(x0, y0); g.quadraticCurveTo((x0 + x1) / 2 + bend, (y0 + y1) / 2 - bend, x1, y1); g.stroke();
+      }
+    }
+    for (let i = 0; i < 260; i++) {   // 金粉
+      const x = R() * T, y = R() * T;
+      g.fillStyle = `rgba(176,140,70,${(dark ? .1 : .18) * R() + .03})`;
+      g.fillRect(x, y, .7, .7);
+    }
+    flecks.forEach((f) => flake(g, f, gold(dark ? .14 : .4, dark ? .3 : .68), null));
+    // 反光层：只有金箔，颜色更亮
+    const [ch, gh] = mk(T * S, T * S); gh.scale(S, S);
+    flecks.forEach((f) => flake(gh, f, () => (dark ? 'rgba(214,184,116,.55)' : 'rgba(232,208,146,.7)'), null));
+    // 云状深浅：低分辨率画，放大后自然柔和
+    const M = 400;
+    const [cm, gm] = mk(M, M);
+    for (let i = 0; i < 70; i++) {
+      const x = R() * M, y = R() * M, r = 20 + R() * 70;
+      const col = dark ? (R() > .5 ? '201,168,107' : '0,0,0') : (R() > .45 ? '255,255,248' : '150,120,70');
+      const a = dark ? (col === '0,0,0' ? .22 : .028) : (col[0] === '2' ? .32 : .045);
+      for (const dx of [-M, 0, M]) for (const dy of [-M, 0, M]) {
+        const gr = gm.createRadialGradient(x + dx, y + dy, 0, x + dx, y + dy, r);
+        gr.addColorStop(0, `rgba(${col},${a})`); gr.addColorStop(1, `rgba(${col},0)`);
+        gm.fillStyle = gr; gm.fillRect(x + dx - r, y + dy - r, r * 2, r * 2);
+      }
+    }
+    return (paperCache[dark] = { tex: c.toDataURL(), hi: ch.toDataURL(), mottle: cm.toDataURL() });
+  }
+  function applyPaper() {
+    const t = paperTextures();
+    root.style.setProperty('--tex', `url(${t.tex})`);
+    root.style.setProperty('--tex-hi', `url(${t.hi})`);
+    root.style.setProperty('--mottle', `url(${t.mottle})`);
+  }
+  applyPaper();
+  onTheme(applyPaper);
+  // 指针经过处金箔反光；封面烫金随指针横向流动
+  let sheenRaf = 0, px = -999, py = -999;
+  addEventListener('pointermove', (e) => {
+    if (e.pointerType === 'touch') return;
+    px = e.pageX; py = e.pageY;
+    if (sheenRaf) return;
+    sheenRaf = requestAnimationFrame(() => {
+      sheenRaf = 0;
+      document.body.style.setProperty('--mx', `${px}px`);
+      document.body.style.setProperty('--my', `${py}px`);
+      root.style.setProperty('--gx', (px / innerWidth).toFixed(3));
+    });
+  }, { passive: true });
+  document.documentElement.addEventListener('pointerleave', () => { document.body.style.setProperty('--mx', '-999px'); });
+
+  // ———— 封面：水墨远山（A12），四层画布做视差（M24） ————
+  const cover = $('.cover');
+  const layers = $$('.mtn');
+  const art = $('#c-art');
+  function rng(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
+  function noise1(seed, n) { const r = rng(seed); const v = Array.from({ length: n + 2 }, r); return (t) => { const i = Math.floor(t), f = t - i; const u = (1 - Math.cos(f * Math.PI)) / 2; return v[i % (n + 2)] * (1 - u) + v[(i + 1) % (n + 2)] * u; }; }
+  const LAYERS = [
+    { base: .56, amp: .15, seed: 7, oct: [[3, 1], [7, .45], [17, .18]], light: [116, 146, 146, .30], dark: [201, 168, 107, .10], skew: .30 },
+    { base: .66, amp: .16, seed: 19, oct: [[4, 1], [9, .45], [23, .2]], light: [88, 108, 106, .40], dark: [201, 168, 107, .15], skew: .34 },
+    { base: .77, amp: .14, seed: 31, oct: [[3, 1], [11, .5], [29, .22]], light: [56, 62, 60, .58], dark: [190, 152, 92, .22], skew: .40 },
+    { base: .92, amp: .17, seed: 43, oct: [[2, 1], [8, .4], [31, .25]], light: [35, 33, 29, .86], dark: [176, 136, 78, .32], skew: .62 }
+  ];
+  function drawLayer(cv, L, dark, w, h) {
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    cv.width = Math.round(w * dpr); cv.height = Math.round(h * dpr);
+    const g = cv.getContext('2d');
+    g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.clearRect(0, 0, w, h);
+    const narrow = w < 700;
+    const base = L.base + (narrow ? .1 : 0), amp = L.amp * (narrow ? .8 : 1);
+    const ns = L.oct.map(([f], k) => noise1(SEED + L.seed + k * 101, f + 2));
+    const ridge = (x) => {
+      const t = x / w;
+      let y = 0, a = 0;
+      L.oct.forEach(([f, am], k) => { y += ns[k](t * f) * am; a += am; });
+      y /= a;
+      const lean = (t - .5) * L.skew;   // 山势向右抬：章名在左，山在右（L05 不对称）
+      return h * (base - (y - .5) * amp * 2 - lean * amp * 2);
+    };
+    const [r, gg, b, al] = dark ? L.dark : L.light;
+    const ink = (k) => `rgba(${r},${gg},${b},${(al * k).toFixed(3)})`;
+    // 主体：从山脊向下渐淡，像雾里出山；叠三遍让边缘有晕染
+    for (let pass = 0; pass < 3; pass++) {
+      const off = (pass - 1) * 1.8;
+      g.beginPath(); g.moveTo(0, h);
+      for (let x = 0; x <= w; x += 3) g.lineTo(x, ridge(x) + off);
+      g.lineTo(w, h); g.closePath();
+      const top = h * (base - amp * 1.4), depth = h * .26;
+      const grad = g.createLinearGradient(0, top, 0, top + depth + h * amp);
+      const k = pass === 1 ? 1 : .3;
+      grad.addColorStop(0, ink(k)); grad.addColorStop(.5, ink(.32 * k)); grad.addColorStop(1, ink(0));
+      g.fillStyle = grad; g.fill();
+    }
+    // 勾勒：沿山脊的一道墨线，浓淡随笔势变化，有断有连
+    const wob = noise1(SEED + L.seed * 13, 40);
+    g.lineCap = 'round';
+    for (let x = 0; x < w; x += 6) {
+      const v = wob(x / w * 40);
+      if (v < .35) continue;
+      g.strokeStyle = ink(.25 + .55 * v);
+      g.lineWidth = .6 + 1.6 * v;
+      g.beginPath(); g.moveTo(x, ridge(x)); g.lineTo(x + 6, ridge(x + 6)); g.stroke();
+    }
+    // 点苔：近山山脊上稀疏的墨点
+    if (L.seed > 20) {
+      const R = rng(SEED + L.seed * 7);
+      g.fillStyle = ink(.7);
+      for (let i = 0; i < w / 34; i++) {
+        const x = (.35 + .65 * R()) * w, y = ridge(x) + 2 + R() * 10;
+        g.beginPath(); g.ellipse(x, y, 1.2 + R() * 1.8, .8 + R(), R() * 3, 0, Math.PI * 2); g.fill();
+      }
+    }
+  }
+  let coverSize = '';
+  function sizeCover() {
+    if (views.demo.hidden) return;
+    const w = cover.clientWidth, h = cover.clientHeight;
+    const key = `${w}x${h}:${isDark()}`;
+    if (key === coverSize) return;
+    coverSize = key;
+    const dark = isDark();
+    layers.forEach((cv, i) => drawLayer(cv, LAYERS[i], dark, w, h));
+  }
+  new ResizeObserver(() => sizeCover()).observe(cover);
+  onTheme(() => { coverSize = ''; sizeCover(); });
+  let ticking = false;
+  addEventListener('scroll', () => {
+    if (ticking || reduce.matches) return;
+    ticking = true;
+    requestAnimationFrame(() => {
+      ticking = false;
+      const y = Math.min(scrollY, cover.offsetHeight);
+      layers.forEach((cv, i) => { cv.style.transform = `translate3d(0, ${y * [0.42, 0.3, 0.18, 0.06][i]}px, 0)`; });
+      art.style.transform = `translate3d(0, ${y * 0.1}px, 0)`;
+    });
+  }, { passive: true });
+
+  // ———— 目录抽屉（P06）与汉堡形变（M21） ————
+  const drawer = $('#drawer'), scrim = $('#scrim'), burger = $('#burger');
+  const setDrawer = (on) => {
+    drawer.classList.toggle('on', on); scrim.classList.toggle('on', on);
+    burger.setAttribute('aria-expanded', String(on));
+    burger.setAttribute('aria-label', on ? '关闭目录' : '打开目录');
+    drawer.setAttribute('aria-hidden', String(!on));
+    if (on) drawer.querySelector('a')?.focus({ preventScroll: true });
+  };
+  burger.addEventListener('click', () => setDrawer(!drawer.classList.contains('on')));
+  $$('[data-open-drawer]').forEach((b) => b.addEventListener('click', () => setDrawer(true)));
+  scrim.addEventListener('click', () => { setDrawer(false); setSheet(false); });
+  $$('[data-close]', drawer).forEach((a) => a.addEventListener('click', () => setDrawer(false)));
+
+  // ———— 窄屏旁注：底部弹出（P03） ————
+  const sheet = $('#sheet');
+  function setSheet(on, html) {
+    if (html) sheet.innerHTML = html;
+    sheet.classList.toggle('on', on); sheet.setAttribute('aria-hidden', String(!on));
+    scrim.classList.toggle('on', on || drawer.classList.contains('on'));
+  }
+  $$('.snref').forEach((b) => b.addEventListener('click', () => {
+    if (matchMedia('(min-width: 1001px)').matches) return;
+    const n = $(`#${b.dataset.sn}`);
+    if (n) setSheet(true, n.innerHTML);
+  }));
+
+  // ———— 搜索（P14） ————
+  const INDEX = [
+    ['引理', 'Abel 引理', '4.1', 'lemme-abel'], ['定义', '收敛半径', '4.1', 'def-rayon'], ['定理', '收敛半径的刻画', '4.1', 'rayon-carac'],
+    ['定理', 'Cauchy–Hadamard 公式', '4.1', 'hadamard'], ['命题', '用比值计算收敛半径', '4.1', 'dalembert-rayon'], ['例', '先猜，再揭晓', '4.1', 'ex46'],
+    ['练习', '求 Σ n² 3ⁿ xⁿ 的收敛半径', '4.1', 'exo'], ['定理', '闭圆盘上的正规收敛', '4.2'], ['定理', '逐项求导与逐项积分', '4.2'], ['推论', '系数的唯一性', '4.2'],
+    ['定理', 'Abel 径向定理', '4.2'], ['定理', 'Tauber 定理', '4.2'], ['定义', '可展开为幂级数', '4.3'], ['定理', '常用展开', '4.3'], ['定理', '二项式级数', '4.3'],
+    ['定理', 'Borel 引理', '4.3'], ['定义', '复指数函数', '4.4'], ['定理', '指数函数的函数方程', '4.4'], ['定义', 'π 的分析定义', '4.4'],
+    ['例', 'Fibonacci 数', '4.6'], ['例', 'Bernoulli 数', '4.6'], ['例', 'Airy 方程', '4.6']
+  ];
+  const search = $('#search'), q = $('#q'), results = $('#results');
+  let act = 0;
+  function renderResults() {
+    const t = q.value.trim().toLowerCase();
+    const hits = INDEX.filter(([k, n, s]) => !t || `${k}${n}${s}`.toLowerCase().includes(t));
+    act = Math.min(act, Math.max(0, hits.length - 1));
+    results.innerHTML = hits.length ? hits.map(([k, n, s, id], i) => `<li><button type="button" class="${i === act ? 'act' : ''}" data-id="${id || ''}"><span class="k">${k}</span><span>${n}</span><span class="s">§ ${s}${id ? '' : '　示范页未收录'}</span></button></li>`).join('')
+      : `<li class="none">没有找到「${q.value.replace(/[<>&]/g, '')}」。试试「半径」「Abel」「展开」。</li>`;
+  }
+  function openSearch() { search.hidden = false; q.value = ''; act = 0; renderResults(); q.focus(); }
+  function closeSearch() { search.hidden = true; $('#search-btn').focus(); }
+  function go(id) {
+    closeSearch();
+    if (!id) return;
+    if (!views.demo.hidden) { /* 已在示范页 */ } else { viewSeg.pick((b) => b.dataset.view === 'demo', false); show('demo'); }
+    const el = document.getElementById(id);
+    el?.scrollIntoView({ behavior: reduce.matches ? 'auto' : 'smooth', block: 'start' });
+  }
+  $('#search-btn').addEventListener('click', openSearch);
+  $('#search-x').addEventListener('click', closeSearch);
+  search.addEventListener('click', (e) => { if (e.target === search) closeSearch(); const b = e.target.closest('button[data-id]'); if (b) go(b.dataset.id); });
+  q.addEventListener('input', () => { act = 0; renderResults(); });
+  q.addEventListener('keydown', (e) => {
+    const bs = $$('button[data-id]', results);
+    if (e.key === 'ArrowDown' || e.key === 'ArrowUp') { e.preventDefault(); act = (act + (e.key === 'ArrowDown' ? 1 : bs.length - 1)) % Math.max(1, bs.length); renderResults(); }
+    if (e.key === 'Enter' && bs[act]) go(bs[act].dataset.id);
+  });
+  addEventListener('keydown', (e) => {
+    if (e.key === 'Escape') { if (!search.hidden) closeSearch(); setDrawer(false); setSheet(false); }
+    if (e.key === '/' && search.hidden && !e.target.closest('input, textarea')) { e.preventDefault(); openSearch(); }
+  });
+
+  // ———— 收藏（B22）与复制（B23） ————
+  $$('.like').forEach((b) => {
+    for (let i = 0; i < 8; i++) { const s = document.createElement('i'); s.style.setProperty('--a', `${i * 45}deg`); b.appendChild(s); }
+    b.addEventListener('click', () => {
+      const on = b.getAttribute('aria-pressed') !== 'true';
+      b.setAttribute('aria-pressed', String(on));
+      b.classList.remove('burst');
+      if (on) { void b.offsetWidth; b.classList.add('burst'); }
+    });
+  });
+  $$('.copy').forEach((b) => b.addEventListener('click', async () => {
+    try { await navigator.clipboard.writeText(b.dataset.tex); b.querySelector('.tip').textContent = '已复制 LaTeX'; }
+    catch { b.querySelector('.tip').textContent = '浏览器不允许复制'; }
+    b.classList.add('done');
+    setTimeout(() => b.classList.remove('done'), 1800);
+  }));
+
+  // ———— 标签页（P08） ————
+  const tabs = $('#tabs');
+  const tabBtns = $$('[role="tab"]', tabs), ind = $('.ind', tabs);
+  let tabAt = 0;
+  const placeInd = () => { const b = tabBtns[tabAt]; ind.style.width = `${b.offsetWidth}px`; ind.style.transform = `translateX(${b.offsetLeft}px)`; };
+  function pickTab(i) {
+    const back = i < tabAt;
+    tabAt = i;
+    tabBtns.forEach((b, j) => { b.setAttribute('aria-selected', String(j === i)); b.tabIndex = j === i ? 0 : -1; });
+    $$('[role="tabpanel"]', tabs).forEach((p, j) => { p.hidden = j !== i; p.classList.toggle('back', back); if (j === i) { p.style.animation = 'none'; void p.offsetWidth; p.style.animation = ''; } });
+    placeInd();
+  }
+  tabBtns.forEach((b, i) => b.addEventListener('click', () => pickTab(i)));
+  tabs.querySelector('[role="tablist"]').addEventListener('keydown', (e) => {
+    if (e.key !== 'ArrowRight' && e.key !== 'ArrowLeft') return;
+    e.preventDefault();
+    const i = (tabAt + (e.key === 'ArrowRight' ? 1 : tabBtns.length - 1)) % tabBtns.length;
+    pickTab(i); tabBtns[i].focus();
+  });
+  new ResizeObserver(placeInd).observe(tabs);
+  document.fonts?.ready.then(placeInd);
+
+  // ———— 记忆卡：翻转（P10）+ 指针倾斜（M16） ————
+  const flip = $('#flip');
+  flip.addEventListener('click', () => flip.classList.toggle('on'));
+  flip.addEventListener('pointermove', (e) => {
+    if (reduce.matches || e.pointerType !== 'mouse') return;
+    const r = flip.getBoundingClientRect();
+    flip.style.setProperty('--ry', `${((e.clientX - r.left) / r.width - .5) * 14}deg`);
+    flip.style.setProperty('--rx', `${-((e.clientY - r.top) / r.height - .5) * 10}deg`);
+  });
+  flip.addEventListener('pointerleave', () => { flip.style.setProperty('--ry', '0deg'); flip.style.setProperty('--rx', '0deg'); });
+
+  // ———— 圆相（A14）：不闭合的毛笔圆 ————
+  (function enso() {
+    const svg = $('#enso svg');
+    const cx = 125, cy = 118, r = 82;
+    const R = rng(SEED ^ 5);
+    const a0 = -Math.PI * .38, span = Math.PI * 1.86;
+    const pts = 140, outer = [], inner = [];
+    for (let i = 0; i <= pts; i++) {
+      const t = i / pts;
+      const a = a0 + span * t;
+      const w = 2 + 9 * Math.pow(Math.sin(Math.PI * Math.min(1, t * 1.15)), .55) * (1 - .55 * t) + R() * .9;
+      const wob = Math.sin(t * 9) * 1.6 + Math.sin(t * 23) * .6;
+      outer.push([cx + (r + w / 2 + wob) * Math.cos(a), cy + (r + w / 2 + wob) * Math.sin(a)]);
+      inner.push([cx + (r - w / 2 + wob) * Math.cos(a), cy + (r - w / 2 + wob) * Math.sin(a)]);
+    }
+    const d = `M${outer.map((p) => p.map((v) => v.toFixed(1)).join(' ')).join('L')}L${inner.reverse().map((p) => p.map((v) => v.toFixed(1)).join(' ')).join('L')}Z`;
+    const mid = `M${Array.from({ length: pts + 1 }, (_, i) => { const a = a0 + span * i / pts; return `${(cx + r * Math.cos(a)).toFixed(1)} ${(cy + r * Math.sin(a)).toFixed(1)}`; }).join('L')}`;
+    let dots = '';
+    for (let i = 0; i < 46; i++) { const a = R() * Math.PI * 2, rr = r + 18 + R() * 30; dots += `<circle cx="${(cx + rr * Math.cos(a)).toFixed(1)}" cy="${(cy + rr * Math.sin(a)).toFixed(1)}" r="${(.8 + R() * 1.4).toFixed(1)}" fill="var(--zhu)" opacity="${(.25 + R() * .45).toFixed(2)}"/>`; }
+    svg.innerHTML = `<defs><mask id="enso-m"><path d="${mid}" fill="none" stroke="#fff" stroke-width="24" stroke-linecap="round" class="draw" id="enso-stroke"/></mask></defs>
+      <circle cx="${cx}" cy="${cy}" r="${r - 6}" fill="var(--qing-soft)"/>
+      ${dots}
+      <path d="${d}" fill="var(--ink)" mask="url(#enso-m)"/>`;
+    const st = $('#enso-stroke');
+    const len = st.getTotalLength();
+    st.style.strokeDasharray = `${len}`;
+    // 静止时完整可见；第一次滚进视口时再「一笔画出」
+    if (!reduce.matches && 'IntersectionObserver' in window) {
+      const io = new IntersectionObserver((es) => {
+        if (!es[0].isIntersecting) return;
+        io.disconnect();
+        st.style.transition = 'none'; st.style.strokeDashoffset = `${len}`;
+        st.getBoundingClientRect();
+        st.style.transition = ''; st.style.strokeDashoffset = '0';
+      }, { threshold: .5 });
+      io.observe(svg);
+    }
+  })();
+
+  // ———— 交互图（M20 描线） ————
+  const plot = (() => {
+    const svg = $('#plot');
+    let W = 924, H = 380;
+    const PL = 40, PR = 16, PT = 22, PB = 34;
+    const choose = (n, k) => { let c = 1; for (let i = 1; i <= k; i++) c = c * (n - k + i) / i; return c; };
+    const S = {
+      geo: { a: () => 1, f: (x) => (x < 1 ? 1 / (1 - x) : NaN), R: 1, X: [-1.7, 1.7], Y: [-2.4, 5.4], xt: [-1.5, -1, -.5, 0, .5, 1, 1.5], yt: [-2, 0, 2, 4], label: 'R = 1', sub: '1', name: 'Σ xⁿ' },
+      exp: { a: (n) => { let f = 1; for (let i = 2; i <= n; i++) f *= i; return 1 / f; }, f: Math.exp, R: Infinity, X: [-5, 3], Y: [-3, 15], xt: [-4, -3, -2, -1, 0, 1, 2, 3], yt: [0, 5, 10], label: 'R = ∞', name: 'Σ xⁿ/n!' },
+      cat: { a: (n) => choose(2 * n, n), f: (x) => (x < .25 ? 1 / Math.sqrt(1 - 4 * x) : NaN), R: .25, X: [-.62, .42], Y: [-1.6, 4.8], xt: [-.5, -.25, 0, .25], yt: [0, 2, 4], label: 'R = ¼', sub: '¼', name: 'Σ C(2n,n) xⁿ' }
+    };
+    let cur = 'geo', N = 8, band = true, hoverX = null;
+    const sx = (x) => PL + (x - S[cur].X[0]) / (S[cur].X[1] - S[cur].X[0]) * (W - PL - PR);
+    const sy = (y) => PT + (S[cur].Y[1] - y) / (S[cur].Y[1] - S[cur].Y[0]) * (H - PT - PB);
+    const ix = (px) => S[cur].X[0] + (px - PL) / (W - PL - PR) * (S[cur].X[1] - S[cur].X[0]);
+    const partial = (x) => { let s = 0, p = 1; for (let n = 0; n <= N; n++) { s += S[cur].a(n) * p; p *= x; } return s; };
+    const clampY = (y) => Math.max(S[cur].Y[0] - 40, Math.min(S[cur].Y[1] + 40, y));
+    function path(fn, x0, x1, steps = 360) {
+      let d = '', pen = false;
+      for (let i = 0; i <= steps; i++) {
+        const x = x0 + (x1 - x0) * i / steps, y = fn(x);
+        if (!Number.isFinite(y)) { pen = false; continue; }
+        d += `${pen ? 'L' : 'M'}${sx(x).toFixed(1)} ${sy(clampY(y)).toFixed(1)}`;
+        pen = true;
+      }
+      return d;
+    }
+    function arrow(x1, y1, x2, y2, bend, color) {
+      const mx = (x1 + x2) / 2 + bend, my = (y1 + y2) / 2 - Math.abs(bend) * .4;
+      const ang = Math.atan2(y2 - my, x2 - mx);
+      const h1 = [x2 - 8 * Math.cos(ang - .45), y2 - 8 * Math.sin(ang - .45)], h2 = [x2 - 8 * Math.cos(ang + .45), y2 - 8 * Math.sin(ang + .45)];
+      return `<path class="arrow" stroke="${color}" d="M${x1} ${y1}Q${mx} ${my} ${x2} ${y2}M${h1[0].toFixed(1)} ${h1[1].toFixed(1)}L${x2} ${y2}L${h2[0].toFixed(1)} ${h2[1].toFixed(1)}"/>`;
+    }
+    function draw(animate) {
+      W = Math.max(300, Math.round(svg.parentNode.clientWidth || 924));
+      H = W >= 700 ? 380 : Math.round(W * .78);
+      svg.setAttribute('viewBox', `0 0 ${W} ${H}`);
+      const s = S[cur];
+      const narrow = W < 700;
+      const R = s.R, X0 = s.X[0], X1 = s.X[1];
+      const inA = Math.max(X0, -R), inB = Math.min(X1, R);
+      const y0 = sy(0), x0 = sx(0);
+      let out = `<defs><clipPath id="pc"><rect x="${PL}" y="${PT}" width="${W - PL - PR}" height="${H - PT - PB}"/></clipPath></defs>`;
+      out += `<rect class="band" x="${sx(inA)}" y="${PT}" width="${sx(inB) - sx(inA)}" height="${H - PT - PB}" style="opacity:${band ? 1 : 0}"/>`;
+      if (Number.isFinite(R)) out += [-R, R].filter((r) => r > X0 && r < X1).map((r) => `<line class="rline" x1="${sx(r)}" x2="${sx(r)}" y1="${PT}" y2="${H - PB}"/>`).join('');
+      out += `<line class="ax" x1="${PL}" x2="${W - PR}" y1="${y0}" y2="${y0}"/><line class="ax" x1="${x0}" x2="${x0}" y1="${PT}" y2="${H - PB}"/>`;
+      out += s.xt.filter((t, i) => !narrow || i % 2 === s.xt.indexOf(0) % 2).map((t) => `<line class="tk" x1="${sx(t)}" x2="${sx(t)}" y1="${y0}" y2="${y0 + 4}"/><text x="${sx(t)}" y="${H - PB + 20}" text-anchor="middle">${t === 0 ? '0' : String(t).replace('-', '−').replace('0.', '.')}</text>`).join('');
+      out += s.yt.filter((t) => t !== 0).map((t) => `<line class="tk" x1="${x0 - 4}" x2="${x0}" y1="${sy(t)}" y2="${sy(t)}"/><text x="${x0 - 8}" y="${sy(t) + 4}" text-anchor="end">${String(t).replace('-', '−')}</text>`).join('');
+      out += `<g clip-path="url(#pc)">`;
+      out += `<path class="sum" d="${path(s.f, X0, X1)}"/>`;
+      const inside = path(partial, inA, inB);
+      out += `<path class="sn-in" d="${inside}"/>`;
+      if (X0 < inA) out += `<path class="sn-out" d="${path(partial, X0, inA, 120)}"/>`;
+      if (inB < X1) out += `<path class="sn-out" d="${path(partial, inB, X1, 120)}"/>`;
+      out += `</g>`;
+      // 手写批注（A35）
+      if (Number.isFinite(R)) {
+        const rx = sx(R), flipL = rx + 110 > W;
+        const tx = flipL ? rx - 92 : rx + 30;
+        out += `<text class="hand" x="${tx}" y="${PT + 30}" transform="rotate(-6 ${tx} ${PT + 30})">${s.label}</text>`;
+        out += flipL ? arrow(rx - 30, PT + 36, rx - 4, PT + 70, 14, 'var(--qing)') : arrow(rx + 28, PT + 36, rx + 4, PT + 70, -14, 'var(--qing)');
+        const lx = sx(Math.max(X0, -R)) ;
+        if (lx - PL > 120) {
+          out += `<text class="hand-zh" x="${PL + 14}" y="${H - PB - 70}" transform="rotate(-4 ${PL + 14} ${H - PB - 70})">这里 Sₙ 发散</text>`;
+          out += arrow(PL + 60, H - PB - 62, PL + 46, H - PB - 26, 10, 'var(--zhu)');
+        }
+      } else {
+        const hx = W - PR - (narrow ? 170 : 230);
+        out += `<text class="hand" x="${hx}" y="${PT + 34}" transform="rotate(-4 ${hx} ${PT + 34})">${s.label}</text><text class="hand-zh" x="${hx + 78}" y="${PT + 36}" transform="rotate(-4 ${hx + 78} ${PT + 36})" style="fill:var(--qing)">处处收敛</text>`;
+      }
+      out += `<g id="cross"></g>`;
+      svg.innerHTML = out;
+      if (animate && !reduce.matches) {
+        $$('.sn-in, .sn-out', svg).forEach((p, i) => {
+          const L = p.getTotalLength();
+          p.style.strokeDasharray = `${L}`; p.style.strokeDashoffset = `${L}`;
+          p.getBoundingClientRect();
+          p.style.transition = `stroke-dashoffset ${i ? .5 : .9}s var(--ease-out) ${i ? .55 : 0}s`;
+          p.style.strokeDashoffset = '0';
+        });
+      }
+      cross();
+    }
+    const fmt = (v) => (Number.isFinite(v) ? (Math.abs(v) >= 1e4 ? v.toExponential(1) : v.toFixed(Math.abs(v) < 10 ? 3 : 1)).replace('-', '−') : '—');
+    function cross() {
+      const g = $('#cross', svg), ro = $('#readout');
+      if (hoverX === null) { g.innerHTML = ''; ro.innerHTML = '把指针移到图上读数'; return; }
+      const s = S[cur], x = hoverX, ys = partial(x), yf = s.f(x);
+      const px = sx(x);
+      g.innerHTML = `<line class="cross" x1="${px}" x2="${px}" y1="${PT}" y2="${H - PB}"/>` +
+        (Number.isFinite(yf) && yf > s.Y[0] && yf < s.Y[1] ? `<circle class="dot-f" cx="${px}" cy="${sy(yf)}" r="4"/>` : '') +
+        (ys > s.Y[0] && ys < s.Y[1] ? `<circle class="dot-s" cx="${px}" cy="${sy(ys)}" r="3.5"/>` : '');
+      const outside = Math.abs(x) > s.R;
+      ro.innerHTML = `x = ${fmt(x)}　S<sub>${N}</sub>(x) = ${fmt(ys)}　和函数 ${fmt(yf)}　${outside ? '<em>收敛区间外：N 越大越离谱</em>' : `差 ${fmt(Math.abs(ys - yf))}`}`;
+    }
+    svg.addEventListener('pointermove', (e) => {
+      const p = new DOMPoint(e.clientX, e.clientY).matrixTransform(svg.getScreenCTM().inverse());
+      if (p.x < PL || p.x > W - PR) { hoverX = null; } else hoverX = ix(p.x);
+      cross();
+    });
+    svg.addEventListener('pointerleave', () => { hoverX = null; cross(); });
+    segment($('#series-seg'), (b) => { cur = b.dataset.s; draw(true); });
+    const nr = $('#nrange'), no = $('#nout');
+    nr.addEventListener('input', () => { N = +nr.value; no.value = N; draw(false); });
+    $('#band-sw').addEventListener('change', (e) => { band = e.target.checked; $('.band', svg).style.opacity = band ? 1 : 0; });
+    draw(false);
+    document.fonts?.ready.then(() => draw(false));
+    let lastW = 0;
+    new ResizeObserver(() => { const w = svg.parentNode.clientWidth; if (w && Math.abs(w - lastW) > 2) { lastW = w; draw(false); } }).observe(svg.parentNode);
+    return { redraw: () => draw(false) };
+  })();
+
+  // ———— 例题：墨块擦除揭晓（P12） ————
+  $$('.ink').forEach((b) => b.addEventListener('click', () => b.classList.add('gone')));
+  $('#reveal-all').addEventListener('click', () => $$('.ink').forEach((b, i) => setTimeout(() => b.classList.add('gone'), i * 120)));
+
+  // ———— 练习：提示打字机（M18）、长按提交（B24）、批改（M23） ————
+  const hint = $('#hint');
+  let typing = null;
+  $('#hint-btn').addEventListener('click', () => {
+    const text = '提示：比较相邻两项，算 |aₙ₊₁ / aₙ| 的极限；多项式因子 n² 最后会消失。';
+    clearInterval(typing);
+    if (reduce.matches) { hint.textContent = text; return; }
+    let i = 0; hint.innerHTML = '<span></span><span class="caret"></span>';
+    const sp = hint.firstChild;
+    typing = setInterval(() => { sp.textContent = text.slice(0, ++i); if (i >= text.length) clearInterval(typing); }, 45);
+  });
+  const hold = $('#hold'), ans = $('#ans'), field = $('#field'), verdict = $('#verdict'), sol = $('#solution');
+  let t0 = 0, raf = 0;
+  const HOLD = 900;
+  function parse(v) {
+    v = v.replace(/\s/g, '').replace('⅓', '1/3').replace(',', '.');
+    if (!v) return NaN;
+    const m = v.match(/^(-?\d+(?:\.\d+)?)\/(\d+(?:\.\d+)?)$/);
+    return m ? +m[1] / +m[2] : Number(v);
+  }
+  function submit() {
+    const v = parse(ans.value);
+    if (Number.isNaN(v)) { verdict.textContent = '先在框里填一个数，比如 1/3 或 0.5。'; ans.focus(); return; }
+    verdict.innerHTML = '<span class="loader" aria-label="批改中"><i></i><i></i><i></i></span><span>批改中</span>';
+    setTimeout(() => {
+      if (Math.abs(v - 1 / 3) < 0.005) {
+        field.classList.remove('bad');
+        verdict.innerHTML = '<span class="stamp">对</span><span>正确，R = 1/3。下面是完整解答。</span>';
+        sol.hidden = false; requestAnimationFrame(() => requestAnimationFrame(() => sol.classList.add('show')));
+      } else {
+        field.classList.remove('bad'); void field.offsetWidth; field.classList.add('bad');
+        verdict.innerHTML = `<span>${ans.value.replace(/[<>&]/g, '')} 不对。${v === 3 ? '3 是比值的极限，半径是它的倒数。' : '试试点灯泡看提示。'}</span>`;
+      }
+    }, reduce.matches ? 0 : 650);
+  }
+  const step = () => {
+    const p = Math.min(1, (performance.now() - t0) / HOLD);
+    hold.style.setProperty('--p', p);
+    if (p >= 1) { stopHold(); submit(); return; }
+    raf = requestAnimationFrame(step);
+  };
+  function startHold(e) { if (e.button > 0) return; t0 = performance.now(); cancelAnimationFrame(raf); raf = requestAnimationFrame(step); }
+  function stopHold() { cancelAnimationFrame(raf); hold.style.setProperty('--p', 0); }
+  hold.addEventListener('pointerdown', startHold);
+  ['pointerup', 'pointerleave', 'pointercancel'].forEach((ev) => hold.addEventListener(ev, stopHold));
+  hold.addEventListener('keydown', (e) => { if ((e.key === ' ' || e.key === 'Enter') && !e.repeat) { e.preventDefault(); startHold(e); } });
+  hold.addEventListener('keyup', (e) => { if (e.key === ' ' || e.key === 'Enter') stopHold(); });
+  hold.addEventListener('contextmenu', (e) => e.preventDefault());
+  $('#ans-form').addEventListener('submit', (e) => { e.preventDefault(); verdict.textContent = '按住「长按提交」约一秒提交答案。'; });
+
+  // ———— 学习记录：等高线底纹（A34）+ 数字滚动（M19） ————
+  const dash = $('#dash');
+  function drawContours() {
+    const cv = $('canvas', dash), w = dash.clientWidth, h = dash.clientHeight;
+    const dpr = Math.min(devicePixelRatio || 1, 2);
+    cv.width = w * dpr; cv.height = h * dpr;
+    const g = cv.getContext('2d'); g.setTransform(dpr, 0, 0, dpr, 0, 0);
+    g.strokeStyle = isDark() ? 'rgba(201,168,107,.10)' : 'rgba(35,33,29,.09)';
+    g.lineWidth = 1;
+    const hills = [[w * .82, h * .3, 0], [w * .12, h * 1.05, 2]];
+    hills.forEach(([cx, cy, seed]) => {
+      const n = noise1(SEED + seed + 3, 9);
+      for (let k = 1; k <= 14; k++) {
+        const r0 = k * 16;
+        g.beginPath();
+        for (let i = 0; i <= 120; i++) {
+          const a = i / 120 * Math.PI * 2;
+          const rr = r0 * (1 + .22 * (n(a / (Math.PI * 2) * 9) - .5) + .08 * Math.sin(a * 3 + k * .3));
+          const x = cx + rr * Math.cos(a), y = cy + rr * .72 * Math.sin(a);
+          i ? g.lineTo(x, y) : g.moveTo(x, y);
+        }
+        g.closePath(); g.stroke();
+      }
+    });
+  }
+  new ResizeObserver(drawContours).observe(dash);
+  onTheme(drawContours);
+  const counts = $$('[data-count]', dash);
+  if (!reduce.matches && 'IntersectionObserver' in window) {
+    const io = new IntersectionObserver((es) => {
+      if (!es[0].isIntersecting) return;
+      io.disconnect();
+      const ts = performance.now();
+      const tick = (t) => {
+        const p = Math.min(1, (t - ts) / 1100), e = 1 - Math.pow(1 - p, 3);
+        counts.forEach((c) => { c.textContent = Math.round(+c.dataset.count * e); });
+        if (p < 1) requestAnimationFrame(tick);
+      };
+      requestAnimationFrame(tick);
+    }, { threshold: .6 });
+    io.observe(dash);
+  }
+
+  // ———— 翻书（P15） ————
+  const turn = $('#turn');
+  $('#turn-btn').addEventListener('click', () => {
+    turn.hidden = false;
+    requestAnimationFrame(() => { turn.classList.add('on'); requestAnimationFrame(() => turn.classList.add('go')); });
+    setTimeout(() => $('#turn-back').focus(), reduce.matches ? 0 : 1050);
+  });
+  $('#turn-back').addEventListener('click', () => {
+    turn.classList.remove('go');
+    setTimeout(() => { turn.classList.remove('on'); turn.hidden = true; $('#turn-btn').focus(); }, reduce.matches ? 0 : 1050);
+  });
+
+  // ———— 设计方案：分配表与封面表 ————
+  const DEMO = '<span class="st demo">示范页</span>';
+  const T = (k) => ({ m: '<span class="st main">主调</span>', s: '<span class="st scene">场景</span>', h: '<span class="st hold">暂缓</span>' }[k]);
+  const ALLOC = [
+    ['整体风格'],
+    ['S01 学术手稿', '旁注版心、宽页边、近乎无色，是全站的骨架。', 'm', 1],
+    ['S09 和风留白', '大面积留白、竖排章名、朱印；封面和左侧页边。', 'm', 1],
+    ['艺术风格与背景'],
+    ['A18 宋式雅色', '全站配色的来源：天青、月白、秋香、朱砂。', 'm', 1],
+    ['A12 水墨', '第 4 章封面底纹：远山渐淡，前面是渔翁插画（示范页）。', 's', 1],
+    ['A14 侘寂', '图 4.2 收敛圆画成不闭合的圆相；第 6 章封面。', 's', 1],
+    ['A35 手绘笔记', '交互图上的手写批注和箭头；第 2 章封面。', 's', 1],
+    ['A34 等高线', '学习记录的底纹；第 9 章封面底纹（等值线与梯度）。', 's', 1],
+    ['A25 极光 / 网格渐变', '暗色封面天空里一层很淡、缓慢流动的金色光晕（极光改成暖金调）；第 8 章封面。', 's', 1],
+    ['A26 噪点渐变', '全站纸纹（与 K17 同一层）；第 7 章封面。', 'm', 1],
+    ['A01 新艺术运动', '第 3 章封面底纹：一族鞭形曲线收拢成一条。', 's'],
+    ['A04 构成主义', '第 1 章封面底纹：方、菱、圆三种单位球的几何构成。', 's'],
+    ['A11 浮世绘', '第 5 章封面底纹：浪的叠加就是 Fourier 级数。', 's'],
+    ['A16 敦煌', '第 11 章封面底纹：藻井层层方井 = 网格分割与逐层累加。', 's'],
+    ['A33 孔版印刷', '第 10 章封面底纹：两色错位套印 = 映射与局部逆。', 's'],
+    ['配色'],
+    ['C14 墨水与纸', '亮色模式的底：宣纸、墨、淡墨、发丝线。', 'm', 1],
+    ['C07 北欧', '暂缓：暗色模式已按你的选择改为纯墨黑。', 'h'],
+    ['C10 70 年代复古', '只给练习里的游戏化元素（连胜、徽章）用，不进正文。', 's'],
+    ['字体'],
+    ['F15 · F01|宋体 · 旧式衬线', '正文与标题：汉字宋体，字母 Garamond。', 'm', 1],
+    ['F17 楷体', '旁注、提示、记忆卡说明：像老师在页边的批注。', 'm', 1],
+    ['F20 行书', '只用于封面章名。', 's', 1],
+    ['F03 迪多尼', '章号（烫金）与学习记录里的大数字。', 's', 1],
+    ['F12 花体', '只用于封面的法文章名。', 's', 1],
+    ['F11 · F22|手写体', '图上的手写批注（英文 Caveat，中文龙藏体）。', 's', 1],
+    ['F26 字重', '400 / 600 两档；封面数字用细线体。', 'm', 1],
+    ['排版参数'],
+    ['T03 行距 1.75', '正文行距。', 'm', 1],
+    ['T06 行宽约 35 字', '正文栏 630px；按你的习惯改为 17px 后约 37 字一行。', 'm', 1],
+    ['T12 小标签加字距', '节号、定理类别、眉题：小型大写 + .16em 字距。', 'm', 1],
+    ['T15 中西文加空格', '公式与汉字之间自动留出约 ⅛ 字的空。', 'm', 1],
+    ['版式布局'],
+    ['L04 旁注式 Tufte', '正文页：左正文、右旁注，窄屏旁注改为点编号弹出。', 'm', 1],
+    ['L10 全屏首屏 + 分段', '每章封面；首页按章分屏。', 's', 1],
+    ['L05 杂志式不对称', '封面构图：章名靠左，山与章号偏右。', 's', 1],
+    ['L11 仪表盘', '「学习记录」页（示范页底部是它的缩略版）。', 's', 1],
+    ['L08 瀑布流', '「我的笔记 / 收藏」页：卡片高度随内容。', 's'],
+    ['L14|F / Z 型动线', '正文按 F 型（标题左对齐、旁注靠右）；封面按 Z 型（眉题 → 章号 → 章名 → 按钮）。', 'm', 1],
+    ['质感'],
+    ['K07 细线描边', '定理块上下两道细线，不用卡片。', 'm', 1],
+    ['K17 纸张颗粒', '全站背景是烫金宣纸：细颗粒、纤维、云状深浅，再撒一层金箔；卡片也用同一张纸。', 'm', 1],
+    ['K15 毛玻璃', '顶栏、搜索浮层、封面底部的跑马灯条。', 's', 1],
+    ['K13 内阴影', '答题框、分段控件、开关的槽。', 's', 1],
+    ['K08 柔和投影', '只给「浮起来」的东西：记忆卡、练习卡、抽屉。', 's', 1],
+    ['K06 超椭圆', '朱印的外形。', 's', 1],
+    ['K11 长投影', '只用于封面章号（烫金字 + 长投影，像压进纸里）。', 's', 1],
+    ['按钮'],
+    ['B02 · B13|描边 + 填充扫过', '主要动作（开始本章、下一节）：细线描边，悬停时墨色从左扫入。', 'm', 1],
+    ['B03 幽灵按钮', '工具图标：搜索、主题、收藏、复制。', 'm', 1],
+    ['B11 下划线链接', '正文里的交叉引用（如「Abel 引理」）。', 'm', 1],
+    ['B19 分段控件', '视图切换、图中选级数。', 's', 1],
+    ['B20 开关', '显示收敛区间、编号标注。', 's', 1],
+    ['B22 点赞微交互', '收藏定理（朱色心形迸发）。', 's', 1],
+    ['B23 复制按钮', '复制定理的 LaTeX。', 's', 1],
+    ['B24 长按确认', '练习提交答案：防止误触。', 's', 1],
+    ['B18 状态全集', '所有按钮都设计了悬停、按下、键盘焦点、禁用四态。', 'm', 1],
+    ['B06 玻璃按钮', '不单独用；玻璃只出现在顶栏和浮层（K15）。', 'h'],
+    ['B07 新拟态按钮', '暂缓：同色凸起在纸面上对比太低。保留它的「内凹」做答题框（K13）。', 'h'],
+    ['B14 涟漪', '暂缓：涟漪是 Material 的语言，和手稿气质冲突；主按钮改用 B13。', 'h'],
+    ['文本框'],
+    ['I16 答案输入框', '练习题。', 's', 1],
+    ['I09 无边框大字号', '搜索浮层的输入框。', 's', 1],
+    ['I03 下划线输入框', '搜索框的下划线、以后的笔记输入。', 's', 1],
+    ['I06 内凹输入框', '与 I16 合并：答题框就是内凹的。', 's', 1],
+    ['I07 玻璃输入框', '暂缓：正文里没有彩色背景可透。', 'h'],
+    ['动效'],
+    ['M04 · M05|缓出 · 缓入缓出', '全站只用这两条曲线。', 'm', 1],
+    ['M22 · M14|遮罩显现 · 交错', '封面章名逐字升起。', 's', 1],
+    ['M20 描线', '换级数时曲线重新画出；圆相一笔画成。', 's', 1],
+    ['M24 视差', '封面四层远山。', 's', 1],
+    ['M27 滚动驱动动画', '顶栏下的朱色阅读进度线。', 's', 1],
+    ['M28 跑马灯', '封面底部的「常用展开」。', 's', 1],
+    ['M16 3D 倾斜', '记忆卡随指针轻微倾斜。', 's', 1],
+    ['M18 打字机', '练习提示逐字出现。', 's', 1],
+    ['M19 数字滚动', '学习记录的数字。', 's', 1],
+    ['M21 形变', '目录按钮 ☰ → ✕。', 's', 1],
+    ['M23 加载指示器', '批改中的三个墨点。', 's', 1],
+    ['M30 流动渐变', '暗色封面的金色光晕缓慢流动。', 's', 1],
+    ['M29 光标聚光灯', '鼠标经过的地方，纸上的金箔会反光；封面章号的烫金也随鼠标流动。', 's', 1],
+    ['页面切换'],
+    ['P15 翻书', '节与节、章与章之间。', 's', 1],
+    ['P13 圆形展开', '亮暗主题切换，从按钮处扩散。', 's', 1],
+    ['P14 模糊过渡', '打开搜索。', 's', 1],
+    ['P06 侧滑抽屉', '目录。', 's', 1],
+    ['P03 底部弹出', '手机上看旁注、定义预览。', 's', 1],
+    ['P08 标签页切换', '定理的「陈述 / 证明 / 直观」。', 's', 1],
+    ['P10 3D 翻转', '记忆卡。', 's', 1],
+    ['P12 擦除', '例题、练习答案的揭晓。', 's', 1],
+    ['P02 推入', '手机上从目录进入某一节。', 's'],
+    ['P05 共享元素', '首页章节卡片展开成该章封面。', 's'],
+    ['P16 整页滚动吸附', '首页：一屏一章。', 's'],
+    ['P17 轮播', '首页章节封面轮播。', 's'],
+    ['P18 形变过渡', '悬停「定理 4.3」这类引用时，链接形变成预览卡。', 's'],
+    ['P11 立方体旋转', '暂缓：游戏感太强，和纸面隐喻冲突。', 'h']
+  ];
+  $('#alloc').innerHTML = ALLOC.map((r) => r.length === 1 ? `<tr class="grp"><td colspan="3">${r[0]}</td></tr>`
+    : `<tr><td>${(r[0].includes('|') ? r[0] : r[0].replace(' ', '|')).replace('|', '<br>')}</td><td>${r[1]}</td><td>${T(r[2])}${r[3] ? ' ' + DEMO : ''}</td></tr>`).join('');
+  const ILL = [
+    [1, '赋范向量空间的拓扑', '18-gongmen', '宫门', '全书的第一道门；宫门左右对称，像范数的对称性 ‖−x‖ = ‖x‖。', 'A04'],
+    [2, '数项级数与可和族', '06-pubu', '山水瀑布', '涓滴汇成江河：部分和一项一项地累积。', 'A35'],
+    [3, '函数列与函数项级数', '01-jiuweihu', '九尾狐', '九条尾巴收成一只狐：函数列收敛到一个函数。', 'A01'],
+    [4, '幂级数', '12-yuweng', '蓑笠渔翁', '钓线放得多远，就是收敛半径；线外浪急，级数发散。', 'A12'],
+    [5, 'Fourier 级数', '11-fuqin', '抚琴高士', '琴弦的泛音就是谐波：一个音分解成无穷多个正弦。', 'A11'],
+    [6, '任意区间上的积分', '17-feitian', '飞天', '飞向无穷远：积分区间可以没有尽头。', 'A14'],
+    [7, '含参变量积分', '03-yutu', '玉兔捣药', '月里藏着 π：Γ(½) = √π；杵一起一落，像参数连续变化。', 'A26'],
+    [8, '微分方程', '04-fenghuang', '凤凰', '浴火重生：y′ = y 的解 eˣ 永远长回它自己。', 'A25'],
+    [9, '多元微分学', '09-baota', '宝塔山水', '群山是二元函数的图像，塔的每一层是一条等高线。', 'A34'],
+    [10, '局部逆、隐函数与条件极值', '08-yuanlin', '园林月洞门', '拱桥和水中倒影合成一轮满月：映射与它的逆。', 'A33'],
+    [11, '重积分', '07-gongdian', '宫殿', '层层台阶与屋檐：逐层累加的 Fubini。', 'A16']
+  ];
+  const ILL_OTHER = [
+    ['20-qinglong', '青龙', '首页主视觉：龙从浪中升起，后面接各章封面的轮播（P17）。'],
+    ['02-qilin', '麒麟', '读完一章得到的「瑞兽徽章」，放在学习记录里。'],
+    ['16-xingzhe', '行者', '学习路线：从第 1 章走到第 11 章的课程地图。'],
+    ['10-shinv', '执扇仕女', '「关于本站」和序言页。'],
+    ['13-pipa', '琵琶仕女', '每章题记旁的小插图。'],
+    ['05-tiangou', '天狗', '404 页：天狗把这一页吃掉了（天狗食月）。'],
+    ['19-gewuji', '歌舞伎', '练习「挑战模式」的关主之一（C10 游戏化区）。'],
+    ['14-chengsan', '撑伞', '挑战模式关主之二。'],
+    ['15-sanxian', '三味线', '挑战模式关主之三。']
+  ];
+  const card = (f, alt, body) => `<figure class="ill"><div class="ill-img"><img src="img/${f}-sm.webp" alt="${alt}" loading="lazy" decoding="async"></div><figcaption>${body}</figcaption></figure>`;
+  $('#ills').innerHTML = ILL.map(([n, t, f, nm, why, a]) => card(f, nm, `<span class="ill-no">${n}</span><b>${t}</b><span class="ill-nm">${nm}<code>底纹 ${a}</code></span><span class="ill-why">${why}${n === 4 ? '<em>示范页</em>' : ''}</span>`).replace('<figure class="ill">', `<figure class="ill${n === 4 ? ' cur' : ''}">`)).join('');
+  $('#ills-other').innerHTML = ILL_OTHER.map(([f, nm, use]) => card(f, nm, `<b>${nm}</b><span class="ill-why">${use}</span>`)).join('');
+})();
+</script>
