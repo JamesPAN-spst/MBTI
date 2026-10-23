@@ -9,13 +9,21 @@ import container from 'markdown-it-container';
 import katex from 'katex';
 
 const root = path.resolve(path.dirname(fileURLToPath(import.meta.url)), '..');
-const outDir = path.join(root, 'docs');
+// OUT_DIR=… 输出到别处（并行预览时互不干扰）；默认 docs/
+const outDir = process.env.OUT_DIR ? path.resolve(process.env.OUT_DIR) : path.join(root, 'docs');
 const SITE = '数学分析 · L2';
 
 const KINDS = {
   def: '定义', thm: '定理', prop: '命题', lem: '引理', cor: '推论',
   ex: '例', cex: '反例', rem: '注', method: '方法', open: '开放问题', hist: '历史',
+  q: '想一想', read: '延伸阅读',
 };
+// 可折叠的块：证明、证明概要、解答
+const FOLDS = { proof: '证明', sketch: '证明概要', ans: '解答' };
+const KINDS_FR = {
+  def: 'définition', thm: 'théorème', prop: 'proposition', lem: 'lemme', cor: 'corollaire', ex: 'exemple', cex: 'contre-exemple',
+};
+const FOLDS_FR = { proof: 'Preuve', sketch: 'Esquisse de preuve', ans: 'Réponse' };
 const NUMBERED = new Set(['def', 'thm', 'prop', 'lem', 'cor', 'ex', 'cex']);
 const LEVEL_TITLES = {
   1: '★ 必修主干：完整证明',
@@ -126,30 +134,76 @@ function parseAttrs(info) {
 const md = new MarkdownIt({ html: true, typographer: false });
 md.use(mathPlugin);
 
+// 以「▷」开头的段落是灰色旁白：思路、把假设翻译成量词、「我们要证的是……」
+md.core.ruler.push('meta_paragraph', (state) => {
+  const t = state.tokens;
+  for (let i = 0; i + 2 < t.length; i++) {
+    if (t[i].type !== 'paragraph_open' || t[i + 1].type !== 'inline') continue;
+    const first = t[i + 1].children?.[0];
+    if (!first || first.type !== 'text' || !first.content.startsWith('▷')) continue;
+    first.content = first.content.replace(/^▷\s*/, '');
+    t[i].attrJoin('class', 'meta');
+  }
+});
+
+// 找到第 idx 个 token（块的开头）对应的结尾，看紧跟着的是不是 ::: fr
+function followedByFr(tokens, idx) {
+  let depth = 0;
+  for (let j = idx; j < tokens.length; j++) {
+    if (tokens[j].type === 'container_blk_open') depth++;
+    else if (tokens[j].type === 'container_blk_close' && --depth === 0) {
+      const n = tokens[j + 1];
+      return !!n && n.type === 'container_blk_open' && n.info.trim() === 'fr';
+    }
+  }
+  return false;
+}
+const langSwitch = '<span class="lang-sw" role="group" aria-label="语言"><button type="button" data-l="zh" aria-pressed="true">中</button><button type="button" data-l="fr" aria-pressed="false">Fr</button></span>';
+
 // ::: kind key="value" …  —— 定义、定理、证明、交互演示等语义块
+// 紧跟在一个块后面的 ::: fr 是它的法语版本（定义与定理的陈述、证明），与中文版本放在同一个块里，可切换。
 md.use(container, 'blk', {
-  validate: (params) => /^\s*(def|thm|prop|lem|cor|ex|cex|rem|method|open|hist|proof|sketch|demo)\b/.test(params),
+  validate: (params) => /^\s*(def|thm|prop|lem|cor|ex|cex|rem|method|open|hist|proof|sketch|ans|demo|q|read|glossary|fr)\b/.test(params),
   render(tokens, idx, _opts, env) {
     const token = tokens[idx];
+    const info = token.info.trim();
+    const kind = info.split(/\s+/)[0];
+
+    if (kind === 'fr') {
+      const parent = env.stack[env.stack.length - 1];
+      if (token.nesting === 1) {
+        if (!parent || !parent.awaitFr) { errors.push(`${env.file}: ::: fr 必须紧跟在一个块之后`); return '<div>'; }
+        parent.inFr = true;
+        return `<div class="${FOLDS[parent.kind] ? 'proof-body' : 'blk-body'}" lang="fr">\n`;
+      }
+      if (!parent || !parent.inFr) return '</div>';
+      env.stack.pop();
+      return `${FOLDS[parent.kind] ? '<p class="qed">∎</p>' : ''}</div>${closing(parent, env)}`;
+    }
+
     if (token.nesting === 1) {
-      const info = token.info.trim();
-      const kind = info.split(/\s+/)[0];
       const a = parseAttrs(info);
-      env.stack.push({ kind, a });
-      if (kind === 'proof' || kind === 'sketch') {
-        const label = kind === 'proof' ? '证明' : '证明概要';
-        return `<details class="proof${kind === 'sketch' ? ' sketch' : ''}"><summary>${label}</summary><div class="proof-body">\n`;
+      const hasFr = followedByFr(tokens, idx);
+      env.stack.push({ kind, a, hasFr });
+      const zh = hasFr ? ' lang="zh"' : '';
+      if (FOLDS[kind]) {
+        const label = hasFr ? `<span lang="zh">${FOLDS[kind]}</span><span lang="fr">${FOLDS_FR[kind]}</span>` : FOLDS[kind];
+        return `<details class="proof${kind === 'sketch' ? ' sketch' : ''}${kind === 'ans' ? ' ans' : ''}${hasFr ? ' bi' : ''}"><summary>${label}${hasFr ? langSwitch : ''}</summary><div class="proof-body"${zh}>\n`;
       }
       if (kind === 'demo') {
         env.demos.push(a.id);
         return `<figure class="demo" data-demo="${escapeHtml(a.id)}"><div class="demo-mount"></div><figcaption>\n`;
       }
+      if (kind === 'glossary') {
+        return `<section class="glossary" id="glossary-${env.chapter}"><header class="blk-head"><span class="blk-kind">术语对照</span><span class="blk-name">Lexique · Glossary · Словарь</span></header>\n`;
+      }
       let label = KINDS[kind];
-      if (NUMBERED.has(kind)) label += ` ${env.chapter}.${++env.counter}`;
+      let labelFr = KINDS_FR[kind] || label;
+      if (NUMBERED.has(kind)) { label += ` ${env.chapter}.${++env.counter}`; labelFr += ` ${env.chapter}.${env.counter}`; }
       const anchor = a.id || `${kind}-${env.chapter}-${env.counter}-${idx}`;
       if (a.id) {
         if (env.labels.has(a.id)) errors.push(`${env.file}: 重复的 id ${a.id}`);
-        env.labels.set(a.id, { label, page: env.page });
+        env.labels.set(a.id, { label, labelFr, page: env.page });
       }
       const lvl = a.lvl ? Number(a.lvl) : 0;
       if (lvl) env.levels[lvl] = (env.levels[lvl] || 0) + 1;
@@ -157,21 +211,34 @@ md.use(container, 'blk', {
       const stars = lvl ? `<span class="blk-lvl lvl-${lvl}" title="${LEVEL_TITLES[lvl]}">${'★'.repeat(lvl)}</span>` : '';
       const names = ['en', 'fr', 'ru'].filter((k) => a[k])
         .map((k) => `<span class="nm" lang="${k}"><b>${k.toUpperCase()}</b>${md.renderInline(a[k], env)}</span>`).join('');
-      return `<section class="blk blk-${kind}" id="${escapeHtml(anchor)}">`
-        + `<header class="blk-head"><span class="blk-kind">${label}</span>${name}${stars}</header>`
+      return `<section class="blk blk-${kind}${hasFr ? ' bi' : ''}" id="${escapeHtml(anchor)}">`
+        + `<header class="blk-head"><span class="blk-kind">${label}</span>${name}${stars}${hasFr ? langSwitch : ''}</header>`
         + (names ? `<p class="blk-names">${names}</p>` : '')
-        + `<div class="blk-body">\n`;
+        + `<div class="blk-body"${zh}>\n`;
     }
-    const { kind, a } = env.stack.pop();
-    if (kind === 'proof' || kind === 'sketch') return `<p class="qed">∎</p></div></details>\n`;
-    if (kind === 'demo') return `</figcaption></figure>\n`;
-    const lvl = Number(a.lvl || 0);
-    const ref = a.ref ? md.renderInline(a.ref, env) : '';
-    const foot = lvl === 3 || ref
-      ? `<p class="blk-ref">${lvl === 3 ? '证明从略。' : ''}${ref ? `参考：${ref}` : ''}</p>` : '';
-    return `</div>${foot}</section>\n`;
+
+    const top = env.stack[env.stack.length - 1];
+    if (top.hasFr && !top.awaitFr) {
+      top.awaitFr = true;
+      return FOLDS[top.kind] ? '<p class="qed">∎</p></div>\n' : '</div>\n';
+    }
+    env.stack.pop();
+    if (FOLDS[top.kind]) return `<p class="qed">∎</p></div></details>\n`;
+    if (top.kind === 'demo') return '</figcaption></figure>\n';
+    if (top.kind === 'glossary') return '</section>\n';
+    return `</div>${closing(top, env)}`;
   },
 });
+
+// 块的收尾（正文 </div> 之后）：证明的 </details>，定理的参考文献脚注与 </section>
+function closing({ kind, a }, env) {
+  if (FOLDS[kind]) return '</details>\n';
+  const lvl = Number(a.lvl || 0);
+  const ref = a.ref ? md.renderInline(a.ref, env) : '';
+  const foot = lvl === 3 || ref
+    ? `<p class="blk-ref">${lvl === 3 ? '证明从略。' : ''}${ref ? `参考：${ref}` : ''}</p>` : '';
+  return `${foot}</section>\n`;
+}
 
 // 二级标题自动编号并收集目录
 md.renderer.rules.heading_open = (tokens, idx, opts, env, self) => {
@@ -207,7 +274,7 @@ function topbar(crumb) {
 <a class="brand" href="index.html">${SITE}</a>
 ${crumb ? `<span class="crumb">${crumb}</span>` : '<span class="crumb"></span>'}
 <div class="topbar-actions">
-${crumb ? '<button class="pill" id="proof-toggle" type="button">展开全部证明</button>' : ''}
+${crumb ? '<span class="lang-sw" id="lang-global" role="group" aria-label="定理与证明的语言" title="定理与证明：中文 / 法语"><button type="button" data-l="zh" aria-pressed="true">中</button><button type="button" data-l="fr" aria-pressed="false">Fr</button></span><button class="pill" id="proof-toggle" type="button">展开全部证明</button>' : ''}
 <button class="icon-btn" id="theme-toggle" type="button" aria-label="切换明暗主题" title="切换明暗主题"><svg viewBox="0 0 20 20" width="16" height="16" aria-hidden="true"><circle cx="10" cy="10" r="7.25" fill="none" stroke="currentColor" stroke-width="1.5"/><path d="M10 2.75a7.25 7.25 0 0 1 0 14.5z" fill="currentColor"/></svg></button>
 </div></div></nav>`;
 }
@@ -238,6 +305,31 @@ ${html}
 <footer class="pager">${pager(prev, 'prev')}${pager(next, 'next')}</footer>
 <script src="assets/app.js" defer></script>
 ${env.demos.length ? '<script src="assets/demos.js" defer></script>' : ''}
+</body>
+</html>
+`;
+}
+
+function glossaryPage(chapters, rendered) {
+  const parts = rendered.map(({ ch, html }) => {
+    const m = html.match(/<section class="glossary"[\s\S]*?<\/section>/);
+    if (!m) return '';
+    const table = m[0].replace(/<header[\s\S]*?<\/header>/, '').replace(/^<section[^>]*>/, '').replace(/<\/section>$/, '');
+    return `<section class="gl-chapter" id="g${ch.num}"><h2><a href="${ch.slug}.html#glossary-${ch.num}">${ch.num}. ${ch.zh}</a></h2><div class="glossary">${table}</div></section>`;
+  }).join('\n');
+  return `${head(`术语对照 · ${SITE}`, '中文、法语、英语、俄语数学分析术语对照表。')}
+<body class="page-chapter">
+${topbar('术语对照')}
+<header class="chapter-hero">
+<p class="eyebrow">Lexique · Glossary · Словарь</p>
+<h1>术语对照</h1>
+<p class="lede">各章末尾的术语表汇总在这里：中文、法语、英语、俄语。输入任何一种语言都能筛选。</p>
+</header>
+<main class="home">
+<input class="gl-filter" id="gl-filter" type="search" placeholder="筛选：收敛 / convergence / сходимость" aria-label="筛选术语">
+${parts}
+</main>
+<script src="assets/app.js" defer></script>
 </body>
 </html>
 `;
@@ -276,8 +368,10 @@ ${group('S4')}
 <p><span class="blk-lvl lvl-1">★</span> 必修主干，给出完整证明。</p>
 <p><span class="blk-lvl lvl-2">★★</span> 进阶内容，给出证明概要。</p>
 <p><span class="blk-lvl lvl-3">★★★</span> 拓展内容，只陈述结论，证明见参考文献。</p></div>
+<div><h3>中法双语</h3>
+<p>每个定义、定理和证明都有法语版本：点块右上角的「中 / Fr」切换单个，或用顶栏的开关切换全部。证明里灰色的段落是思路旁白，对应法国讲义里的 Méthode。</p></div>
 <div><h3>术语</h3>
-<p>每个定理、定义附 <b>EN</b> 英文、<b>FR</b> 法文、<b>RU</b> 俄文原名，方便对照阅读 Rudin、Gourdon、Зорич 等原版教材。</p></div>
+<p>每个定理、定义附 <b>EN</b> 英文、<b>FR</b> 法文、<b>RU</b> 俄文原名；章末有中法英俄术语表，全部汇总在<a href="glossaire.html">术语对照</a>页，方便阅读 Фихтенгольц、Зорич、Demidovich 等苏联教材和 Rudin、Gourdon。</p></div>
 <div><h3>先修知识</h3>
 <p>L1 内容：实数的完备性、数列极限、一元函数的连续与导数、Taylor 公式、闭区间上的 Riemann 积分、线性代数（矩阵、行列式、对角化）。</p></div>
 <div><h3>编排依据</h3>
@@ -317,14 +411,15 @@ async function main() {
   await mkdir(path.join(outDir, 'assets'), { recursive: true });
 
   rendered.forEach(({ ch, html, env }, i) => {
-    const linked = html.replace(/\{@([\w-]+)\}/g, (_m, id) => {
+    // {@id} 显示中文标签（定理 4.3），{@fr:id} 显示法语标签（théorème 4.3），用在 ::: fr 里
+    const linked = html.replace(/\{@(fr:)?([\w-]+)\}/g, (_m, fr, id) => {
       const target = labels.get(id);
       if (!target) {
-        if (!only) errors.push(`${env.file}: 未定义的引用 {@${id}}`);
+        if (!only) errors.push(`${env.file}: 未定义的引用 {@${fr || ''}${id}}`);
         return `<span class="xref-missing">${id}</span>`;
       }
       const href = target.page === env.page ? `#${id}` : `${target.page}#${id}`;
-      return `<a class="xref" href="${href}">${target.label}</a>`;
+      return `<a class="xref" href="${href}">${fr ? target.labelFr : target.label}</a>`;
     });
     rendered[i].page = chapterPage(ch, linked, env, chapters[i - 1], chapters[i + 1]);
   });
@@ -335,6 +430,7 @@ async function main() {
   }
 
   for (const r of rendered) await writeFile(path.join(outDir, `${r.ch.slug}.html`), r.page);
+  await writeFile(path.join(outDir, 'glossaire.html'), glossaryPage(chapters, rendered));
   await writeFile(path.join(outDir, 'index.html'), indexPage(chapters, stats));
   await writeFile(path.join(outDir, '.nojekyll'), '');
   await cp(path.join(root, 'src/assets'), path.join(outDir, 'assets'), { recursive: true });
