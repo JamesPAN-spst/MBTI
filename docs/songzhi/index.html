@@ -32,7 +32,8 @@
   --tex-hi: none;         /* 金箔的反光层 */
   --mottle: none;         /* 宣纸云状的深浅 */
   --art-shadow: drop-shadow(0 16px 22px rgba(60, 48, 30, .16)) drop-shadow(0 2px 3px rgba(60, 48, 30, .12));
-  --art-op: .82; --art-blend: multiply; --art-filter: saturate(.7) sepia(.14) contrast(.9) brightness(1.04);
+  --art-op: .94; --art-blend: multiply; --art-filter: saturate(.78) sepia(.12) contrast(.94) brightness(1.03);
+  --wave: #2b4a6e; --neutral: #fff;   /* 纸下图案：线色，以及在当前混合模式下「等于没画」的底色 */
   --foil: linear-gradient(115deg, #6b4f1e 0%, #b8974f 18%, #8f6c2a 34%, #cfb06a 50%, #866326 66%, #b99a55 84%, #74571f 100%);
   --f-body: "EB Garamond", "Noto Serif SC", "Songti SC", "STSong", serif;
   --f-note: "EB Garamond", "LXGW WenKai TC", "Kaiti SC", "STKaiti", serif;
@@ -53,7 +54,7 @@
     --paper: #0d0c0a; --paper-2: #070605; --paper-3: #16140f;
     --ink: #c9a86b; --ink-2: #93805c; --ink-3: #66593f; --line: #2b261d;
     --qing: #86b3ad; --qing-soft: rgba(134, 179, 173, .10); --zhu: #d4735e; --zhu-soft: rgba(212, 115, 94, .12);
-    --xiang: #e6c97f; --on-zhu: #0d0c0a; --glass: rgba(13, 12, 10, .74); --art-shadow: drop-shadow(0 0 28px rgba(201, 168, 107, .14)); --art-op: .5; --art-blend: screen; --art-filter: saturate(.65) sepia(.25) brightness(.8); --art-op: .5; --art-blend: screen; --art-filter: saturate(.65) sepia(.25) brightness(.8);
+    --xiang: #e6c97f; --on-zhu: #0d0c0a; --glass: rgba(13, 12, 10, .74); --art-shadow: drop-shadow(0 0 28px rgba(201, 168, 107, .14)); --art-op: .62; --art-blend: screen; --art-filter: saturate(.7) sepia(.22) brightness(.84); --wave: #b9a274; --neutral: #000;
     --shadow: 0 1px 1px rgba(0, 0, 0, .5), 0 10px 24px -10px rgba(0, 0, 0, .8), 0 30px 60px -30px rgba(0, 0, 0, .9);
     --inset: inset 0 2px 5px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(201, 168, 107, .08);
     --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .79 0 0 0 0 .66 0 0 0 0 .42 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -64,7 +65,7 @@
   --paper: #0d0c0a; --paper-2: #070605; --paper-3: #16140f;
   --ink: #c9a86b; --ink-2: #93805c; --ink-3: #66593f; --line: #2b261d;
   --qing: #86b3ad; --qing-soft: rgba(134, 179, 173, .10); --zhu: #d4735e; --zhu-soft: rgba(212, 115, 94, .12);
-  --xiang: #e6c97f; --on-zhu: #0d0c0a; --glass: rgba(13, 12, 10, .74); --art-shadow: drop-shadow(0 0 28px rgba(201, 168, 107, .14));
+  --xiang: #e6c97f; --on-zhu: #0d0c0a; --glass: rgba(13, 12, 10, .74); --art-shadow: drop-shadow(0 0 28px rgba(201, 168, 107, .14)); --art-op: .62; --art-blend: screen; --art-filter: saturate(.7) sepia(.22) brightness(.84); --wave: #b9a274; --neutral: #000;
   --shadow: 0 1px 1px rgba(0, 0, 0, .5), 0 10px 24px -10px rgba(0, 0, 0, .8), 0 30px 60px -30px rgba(0, 0, 0, .9);
   --inset: inset 0 2px 5px rgba(0, 0, 0, .6), inset 0 0 0 1px rgba(201, 168, 107, .08);
   --grain: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='220' height='220'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='.85' numOctaves='3' stitchTiles='stitch'/%3E%3CfeColorMatrix values='0 0 0 0 .79 0 0 0 0 .66 0 0 0 0 .42 0 0 0 .05 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
@@ -163,9 +164,9 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .cover-in {
   position: relative; max-width: 1240px; margin: 0 auto; min-height: inherit;
   padding: 72px max(16px, env(safe-area-inset-right, 0px)) 120px max(16px, env(safe-area-inset-left, 0px));
-  display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 5fr); align-items: start; gap: 24px;
+  display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 7fr); align-items: start; gap: 24px;
 }
-.c-text { padding-left: clamp(0px, 6vw, 96px); padding-top: clamp(8px, 4vh, 48px); }
+.c-text { padding-top: clamp(8px, 4vh, 48px); }
 .c-title { font-family: var(--f-brush); font-weight: 400; font-size: clamp(88px, 13vw, 176px); line-height: .9; margin: 18px 0 0; display: flex; letter-spacing: -.02em; }
 .c-title span { display: inline-block; overflow: hidden; padding: 0 .02em .12em; }
 .c-title span i { display: inline-block; font-style: normal; animation: rise 1s var(--ease-out) both; animation-delay: calc(var(--i) * .12s + .15s); }
@@ -174,8 +175,8 @@ body::before { content: ""; position: fixed; inset: 0 0 auto; height: env(safe-a
 .c-abs { max-width: 26em; color: var(--ink-2); margin: 26px 0 30px; animation: fade 1s var(--ease-out) .9s both; }
 .c-cta { display: flex; flex-wrap: wrap; gap: 12px; animation: fade 1s var(--ease-out) 1.05s both; }
 @keyframes fade { from { opacity: 0; transform: translateY(10px); } }
-.c-side { justify-self: start; display: grid; gap: 18px; padding-top: 8px; }
-.c-num { font-family: var(--f-num); font-optical-sizing: auto; font-weight: 400; font-size: clamp(150px, 19vw, 260px); line-height: .8; margin: 0; }
+.c-side { justify-self: end; align-self: start; padding-top: clamp(40px, 16vh, 150px); }
+.c-num { font-family: var(--f-num); font-optical-sizing: auto; font-weight: 400; font-size: clamp(130px, 15vw, 220px); line-height: .8; margin: 0; position: absolute; top: 64px; right: max(16px, 4vw); }
 .c-facts { display: flex; flex-wrap: wrap; gap: 4px 22px; margin: -10px 0 26px; font-size: 14px; color: var(--ink-2); animation: fade 1s var(--ease-out) 1s both; }
 .c-facts div { display: flex; align-items: baseline; gap: 5px; }
 .c-facts dt { font-variant-numeric: lining-nums tabular-nums; color: var(--ink); font-size: 19px; }
@@ -480,11 +481,15 @@ table.alloc tr.grp td { padding-top: 22px; border-bottom: 1px solid var(--ink-3)
 .paper-tex { position: absolute; inset: 0; z-index: -1; pointer-events: none;
   background-image: var(--tex), var(--mottle), var(--grain); background-size: 900px 900px, 1600px 1600px, 220px 220px; }
 .paper-clip { position: absolute; inset: 0; z-index: -2; overflow: hidden; pointer-events: none; opacity: var(--art-op); mix-blend-mode: var(--art-blend); }
-.paper-art { position: absolute; top: 40px; right: -5vw; width: min(50vw, 700px); aspect-ratio: 1100 / 1226; will-change: transform; }
-.paper-art img { position: absolute; inset: 0; width: 100%; height: 100%; filter: var(--art-filter); }
-/* 边缘：外圈是模糊的一层，内圈是清晰的一层，两层叠起来从清晰过渡到模糊再淡出 */
-.paper-art .pa-blur { filter: var(--art-filter) blur(9px); -webkit-mask-image: radial-gradient(closest-side, #000 50%, transparent 100%); mask-image: radial-gradient(closest-side, #000 50%, transparent 100%); }
-.paper-art .pa-sharp { -webkit-mask-image: radial-gradient(closest-side, #000 38%, transparent 78%); mask-image: radial-gradient(closest-side, #000 38%, transparent 78%); }
+.deco { position: absolute; will-change: transform; }
+.deco img, .deco svg { position: absolute; inset: 0; width: 100%; height: 100%; }
+.deco img { filter: var(--art-filter); }
+.deco.soft { opacity: .62; }   /* 正文旁的装饰比封面淡一些，免得和文字抢 */
+/* 边缘：内层清晰，外层略模糊，再淡出；比上一版收得紧，画面更实 */
+.deco .pa-blur { filter: var(--art-filter) blur(3px); -webkit-mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); mask-image: radial-gradient(closest-side, #000 72%, transparent 100%); }
+.deco .pa-sharp { -webkit-mask-image: radial-gradient(closest-side, #000 64%, transparent 94%); mask-image: radial-gradient(closest-side, #000 64%, transparent 94%); }
+.deco.band svg { -webkit-mask-image: linear-gradient(to bottom, transparent, #000 35%, #000 70%, transparent); mask-image: linear-gradient(to bottom, transparent, #000 35%, #000 70%, transparent); }
+.deco.medal svg { -webkit-mask-image: radial-gradient(closest-side, #000 80%, transparent 100%); mask-image: radial-gradient(closest-side, #000 80%, transparent 100%); }
 
 /* ———— 烫金宣纸（K17 + M29）：金箔在指针附近反光 ———— */
 body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-events: none;
@@ -516,7 +521,7 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
 .ills.other .ill-why { grid-column: 1; }
 
 /* ———— 编号标注模式 ———— */
-[data-k]:not(.tb):not(.cover):not(.mtn):not(.paper-art) { position: relative; }
+[data-k]:not(.tb):not(.cover):not(.mtn):not(.deco):not(.c-num) { position: relative; }
 :root[data-annot="on"] [data-k] { outline: 1px dashed var(--zhu); outline-offset: 4px; }
 :root[data-annot="on"] [data-k]::before { content: attr(data-k); position: absolute; z-index: 30; top: -14px; left: -4px; font: 500 10.5px/1.6 var(--f-mono); letter-spacing: .02em; color: var(--on-zhu); background: var(--zhu); padding: 0 6px; border-radius: 3px; white-space: nowrap; pointer-events: none; }
 :root[data-annot="on"] .cover[data-k]::before { top: 70px; left: max(16px, env(safe-area-inset-left, 0px)); }
@@ -546,12 +551,11 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
 }
 @media (max-width: 760px) {
   body { font-size: 16px; }
-  .cover-in { grid-template-columns: minmax(0, 1fr); padding-top: 40px; padding-bottom: 96px; }
+  .cover-in { grid-template-columns: minmax(0, 1fr); padding-top: 62vw; padding-bottom: 96px; }
   .c-text { padding-left: 0; }
-  .c-side { justify-self: start; text-align: left; order: -1; padding-right: 0; }
-  .c-num { font-size: 120px; }
-  .paper-art { width: 80vw; right: -10vw; top: 52px; }
-  .paper-clip { opacity: calc(var(--art-op) * .75); }
+  .c-side { display: none; }
+  .c-num { font-size: 96px; top: 36px; }
+  .deco.soft { opacity: .4; }
   .c-seal { display: none; }
   .brand span, .annot-l { display: none; }
   .tb-in { gap: 6px; }
@@ -580,10 +584,7 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
 </style>
 
 <!-- 纸下的插画（印在宣纸里，金箔在它上面）与纸纹 -->
-<div class="paper-clip" aria-hidden="true"><div class="paper-art" id="paper-art" data-k="插画 12 渔翁 · 印在纸下 · 边缘羽化">
-  <img class="pa-blur" src="img/12-yuweng.webp" alt="" decoding="async">
-  <img class="pa-sharp" src="img/12-yuweng.webp" alt="" decoding="async">
-</div></div>
+<div class="paper-clip" id="decos" aria-hidden="true"></div>
 <div class="paper-tex" aria-hidden="true"></div>
 </head>
 <body>
@@ -633,6 +634,9 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
   <canvas class="mtn" data-layer="2" aria-hidden="true"></canvas>
   <canvas class="mtn" data-layer="3" aria-hidden="true"></canvas>
   <div class="cover-in">
+    <div class="c-side">
+      <div class="c-seal" data-k="S09 竖排题款 · 朱印"><span class="vtext">第四章　幂级数</span><svg class="seal" aria-hidden="true"><use href="#seal"/></svg></div>
+    </div>
     <div class="c-text">
       <p class="eyebrow" data-k="T12 小标签加字距"><b>Chapitre IV</b>　·　Licence 2　·　Semestre 3</p>
       <h1 class="c-title" aria-label="幂级数" data-k="F20 行书 · M22 遮罩显现 · M14 交错"><span aria-hidden="true"><i style="--i:0">幂</i></span><span aria-hidden="true"><i style="--i:1">级</i></span><span aria-hidden="true"><i style="--i:2">数</i></span></h1>
@@ -649,10 +653,7 @@ body::after { content: ""; position: absolute; inset: 0; z-index: -1; pointer-ev
         <button class="btn quiet" type="button" data-open-drawer>本章目录</button>
       </div>
     </div>
-    <div class="c-side">
-      <p class="c-num" aria-hidden="true" data-n="4" data-k="F03 迪多尼 · 烫金 · K11 长投影">4</p>
-      <div class="c-seal" data-k="S09 竖排 · 朱印"><span class="vtext">第四章　幂级数</span><svg class="seal" aria-hidden="true"><use href="#seal"/></svg></div>
-    </div>
+    <p class="c-num" aria-hidden="true" data-n="4" data-k="F03 迪多尼 · 烫金 · K11 长投影">4</p>
   </div>
   <div class="marquee" data-k="M28 跑马灯：常用展开">
     <span class="mq-label eyebrow">常用展开</span>
@@ -1043,6 +1044,7 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z"/></svg></span></span>
     if (push) { try { history.replaceState(null, '', `#${v}`); } catch { /* 忽略 */ } }
     window.scrollTo({ top: 0, behavior: 'auto' });
     if (v === 'demo') requestAnimationFrame(() => { sizeCover(); plot.redraw(); });
+    requestAnimationFrame(() => layoutDecos());
   }
   const start = location.hash.slice(1);
   if (start === 'plan') { viewSeg.pick((b) => b.dataset.view === 'plan', false); show('plan'); }
@@ -1189,17 +1191,116 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z"/></svg></span></span>
   }, { passive: true });
   document.documentElement.addEventListener('pointerleave', () => { document.body.style.setProperty('--mx', '-999px'); });
 
+  // ———— 纸下的插画与图案：隔一段放一张，左右交替，填掉大片留白 ————
+  // 敦煌藻井：方井套菱形套方，中心八瓣莲，外圈联珠与垂角
+  function zaojing() {
+    const C = { red: '#9c4a33', blue: '#2e5872', green: '#3e8a75', ochre: '#b8834f', white: '#efe3c8', gold: '#c9a24a', ink: '#3a2c22' };
+    const o = [];
+    o.push(`<rect x="8" y="8" width="584" height="584" fill="${C.red}"/>`);
+    o.push(`<rect x="22" y="22" width="556" height="556" fill="none" stroke="${C.white}" stroke-width="2"/>`);
+    for (let t = 0; t <= 1.0001; t += 1 / 26) {                 // 联珠纹
+      const v = 34 + t * 532;
+      for (const [x, y] of [[v, 34], [v, 566], [34, v], [566, v]]) o.push(`<circle cx="${x.toFixed(1)}" cy="${y.toFixed(1)}" r="7" fill="${C.white}" stroke="${C.ink}" stroke-width="1.2"/>`);
+    }
+    const tri = [];                                                // 垂角：沿内框向里的三角，青绿相间
+    const n = 12, a = 50, b = 550, d = 38;
+    for (let i = 0; i < n; i++) {
+      const u0 = a + (b - a) * i / n, u1 = a + (b - a) * (i + 1) / n, um = (u0 + u1) / 2, col = i % 2 ? C.green : C.blue;
+      tri.push([`${u0},${a} ${u1},${a} ${um},${a + d}`, col], [`${u0},${b} ${u1},${b} ${um},${b - d}`, col], [`${a},${u0} ${a},${u1} ${a + d},${um}`, col], [`${b},${u0} ${b},${u1} ${b - d},${um}`, col]);
+    }
+    tri.forEach(([pts, col]) => o.push(`<polygon points="${pts}" fill="${col}" stroke="${C.white}" stroke-width="1.5"/>`));
+    o.push(`<rect x="96" y="96" width="408" height="408" fill="${C.blue}" stroke="${C.white}" stroke-width="3"/>`);
+    const spiral = (cx, cy, s, dir) => {                           // 卷云
+      let dd = `M${cx} ${cy}`;
+      for (let k = 1; k <= 60; k++) { const th = k / 60 * Math.PI * 3.2, r = s * k / 60; dd += `L${(cx + dir * r * Math.cos(th)).toFixed(1)} ${(cy + r * Math.sin(th)).toFixed(1)}`; }
+      return `<path d="${dd}" fill="none" stroke="${C.white}" stroke-width="4" stroke-linecap="round"/>`;
+    };
+    for (const [x, y] of [[150, 150], [450, 150], [150, 450], [450, 450]]) { o.push(spiral(x - 14, y, 26, 1), spiral(x + 14, y, 26, -1)); }
+    o.push(`<polygon points="300,96 504,300 300,504 96,300" fill="${C.green}" stroke="${C.white}" stroke-width="3"/>`);
+    for (const [x, y] of [[300, 160], [440, 300], [300, 440], [160, 300]]) o.push(`<circle cx="${x}" cy="${y}" r="10" fill="${C.white}"/><circle cx="${x}" cy="${y}" r="4" fill="${C.red}"/>`);
+    o.push(`<rect x="198" y="198" width="204" height="204" fill="${C.ochre}" stroke="${C.white}" stroke-width="3"/>`);
+    o.push(`<circle cx="300" cy="300" r="94" fill="${C.white}" stroke="${C.red}" stroke-width="3"/>`);
+    for (let k = 0; k < 8; k++) o.push(`<ellipse cx="300" cy="238" rx="20" ry="58" fill="${C.red}" stroke="${C.white}" stroke-width="2" transform="rotate(${k * 45} 300 300)"/>`);
+    for (let k = 0; k < 8; k++) o.push(`<ellipse cx="300" cy="256" rx="13" ry="38" fill="${C.blue}" stroke="${C.white}" stroke-width="1.5" transform="rotate(${k * 45 + 22.5} 300 300)"/>`);
+    o.push(`<circle cx="300" cy="300" r="28" fill="${C.green}" stroke="${C.white}" stroke-width="2"/><circle cx="300" cy="300" r="11" fill="${C.gold}"/>`);
+    return `<svg viewBox="0 0 600 600" xmlns="http://www.w3.org/2000/svg">${o.join('')}</svg>`;
+  }
+  // 浮世绘青海波：一排排同心圆弧，下一排压住上一排
+  function seigaiha(w, h) {
+    const r = 30, o = [];
+    for (let j = 0; j * r / 2 < h + r; j++) {
+      for (let i = -1; i * 2 * r < w + 2 * r; i++) {
+        const cx = i * 2 * r + (j % 2 ? r : 0), cy = j * r / 2;
+        for (let k = 4; k >= 1; k--) o.push(`<circle cx="${cx}" cy="${cy}" r="${(r * k / 4 - 1).toFixed(1)}" fill="var(--neutral)" stroke="var(--wave)" stroke-width="${k === 4 ? 2.6 : 1.8}"/>`);
+      }
+    }
+    return `<svg viewBox="0 0 ${w} ${h}" preserveAspectRatio="xMidYMid slice" xmlns="http://www.w3.org/2000/svg">${o.join('')}</svg>`;
+  }
+  const RATIO = { '12-yuweng': 1226 / 1100, '09-baota': 1, '04-fenghuang': 1, '20-qinglong': 1, '17-feitian': 1320 / 1056, '07-gongdian': 997 / 1100, '08-yuanlin': 1098 / 1100, '16-xingzhe': 1299 / 1100, '06-pubu': 1051 / 1100, '03-yutu': 1101 / 1100, '18-gongmen': 1007 / 1100 };
+  const nth = (sel, i) => () => document.querySelectorAll(sel)[i];
+  const DECOS = [
+    { view: 'demo', img: '12-yuweng', at: () => $('#top'), dy: 12, side: 'left', w: [300, .42, 620], over: .03, cover: true },
+    { view: 'demo', img: '09-baota', at: () => $('#h41'), dy: 40, side: 'right', w: [260, .34, 520], over: .3, soft: true },
+    { view: 'demo', img: '04-fenghuang', at: () => $('#fig41'), dy: 140, side: 'left', w: [260, .34, 520], over: .32, soft: true },
+    { view: 'demo', img: '20-qinglong', at: () => $('#hadamard'), dy: 20, side: 'right', w: [260, .34, 520], over: .3, soft: true },
+    { view: 'demo', svg: zaojing, at: () => $('#ex46'), dy: 40, side: 'left', w: [220, .28, 420], over: .36, soft: true, ratio: 1, medal: true },
+    { view: 'demo', img: '17-feitian', at: () => $('#exo'), dy: 80, side: 'right', w: [240, .3, 460], over: .3, soft: true },
+    { view: 'demo', band: true, at: () => $('.next'), dy: -40, h: 240, soft: true },
+    { view: 'plan', img: '07-gongdian', at: () => $('#view-plan'), dy: 20, side: 'right', w: [280, .36, 560], over: .12 },
+    { view: 'plan', img: '08-yuanlin', at: nth('.plan h2', 2), dy: 0, side: 'left', w: [240, .3, 460], over: .4, soft: true },
+    { view: 'plan', img: '16-xingzhe', at: nth('.plan h2', 4), dy: 40, side: 'right', w: [240, .3, 460], over: .4, soft: true },
+    { view: 'plan', img: '06-pubu', at: nth('#alloc tr', 28), dy: 0, side: 'left', w: [240, .3, 460], over: .4, soft: true },
+    { view: 'plan', img: '03-yutu', at: nth('#alloc tr', 62), dy: 0, side: 'right', w: [240, .3, 460], over: .4, soft: true },
+    { view: 'plan', img: '18-gongmen', at: nth('#alloc tr', 96), dy: 0, side: 'left', w: [240, .3, 460], over: .4, soft: true },
+    { view: 'plan', svg: zaojing, at: nth('.plan h2', 6), dy: 0, side: 'right', w: [200, .26, 400], over: .45, soft: true, ratio: 1, medal: true },
+    { view: 'plan', band: true, at: () => $('.qs'), dy: 120, h: 220, soft: true }
+  ];
+  const decoLayer = $('#decos');
+  let coverDeco = null;
+  DECOS.forEach((d) => {
+    const el = document.createElement('div');
+    el.className = `deco${d.soft ? ' soft' : ''}${d.band ? ' band' : ''}${d.medal ? ' medal' : ''}`;
+    if (d.img) el.innerHTML = `<img class="pa-blur" src="img/${d.img}.webp" alt="" decoding="async"><img class="pa-sharp" src="img/${d.img}.webp" alt="" decoding="async">`;
+    else if (d.svg) el.innerHTML = d.svg();
+    d.el = el;
+    if (d.cover) coverDeco = el;
+    decoLayer.appendChild(el);
+  });
+  function layoutDecos() {
+    const W = innerWidth, narrow = W < 760;
+    DECOS.forEach((d) => {
+      const anchor = d.at();
+      const on = !views[d.view].hidden && anchor && !(narrow && d.medal);
+      d.el.hidden = !on;
+      if (!on) return;
+      const top = anchor.getBoundingClientRect().top + scrollY + (narrow ? d.dy * .5 : d.dy);
+      if (d.band) {
+        const h = narrow ? d.h * .7 : d.h;
+        Object.assign(d.el.style, { top: `${top}px`, left: '0', width: `${W}px`, height: `${h}px` });
+        const key = `${W}x${h}`;
+        if (d.el.dataset.key !== key) { d.el.innerHTML = seigaiha(Math.round(W), Math.round(h)); d.el.dataset.key = key; }
+        return;
+      }
+      const w = narrow ? W * (d.cover ? .74 : .7) : Math.max(d.w[0], Math.min(d.w[2], W * d.w[1]));
+      const ratio = d.ratio || RATIO[d.img] || 1;
+      const over = narrow && !d.cover ? .45 : d.over;
+      Object.assign(d.el.style, { top: `${top}px`, width: `${w}px`, height: `${w * ratio}px`, left: d.side === 'left' ? `${-w * over}px` : 'auto', right: d.side === 'right' ? `${-w * over}px` : 'auto' });
+    });
+  }
+  new ResizeObserver(() => layoutDecos()).observe(document.body);
+  document.fonts?.ready.then(layoutDecos);
+  layoutDecos();
+
   // ———— 封面：水墨远山（A12），四层画布做视差（M24） ————
   const cover = $('.cover');
   const layers = $$('.mtn');
-  const art = $('#paper-art');
   function rng(seed) { let s = seed >>> 0; return () => ((s = (s * 1664525 + 1013904223) >>> 0) / 4294967296); }
   function noise1(seed, n) { const r = rng(seed); const v = Array.from({ length: n + 2 }, r); return (t) => { const i = Math.floor(t), f = t - i; const u = (1 - Math.cos(f * Math.PI)) / 2; return v[i % (n + 2)] * (1 - u) + v[(i + 1) % (n + 2)] * u; }; }
   const LAYERS = [
-    { base: .56, amp: .15, seed: 7, oct: [[3, 1], [7, .45], [17, .18]], light: [116, 146, 146, .30], dark: [201, 168, 107, .10], skew: .30 },
-    { base: .66, amp: .16, seed: 19, oct: [[4, 1], [9, .45], [23, .2]], light: [88, 108, 106, .40], dark: [201, 168, 107, .15], skew: .34 },
-    { base: .77, amp: .14, seed: 31, oct: [[3, 1], [11, .5], [29, .22]], light: [56, 62, 60, .58], dark: [190, 152, 92, .22], skew: .40 },
-    { base: .92, amp: .17, seed: 43, oct: [[2, 1], [8, .4], [31, .25]], light: [35, 33, 29, .86], dark: [176, 136, 78, .32], skew: .62 }
+    { base: .56, amp: .15, seed: 7, oct: [[3, 1], [7, .45], [17, .18]], light: [116, 146, 146, .30], dark: [201, 168, 107, .10], skew: -.30 },
+    { base: .66, amp: .16, seed: 19, oct: [[4, 1], [9, .45], [23, .2]], light: [88, 108, 106, .40], dark: [201, 168, 107, .15], skew: -.34 },
+    { base: .77, amp: .14, seed: 31, oct: [[3, 1], [11, .5], [29, .22]], light: [56, 62, 60, .58], dark: [190, 152, 92, .22], skew: -.40 },
+    { base: .92, amp: .17, seed: 43, oct: [[2, 1], [8, .4], [31, .25]], light: [35, 33, 29, .86], dark: [176, 136, 78, .32], skew: -.62 }
   ];
   function drawLayer(cv, L, dark, w, h) {
     const dpr = Math.min(devicePixelRatio || 1, 2);
@@ -1215,7 +1316,7 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z"/></svg></span></span>
       let y = 0, a = 0;
       L.oct.forEach(([f, am], k) => { y += ns[k](t * f) * am; a += am; });
       y /= a;
-      const lean = (t - .5) * L.skew;   // 山势向右抬：章名在左，山在右（L05 不对称）
+      const lean = (t - .5) * L.skew;   // 山势向左抬：画在左上，文字在右（L05 不对称）
       return h * (base - (y - .5) * amp * 2 - lean * amp * 2);
     };
     const [r, gg, b, al] = dark ? L.dark : L.light;
@@ -1272,7 +1373,7 @@ c-10,0,-16.667,5,-20,15z M188 15 H145 v585 v600 v585 h43z"/></svg></span></span>
       ticking = false;
       const y = Math.min(scrollY, cover.offsetHeight);
       layers.forEach((cv, i) => { cv.style.transform = `translate3d(0, ${y * [0.42, 0.3, 0.18, 0.06][i]}px, 0)`; });
-      art.style.transform = `translate3d(0, ${y * 0.18}px, 0)`;
+      if (coverDeco) coverDeco.style.transform = `translate3d(0, ${y * 0.18}px, 0)`;
     });
   }, { passive: true });
 

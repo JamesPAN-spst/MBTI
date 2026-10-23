@@ -43,8 +43,11 @@ const out = path.resolve(process.env.OUT || path.join(root, 'docs/songzhi/index.
 mkdirSync(path.join(path.dirname(out), 'img'), { recursive: true });
 writeFileSync(out, html);
 
-// 页面里引用的插画：img/NN-name(.webp|-sm.webp)
-const used = [...new Set([...src.matchAll(/img\/([\w-]+\.webp)/g)].map((m) => m[1]))];
+// 页面里引用的插画：img/NN-name(.webp|-sm.webp)，以及 DECOS 里 img: 'NN-name' 的大图
+const used = [...new Set([
+  ...[...src.matchAll(/img\/([\w-]+\.webp)/g)].map((m) => m[1]),
+  ...[...src.matchAll(/img: '([\w-]+)'/g)].map((m) => `${m[1]}.webp`)   // 纸下装饰表 DECOS 里的插画
+])];
 const ills = path.join(root, 'design/assets/illustrations');
 const all = readdirSync(ills);
 let copied = 0;
