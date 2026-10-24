@@ -18,8 +18,9 @@ Fourier 在 1807 年研究热传导时断言「任何周期函数都可以写成
 设 $f : \R \to \C$ 是 $2\pi$ 周期的。
 
 1. 称 $f$ **分段连续**，如果存在 $[-\pi, \pi]$ 的分割 $-\pi = t_0 < t_1 < \cdots < t_p = \pi$，使得
-$$\forall k \in \{1, \dots, p\},\quad f\big|_{]t_{k-1}, t_k[}\ \text{连续，且}\ \lim_{t \to t_{k-1}^+} f(t),\ \lim_{t \to t_k^-} f(t)\ \text{存在且有限}.$$
-等价地：每个限制 $f|_{]t_{k-1}, t_k[}$ 都能延拓为 $[t_{k-1}, t_k]$ 上的连续函数 $\varphi_k$。这样的分割称为与 $f$ **相适应**的分割。
+   $$\forall k \in \{1, \dots, p\},\quad f\big|_{]t_{k-1}, t_k[}\ \text{连续，且}\ \lim_{t \to t_{k-1}^+} f(t),\ \lim_{t \to t_k^-} f(t)\ \text{存在且有限}.$$
+   等价地：每个限制 $f|_{]t_{k-1}, t_k[}$ 都能延拓为 $[t_{k-1}, t_k]$ 上的连续函数 $\varphi_k$。这样的分割称为与 $f$ **相适应**的分割。
+
 2. 称 $f$ **分段 $\Cc^1$**，如果存在分割，使每个限制 $f|_{]t_{k-1}, t_k[}$ 都能延拓为 $[t_{k-1}, t_k]$ 上的 $\Cc^1$ 函数 $\varphi_k$。
 
 记 $\Cc_{2\pi}$ 为 $2\pi$ 周期连续函数 $\R \to \C$ 的集合，$\mathcal{CM}_{2\pi}$ 为 $2\pi$ 周期分段连续函数的集合。对 $f \in \mathcal{CM}_{2\pi}$ 和 $x \in \R$，记单侧极限 $f(x^+) = \lim_{t \to x^+} f(t)$，$f(x^-) = \lim_{t \to x^-} f(t)$。
@@ -31,8 +32,9 @@ $$\forall k \in \{1, \dots, p\},\quad f\big|_{]t_{k-1}, t_k[}\ \text{连续，�
 Soit $f : \R \to \C$ une fonction $2\pi$-périodique.
 
 1. On dit que $f$ est **continue par morceaux** s'il existe une subdivision $-\pi = t_0 < t_1 < \cdots < t_p = \pi$ de $[-\pi, \pi]$ telle que
-$$\forall k \in \{1, \dots, p\},\quad f\big|_{]t_{k-1}, t_k[}\ \text{est continue et}\ \lim_{t \to t_{k-1}^+} f(t),\ \lim_{t \to t_k^-} f(t)\ \text{existent et sont finies}.$$
-De façon équivalente, chaque restriction $f|_{]t_{k-1}, t_k[}$ se prolonge en une fonction continue $\varphi_k$ sur $[t_{k-1}, t_k]$. Une telle subdivision est dite **adaptée** à $f$.
+   $$\forall k \in \{1, \dots, p\},\quad f\big|_{]t_{k-1}, t_k[}\ \text{est continue et}\ \lim_{t \to t_{k-1}^+} f(t),\ \lim_{t \to t_k^-} f(t)\ \text{existent et sont finies}.$$
+   De façon équivalente, chaque restriction $f|_{]t_{k-1}, t_k[}$ se prolonge en une fonction continue $\varphi_k$ sur $[t_{k-1}, t_k]$. Une telle subdivision est dite **adaptée** à $f$.
+
 2. On dit que $f$ est **de classe $\Cc^1$ par morceaux** s'il existe une subdivision telle que chaque restriction $f|_{]t_{k-1}, t_k[}$ se prolonge en une fonction $\varphi_k$ de classe $\Cc^1$ sur $[t_{k-1}, t_k]$.
 
 On note $\Cc_{2\pi}$ l'ensemble des fonctions continues $2\pi$-périodiques de $\R$ dans $\C$, et $\mathcal{CM}_{2\pi}$ celui des fonctions $2\pi$-périodiques continues par morceaux. Pour $f \in \mathcal{CM}_{2\pi}$ et $x \in \R$, on note $f(x^+) = \lim_{t \to x^+} f(t)$ et $f(x^-) = \lim_{t \to x^-} f(t)$ les limites à droite et à gauche.
@@ -106,7 +108,7 @@ Ceci montre que l'intégrale ne dépend pas de $a$.
 $$c_n(f) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(t)\,\e^{-\ii nt}\,\dd t.$$
 $N$ 阶 **Fourier 部分和**是 $S_N f = \sum_{\abs{n} \le N} c_n(f)\, e_n$（$N \in \N$）；**Fourier 级数**是函数列 $(S_N f)_{N \in \N}$，记作 $\sum_{n \in \Z} c_n(f)\, e_n$。**实系数**定义为
 $$a_n(f) = \frac1\pi\int_{-\pi}^{\pi} f(t)\cos nt\,\dd t\quad (n \ge 0),\qquad b_n(f) = \frac1\pi\int_{-\pi}^{\pi} f(t)\sin nt\,\dd t\quad (n \ge 1).$$
-形如 $P = \sum_{\abs{n} \le N} \alpha_n e_n$（$\alpha_n \in \C$）的函数称为（$N$ 次）**三角多项式**，它们构成 $\mathcal{T}_N = \Vect(e_n)_{\abs n \le N}$。显然 $S_N f \in \mathcal{T}_N$。
+形如 $P = \sum_{\abs{n} \le N} \alpha_n e_n$（$\alpha_n \in \C$）的函数称为（$N$ 次）**三角多项式**，它们构成 $\mathcal{T}_N = \Vect(e_n)_{\abs n \le N}$。按定义，$S_N f \in \mathcal{T}_N$。
 
 白话：$c_n(f)$ 衡量 $f$ 中「频率为 $n$」的分量有多大；$S_N f$ 只保留 $\abs{n} \le N$ 的那些频率。由 {@c5-periode}，积分区间 $[-\pi, \pi]$ 可以换成任何长为 $2\pi$ 的区间，例如 $[0, 2\pi]$。
 :::
@@ -187,7 +189,9 @@ $$S_{2m-1} f_1(x) = S_{2m} f_1(x) = \frac4\pi\sum_{k=1}^{m}\frac{\sin\big((2k-1)
 对锯齿波 $f_2$，$c_0(f_2) = \frac{1}{2\pi}\int_{-\pi}^{\pi} t\,\dd t = 0$。对 $n \ne 0$ 分部积分（$u = t$，$v' = \e^{-\ii nt}$，$v = \frac{\e^{-\ii nt}}{-\ii n} = \frac{\ii\,\e^{-\ii nt}}{n}$）：
 $$\int_{-\pi}^{\pi} t\,\e^{-\ii nt}\,\dd t = \Big[\frac{\ii\, t\,\e^{-\ii nt}}{n}\Big]_{-\pi}^{\pi} - \frac{\ii}{n}\int_{-\pi}^{\pi}\e^{-\ii nt}\,\dd t = \frac{\ii}{n}\big(\pi(-1)^n + \pi(-1)^n\big) - 0 = \frac{2\pi\ii(-1)^n}{n}.$$
 所以 $c_n(f_2) = \dfrac{\ii(-1)^n}{n}$。由 {@c5-forme-reelle}：$a_n(f_2) = \frac{\ii(-1)^n}{n} + \frac{\ii(-1)^n}{-n} = 0$，
-$$b_n(f_2) = \ii\Big(\frac{\ii(-1)^n}{n} - \frac{\ii(-1)^n}{-n}\Big) = -\frac{2(-1)^n}{n} = \frac{2(-1)^{n+1}}{n},\qquad S_N f_2(x) = 2\sum_{n=1}^N \frac{(-1)^{n+1}\sin nx}{n}.$$
+$$b_n(f_2) = \ii\Big(\frac{\ii(-1)^n}{n} - \frac{\ii(-1)^n}{-n}\Big) = -\frac{2(-1)^n}{n} = \frac{2(-1)^{n+1}}{n}.$$
+于是
+$$S_N f_2(x) = 2\sum_{n=1}^N \frac{(-1)^{n+1}\sin nx}{n}.$$
 :::
 
 ::: prop id=orthonormal zh="三角系的正交性" en="Orthonormality of the trigonometric system" fr="Orthonormalité du système trigonométrique" ru="Ортонормированность тригонометрической системы" lvl=1
@@ -263,12 +267,13 @@ $$c_n(f') = \ii n\, c_n(f).$$
 
 **第 2 步（应用）**　若 $f$ 是偶函数，$t \mapsto f(t)\sin nt$ 是奇函数（偶 × 奇），所以 $b_n(f) = 0$；$t \mapsto f(t)\cos nt$ 是偶函数，所以 $a_n(f) = \frac{2}{\pi}\int_0^\pi f(t)\cos nt\,\dd t$。$f$ 是奇函数时，把 $\cos$ 与 $\sin$ 的角色互换。
 
-**2.**　**第 1 步（翻译假设）**　取相适应的分割 $-\pi = t_0 < \cdots < t_p = \pi$ 和 $[t_{k-1}, t_k]$ 上的 $\Cc^1$ 函数 $\varphi_k$，使 $\varphi_k = f$ 在 $]t_{k-1}, t_k[$ 上。因为 $f$ 连续，$\varphi_k(t_{k-1}) = \lim_{t \to t_{k-1}^+} f(t) = f(t_{k-1})$，同理 $\varphi_k(t_k) = f(t_k)$。
+**2.**　**第 1 步（翻译假设）**　取相适应的分割 $-\pi = t_0 < \cdots < t_p = \pi$ 和 $[t_{k-1}, t_k]$ 上的 $\Cc^1$ 函数 $\varphi_k$，使 $\varphi_k = f$ 在 $]t_{k-1}, t_k[$ 上。因为 $f$ 连续，$\varphi_k(t_{k-1}) = \lim_{t \to t_{k-1}^+} f(t) = f(t_{k-1})$；把右极限换成 $t_k$ 处的左极限，得 $\varphi_k(t_k) = \lim_{t \to t_k^-} f(t) = f(t_k)$。
 
 **第 2 步（$f' \in \mathcal{CM}_{2\pi}$）**　在 $]t_{k-1}, t_k[$ 上 $f' = \varphi_k'$，它能连续延拓到 $[t_{k-1}, t_k]$；在分点处 $f'$ 的值按周期性任意指定。所以 $f'$ 是 $2\pi$ 周期的分段连续函数。
 
 **第 3 步（每一段上分部积分）**　$f'$ 与 $\varphi_k'$ 在 $[t_{k-1}, t_k]$ 上至多在两个端点处不同，积分相等。由分部积分（$(\e^{-\ii nt})' = -\ii n\,\e^{-\ii nt}$），
-$$\int_{t_{k-1}}^{t_k} f'(t)\,\e^{-\ii nt}\,\dd t = \Big[\varphi_k(t)\,\e^{-\ii nt}\Big]_{t_{k-1}}^{t_k} + \ii n\int_{t_{k-1}}^{t_k}\varphi_k(t)\,\e^{-\ii nt}\,\dd t = \Big[f(t)\,\e^{-\ii nt}\Big]_{t_{k-1}}^{t_k} + \ii n\int_{t_{k-1}}^{t_k} f(t)\,\e^{-\ii nt}\,\dd t,$$
+$$\begin{aligned}\int_{t_{k-1}}^{t_k} f'(t)\,\e^{-\ii nt}\,\dd t &= \Big[\varphi_k(t)\,\e^{-\ii nt}\Big]_{t_{k-1}}^{t_k} + \ii n\int_{t_{k-1}}^{t_k}\varphi_k(t)\,\e^{-\ii nt}\,\dd t\\
+&= \Big[f(t)\,\e^{-\ii nt}\Big]_{t_{k-1}}^{t_k} + \ii n\int_{t_{k-1}}^{t_k} f(t)\,\e^{-\ii nt}\,\dd t,\end{aligned}$$
 最后一步用了第 1 步 $\varphi_k = f$ 在 $[t_{k-1}, t_k]$ 两端成立。
 
 **第 4 步（求和）**　对 $k = 1, \dots, p$ 求和。边界项是望远镜和：
@@ -285,12 +290,13 @@ $$\sum_{k=1}^p\Big[f(t)\,\e^{-\ii nt}\Big]_{t_{k-1}}^{t_k} = f(\pi)\e^{-\ii n\pi
 
 **Étape 2 (application)**　Si $f$ est paire, $t \mapsto f(t)\sin nt$ est impaire (paire × impaire), donc $b_n(f) = 0$ ; $t \mapsto f(t)\cos nt$ est paire, donc $a_n(f) = \frac{2}{\pi}\int_0^\pi f(t)\cos nt\,\dd t$. Si $f$ est impaire, on échange les rôles de $\cos$ et $\sin$.
 
-**2.**　**Étape 1 (on traduit l'hypothèse)**　Soit $-\pi = t_0 < \cdots < t_p = \pi$ une subdivision adaptée et $\varphi_k$ de classe $\Cc^1$ sur $[t_{k-1}, t_k]$ avec $\varphi_k = f$ sur $]t_{k-1}, t_k[$. Comme $f$ est continue, $\varphi_k(t_{k-1}) = \lim_{t \to t_{k-1}^+} f(t) = f(t_{k-1})$ et de même $\varphi_k(t_k) = f(t_k)$.
+**2.**　**Étape 1 (on traduit l'hypothèse)**　Soit $-\pi = t_0 < \cdots < t_p = \pi$ une subdivision adaptée et $\varphi_k$ de classe $\Cc^1$ sur $[t_{k-1}, t_k]$ avec $\varphi_k = f$ sur $]t_{k-1}, t_k[$. Comme $f$ est continue, $\varphi_k(t_{k-1}) = \lim_{t \to t_{k-1}^+} f(t) = f(t_{k-1})$ ; en remplaçant la limite à droite par la limite à gauche en $t_k$, on obtient $\varphi_k(t_k) = \lim_{t \to t_k^-} f(t) = f(t_k)$.
 
 **Étape 2 ($f' \in \mathcal{CM}_{2\pi}$)**　Sur $]t_{k-1}, t_k[$, $f' = \varphi_k'$, qui se prolonge continûment à $[t_{k-1}, t_k]$ ; aux points de subdivision, on donne à $f'$ des valeurs arbitraires, de façon $2\pi$-périodique. Ainsi $f'$ est $2\pi$-périodique et continue par morceaux.
 
 **Étape 3 (intégration par parties sur chaque morceau)**　$f'$ et $\varphi_k'$ diffèrent au plus aux extrémités de $[t_{k-1}, t_k]$, donc ont la même intégrale. Par intégration par parties ($(\e^{-\ii nt})' = -\ii n\,\e^{-\ii nt}$),
-$$\int_{t_{k-1}}^{t_k} f'(t)\,\e^{-\ii nt}\,\dd t = \Big[\varphi_k(t)\,\e^{-\ii nt}\Big]_{t_{k-1}}^{t_k} + \ii n\int_{t_{k-1}}^{t_k}\varphi_k(t)\,\e^{-\ii nt}\,\dd t = \Big[f(t)\,\e^{-\ii nt}\Big]_{t_{k-1}}^{t_k} + \ii n\int_{t_{k-1}}^{t_k} f(t)\,\e^{-\ii nt}\,\dd t,$$
+$$\begin{aligned}\int_{t_{k-1}}^{t_k} f'(t)\,\e^{-\ii nt}\,\dd t &= \Big[\varphi_k(t)\,\e^{-\ii nt}\Big]_{t_{k-1}}^{t_k} + \ii n\int_{t_{k-1}}^{t_k}\varphi_k(t)\,\e^{-\ii nt}\,\dd t\\
+&= \Big[f(t)\,\e^{-\ii nt}\Big]_{t_{k-1}}^{t_k} + \ii n\int_{t_{k-1}}^{t_k} f(t)\,\e^{-\ii nt}\,\dd t,\end{aligned}$$
 la dernière égalité utilisant $\varphi_k = f$ aux deux extrémités (étape 1).
 
 **Étape 4 (sommation)**　On somme sur $k = 1, \dots, p$. Les termes de bord forment une somme télescopique :
@@ -455,8 +461,9 @@ Ceci démontre le lemme de Riemann–Lebesgue.
 
 ::: rem
 1. **收敛速度。** 引理不给出速度。若 $g$ 在 $[a, b]$ 上是 $\Cc^1$ 的，分部积分给出
-$$\int_a^b g\,\e^{\ii\lambda t}\,\dd t = \Big[\frac{g(t)\,\e^{\ii\lambda t}}{\ii\lambda}\Big]_a^b - \frac{1}{\ii\lambda}\int_a^b g'\,\e^{\ii\lambda t}\,\dd t,\qquad\text{从而}\quad \Big|\int_a^b g\,\e^{\ii\lambda t}\Big| \le \frac{2\norm g_\infty + (b - a)\norm{g'}_\infty}{\abs\lambda}.$$
-函数越光滑，衰减越快，见 {@c5-regularite}。
+   $$\int_a^b g\,\e^{\ii\lambda t}\,\dd t = \Big[\frac{g(t)\,\e^{\ii\lambda t}}{\ii\lambda}\Big]_a^b - \frac{1}{\ii\lambda}\int_a^b g'\,\e^{\ii\lambda t}\,\dd t,$$
+   从而 $\Big|\int_a^b g\,\e^{\ii\lambda t}\Big| \le \dfrac{2\norm g_\infty + (b - a)\norm{g'}_\infty}{\abs\lambda}$。函数越光滑，衰减越快，见 {@c5-regularite}。
+
 2. **区间有界很重要。** 在 $[0, +\infty[$ 上，$\int_0^x \cos\lambda t\,\dd t = \frac{\sin\lambda x}{\lambda}$ 在 $x \to +\infty$ 时没有极限，积分 $\int_0^{+\infty}\cos\lambda t\,\dd t$ 根本不存在。第 6 章的「想一想」把引理推广到无界区间上的**可积**函数（{@def-integrable}）。
 :::
 
@@ -540,7 +547,8 @@ $$2\ii\sin\tfrac t2\,D_N(t) = \e^{\ii(N + \frac12)t} - \e^{-\ii(N + \frac12)t} =
 **3.**　由 {@orthonormal}，$\frac{1}{2\pi}\int_{-\pi}^{\pi}\e^{\ii nt}\,\dd t = \ps{e_n, e_0}$，$n = 0$ 时为 $1$，否则为 $0$。所以 $\frac{1}{2\pi}\int_{-\pi}^{\pi}D_N = 1$。$D_N$ 是偶函数，$\int_{-\pi}^0 D_N = \int_0^\pi D_N$（{@coef-proprietes} 的证明，第 1 步），两者各为总积分的一半。
 
 **4.**　**第 1 步（代入）**　积分对有限和是线性的，所以
-$$S_N f(x) = \sum_{\abs n \le N}\Big(\frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\,\e^{-\ii ns}\,\dd s\Big)\e^{\ii nx} = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\sum_{\abs n \le N}\e^{\ii n(x - s)}\,\dd s = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\,D_N(x - s)\,\dd s.$$
+$$\begin{aligned}S_N f(x) &= \sum_{\abs n \le N}\Big(\frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\,\e^{-\ii ns}\,\dd s\Big)\e^{\ii nx}\\
+&= \frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\sum_{\abs n \le N}\e^{\ii n(x - s)}\,\dd s = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\,D_N(x - s)\,\dd s.\end{aligned}$$
 
 **第 2 步（换元）**　令 $s = x - t$（$\dd s = -\dd t$；$s = -\pi \iff t = x + \pi$，$s = \pi \iff t = x - \pi$）：
 $$S_N f(x) = \frac{1}{2\pi}\int_{x-\pi}^{x+\pi} f(x - t)\,D_N(t)\,\dd t.$$
@@ -564,7 +572,8 @@ Comme $\sin\frac t2 \ne 0$, on divise par $2\ii\sin\frac t2$.
 **3.**　D'après {@fr:orthonormal}, $\frac{1}{2\pi}\int_{-\pi}^{\pi}\e^{\ii nt}\,\dd t = \ps{e_n, e_0}$ vaut $1$ si $n = 0$ et $0$ sinon. Donc $\frac{1}{2\pi}\int_{-\pi}^{\pi}D_N = 1$. Comme $D_N$ est paire, $\int_{-\pi}^0 D_N = \int_0^\pi D_N$ (preuve de {@fr:coef-proprietes}, étape 1), et chacune vaut la moitié de l'intégrale totale.
 
 **4.**　**Étape 1 (substitution)**　L'intégrale est linéaire vis-à-vis d'une somme finie, donc
-$$S_N f(x) = \sum_{\abs n \le N}\Big(\frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\,\e^{-\ii ns}\,\dd s\Big)\e^{\ii nx} = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\sum_{\abs n \le N}\e^{\ii n(x - s)}\,\dd s = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\,D_N(x - s)\,\dd s.$$
+$$\begin{aligned}S_N f(x) &= \sum_{\abs n \le N}\Big(\frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\,\e^{-\ii ns}\,\dd s\Big)\e^{\ii nx}\\
+&= \frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\sum_{\abs n \le N}\e^{\ii n(x - s)}\,\dd s = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(s)\,D_N(x - s)\,\dd s.\end{aligned}$$
 
 **Étape 2 (changement de variable)**　Posons $s = x - t$ ($\dd s = -\dd t$ ; $s = -\pi \iff t = x + \pi$, $s = \pi \iff t = x - \pi$) :
 $$S_N f(x) = \frac{1}{2\pi}\int_{x-\pi}^{x+\pi} f(x - t)\,D_N(t)\,\dd t.$$
@@ -632,7 +641,8 @@ $$\sigma_N f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x - t)\,K_N(t)\,\dd t.$$
 ▷ 思路：1 用 $D_k$ 的闭式和积化和差，得到望远镜和；2、4 由 $D_k$ 的相应性质取平均；3 由 $\sin$ 在 $[0, \frac\pi2]$ 上递增。
 
 **1.**　设 $t \notin 2\pi\Z$。由 {@c5-dirichlet-noyau} 第 2 条和积化和差公式 $\sin A\sin B = \frac12\big(\cos(A - B) - \cos(A + B)\big)$（$A = \frac t2$，$B = (k + \frac12)t$，$A - B = -kt$，$A + B = (k+1)t$），
-$$\sin^2\tfrac t2\sum_{k=0}^N D_k(t) = \sum_{k=0}^N\sin\tfrac t2\,\sin\big((k + \tfrac12)t\big) = \frac12\sum_{k=0}^N\big(\cos kt - \cos(k+1)t\big) = \frac{1 - \cos(N+1)t}{2} = \sin^2\frac{(N+1)t}{2}.$$
+$$\begin{aligned}\sin^2\tfrac t2\sum_{k=0}^N D_k(t) &= \sum_{k=0}^N\sin\tfrac t2\,\sin\big((k + \tfrac12)t\big) = \frac12\sum_{k=0}^N\big(\cos kt - \cos(k+1)t\big)\\
+&= \frac{1 - \cos(N+1)t}{2} = \sin^2\frac{(N+1)t}{2}.\end{aligned}$$
 （中间是望远镜和。）两边除以 $(N+1)\sin^2\frac t2 > 0$ 即得闭式。在 $t = 0$，$K_N(0) = \frac{1}{N+1}\sum_{k=0}^N(2k + 1) = \frac{(N+1)^2}{N+1} = N + 1$。闭式是平方除以正数，$K_N(0) > 0$，再由周期性，$K_N \ge 0$ 处处成立。
 
 **2.**　由 {@c5-dirichlet-noyau} 第 3 条，$\frac{1}{2\pi}\int K_N = \frac{1}{N+1}\sum_{k=0}^N\frac{1}{2\pi}\int D_k = \frac{N+1}{N+1} = 1$。
@@ -648,7 +658,8 @@ $$\sum_{k=0}^N D_k = \sum_{k=0}^N\ \sum_{\abs n \le k} e_n = \sum_{\abs n \le N}
 ▷ Méthode : pour 1, on utilise la forme close de $D_k$ et une formule de trigonométrie qui fait apparaître une somme télescopique ; 2 et 4 s'obtiennent en moyennant les propriétés de $D_k$ ; 3 vient de la croissance de $\sin$ sur $[0, \frac\pi2]$.
 
 **1.**　Soit $t \notin 2\pi\Z$. D'après le point 2 de {@fr:c5-dirichlet-noyau} et la formule $\sin A\sin B = \frac12\big(\cos(A - B) - \cos(A + B)\big)$ (avec $A = \frac t2$, $B = (k + \frac12)t$, $A - B = -kt$, $A + B = (k+1)t$),
-$$\sin^2\tfrac t2\sum_{k=0}^N D_k(t) = \sum_{k=0}^N\sin\tfrac t2\,\sin\big((k + \tfrac12)t\big) = \frac12\sum_{k=0}^N\big(\cos kt - \cos(k+1)t\big) = \frac{1 - \cos(N+1)t}{2} = \sin^2\frac{(N+1)t}{2}$$
+$$\begin{aligned}\sin^2\tfrac t2\sum_{k=0}^N D_k(t) &= \sum_{k=0}^N\sin\tfrac t2\,\sin\big((k + \tfrac12)t\big) = \frac12\sum_{k=0}^N\big(\cos kt - \cos(k+1)t\big)\\
+&= \frac{1 - \cos(N+1)t}{2} = \sin^2\frac{(N+1)t}{2}\end{aligned}$$
 (somme télescopique). On divise par $(N+1)\sin^2\frac t2 > 0$. En $t = 0$, $K_N(0) = \frac{1}{N+1}\sum_{k=0}^N(2k + 1) = \frac{(N+1)^2}{N+1} = N + 1$. La forme close est un carré divisé par un réel positif et $K_N(0) > 0$ ; par périodicité, $K_N \ge 0$ partout.
 
 **2.**　D'après le point 3 de {@fr:c5-dirichlet-noyau}, $\frac{1}{2\pi}\int K_N = \frac{1}{N+1}\sum_{k=0}^N\frac{1}{2\pi}\int D_k = \frac{N+1}{N+1} = 1$.
@@ -682,8 +693,9 @@ $$\sigma_N f(x) - f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi}\big(f(x - t) - f(x)\big
 
 **第 3 步（拆分与估计）**　由三角不等式和 $K_N \ge 0$（第 1 条），
 $$\begin{aligned}
-\abs{\sigma_N f(x) - f(x)} &\le \frac{1}{2\pi}\int_{\abs t \le \delta}\abs{f(x - t) - f(x)}\,K_N(t)\,\dd t + \frac{1}{2\pi}\int_{\delta \le \abs t \le \pi}\abs{f(x - t) - f(x)}\,K_N(t)\,\dd t\\
-&\le \eps\cdot\frac{1}{2\pi}\int_{-\pi}^{\pi}K_N + 2M\cdot\frac{1}{(N+1)\sin^2(\delta/2)}\cdot\frac{2(\pi - \delta)}{2\pi} && \text{（第 1 步；第 3 条）}\\
+\abs{\sigma_N f(x) - f(x)} &\le \frac{1}{2\pi}\int_{\abs t \le \delta}\abs{f(x - t) - f(x)}\,K_N(t)\,\dd t\\
+&\quad + \frac{1}{2\pi}\int_{\delta \le \abs t \le \pi}\abs{f(x - t) - f(x)}\,K_N(t)\,\dd t\\
+&\le \eps\cdot\frac{1}{2\pi}\int_{-\pi}^{\pi}K_N + \frac{2M}{(N+1)\sin^2(\delta/2)}\cdot\frac{\pi - \delta}{\pi} && \text{（第 1 步；第 3 条）}\\
 &\le \eps + \frac{2M}{(N+1)\sin^2(\delta/2)} && \text{（第 2 条）}.
 \end{aligned}$$
 在第一个积分里，把积分范围从 $\abs t \le \delta$ 扩大到 $[-\pi, \pi]$ 只会增大积分，因为 $K_N \ge 0$。
@@ -705,8 +717,9 @@ $$\sigma_N f(x) - f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi}\big(f(x - t) - f(x)\big
 
 **Étape 3 (découpage et majoration)**　Par l'inégalité triangulaire et $K_N \ge 0$ (point 1),
 $$\begin{aligned}
-\abs{\sigma_N f(x) - f(x)} &\le \frac{1}{2\pi}\int_{\abs t \le \delta}\abs{f(x - t) - f(x)}\,K_N(t)\,\dd t + \frac{1}{2\pi}\int_{\delta \le \abs t \le \pi}\abs{f(x - t) - f(x)}\,K_N(t)\,\dd t\\
-&\le \eps\cdot\frac{1}{2\pi}\int_{-\pi}^{\pi}K_N + 2M\cdot\frac{1}{(N+1)\sin^2(\delta/2)}\cdot\frac{2(\pi - \delta)}{2\pi} && \text{(étape 1 ; point 3)}\\
+\abs{\sigma_N f(x) - f(x)} &\le \frac{1}{2\pi}\int_{\abs t \le \delta}\abs{f(x - t) - f(x)}\,K_N(t)\,\dd t\\
+&\quad + \frac{1}{2\pi}\int_{\delta \le \abs t \le \pi}\abs{f(x - t) - f(x)}\,K_N(t)\,\dd t\\
+&\le \eps\cdot\frac{1}{2\pi}\int_{-\pi}^{\pi}K_N + \frac{2M}{(N+1)\sin^2(\delta/2)}\cdot\frac{\pi - \delta}{\pi} && \text{(étape 1 ; point 3)}\\
 &\le \eps + \frac{2M}{(N+1)\sin^2(\delta/2)} && \text{(point 2)}.
 \end{aligned}$$
 Dans la première intégrale, agrandir le domaine de $\abs t \le \delta$ à $[-\pi, \pi]$ ne peut qu'augmenter l'intégrale, puisque $K_N \ge 0$.
@@ -959,7 +972,8 @@ $$\sum_{n \in \Z} c_n(f)\,\overline{c_n(g)} = \ps{f, g} = \frac{1}{2\pi}\int_{-\
 **第 3 步（取极限）**　由三角不等式和 Cauchy–Schwarz 不等式（{@orthonormal} 之后的注），
 $$\begin{aligned}
 \abs{\ps{f, g} - \ps{S_N f, S_N g}} &\le \abs{\ps{f - S_N f, g}} + \abs{\ps{S_N f, g - S_N g}}\\
-&\le \norm{f - S_N f}_2\norm g_2 + \norm{S_N f}_2\norm{g - S_N g}_2 \le \big(\norm{f - S_N f}_2 + \norm{g - S_N g}_2\big)\max(\norm f_2, \norm g_2),
+&\le \norm{f - S_N f}_2\norm g_2 + \norm{S_N f}_2\norm{g - S_N g}_2\\
+&\le \big(\norm{f - S_N f}_2 + \norm{g - S_N g}_2\big)\max(\norm f_2, \norm g_2),
 \end{aligned}$$
 其中用了 $\norm{S_N f}_2 \le \norm f_2$（{@parseval} 证明第 2 步）。由 Parseval 恒等式，右边趋于 $0$。结合第 2 步即得结论。
 :::
@@ -974,7 +988,8 @@ $$\begin{aligned}
 **Étape 3 (passage à la limite)**　Par l'inégalité triangulaire et l'inégalité de Cauchy–Schwarz (remarque suivant {@fr:orthonormal}),
 $$\begin{aligned}
 \abs{\ps{f, g} - \ps{S_N f, S_N g}} &\le \abs{\ps{f - S_N f, g}} + \abs{\ps{S_N f, g - S_N g}}\\
-&\le \norm{f - S_N f}_2\norm g_2 + \norm{S_N f}_2\norm{g - S_N g}_2 \le \big(\norm{f - S_N f}_2 + \norm{g - S_N g}_2\big)\max(\norm f_2, \norm g_2),
+&\le \norm{f - S_N f}_2\norm g_2 + \norm{S_N f}_2\norm{g - S_N g}_2\\
+&\le \big(\norm{f - S_N f}_2 + \norm{g - S_N g}_2\big)\max(\norm f_2, \norm g_2),
 \end{aligned}$$
 où l'on a utilisé $\norm{S_N f}_2 \le \norm f_2$ (étape 2 de la preuve de {@fr:parseval}). D'après l'égalité de Parseval, le membre de droite tend vers $0$. Avec l'étape 2, on conclut.
 :::
@@ -1270,4 +1285,383 @@ Ainsi la série de Fourier converge normalement vers $f$ sur $\R$.
 由 {@cv-normale-fourier}，$f - S_N f = \sum_{\abs n > N}c_n(f)e_n$（一致收敛），所以
 $$\norm{f - S_N f}_\infty \le \sum_{\abs n > N}\frac{\abs{c_n(f')}}{\abs n} \le \Big(\sum_{\abs n > N}\frac{1}{n^2}\Big)^{1/2}\Big(\sum_{\abs n > N}\abs{c_n(f')}^2\Big)^{1/2} \le \sqrt{\frac2N}\,\norm{f'}_2,$$
 第二步是 Cauchy–Schwarz 不等式（对有限和成立，再取极限），第三步用了 $\sum_{n > N}\frac{1}{n^2} \le \int_N^{+\infty}\frac{\dd t}{t^2} = \frac1N$（{@serie-integrale}）与 Bessel 不等式。事实上由 Parseval，$\sum_{\abs n > N}\abs{c_n(f')}^2 \to 0$，所以误差甚至是 $o\big(\frac{1}{\sqrt N}\big)$。
+:::
+
+## 应用
+
+前面的定理给出三种工具：Parseval 恒等式把 $\int\abs f^2$ 变成 $\sum\abs{c_n}^2$；Dirichlet 定理在连续点给出 $f(x)$ 的级数表示；Fejér 定理把「对三角多项式成立」推广到「对连续函数成立」。下面依次用它们求数值级数的和、分析 Gibbs 现象、证明等周不等式和 Weyl 等分布定理。
+
+::: ex id=bale zh="Basel 问题" lvl=1
+**(a) $\zeta(2)$。** 取锯齿波 $f_2$（$f(x) = x$，$-\pi < x < \pi$，周期延拓）。由 {@c5-ex-scie}，$a_n = 0$，$b_n = \frac{2(-1)^{n+1}}{n}$。由 Parseval 恒等式 {@parseval} 的实形式，
+$$\frac{1}{2\pi}\int_{-\pi}^{\pi} x^2\,\dd x = \frac{1}{2\pi}\cdot\frac{2\pi^3}{3} = \frac{\pi^2}{3} = \frac12\sum_{n \ge 1}\frac{4}{n^2},\qquad\text{即}\quad \zeta(2) = \sum_{n \ge 1}\frac{1}{n^2} = \frac{\pi^2}{6}.$$
+
+**(b) $\zeta(4)$。** 取三角波 $f_3 = \abs{x}$。由 {@c5-ex-triangle}，$a_0 = \pi$，$a_n = -\frac{4}{\pi n^2}$（$n$ 奇），其余为 $0$。Parseval 给出
+$$\frac{\pi^2}{3} = \frac{\pi^2}{4} + \frac12\sum_{n\ \text{奇}}\frac{16}{\pi^2 n^4}\quad\Longrightarrow\quad \sum_{n\ \text{奇}}\frac{1}{n^4} = \frac{\pi^2}{12}\cdot\frac{\pi^2}{8} = \frac{\pi^4}{96}.$$
+偶数项之和为 $\sum_{m \ge 1}\frac{1}{(2m)^4} = \frac{\zeta(4)}{16}$，所以 $\zeta(4) = \frac{\pi^4}{96} + \frac{\zeta(4)}{16}$，$\zeta(4) = \frac{16}{15}\cdot\frac{\pi^4}{96} = \frac{\pi^4}{90}$。
+
+**(c) 奇数平方倒数和。** $f_3$ 连续且分段 $\Cc^1$，在 $x = 0$ 处用 Dirichlet 定理 {@dirichlet-fourier}（这里甚至是正规收敛，{@cv-normale-fourier}）：
+$$0 = f_3(0) = \frac\pi2 - \frac4\pi\sum_{n\ \text{奇}}\frac{1}{n^2},\qquad\text{即}\quad\sum_{n\ \text{奇}}\frac{1}{n^2} = \frac{\pi^2}{8}.$$
+这与 Parseval 用于方波的结果（§4 的「想一想」）一致。
+:::
+
+::: q
+锯齿波 $f_2$ 在 $x = \frac\pi2$ 处连续。用 Dirichlet 定理能得到哪个级数的和？
+:::
+
+::: ans
+由 {@c5-ex-scie} 与 {@dirichlet-fourier}，$\frac\pi2 = 2\sum_{n \ge 1}\frac{(-1)^{n+1}\sin(n\pi/2)}{n}$。$n$ 偶时 $\sin\frac{n\pi}{2} = 0$；$n = 2k + 1$ 时 $\sin\frac{n\pi}{2} = (-1)^k$，$(-1)^{n+1} = 1$。所以 $\frac\pi2 = 2\sum_{k \ge 0}\frac{(-1)^k}{2k+1}$，即 **Leibniz 公式** $1 - \frac13 + \frac15 - \cdots = \frac\pi4$。
+:::
+
+::: demo id=fourier
+方波、锯齿波、三角波的 Fourier 部分和 $S_N$（蓝色）与 Fejér 平均 $\sigma_N$（紫色）。观察方波跳跃点附近：$S_N$ 的过冲不随 $N$ 增大而消失，这就是 Gibbs 现象；Fejér 平均没有过冲，因为 $K_N \ge 0$。三角波连续且分段 $\Cc^1$，部分和一致收敛，与 {@cv-normale-fourier} 一致。
+:::
+
+::: thm id=gibbs zh="Gibbs 现象" en="Gibbs phenomenon" fr="Phénomène de Gibbs" ru="Явление Гиббса" lvl=2
+设 $f$ 是方波（$(0, \pi)$ 上为 $1$，$(-\pi, 0)$ 上为 $-1$）。则
+$$\lim_{N \to \infty} \max_{[0,\pi]} S_N f = \frac{2}{\pi}\int_0^\pi \frac{\sin t}{t}\,\dd t \approx 1.17898.$$
+过冲约为跳跃高度 $2$ 的 $8.95\%$，与 $N$ 无关。
+:::
+
+::: fr
+Soit $f$ le signal créneau (égal à $1$ sur $(0, \pi)$ et à $-1$ sur $(-\pi, 0)$). Alors
+$$\lim_{N \to \infty} \max_{[0,\pi]} S_N f = \frac{2}{\pi}\int_0^\pi \frac{\sin t}{t}\,\dd t \approx 1{,}17898.$$
+Le dépassement vaut environ $8{,}95\,\%$ de la hauteur $2$ du saut, indépendamment de $N$.
+:::
+
+::: sketch
+▷ 思路：求出 $S_N f$ 的导数的闭式，找到第一个极大值点 $x_m = \frac{\pi}{2m}$，证明它是最大值点，再把 $S_N f(x_m)$ 认出是一个 Riemann 和。
+
+**第 1 步（化简）**　由 {@c5-ex-creneau}，偶数项系数为 $0$，所以 $S_{2m} f = S_{2m-1} f =: T_m$，
+$$T_m(x) = \frac{4}{\pi}\sum_{k=1}^{m}\frac{\sin\big((2k-1)x\big)}{2k-1}.$$
+只需证明 $\max_{[0, \pi]} T_m \to \frac2\pi\int_0^\pi\frac{\sin t}{t}\,\dd t$（$m \to \infty$）。
+
+**第 2 步（导数）**　由 $2\sin x\cos\big((2k-1)x\big) = \sin(2kx) - \sin\big((2k-2)x\big)$ 求和（望远镜），对 $x \notin \pi\Z$，
+$$T_m'(x) = \frac4\pi\sum_{k=1}^m\cos\big((2k-1)x\big) = \frac{2}{\pi}\cdot\frac{\sin 2mx}{\sin x}.$$
+
+**第 3 步（最大值点）**　$T_m(\pi - x) = T_m(x)$（因为 $\sin\big((2k-1)(\pi - x)\big) = \sin\big((2k-1)x\big)$），所以只需看 $[0, \frac\pi2]$。$T_m$ 在 $]0, \frac\pi2]$ 中的临界点是 $x_j = \frac{j\pi}{2m}$（$1 \le j \le m$），$j$ 奇时 $T_m'$ 由正变负（局部极大）。对奇数 $j$（$j + 2 \le m$），
+$$T_m(x_{j+2}) - T_m(x_j) = \frac2\pi\int_{x_j}^{x_{j+2}}\frac{\sin 2mx}{\sin x}\,\dd x < 0,$$
+因为 $[x_j, x_{j+1}]$ 上的负的部分经平移 $x \mapsto x + \frac{\pi}{2m}$ 后与 $[x_{j+1}, x_{j+2}]$ 上的正的部分有相同的 $\abs{\sin 2mx}$，而 $\frac{1}{\sin x}$ 在 $]0, \frac\pi2]$ 上严格递减。所以局部极大值依次减小，$\max_{[0, \pi]}T_m = T_m(x_1)$，$x_1 = \frac{\pi}{2m}$。（常规检查：$T_m(0) = 0$，端点 $\frac\pi2$ 处的值不超过相邻的极大值。）
+
+**第 4 步（Riemann 和）**　令 $s_k = \frac{(2k-1)\pi}{2m} = \big(k - \frac12\big)\frac{\pi}{m}$，则 $\frac{1}{2k-1} = \frac{\pi}{2m}\cdot\frac{1}{s_k}$，
+$$T_m(x_1) = \frac4\pi\sum_{k=1}^m\frac{\sin s_k}{2k - 1} = \frac2\pi\sum_{k=1}^m\frac{\sin s_k}{s_k}\cdot\frac\pi m.$$
+这是连续函数 $t \mapsto \frac{\sin t}{t}$（在 $0$ 处补值 $1$）在 $[0, \pi]$ 上步长 $\frac\pi m$ 的中点 Riemann 和，所以 $T_m(x_1) \to \frac2\pi\int_0^\pi\frac{\sin t}{t}\,\dd t$。
+
+**第 5 步（数值）**　（常规计算：$\int_0^\pi\frac{\sin t}{t}\,\dd t \approx 1.851937$。）极限 $\approx 1.178980$。从 $-1$ 到 $1$ 的跳跃高度为 $2$，越过 $1$ 的部分 $\approx 0.17898 \approx 8.95\% \times 2$。
+:::
+
+::: fr
+▷ Méthode : on calcule une forme close de la dérivée de $S_N f$, on repère le premier maximum $x_m = \frac{\pi}{2m}$, on montre que c'est le maximum global, puis on reconnaît dans $S_N f(x_m)$ une somme de Riemann.
+
+**Étape 1 (réduction)**　D'après {@fr:c5-ex-creneau}, les coefficients d'indice pair sont nuls, donc $S_{2m} f = S_{2m-1} f =: T_m$, avec
+$$T_m(x) = \frac{4}{\pi}\sum_{k=1}^{m}\frac{\sin\big((2k-1)x\big)}{2k-1}.$$
+Il suffit de montrer que $\max_{[0, \pi]} T_m \to \frac2\pi\int_0^\pi\frac{\sin t}{t}\,\dd t$ quand $m \to \infty$.
+
+**Étape 2 (dérivée)**　En sommant $2\sin x\cos\big((2k-1)x\big) = \sin(2kx) - \sin\big((2k-2)x\big)$ (somme télescopique), pour $x \notin \pi\Z$,
+$$T_m'(x) = \frac4\pi\sum_{k=1}^m\cos\big((2k-1)x\big) = \frac{2}{\pi}\cdot\frac{\sin 2mx}{\sin x}.$$
+
+**Étape 3 (point de maximum)**　On a $T_m(\pi - x) = T_m(x)$ (car $\sin\big((2k-1)(\pi - x)\big) = \sin\big((2k-1)x\big)$) ; il suffit donc d'étudier $[0, \frac\pi2]$. Les points critiques de $T_m$ dans $]0, \frac\pi2]$ sont les $x_j = \frac{j\pi}{2m}$ ($1 \le j \le m$) ; pour $j$ impair, $T_m'$ passe du positif au négatif (maximum local). Pour $j$ impair avec $j + 2 \le m$,
+$$T_m(x_{j+2}) - T_m(x_j) = \frac2\pi\int_{x_j}^{x_{j+2}}\frac{\sin 2mx}{\sin x}\,\dd x < 0,$$
+car la translation $x \mapsto x + \frac{\pi}{2m}$ envoie la partie négative sur $[x_j, x_{j+1}]$ sur la partie positive sur $[x_{j+1}, x_{j+2}]$ en conservant $\abs{\sin 2mx}$, tandis que $\frac{1}{\sin x}$ est strictement décroissante sur $]0, \frac\pi2]$. Les maxima locaux décroissent donc, et $\max_{[0, \pi]}T_m = T_m(x_1)$ avec $x_1 = \frac{\pi}{2m}$. (Vérification de routine : $T_m(0) = 0$, et la valeur en $\frac\pi2$ ne dépasse pas le maximum local voisin.)
+
+**Étape 4 (somme de Riemann)**　Posons $s_k = \frac{(2k-1)\pi}{2m} = \big(k - \frac12\big)\frac{\pi}{m}$ ; alors $\frac{1}{2k-1} = \frac{\pi}{2m}\cdot\frac{1}{s_k}$ et
+$$T_m(x_1) = \frac4\pi\sum_{k=1}^m\frac{\sin s_k}{2k - 1} = \frac2\pi\sum_{k=1}^m\frac{\sin s_k}{s_k}\cdot\frac\pi m.$$
+C'est la somme de Riemann aux points milieux, de pas $\frac\pi m$, de la fonction continue $t \mapsto \frac{\sin t}{t}$ (prolongée par $1$ en $0$) sur $[0, \pi]$ ; donc $T_m(x_1) \to \frac2\pi\int_0^\pi\frac{\sin t}{t}\,\dd t$.
+
+**Étape 5 (valeur numérique)**　(Calcul de routine : $\int_0^\pi\frac{\sin t}{t}\,\dd t \approx 1{,}851937$.) La limite vaut $\approx 1{,}178980$. Le saut de $-1$ à $1$ a pour hauteur $2$, et le dépassement au-dessus de $1$ vaut $\approx 0{,}17898 \approx 8{,}95\,\% \times 2$.
+:::
+
+::: rem
+**Gibbs 现象与 Dirichlet 定理不矛盾。** 对每个固定的 $x \in\, ]0, \pi[$，$S_N f(x) \to 1$；但取得最大值的点 $x_1 = \frac{\pi}{2m}$ 随 $N$ 向跳跃点 $0$ 移动。这正说明收敛不是一致的：$\sup_{]0, \pi[}\abs{S_N f - f} \to 0.17898\ldots \ne 0$。Fejér 平均没有这种过冲：由 $K_N \ge 0$ 与 $\frac{1}{2\pi}\int K_N = 1$，$\abs{\sigma_N f} \le \norm f_\infty = 1$。
+:::
+
+::: thm id=isoperimetrique zh="等周不等式" en="Isoperimetric inequality" fr="Inégalité isopérimétrique" ru="Изопериметрическое неравенство" lvl=2
+平面上长度为 $L$ 的分段 $\Cc^1$ 简单闭曲线所围面积 $A$ 满足 $4\pi A \le L^2$，等号当且仅当曲线是圆。
+:::
+
+::: fr
+L'aire $A$ du domaine délimité par une courbe fermée simple $\Cc^1$ par morceaux de longueur $L$ dans le plan vérifie $4\pi A \le L^2$, avec égalité si et seulement si la courbe est un cercle.
+:::
+
+::: sketch
+（Hurwitz，1901）▷ 思路：把曲线看成 $2\pi$ 周期的复值函数 $z(t)$。长度与面积都能用 Fourier 系数表示（分别用 Parseval 恒等式和它的双线性形式），两者之差是一个非负项的和。
+
+**第 1 步（规范化）**　用弧长 $s \in [0, L]$ 参数化曲线，再令 $t = \frac{2\pi s}{L}$，得到 $2\pi$ 周期、连续、分段 $\Cc^1$ 的 $z : \R \to \C$，$z = x + \ii y$，除有限个点外 $\abs{z'(t)} = \frac{L}{2\pi}$。取正向（逆时针），记 $c_n = c_n(z)$。
+
+**第 2 步（长度）**　由 {@coef-proprietes} 第 2 条，$c_n(z') = \ii n\,c_n$。由 Parseval 恒等式 {@parseval}，
+$$\frac{L^2}{4\pi^2} = \frac{1}{2\pi}\int_0^{2\pi}\abs{z'}^2 = \sum_{n \in \Z}n^2\abs{c_n}^2.$$
+
+**第 3 步（面积）**　$\overline{z}\,z' = (x - \ii y)(x' + \ii y')$，虚部为 $xy' - yx'$。由 {@aire-green}，$A = \frac12\int_0^{2\pi}(xy' - yx')\,\dd t = \frac12\operatorname{Im}\int_0^{2\pi}z'\,\overline z\,\dd t$。由 {@c5-parseval-polarise}，$\frac{1}{2\pi}\int_0^{2\pi}z'\,\overline z = \sum_n c_n(z')\overline{c_n} = \ii\sum_n n\abs{c_n}^2$，所以
+$$A = \frac12\operatorname{Im}\Big(2\pi\ii\sum_n n\abs{c_n}^2\Big) = \pi\sum_{n \in \Z}n\abs{c_n}^2.$$
+
+**第 4 步（比较）**　
+$$L^2 - 4\pi A = 4\pi^2\sum_{n \in \Z}(n^2 - n)\abs{c_n}^2 = 4\pi^2\sum_{n \in \Z}n(n - 1)\abs{c_n}^2 \ge 0,$$
+因为对每个整数 $n$，$n(n-1) \ge 0$。
+
+**第 5 步（等号）**　$n(n - 1) = 0 \iff n \in \{0, 1\}$。所以等号成立当且仅当 $c_n = 0$ 对一切 $n \notin \{0, 1\}$ 成立。此时 $z$ 与 $c_0 + c_1e_1$ 是有相同系数的连续函数，由 {@unicite-fourier}，$z(t) = c_0 + c_1\e^{\ii t}$：圆心 $c_0$、半径 $\abs{c_1} = \frac{L}{2\pi}$ 的圆。反之，对圆 $z = c_0 + c_1e_1$，只有 $c_0, c_1$ 可能非零，第 4 步的和为 $0$，等号成立。
+:::
+
+::: fr
+(Hurwitz, 1901) ▷ Méthode : on voit la courbe comme une fonction $2\pi$-périodique $z(t)$ à valeurs complexes. La longueur et l'aire s'expriment à l'aide des coefficients de Fourier (par l'égalité de Parseval et sa forme polarisée) ; leur différence est une somme de termes positifs.
+
+**Étape 1 (normalisation)**　On paramètre la courbe par l'abscisse curviligne $s \in [0, L]$, puis on pose $t = \frac{2\pi s}{L}$ : on obtient $z : \R \to \C$, $z = x + \ii y$, $2\pi$-périodique, continue et $\Cc^1$ par morceaux, avec $\abs{z'(t)} = \frac{L}{2\pi}$ sauf en un nombre fini de points. On oriente la courbe dans le sens direct et on note $c_n = c_n(z)$.
+
+**Étape 2 (longueur)**　D'après le point 2 de {@fr:coef-proprietes}, $c_n(z') = \ii n\,c_n$. D'après l'égalité de Parseval ({@fr:parseval}),
+$$\frac{L^2}{4\pi^2} = \frac{1}{2\pi}\int_0^{2\pi}\abs{z'}^2 = \sum_{n \in \Z}n^2\abs{c_n}^2.$$
+
+**Étape 3 (aire)**　$\overline{z}\,z' = (x - \ii y)(x' + \ii y')$ a pour partie imaginaire $xy' - yx'$. D'après {@fr:aire-green}, $A = \frac12\int_0^{2\pi}(xy' - yx')\,\dd t = \frac12\operatorname{Im}\int_0^{2\pi}z'\,\overline z\,\dd t$. D'après {@fr:c5-parseval-polarise}, $\frac{1}{2\pi}\int_0^{2\pi}z'\,\overline z = \sum_n c_n(z')\overline{c_n} = \ii\sum_n n\abs{c_n}^2$, donc
+$$A = \frac12\operatorname{Im}\Big(2\pi\ii\sum_n n\abs{c_n}^2\Big) = \pi\sum_{n \in \Z}n\abs{c_n}^2.$$
+
+**Étape 4 (comparaison)**
+$$L^2 - 4\pi A = 4\pi^2\sum_{n \in \Z}(n^2 - n)\abs{c_n}^2 = 4\pi^2\sum_{n \in \Z}n(n - 1)\abs{c_n}^2 \ge 0,$$
+car $n(n-1) \ge 0$ pour tout entier $n$.
+
+**Étape 5 (cas d'égalité)**　$n(n - 1) = 0 \iff n \in \{0, 1\}$. L'égalité a donc lieu si et seulement si $c_n = 0$ pour tout $n \notin \{0, 1\}$. Dans ce cas, $z$ et $c_0 + c_1e_1$ sont continues et ont les mêmes coefficients ; d'après {@fr:unicite-fourier}, $z(t) = c_0 + c_1\e^{\ii t}$ : c'est le cercle de centre $c_0$ et de rayon $\abs{c_1} = \frac{L}{2\pi}$. Réciproquement, pour un cercle $z = c_0 + c_1e_1$, seuls $c_0$ et $c_1$ peuvent être non nuls, la somme de l'étape 4 est nulle et l'égalité a lieu.
+:::
+
+::: thm id=weyl zh="Weyl 等分布定理" en="Weyl's equidistribution theorem" fr="Théorème d'équirépartition de Weyl" ru="Теорема Вейля о равномерном распределении" lvl=2
+记 $\{x\} = x - E(x)$ 为 $x$ 的小数部分。实数列 $(x_n)_{n \ge 1}$ 称为模 $1$ **等分布**，如果对每个区间 $[a, b] \subset [0, 1]$，
+$$\frac1N\#\{1 \le n \le N : \{x_n\} \in [a,b]\} \xrightarrow[N \to \infty]{} b - a.$$
+**Weyl 判别准则**：$(x_n)$ 模 $1$ 等分布，当且仅当对每个整数 $k \ne 0$，
+$$\frac{1}{N}\sum_{n=1}^N \e^{2\pi\ii k x_n} \xrightarrow[N\to\infty]{} 0.$$
+推论：若 $\alpha$ 是无理数，则 $(n\alpha)_{n \ge 1}$ 模 $1$ 等分布。
+:::
+
+::: fr
+On note $\{x\} = x - E(x)$ la partie fractionnaire de $x$. Une suite réelle $(x_n)_{n \ge 1}$ est dite **équirépartie modulo $1$** si pour tout intervalle $[a, b] \subset [0, 1]$,
+$$\frac1N\#\{1 \le n \le N : \{x_n\} \in [a,b]\} \xrightarrow[N \to \infty]{} b - a.$$
+**Critère de Weyl** : $(x_n)$ est équirépartie modulo $1$ si et seulement si, pour tout entier $k \ne 0$,
+$$\frac{1}{N}\sum_{n=1}^N \e^{2\pi\ii k x_n} \xrightarrow[N\to\infty]{} 0.$$
+Corollaire : si $\alpha$ est irrationnel, la suite $(n\alpha)_{n \ge 1}$ est équirépartie modulo $1$.
+:::
+
+::: sketch
+▷ 思路：等分布说的是「对区间的指示函数 $\chi$，$\frac1N\sum\chi(x_n) \to \int_0^1\chi$」，Weyl 条件说的是「对 $\e^{2\pi\ii kx}$ 同样成立」。两者之间的桥梁是 $1$ 周期连续函数：从指数函数到连续函数用 Fejér 定理（稠密性），从连续函数到指示函数用上下夹逼；反方向用阶梯函数逼近。
+
+记 $\mu_N(h) = \frac1N\sum_{n=1}^N h(x_n)$，$h$ 为 $1$ 周期函数。
+
+**(⇐) 第 1 步（三角多项式）**　若 $P(x) = \sum_{\abs k \le K}\alpha_k\e^{2\pi\ii kx}$，则 $\mu_N(P) = \alpha_0 + \sum_{k \ne 0}\alpha_k\,\mu_N(\e^{2\pi\ii k\cdot}) \to \alpha_0 = \int_0^1 P$。
+
+**第 2 步（连续函数）**　设 $g$ 是 $1$ 周期连续函数，$\eps > 0$。对 $t \mapsto g\big(\frac{t}{2\pi}\big) \in \Cc_{2\pi}$ 用 {@trig-dense}，得到上面形式的 $P$ 使 $\norm{g - P}_\infty \le \eps$。于是
+$$\Big|\mu_N(g) - \int_0^1 g\Big| \le \mu_N(\abs{g - P}) + \Big|\mu_N(P) - \int_0^1 P\Big| + \int_0^1\abs{P - g} \le 2\eps + \Big|\mu_N(P) - \int_0^1 P\Big|,$$
+由第 1 步，$N$ 充分大时 $\le 3\eps$。
+
+**第 3 步（区间）**　设 $[a, b] \subset [0, 1]$，$\chi(x) = \mathbf{1}_{[a,b]}(\{x\})$，$\eps \in\, ]0, \frac14[$。（常规构造：梯形函数。）取 $1$ 周期连续函数 $g_- \le \chi \le g_+$：$g_+(x) = \max\big(0, 1 - \frac1\eps\operatorname{dist}(x, [a,b] + \Z)\big)$；$b - a > 2\eps$ 时 $g_-$ 在 $[a + \eps, b - \eps]$ 上为 $1$、在 $]a, b[$ 之外为 $0$、中间线性，否则 $g_- = 0$。则 $\int_0^1 g_+ \le b - a + 2\eps$，$\int_0^1 g_- \ge b - a - 2\eps$。由 $\mu_N(g_-) \le \mu_N(\chi) \le \mu_N(g_+)$ 和第 2 步，
+$$b - a - 2\eps \le \liminf_N\mu_N(\chi) \le \limsup_N\mu_N(\chi) \le b - a + 2\eps.$$
+$\eps$ 任意，所以 $\mu_N(\chi) \to b - a$。
+
+**(⇒)**　由等分布与线性，$\mu_N(h) \to \int_0^1 h$ 对 $[0,1[$ 上的阶梯函数（周期延拓）成立（单点 $\{c\} = [c, c]$ 的频率趋于 $0$，所以开闭端点无关）。对 $1$ 周期连续函数 $g$，用阶梯函数一致逼近（{@escalier}）并作 $\eps/3$ 论证；最后取 $g(x) = \cos 2\pi kx$ 与 $\sin 2\pi kx$。
+
+**推论**　设 $\alpha \notin \Q$，$k \ne 0$。则 $k\alpha \notin \Z$，$q = \e^{2\pi\ii k\alpha} \ne 1$，几何级数求和给出
+$$\Big|\frac1N\sum_{n=1}^N \e^{2\pi\ii kn\alpha}\Big| = \frac1N\Big|q\,\frac{q^N - 1}{q - 1}\Big| \le \frac1N\cdot\frac{2}{\abs{1 - \e^{2\pi\ii k\alpha}}} \xrightarrow[N \to \infty]{} 0.$$
+由 Weyl 判别准则，$(n\alpha)$ 模 $1$ 等分布。
+:::
+
+::: fr
+▷ Méthode : l'équirépartition dit que « pour l'indicatrice $\chi$ d'un intervalle, $\frac1N\sum\chi(x_n) \to \int_0^1\chi$ », le critère de Weyl dit la même chose pour $\e^{2\pi\ii kx}$. Le pont entre les deux est la classe des fonctions continues $1$-périodiques : des exponentielles aux fonctions continues par le théorème de Fejér (densité), des fonctions continues aux indicatrices par encadrement ; dans l'autre sens, par approximation par des fonctions en escalier.
+
+Notons $\mu_N(h) = \frac1N\sum_{n=1}^N h(x_n)$ pour $h$ $1$-périodique.
+
+**(⇐) Étape 1 (polynômes trigonométriques)**　Si $P(x) = \sum_{\abs k \le K}\alpha_k\e^{2\pi\ii kx}$, alors $\mu_N(P) = \alpha_0 + \sum_{k \ne 0}\alpha_k\,\mu_N(\e^{2\pi\ii k\cdot}) \to \alpha_0 = \int_0^1 P$.
+
+**Étape 2 (fonctions continues)**　Soit $g$ continue $1$-périodique et $\eps > 0$. En appliquant {@fr:trig-dense} à $t \mapsto g\big(\frac{t}{2\pi}\big) \in \Cc_{2\pi}$, on obtient $P$ de la forme précédente avec $\norm{g - P}_\infty \le \eps$. Alors
+$$\Big|\mu_N(g) - \int_0^1 g\Big| \le \mu_N(\abs{g - P}) + \Big|\mu_N(P) - \int_0^1 P\Big| + \int_0^1\abs{P - g} \le 2\eps + \Big|\mu_N(P) - \int_0^1 P\Big|,$$
+qui est $\le 3\eps$ pour $N$ assez grand d'après l'étape 1.
+
+**Étape 3 (intervalles)**　Soit $[a, b] \subset [0, 1]$, $\chi(x) = \mathbf{1}_{[a,b]}(\{x\})$ et $\eps \in\, ]0, \frac14[$. (Construction de routine : fonctions trapèzes.) On choisit des fonctions continues $1$-périodiques $g_- \le \chi \le g_+$ : $g_+(x) = \max\big(0, 1 - \frac1\eps\operatorname{dist}(x, [a,b] + \Z)\big)$ ; si $b - a > 2\eps$, $g_-$ vaut $1$ sur $[a + \eps, b - \eps]$, $0$ hors de $]a, b[$ et est affine entre les deux ; sinon $g_- = 0$. Alors $\int_0^1 g_+ \le b - a + 2\eps$ et $\int_0^1 g_- \ge b - a - 2\eps$. Comme $\mu_N(g_-) \le \mu_N(\chi) \le \mu_N(g_+)$, l'étape 2 donne
+$$b - a - 2\eps \le \liminf_N\mu_N(\chi) \le \limsup_N\mu_N(\chi) \le b - a + 2\eps.$$
+$\eps$ étant arbitraire, $\mu_N(\chi) \to b - a$.
+
+**(⇒)**　Par équirépartition et linéarité, $\mu_N(h) \to \int_0^1 h$ pour toute fonction en escalier sur $[0, 1[$ (prolongée par périodicité) : un point $\{c\} = [c, c]$ a une fréquence qui tend vers $0$, donc la nature des extrémités est sans importance. Pour $g$ continue $1$-périodique, on approche uniformément $g$ par des fonctions en escalier ({@fr:escalier}) et on fait un argument en $\eps/3$ ; on prend enfin $g(x) = \cos 2\pi kx$ et $\sin 2\pi kx$.
+
+**Corollaire**　Soit $\alpha \notin \Q$ et $k \ne 0$. Alors $k\alpha \notin \Z$, donc $q = \e^{2\pi\ii k\alpha} \ne 1$, et la somme géométrique donne
+$$\Big|\frac1N\sum_{n=1}^N \e^{2\pi\ii kn\alpha}\Big| = \frac1N\Big|q\,\frac{q^N - 1}{q - 1}\Big| \le \frac1N\cdot\frac{2}{\abs{1 - \e^{2\pi\ii k\alpha}}} \xrightarrow[N \to \infty]{} 0.$$
+D'après le critère de Weyl, $(n\alpha)$ est équirépartie modulo $1$.
+:::
+
+::: rem
+**无理性不能去掉。** 若 $\alpha = \frac pq$（$q \ge 1$），则 $\{n\alpha\}$ 只取 $\{0, \frac1q, \dots, \frac{q-1}{q}\}$ 中的值，区间 $\big[\frac{1}{3q}, \frac{2}{3q}\big]$ 不含任何 $\{n\alpha\}$，频率为 $0 \ne \frac{1}{3q}$。对应地，取 $k = q$，$\e^{2\pi\ii qn\alpha} = 1$，Weyl 和恒等于 $1$。
+:::
+
+::: q
+$2^n$（$n \ge 1$）的十进制首位数字是 $7$ 的频率是多少？
+:::
+
+::: ans
+$2^n$ 的首位是 $d$，当且仅当存在整数 $m$ 使 $d\cdot 10^m \le 2^n < (d+1)\cdot 10^m$，即 $\log_{10}d \le \{n\log_{10}2\} < \log_{10}(d + 1)$。$\log_{10}2$ 是无理数（若 $\log_{10}2 = \frac ab$，则 $2^b = 10^a$，但右边被 $5$ 整除而左边不能）。由 Weyl 定理（半开区间与闭区间只差一个点，频率相同），频率为 $\log_{10}\frac{d+1}{d}$；$d = 7$ 时为 $\log_{10}\frac87 \approx 0.058$。这就是 **Benford 定律**的一个严格版本。
+:::
+
+::: rem zh="热方程"
+Fourier 的原始问题：$[0, \pi]$ 上的杆，两端温度为 $0$，初始温度 $f$。热方程 $\partial_t u = \partial_{xx} u$ 的分离变量解为
+$$u(t, x) = \sum_{n \ge 1} b_n\,\e^{-n^2 t}\sin nx,$$
+其中 $b_n$ 是 $f$ 的奇延拓的 Fourier 系数。对 $t \ge t_0 > 0$，$\abs{n^k b_n\e^{-n^2 t}} \le 2\norm f_\infty\,n^k\e^{-n^2 t_0}$，右边可和，所以由 {@c5-regularite} 第 2 条的论证，级数及其对 $x$、对 $t$ 的各阶导数都正规收敛，$u$ 是光滑的，即使 $f$ 不连续。$\R$ 上的版本由 $f$ 与 Gauss 型热核的卷积给出，研究它的工具正是第 7 章的含参积分。
+:::
+
+## 收敛的边界
+
+Fejér 定理说连续函数的 Fourier 级数「Cesàro 可和」；Dirichlet 定理要求分段 $\Cc^1$。两者之间的空隙是真实存在的：仅有连续性，部分和可以发散。本节先给出发散的「定量原因」（Lebesgue 常数无界），再陈述几个只能从文献中查证的深刻结果。
+
+::: prop id=c5-lebesgue zh="Lebesgue 常数的下界" en="Lower bound for the Lebesgue constants" fr="Minoration des constantes de Lebesgue" ru="Оценка снизу констант Лебега" lvl=2
+**Lebesgue 常数** $L_N = \dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi}\abs{D_N(t)}\,\dd t$ 满足
+$$L_N \ge \frac{4}{\pi^2}\sum_{k=1}^N\frac1k \ge \frac{4}{\pi^2}\ln(N + 1) \xrightarrow[N \to \infty]{} +\infty.$$
+:::
+
+::: fr
+Les **constantes de Lebesgue** $L_N = \dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi}\abs{D_N(t)}\,\dd t$ vérifient
+$$L_N \ge \frac{4}{\pi^2}\sum_{k=1}^N\frac1k \ge \frac{4}{\pi^2}\ln(N + 1) \xrightarrow[N \to \infty]{} +\infty.$$
+:::
+
+::: sketch
+▷ 思路：用 $\abs{\sin\frac t2} \le \frac{\abs t}{2}$ 把 $\abs{D_N}$ 换成 $\frac{2\abs{\sin((N + 1/2)t)}}{t}$，换元后在每个长为 $\pi$ 的区间上分别估计，得到调和级数。
+
+**第 1 步（化简）**　$D_N$ 是偶函数，$L_N = \frac1\pi\int_0^\pi\abs{D_N}$。对 $0 < t \le \pi$，$0 < \sin\frac t2 \le \frac t2$，所以 $\abs{D_N(t)} \ge \frac{2\abs{\sin((N + \frac12)t)}}{t}$。
+
+**第 2 步（换元）**　令 $u = (N + \frac12)t$：
+$$L_N \ge \frac2\pi\int_0^\pi\frac{\abs{\sin((N + \frac12)t)}}{t}\,\dd t = \frac2\pi\int_0^{(N + \frac12)\pi}\frac{\abs{\sin u}}{u}\,\dd u \ge \frac2\pi\sum_{k=0}^{N-1}\int_{k\pi}^{(k+1)\pi}\frac{\abs{\sin u}}{u}\,\dd u.$$
+
+**第 3 步（逐段估计）**　在 $[k\pi, (k+1)\pi]$ 上 $\frac1u \ge \frac{1}{(k+1)\pi}$，且 $\int_{k\pi}^{(k+1)\pi}\abs{\sin u}\,\dd u = 2$。所以 $L_N \ge \frac2\pi\sum_{k=0}^{N-1}\frac{2}{(k+1)\pi} = \frac{4}{\pi^2}\sum_{k=1}^N\frac1k$。
+
+**第 4 步（调和级数）**　$\frac1k \ge \int_k^{k+1}\frac{\dd t}{t}$（{@serie-integrale}），求和得 $\sum_{k=1}^N\frac1k \ge \ln(N + 1)$。
+:::
+
+::: fr
+▷ Méthode : l'inégalité $\abs{\sin\frac t2} \le \frac{\abs t}{2}$ permet de remplacer $\abs{D_N}$ par $\frac{2\abs{\sin((N + 1/2)t)}}{t}$ ; après changement de variable, on minore sur chaque intervalle de longueur $\pi$ et la série harmonique apparaît.
+
+**Étape 1 (réduction)**　$D_N$ est paire, donc $L_N = \frac1\pi\int_0^\pi\abs{D_N}$. Pour $0 < t \le \pi$, $0 < \sin\frac t2 \le \frac t2$, donc $\abs{D_N(t)} \ge \frac{2\abs{\sin((N + \frac12)t)}}{t}$.
+
+**Étape 2 (changement de variable)**　Avec $u = (N + \frac12)t$ :
+$$L_N \ge \frac2\pi\int_0^\pi\frac{\abs{\sin((N + \frac12)t)}}{t}\,\dd t = \frac2\pi\int_0^{(N + \frac12)\pi}\frac{\abs{\sin u}}{u}\,\dd u \ge \frac2\pi\sum_{k=0}^{N-1}\int_{k\pi}^{(k+1)\pi}\frac{\abs{\sin u}}{u}\,\dd u.$$
+
+**Étape 3 (minoration morceau par morceau)**　Sur $[k\pi, (k+1)\pi]$, $\frac1u \ge \frac{1}{(k+1)\pi}$ et $\int_{k\pi}^{(k+1)\pi}\abs{\sin u}\,\dd u = 2$. Donc $L_N \ge \frac2\pi\sum_{k=0}^{N-1}\frac{2}{(k+1)\pi} = \frac{4}{\pi^2}\sum_{k=1}^N\frac1k$.
+
+**Étape 4 (série harmonique)**　$\frac1k \ge \int_k^{k+1}\frac{\dd t}{t}$ ({@fr:serie-integrale}) ; en sommant, $\sum_{k=1}^N\frac1k \ge \ln(N + 1)$.
+:::
+
+::: rem
+更精确地，$L_N = \frac{4}{\pi^2}\ln N + O(1)$（数值上 $L_N - \frac{4}{\pi^2}\ln N \to 1.27\ldots$；例如 $L_{10} \approx 2.223$，$L_{200} \approx 3.419$）。$L_N$ 正是线性泛函 $f \mapsto S_N f(0)$ 在 $(\Cc_{2\pi}, \norm\cdot_\infty)$ 上的算子范数（{@norme-subordonnee}），见下面的「想一想」。
+:::
+
+::: thm id=du-bois-reymond zh="du Bois-Reymond 反例" en="du Bois-Reymond's counterexample" fr="Contre-exemple de du Bois-Reymond" ru="Пример дю Буа-Реймона" lvl=3 ref="Katznelson, *An Introduction to Harmonic Analysis*，第 II 章"
+存在连续的 $2\pi$ 周期函数，其 Fourier 级数在某一点发散（1873）。由 Baire 定理还可以证明：这样的函数在 $\Cc(\T)$ 中构成稠密 $G_\delta$ 集（Banach–Steinhaus 定理的应用，见 {@baire}）。
+:::
+
+::: fr
+Il existe une fonction continue $2\pi$-périodique dont la série de Fourier diverge en un point (1873). Grâce au théorème de Baire, on montre même que ces fonctions forment un $G_\delta$ dense de $\Cc(\T)$ (application du théorème de Banach–Steinhaus, voir {@fr:baire}).
+:::
+
+::: q
+为什么 $L_N \to \infty$ 「迫使」存在 Fourier 级数在 $0$ 处发散的连续函数？
+:::
+
+::: ans
+线性泛函 $\Phi_N(f) = S_N f(0) = \frac{1}{2\pi}\int_{-\pi}^{\pi}f(t)D_N(t)\,\dd t$（用了 $D_N$ 是偶函数）满足 $\abs{\Phi_N(f)} \le L_N\norm f_\infty$；取连续函数 $f$ 逼近 $\operatorname{sgn}D_N$（只在 $D_N$ 的有限个零点附近修改），可以使 $\abs{\Phi_N(f)}$ 任意接近 $L_N$，所以 $\Phi_N$ 的算子范数恰为 $L_N$。**一致有界原理**（Banach–Steinhaus，Baire 定理 {@baire} 的推论）说：若对每个 $f \in \Cc_{2\pi}$，$\sup_N\abs{\Phi_N(f)} < \infty$，则 $\sup_N L_N < \infty$。这与 {@c5-lebesgue} 矛盾，所以必有某个连续 $f$ 使 $(S_N f(0))$ 无界，从而发散。这个论证只证明存在性，不构造函数。
+:::
+
+::: thm id=kolmogorov-carleson zh="Kolmogorov 与 Carleson 定理" en="Kolmogorov's and Carleson's theorems" fr="Théorèmes de Kolmogorov et de Carleson" ru="Теоремы Колмогорова и Карлесона" lvl=3 ref="Kolmogorov (1926)；Carleson, *Acta Math.* 116 (1966)；Grafakos, *Classical Fourier Analysis*"
+Kolmogorov（1926）：存在 $L^1$ 函数，其 Fourier 级数**处处**发散。Carleson（1966）：$L^2$ 函数（特别是连续函数）的 Fourier 级数**几乎处处**收敛。Hunt（1968）推广到 $L^p$，$p > 1$。
+:::
+
+::: fr
+Kolmogorov (1926) : il existe une fonction de $L^1$ dont la série de Fourier diverge **partout**. Carleson (1966) : la série de Fourier d'une fonction de $L^2$ (en particulier d'une fonction continue) converge **presque partout**. Hunt (1968) a étendu ce résultat à $L^p$, $p > 1$.
+:::
+
+::: open zh="未解决问题"
+**$\big(\frac32\big)^n$ 模 $1$ 的分布。** 数列 $\{(3/2)^n\}$（小数部分）在 $[0, 1]$ 中是否稠密？是否等分布？都未知。已知对几乎所有 $\alpha > 1$，$(\alpha^n)$ 模 $1$ 等分布（Koksma，1935），但对 $\frac32$、$\e$、$\pi$ 这样的具体数都无法判断。（反过来，黄金分割比 $\varphi$ 这类 Pisot 数满足 $\{\varphi^n\} \to 0$ 或 $1$，可以判定不等分布。）与之相关的是 **Mahler 的 Z 数问题**：是否存在 $\xi > 0$，使 $\{\xi(3/2)^n\} \in [0, \frac12[$ 对一切 $n$ 成立？
+:::
+
+## 方法总结
+
+本章的方法按「想证明什么」归类如下。
+
+**如何计算 Fourier 系数**
+
+1. 先看奇偶性：偶函数只算 $a_n$，奇函数只算 $b_n$，并化成 $[0, \pi]$ 上积分的两倍（{@coef-proprietes} 第 1 条）；积分区间可以换成任何一个周期（{@c5-periode}）。
+2. 优先算复系数 $c_n$：被积函数是 $f(t)\e^{-\ii nt}$，通常分部积分一次就够（{@c5-ex-scie}），再用 {@c5-forme-reelle} 换成 $a_n, b_n$。
+3. 若已知 $f'$ 的系数：$f$ 连续且分段 $\Cc^1$ 时 $c_n(f) = \frac{c_n(f')}{\ii n}$（{@coef-proprietes} 第 2 条）；$f$ 有跳跃时要加跳跃项（§1 的「想一想」）。例：三角波由方波得到（{@c5-ex-triangle}）。
+4. 三角多项式（如 $\cos^3x$）直接展开成 $\e^{\ii nx}$ 的组合，读出系数，不必积分（{@orthonormal} 第 3 条）。
+5. 检验：$c_n \to 0$（{@riemann-lebesgue}）；$\sum\abs{c_n}^2 = \norm f_2^2$（{@parseval}）；衰减速度与光滑性相符（{@c5-regularite}）。
+
+**如何判断 Fourier 级数的收敛**
+
+1. 均方收敛：对一切 $f \in \mathcal{CM}_{2\pi}$ 成立（{@parseval}），无需验证。
+2. 逐点收敛：$f$ 分段 $\Cc^1$ ⟹ $S_N f(x) \to \frac12\big(f(x^+) + f(x^-)\big)$（{@dirichlet-fourier}）；只在 $x$ 附近正则也够（{@c5-localisation}）；更弱的条件见 {@c5-dini-jordan}。
+3. 一致收敛：$f$ 连续且分段 $\Cc^1$ ⟹ 正规收敛（{@cv-normale-fourier}）；或直接验证 $\sum\abs{c_n} < \infty$。
+4. 只需要平均值收敛：$f$ 连续 ⟹ $\sigma_N f$ 一致收敛（{@fejer}）。
+
+**如何证明「不成立」**
+
+1. 否定一致收敛：先用 Dirichlet 定理求出逐点极限，若它不连续，而部分和连续，则收敛不一致（{@cont-limite-unif}）；或直接在跳跃点附近计算 $\sup\abs{S_N f - f}$（{@gibbs}）。
+2. 否定「$(\gamma_n)$ 是某个 $f \in \mathcal{CM}_{2\pi}$ 的系数」：$\sum\abs{\gamma_n}^2 = \infty$ 时用 Bessel 不等式（§2 的「想一想」）；否则看 Fejér 平均是否有界（{@c5-cex-riesz-fischer}）。
+3. 否定「连续 ⟹ 部分和收敛」：Lebesgue 常数无界（{@c5-lebesgue}）与 du Bois-Reymond 反例（{@du-bois-reymond}）。
+
+**如何用 Fourier 级数求数值级数的和**
+
+1. 选一个系数含 $\frac{1}{n^p}$ 的函数，在连续点用 Dirichlet 定理取特殊值（{@bale} (c)；§6 的「想一想」：Leibniz 级数）。
+2. 用 Parseval 恒等式得到 $\sum\abs{c_n}^2$（{@bale} (a)(b)；§4 的「想一想」）。
+3. 奇偶分开：$\sum_{n\ \text{偶}}\frac{1}{n^p} = 2^{-p}\zeta(p)$，由奇数项之和解出 $\zeta(p)$。
+
+::: rem zh="常见错误"
+1. 「$f$ 连续 ⟹ Fourier 级数收敛到 $f$」：错。连续只保证 $\sigma_N f \to f$（{@fejer}）；$S_N f$ 可以在某点发散（{@du-bois-reymond}）。
+2. 对不连续的函数用 $c_n(f') = \ii n\,c_n(f)$：方波 $f_1' = 0$（几乎处处），但 $c_n(f_1) \ne 0$。
+3. 在跳跃点写 $S_N f(x) \to f(x)$：极限是左右极限的平均，与 $f(x)$ 的取值无关（{@dirichlet-fourier} 后的注）。
+4. Parseval 实形式中把 $\frac{\abs{a_0}^2}{4}$ 写成 $\frac{\abs{a_0}^2}{2}$（常数项是 $\frac{a_0}{2}$）。
+5. 「$\sum\abs{c_n} = \infty$ ⟹ 不一致收敛」：错，$\sum_{n \ge 2}\frac{\sin nx}{n\ln n}$ 是反例（{@cv-normale-fourier} 后的注）。
+6. 把均方收敛当作逐点收敛：改变 $f$ 在一点的值不改变 $S_N f$（{@parseval} 后的注）。
+:::
+
+::: read
+- Г. М. Фихтенгольц,《Курс дифференциального и интегрального исчисления》，第 III 卷：«Ряды Фурье»。古典处理最完整的教材之一：Dirichlet 积分、局部化原理、Dini 与 Dirichlet–Jordan 判别法、Fejér 求和、Gibbs 现象都有详细计算，适合查本章每个结论的另一种写法。
+- В. А. Зорич,《Математический анализ》，第 II 卷：«Ряд Фурье и преобразование Фурье»。从内积空间与正交系的角度讲 Fourier 级数（与本章 Bessel–Parseval 的路线一致），并自然过渡到 Fourier 变换。
+- Б. П. Демидович,《Сборник задач и упражнений по математическому анализу》：«Ряды Фурье»。大量计算系数、用 Parseval 与 Dirichlet 定理求级数和的习题，按难度排列，适合练计算。
+- X. Gourdon,《Les maths en tête : Analyse》：« Séries de Fourier »。法国 MP / L2 风格的简洁证明与经典习题（Parseval 的应用、正规收敛、Fejér），写法最接近法国考试的要求。
+- E. M. Stein, R. Shakarchi,《Fourier Analysis: An Introduction》（Princeton Lectures in Analysis, I）：convergence of Fourier series; applications (isoperimetric inequality, Weyl equidistribution, heat equation)。本章 §6 的三个应用在这里都有完整而清楚的证明。
+- Y. Katznelson,《An Introduction to Harmonic Analysis》：convergence and divergence of Fourier series。du Bois-Reymond 型反例、Kolmogorov 反例与 Banach–Steinhaus 论证的标准参考。
+:::
+
+::: glossary
+| 中文 | Français | English | Русский |
+|---|---|---|---|
+| Fourier 系数 | coefficient de Fourier (m.) | Fourier coefficient | коэффициент Фурье |
+| Fourier 级数 | série de Fourier (f.) | Fourier series | ряд Фурье |
+| 部分和 | somme partielle (f.) | partial sum | частичная сумма |
+| 三角多项式 | polynôme trigonométrique (m.) | trigonometric polynomial | тригонометрический многочлен |
+| 周期函数 | fonction périodique (f.) | periodic function | периодическая функция |
+| 分段连续函数 | fonction continue par morceaux (f.) | piecewise continuous function | кусочно-непрерывная функция |
+| 分段 $\Cc^1$ 函数 | fonction de classe $\Cc^1$ par morceaux (f.) | piecewise $C^1$ function | кусочно-гладкая функция |
+| 分割 | subdivision (f.) | subdivision, partition | разбиение |
+| 单侧极限 | limite à droite / à gauche (f.) | one-sided limit | односторонний предел |
+| 跳跃 | saut (m.) | jump | скачок |
+| 偶函数 / 奇函数 | fonction paire / impaire (f.) | even / odd function | чётная / нечётная функция |
+| 内积 | produit scalaire (m.) | inner product | скалярное произведение |
+| 半范数 | semi-norme (f.) | seminorm | полунорма |
+| 正交规范族 | famille orthonormale (f.) | orthonormal family | ортонормированная система |
+| 正交投影 | projection orthogonale (f.) | orthogonal projection | ортогональная проекция |
+| 最佳逼近 | meilleure approximation (f.) | best approximation | наилучшее приближение |
+| Bessel 不等式 | inégalité de Bessel (f.) | Bessel's inequality | неравенство Бесселя |
+| Parseval 恒等式 | égalité de Parseval (f.) | Parseval's identity | равенство Парсеваля |
+| 完备的正交系 | famille orthonormale totale (f.) | complete orthonormal system | полная ортонормированная система |
+| Riemann–Lebesgue 引理 | lemme de Riemann–Lebesgue (m.) | Riemann–Lebesgue lemma | лемма Римана — Лебега |
+| 阶梯函数 | fonction en escalier (f.) | step function | ступенчатая функция |
+| Dirichlet 核 | noyau de Dirichlet (m.) | Dirichlet kernel | ядро Дирихле |
+| Fejér 核 | noyau de Fejér (m.) | Fejér kernel | ядро Фейера |
+| Cesàro 平均 | moyenne de Cesàro (f.) | Cesàro mean | среднее Чезаро |
+| 卷积 | produit de convolution (m.) | convolution | свёртка |
+| 逼近单位元 | approximation de l'unité (f.) | approximate identity | аппроксимативная единица |
+| 一致连续性 | continuité uniforme (f.) | uniform continuity | равномерная непрерывность |
+| 稠密性 | densité (f.) | density | плотность |
+| 均方收敛 | convergence en moyenne quadratique (f.) | mean-square convergence | сходимость в среднем квадратичном |
+| 逐点收敛 | convergence simple (f.) | pointwise convergence | поточечная сходимость |
+| 正规收敛 | convergence normale (f.) | normal convergence | нормальная сходимость |
+| Dirichlet 定理 | théorème de Dirichlet (m.) | Dirichlet's theorem | теорема Дирихле |
+| 局部化原理 | principe de localisation (m.) | localization principle | принцип локализации |
+| 有界变差函数 | fonction à variation bornée (f.) | function of bounded variation | функция ограниченной вариации |
+| Gibbs 现象 | phénomène de Gibbs (m.) | Gibbs phenomenon | явление Гиббса |
+| Lebesgue 常数 | constante de Lebesgue (f.) | Lebesgue constant | константа Лебега |
+| 方波 | signal créneau (m.) | square wave | прямоугольная волна (меандр) |
+| 锯齿波 | signal en dents de scie (m.) | sawtooth wave | пилообразная функция |
+| 等周不等式 | inégalité isopérimétrique (f.) | isoperimetric inequality | изопериметрическое неравенство |
+| 等分布 | équirépartition (f.) | equidistribution | равномерное распределение |
+| Weyl 判别准则 | critère de Weyl (m.) | Weyl's criterion | критерий Вейля |
+| 热方程 | équation de la chaleur (f.) | heat equation | уравнение теплопроводности |
+| 取极限 | passer à la limite | pass to the limit | перейти к пределу |
+| 分部积分 | intégrer par parties | integrate by parts | интегрировать по частям |
 :::

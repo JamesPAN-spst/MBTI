@@ -133,7 +133,7 @@ $f(x, y) = \dfrac{x^3 + y^3}{x^2 + y^2}$，$f(0,0) = 0$，在原点连续吗？$
 :::
 
 ::: ans
-$f$ 连续：$\abs{x}^3 = \abs x \cdot x^2 \le \abs x\,(x^2 + y^2)$，同理 $\abs y^3 \le \abs y\,(x^2 + y^2)$，所以 $\abs{f(x, y)} \le \abs x + \abs y \le 2\norm{(x, y)}_2 \to 0$。
+$f$ 连续：$\abs{x}^3 = \abs x \cdot x^2 \le \abs x\,(x^2 + y^2)$，把 $x, y$ 对调得 $\abs y^3 \le \abs y\,(x^2 + y^2)$，所以 $\abs{f(x, y)} \le \abs x + \abs y \le 2\norm{(x, y)}_2 \to 0$。
 
 $g$ 在原点没有极限（无论 $g(0,0)$ 如何定义）：沿 $(t, 0)$ 得 $1$，沿 $(0, t)$ 得 $-1$，由 {@c9-lem-chemins} 即得。极坐标下 $g = \cos 2\theta$，只依赖 $\theta$。
 :::
@@ -183,7 +183,7 @@ On écrit $f(a + h) = f(a) + L(h) + o(\norm h)$. L'application $L$ est unique ({
 两式相加得 $2\norm v = 0$，与 $v \ne 0$ 矛盾。所以 $f$ 在 $0$ 不可微。
 :::
 
-::: prop id=diff-prop lvl=1
+::: prop id=diff-prop zh="微分的基本性质" en="Basic properties of the differential" fr="Propriétés de la différentielle" ru="Свойства дифференциала" lvl=1
 设 $f : U \to F$，$a \in U$。
 
 1. 微分若存在则唯一。
@@ -365,7 +365,7 @@ $$\partial_xg(0, 0) = \lim_{t \to 0}\frac{g(t, 0) - g(0, 0)}{t} = 0,\qquad \part
 但 $g$ 在原点不连续（沿 $(t, t)$ 恒为 $\frac12$），由 {@diff-prop} 第 2 条，$g$ 在原点不可微。偏导数只看两个坐标轴方向，对其他方向一无所知。
 :::
 
-::: prop id=gradient-geometrie zh="梯度的几何意义" lvl=1
+::: prop id=gradient-geometrie zh="梯度的几何意义" en="Geometric meaning of the gradient" fr="Interprétation géométrique du gradient" ru="Геометрический смысл градиента" lvl=1
 设 $E$ 是 Euclid 空间，$f : U \to \R$ 在 $a$ 可微，$\nabla f(a) \ne 0$。
 
 1. 在所有单位向量 $v$ 中，方向导数 $D_vf(a)$ 当且仅当 $v = \frac{\nabla f(a)}{\norm{\nabla f(a)}}$ 时最大，最大值为 $\norm{\nabla f(a)}$。
@@ -605,7 +605,7 @@ $$\Big(\frac{\partial f}{\partial x}\Big)^2 + \Big(\frac{\partial f}{\partial y}
 固定 $x \ne 0$，令 $\varphi(t) = f(tx)$，$t > 0$。一方面 $\varphi(t) = t^\alpha f(x)$，所以 $\varphi'(1) = \alpha f(x)$。另一方面 $t \mapsto tx$ 可导、导数为 $x$，由链式法则（上面注中的特例 1），$\varphi'(1) = \dd f(x)(x) = \ps{\nabla f(x), x}$。两者相等。例：$f(x, y) = \sqrt{x^2 + y^2}$，$\alpha = 1$，$x\partial_xf + y\partial_yf = \frac{x^2 + y^2}{\sqrt{x^2 + y^2}} = f$。
 :::
 
-::: prop id=diff-bilineaire zh="双线性映射与乘积" lvl=1
+::: prop id=diff-bilineaire zh="双线性映射与乘积" en="Differential of bilinear maps and products" fr="Différentielle d’une application bilinéaire, d’un produit" ru="Дифференцирование билинейных отображений и произведений" lvl=1
 设 $E_1, E_2$ 是有限维赋范空间，$E_1 \times E_2$ 带范数 $\norm{(h, k)} = \max(\norm h, \norm k)$。
 
 1. 线性映射 $L \in \Lin(E, F)$ 处处可微，$\dd L(a) = L$。
@@ -676,7 +676,7 @@ $$(I + K)^{-1} = \sum_{m \ge 0}(-K)^m,\qquad \norm{(I + K)^{-1}} \le \frac1{1 - 
 
 **第 2 步（$S$ 是逆）**　令 $S_N = \sum_{m=0}^N(-K)^m$。则
 $$(I + K)S_N = \sum_{m=0}^N(-K)^m - \sum_{m=0}^N(-K)^{m+1} = I - (-K)^{N+1},$$
-同样 $S_N(I + K) = I - (-K)^{N+1}$。$\norm{(-K)^{N+1}} \le \norm K^{N+1} \to 0$，而矩阵乘法连续（{@diff-bilineaire} 第 2 步的界），令 $N \to \infty$ 得 $(I + K)S = S(I + K) = I$。
+$S_N$ 是 $K$ 的多项式，与 $K$ 可交换，所以 $S_N(I + K) = (I + K)S_N = I - (-K)^{N+1}$。$\norm{(-K)^{N+1}} \le \norm K^{N+1} \to 0$，而矩阵乘法连续（{@diff-bilineaire} 第 2 步的界），令 $N \to \infty$ 得 $(I + K)S = S(I + K) = I$。
 
 **第 3 步（余项的界）**　$S - I + K = \sum_{m \ge 2}(-K)^m = K^2S$（对部分和 $\sum_{m=2}^{N+2}(-K)^m = K^2S_N$ 取极限）。所以 $\norm{S - I + K} \le \norm K^2\norm S \le \frac{\norm K^2}{1 - \norm K}$。
 :::
@@ -688,7 +688,7 @@ $$(I + K)S_N = \sum_{m=0}^N(-K)^m - \sum_{m=0}^N(-K)^{m+1} = I - (-K)^{N+1},$$
 
 **Étape 2 ($S$ est l'inverse)**　Posons $S_N = \sum_{m=0}^N(-K)^m$. Alors
 $$(I + K)S_N = \sum_{m=0}^N(-K)^m - \sum_{m=0}^N(-K)^{m+1} = I - (-K)^{N+1},$$
-et de même $S_N(I + K) = I - (-K)^{N+1}$. Comme $\norm{(-K)^{N+1}} \le \norm K^{N+1} \to 0$ et que le produit matriciel est continu (majoration de l'étape 2 de {@fr:diff-bilineaire}), on obtient en faisant $N \to \infty$ : $(I + K)S = S(I + K) = I$.
+et, comme $S_N$ est un polynôme en $K$ et commute donc avec $K$, $S_N(I + K) = (I + K)S_N = I - (-K)^{N+1}$. Comme $\norm{(-K)^{N+1}} \le \norm K^{N+1} \to 0$ et que le produit matriciel est continu (majoration de l'étape 2 de {@fr:diff-bilineaire}), on obtient en faisant $N \to \infty$ : $(I + K)S = S(I + K) = I$.
 
 **Étape 3 (majoration du reste)**　$S - I + K = \sum_{m \ge 2}(-K)^m = K^2S$ (passage à la limite dans $\sum_{m=2}^{N+2}(-K)^m = K^2S_N$). Donc $\norm{S - I + K} \le \norm K^2\norm S \le \frac{\norm K^2}{1 - \norm K}$.
 :::
@@ -919,7 +919,7 @@ $$\begin{aligned}
 **「Lipschitz」那一部分的凸性不能去掉。** 令 $U = \{(x, y) : 1 < x^2 + y^2 < 4\} \setminus (\R_- \times \{0\})$（去掉一条缝的圆环），$\theta : U \to \,]-\pi, \pi[$ 为极角，$\theta(x, y) = 2\Arctan\dfrac{y}{x + \sqrt{x^2 + y^2}}$（在 $U$ 上分母 $x + \sqrt{x^2 + y^2} > 0$）。由下一节的 {@c9-ck-operations}，它是 $\Cc^1$ 的，直接求导得 $\nabla\theta = \dfrac{(-y, x)}{x^2 + y^2}$，Euclid 范数 $\norm{\nabla\theta} = \frac1r \le 1$。但点 $p_s = (-\frac32, s)$、$q_s = (-\frac32, -s)$（$0 < s < \frac12$）在 $U$ 中，$\norm{p_s - q_s} = 2s \to 0$，而 $\theta(p_s) - \theta(q_s) \to \pi - (-\pi) = 2\pi$。所以 $\theta$ 不是 Lipschitz 的：连接 $p_s$ 与 $q_s$ 的线段穿过了缝，不在 $U$ 中。
 :::
 
-::: cor id=diff-nulle-constante lvl=1
+::: cor id=diff-nulle-constante zh="微分为零的函数" en="Maps with zero differential" fr="Application de différentielle nulle" ru="Отображение с нулевым дифференциалом" lvl=1
 若 $U$ 是道路连通的开集，$f : U \to F$ 可微且 $\dd f = 0$ 在 $U$ 上成立，则 $f$ 在 $U$ 上为常数。
 :::
 
@@ -1026,7 +1026,7 @@ $$\partial_j(g \circ f)_i(x) = \sum_{l=1}^q\partial_lg_i(f(x))\,\partial_jf_l(x)
 
 - $\partial_lg_i \in \Cc^k$，$f \in \Cc^{k+1} \subset \Cc^k$，由归纳假设 $\partial_lg_i \circ f \in \Cc^k$；
 - $\partial_jf_l \in \Cc^k$；
-- 乘积：$m(s, t) = st$ 是多项式（$\Cc^\infty$，由第 1 步），$(u, w) \mapsto uw = m \circ (u, w)$；若 $u, w \in \Cc^k$，由 (2) $(u, w) \in \Cc^k$，再由归纳假设 $m \circ (u, w) \in \Cc^k$。和同理（用 $s(x, y) = x + y$）。
+- 乘积：$m(s, t) = st$ 是多项式（$\Cc^\infty$，由第 1 步），$(u, w) \mapsto uw = m \circ (u, w)$；若 $u, w \in \Cc^k$，由 (2) $(u, w) \in \Cc^k$，再由归纳假设 $m \circ (u, w) \in \Cc^k$。和的情形把 $m$ 换成多项式 $s(x, y) = x + y$，论证不变。
 
 所以每个 $\partial_j(g \circ f)_i$ 是 $\Cc^k$ 的，即 $g \circ f \in \Cc^{k+1}$。由归纳，(3) 对一切 $k$ 成立。
 
@@ -1046,7 +1046,7 @@ Le membre de droite est une somme de produits de fonctions continues ($\partial_
 
 - $\partial_lg_i \in \mathcal{C}^k$ et $f \in \mathcal{C}^{k+1} \subset \mathcal{C}^k$, donc $\partial_lg_i \circ f \in \mathcal{C}^k$ par hypothèse de récurrence ;
 - $\partial_jf_l \in \mathcal{C}^k$ ;
-- produit : $m(s, t) = st$ est polynomiale (donc $\mathcal{C}^\infty$ par l'étape 1) et $uw = m \circ (u, w)$ ; si $u, w \in \mathcal{C}^k$, alors $(u, w) \in \mathcal{C}^k$ par (2), puis $m \circ (u, w) \in \mathcal{C}^k$ par hypothèse de récurrence. Même raisonnement pour la somme (avec $s(x, y) = x + y$).
+- produit : $m(s, t) = st$ est polynomiale (donc $\mathcal{C}^\infty$ par l'étape 1) et $uw = m \circ (u, w)$ ; si $u, w \in \mathcal{C}^k$, alors $(u, w) \in \mathcal{C}^k$ par (2), puis $m \circ (u, w) \in \mathcal{C}^k$ par hypothèse de récurrence. Pour la somme, on remplace $m$ par le polynôme $s(x, y) = x + y$ ; l'argument est inchangé.
 
 Chaque $\partial_j(g \circ f)_i$ est donc de classe $\mathcal{C}^k$, c'est-à-dire $g \circ f \in \mathcal{C}^{k+1}$. Par récurrence, (3) est vraie pour tout $k$.
 
@@ -1150,7 +1150,7 @@ Les dérivées croisées sont donc égales ; les coefficients $(i, j)$ et $(j, i
 2. **$f$ 是 $\Cc^1$ 的**：$2(x^2 + y^2)^2 - (x^4 + 4x^2y^2 + y^4) = x^4 + y^4 \ge 0$，所以 $\abs{\partial_xf} \le 2\abs y$，$\abs{\partial_yf} \le 2\abs x$，两个偏导数在原点也连续；由 {@c1-partielles}，$f \in \Cc^1(\R^2)$。
 3. **交叉偏导数**：由 1，$\partial_xf(0, y) = \frac{y\cdot(-y^4)}{y^4} = -y$（$y \ne 0$），且 $y = 0$ 时也成立；所以
    $$\frac{\partial^2 f}{\partial y\,\partial x}(0, 0) = \frac{\dd}{\dd y}(-y)\Big|_{y=0} = -1.$$
-   同理 $\partial_yf(x, 0) = x$，$\dfrac{\partial^2 f}{\partial x\,\partial y}(0, 0) = 1$。两者不等。
+   类似地，由 1 的第二个公式，$\partial_yf(x, 0) = \frac{x\cdot x^4}{x^4} = x$（$x \ne 0$），$x = 0$ 时也成立，所以 $\dfrac{\partial^2 f}{\partial x\,\partial y}(0, 0) = \frac{\dd}{\dd x}(x)\big|_{x=0} = 1$。两者不等。
 4. **为何不矛盾**：二阶偏导数处处存在（原点外是有理函数；在原点，$\partial_xf(x, 0) = 0$、$\partial_yf(0, y) = 0$ 给出 $\partial_x^2f(0,0) = \partial_y^2f(0,0) = 0$），但对 $(x, y) \ne 0$，
    $$\frac{\partial^2 f}{\partial y\,\partial x}(x, y) = \frac{(x^2 - y^2)(x^4 + 10x^2y^2 + y^4)}{(x^2 + y^2)^3},$$
    它在 $(x, 0)$ 处等于 $1$，在 $(0, y)$ 处等于 $-1$，在原点不连续。所以 $f$ 不是 $\Cc^2$ 的，Schwarz 定理不适用。
@@ -1173,7 +1173,7 @@ c'est-à-dire qu'il existe $\eps(h) \xrightarrow[h \to 0]{} 0$ tel que $f(a + h)
 
 **第 1 步（设定）**　取 $r > 0$ 使 $B(a, r) \subset U$。设 $0 < \norm h < r$。与 {@accroissements-finis} 的第 1 步相同，$g(t) = f(a + th)$ 在包含 $[0, 1]$ 的开区间上有定义。
 
-**第 2 步（$g$ 的导数）**　由链式法则与 {@c9-jacobienne}，$g'(t) = \dd f(a + th)(h) = \sum_ih_i\,\partial_if(a + th)$。每个 $\partial_if$ 是 $\Cc^1$ 的，同理 $t \mapsto \partial_if(a + th)$ 可导，导数为 $\sum_jh_j\,\partial_j\partial_if(a + th)$。所以
+**第 2 步（$g$ 的导数）**　由链式法则与 {@c9-jacobienne}，$g'(t) = \dd f(a + th)(h) = \sum_ih_i\,\partial_if(a + th)$。每个 $\partial_if$ 是 $\Cc^1$ 的，对它用同样的链式法则，$t \mapsto \partial_if(a + th)$ 可导，导数为 $\sum_jh_j\,\partial_j\partial_if(a + th)$。所以
 $$g''(t) = \sum_{i,j}h_ih_j\,\partial_j\partial_if(a + th) = h^TH_f(a + th)\,h,$$
 （$H_f$ 对称，{@schwarz}），$g''$ 连续，$g$ 是 $\Cc^2$ 的。
 
@@ -1230,4 +1230,545 @@ $\lim_{(x,y) \to (0,0)}\dfrac{\e^x\cos y - 1 - x}{x^2 + y^2}$ 存在吗？
 
 ::: ans
 由 {@c9-ex-taylor}，分子 $= \frac12(x^2 - y^2) + (x^2 + y^2)\eps(x, y)$，$\eps \to 0$。所以商 $= \frac12\cdot\frac{x^2 - y^2}{x^2 + y^2} + \eps(x, y)$。沿 $(t, 0)$ 趋于 $\frac12$，沿 $(0, t)$ 趋于 $-\frac12$，由 {@c9-lem-chemins}，极限不存在。
+:::
+
+## 极值
+
+求极值分两步：先用一阶条件（梯度为零）列出候选点，再用二阶条件（Hessian 的符号）或其他论证（凸性、紧性、直接比较）判断。全节 $f : U \to \R$，$U \subset \R^n$ 开（除非另有说明），$\R^n$ 带 Euclid 范数。
+
+::: def id=c9-def-extremum zh="局部极值、临界点" en="Local extremum, critical point" fr="Extremum local, point critique" ru="Локальный экстремум, критическая точка"
+设 $A \subset \R^n$，$f : A \to \R$，$a \in A$。
+
+- $a$ 是 $f$ 的**局部极小点**，如果 $\exists \rho > 0,\ \forall x \in A,\ \norm{x - a} < \rho \implies f(x) \ge f(a)$；
+- **严格**局部极小点：$\exists \rho > 0,\ \forall x \in A,\ 0 < \norm{x - a} < \rho \implies f(x) > f(a)$；
+- **全局极小点**：$\forall x \in A,\ f(x) \ge f(a)$。
+
+把不等号反向得到（严格、全局）局部极大点；极小点与极大点统称**极值点**。若 $A = U$ 开、$f$ 在 $a$ 可微且 $\dd f(a) = 0$（即 $\nabla f(a) = 0$），称 $a$ 为 $f$ 的**临界点**。
+:::
+
+::: fr
+Soit $A \subset \R^n$, $f : A \to \R$ et $a \in A$.
+
+- $a$ est un **minimum local** de $f$ si $\exists \rho > 0,\ \forall x \in A,\ \norm{x - a} < \rho \implies f(x) \ge f(a)$ ;
+- un minimum local **strict** si $\exists \rho > 0,\ \forall x \in A,\ 0 < \norm{x - a} < \rho \implies f(x) > f(a)$ ;
+- un **minimum global** si $\forall x \in A,\ f(x) \ge f(a)$.
+
+En renversant les inégalités on obtient les maxima locaux (stricts, globaux) ; minima et maxima sont des **extrema**. Si $A = U$ est ouvert, si $f$ est différentiable en $a$ et si $\dd f(a) = 0$ (c'est-à-dire $\nabla f(a) = 0$), on dit que $a$ est un **point critique** de $f$.
+:::
+
+::: ex id=c9-ex-extremum lvl=1
+1. $f(x, y) = x^2 + y^2$：$(0, 0)$ 是严格全局极小点（$f(x, y) > 0 = f(0, 0)$ 对 $(x, y) \ne 0$）。
+2. $f(x, y) = x^2$（在 $\R^2$ 上）：$(0, 0)$ 是全局极小点，但不严格：$f(0, y) = 0 = f(0, 0)$ 对一切 $y$。
+3. **临界点但不是极值点**：$f(x, y) = xy$，$\nabla f(0, 0) = (0, 0)$，但 $f(t, t) = t^2 > 0$，$f(t, -t) = -t^2 < 0$：原点的任何邻域里 $f$ 既取比 $f(0,0)$ 大的值也取比它小的值。这样的临界点称为**鞍点**。
+:::
+
+::: thm id=cn-extremum zh="一阶必要条件" en="First-order necessary condition" fr="Condition nécessaire du premier ordre" ru="Необходимое условие экстремума" lvl=1
+若 $f : U \to \R$ 在**开集** $U$ 的点 $a$ 处可微且取局部极值，则 $\dd f(a) = 0$。
+:::
+
+::: fr
+Si $f : U \to \R$ est différentiable en un point $a$ de l'**ouvert** $U$ et admet un extremum local en $a$, alors $\dd f(a) = 0$.
+:::
+
+::: proof
+▷ 思路：沿每个方向 $v$ 限制到直线上，$t \mapsto f(a + tv)$ 在 $t = 0$ 取局部极值，由一元的 Fermat 引理其导数为零，而这个导数就是 $\dd f(a)(v)$。$U$ 开保证 $a + tv$ 对小的 $\abs t$（正负两侧）都有定义。
+
+**第 1 步（翻译假设）**　不妨设 $a$ 是局部极小点（极大点的情形把 $f$ 换成 $-f$）。存在 $\rho > 0$，使 $B(a, \rho) \subset U$（$U$ 开）且 $f(x) \ge f(a)$ 对 $x \in B(a, \rho)$ 成立。
+
+**第 2 步（限制到直线）**　固定 $v \ne 0$，令 $\varphi(t) = f(a + tv)$，$\abs t < \rho/\norm v$。则 $\varphi(t) \ge \varphi(0)$。由 {@diff-prop}，$\varphi'(0) = D_vf(a) = \dd f(a)(v)$ 存在。
+
+**第 3 步（Fermat）**　对 $0 < t < \rho/\norm v$，$\frac{\varphi(t) - \varphi(0)}{t} \ge 0$，令 $t \to 0^{+}$ 得 $\varphi'(0) \ge 0$；对 $-\rho/\norm v < t < 0$，$\frac{\varphi(t) - \varphi(0)}{t} \le 0$，令 $t \to 0^{-}$ 得 $\varphi'(0) \le 0$。所以 $\dd f(a)(v) = \varphi'(0) = 0$。
+
+$v$ 任意（$v = 0$ 时 $\dd f(a)(0) = 0$），所以 $\dd f(a) = 0$。
+:::
+
+::: fr
+▷ Méthode : on se restreint à chaque droite de direction $v$ : $t \mapsto f(a + tv)$ admet un extremum local en $t = 0$, donc sa dérivée y est nulle (lemme de Fermat en une variable), et cette dérivée vaut $\dd f(a)(v)$. Le fait que $U$ soit ouvert garantit que $a + tv$ est défini pour $\abs t$ petit, des deux côtés.
+
+**Étape 1 (on traduit l'hypothèse)**　Quitte à remplacer $f$ par $-f$, supposons que $a$ est un minimum local. Il existe $\rho > 0$ tel que $B(a, \rho) \subset U$ ($U$ ouvert) et $f(x) \ge f(a)$ pour $x \in B(a, \rho)$.
+
+**Étape 2 (restriction à une droite)**　Fixons $v \ne 0$ et posons $\varphi(t) = f(a + tv)$ pour $\abs t < \rho/\norm v$. Alors $\varphi(t) \ge \varphi(0)$, et d'après {@fr:diff-prop}, $\varphi'(0) = D_vf(a) = \dd f(a)(v)$ existe.
+
+**Étape 3 (Fermat)**　Pour $0 < t < \rho/\norm v$, $\frac{\varphi(t) - \varphi(0)}{t} \ge 0$, d'où $\varphi'(0) \ge 0$ en faisant $t \to 0^{+}$ ; pour $-\rho/\norm v < t < 0$, $\frac{\varphi(t) - \varphi(0)}{t} \le 0$, d'où $\varphi'(0) \le 0$ en faisant $t \to 0^{-}$. Donc $\dd f(a)(v) = \varphi'(0) = 0$.
+
+Comme $v$ est arbitraire (et $\dd f(a)(0) = 0$), $\dd f(a) = 0$.
+:::
+
+::: rem
+1. **$U$ 必须是开集。** $f(x, y) = x + y$ 在闭单位圆盘上的最大值在边界点 $(\frac{\sqrt2}2, \frac{\sqrt2}2)$ 取到，但 $\nabla f = (1, 1) \ne 0$：证明的第 3 步需要从两侧趋近，边界点只能从一侧。闭区域的边界要单独讨论（参数化边界，或用第 10 章的 Lagrange 乘子法 {@lagrange}）。
+2. **逆命题不成立**：临界点不一定是极值点（{@c9-ex-extremum} 第 3 条的 $xy$，或一元的 $x^3$）。
+:::
+
+::: thm id=cs-extremum zh="二阶条件" en="Second-order conditions" fr="Conditions du second ordre" ru="Достаточные условия экстремума" lvl=1
+设 $f : U \to \R$ 是 $\Cc^2$ 的，$a$ 是临界点，$H = H_f(a)$（由 {@schwarz}，$H$ 对称）。
+
+1. 若 $a$ 是局部极小点，则 $H$ 半正定（$h^THh \ge 0$ 对一切 $h$）。
+2. 若 $H$ 正定（$h^THh > 0$ 对一切 $h \ne 0$），则 $a$ 是严格局部极小点。
+3. 若 $H$ 有一正一负两个特征值，则 $a$ 不是极值点（鞍点）。
+
+把 $f$ 换成 $-f$：局部极大 ⇒ $H$ 半负定；$H$ 负定 ⇒ 严格局部极大。
+:::
+
+::: fr
+Soit $f : U \to \R$ de classe $\mathcal{C}^2$, $a$ un point critique et $H = H_f(a)$ (symétrique d'après {@fr:schwarz}).
+
+1. Si $a$ est un minimum local, alors $H$ est positive ($h^THh \ge 0$ pour tout $h$).
+2. Si $H$ est définie positive ($h^THh > 0$ pour tout $h \ne 0$), alors $a$ est un minimum local strict.
+3. Si $H$ a une valeur propre strictement positive et une valeur propre strictement négative, alors $a$ n'est pas un extremum (point col, ou point selle).
+
+En remplaçant $f$ par $-f$ : maximum local ⇒ $H$ négative ; $H$ définie négative ⇒ maximum local strict.
+:::
+
+::: proof
+▷ 思路：在临界点，Taylor–Young 公式的一次项消失，$f(a + h) - f(a)$ 的主部是二次型 $\frac12h^THh$。只要余项 $\norm h^2\eps(h)$ 被二次型「压住」（取 $\delta$ 使 $\abs{\eps(h)}$ 小于二次型系数的四分之一），$f - f(a)$ 就与二次型同号。
+
+**第 0 步（展开）**　$\nabla f(a) = 0$，由 {@taylor-young}，存在 $\eps(h) \xrightarrow[h \to 0]{} 0$，使
+$$f(a + h) - f(a) = \tfrac12h^THh + \norm h^2\eps(h)\qquad(\norm h < r,\ B(a, r) \subset U).$$
+
+**第 1 步（必要条件，反证）**　设 $a$ 是局部极小点：存在 $\rho > 0$，使 $\norm{x - a} < \rho \implies f(x) \ge f(a)$。反设存在单位向量 $v$ 使 $q := v^THv < 0$。取 $\delta \in \,]0, r]$ 使 $\norm h < \delta \implies \abs{\eps(h)} \le \frac{\abs q}4$。对 $0 < t < \min(\rho, \delta)$，取 $h = tv$：
+$$f(a + tv) - f(a) = t^2\big(\tfrac12q + \eps(tv)\big) \le t^2\big(\tfrac12q + \tfrac14\abs q\big) = \tfrac{t^2q}4 < 0,$$
+与 $f(a + tv) \ge f(a)$ 矛盾。所以 $H$ 半正定。
+
+**第 2 步（充分条件）**　$H$ 实对称，由谱定理存在标准正交特征基 $(u_1, \dots, u_n)$，特征值 $\lambda_1 \le \dots \le \lambda_n$；$H$ 正定，所以 $\lambda_1 = u_1^THu_1 > 0$。对 $h = \sum_kc_ku_k$：
+$$h^THh = \sum_k\lambda_kc_k^2 \ge \lambda_1\sum_kc_k^2 = \lambda_1\norm h^2.$$
+取 $\delta \in \,]0, r]$ 使 $\norm h < \delta \implies \abs{\eps(h)} \le \frac{\lambda_1}4$。对 $0 < \norm h < \delta$：
+$$f(a + h) - f(a) \ge \tfrac{\lambda_1}2\norm h^2 - \tfrac{\lambda_1}4\norm h^2 = \tfrac{\lambda_1}4\norm h^2 > 0.$$
+所以 $a$ 是严格局部极小点。
+
+**第 3 步（鞍点）**　设 $Hu^+ = \lambda^+u^+$，$Hu^- = \lambda^-u^-$，$\lambda^+ > 0 > \lambda^-$，$\norm{u^\pm} = 1$。令 $\mu = \min(\lambda^+, \abs{\lambda^-})$，取 $\delta \in \,]0, r]$ 使 $\norm h < \delta \implies \abs{\eps(h)} \le \frac\mu4$。对 $0 < t < \delta$：
+$$f(a + tu^+) - f(a) = t^2\big(\tfrac{\lambda^+}2 + \eps(tu^+)\big) \ge \tfrac{t^2\lambda^+}4 > 0,\qquad f(a + tu^-) - f(a) \le t^2\big(\tfrac{\lambda^-}2 + \tfrac{\abs{\lambda^-}}4\big) = \tfrac{t^2\lambda^-}4 < 0.$$
+所以 $a$ 的任何邻域中都有使 $f > f(a)$ 的点和使 $f < f(a)$ 的点，$a$ 不是极值点。
+
+**极大的情形**：$H_{-f}(a) = -H$，对 $-f$ 用第 1、2 步。
+:::
+
+::: fr
+▷ Méthode : en un point critique, le terme du premier ordre de Taylor–Young disparaît et la partie principale de $f(a + h) - f(a)$ est la forme quadratique $\frac12h^THh$. Il suffit que le reste $\norm h^2\eps(h)$ soit « dominé » par la forme quadratique (on choisit $\delta$ pour que $\abs{\eps(h)}$ soit inférieur au quart du coefficient de la forme) : $f - f(a)$ a alors le signe de la forme quadratique.
+
+**Étape 0 (développement)**　Comme $\nabla f(a) = 0$, d'après {@fr:taylor-young}, il existe $\eps(h) \xrightarrow[h \to 0]{} 0$ tel que
+$$f(a + h) - f(a) = \tfrac12h^THh + \norm h^2\eps(h)\qquad(\norm h < r,\ B(a, r) \subset U).$$
+
+**Étape 1 (condition nécessaire, par l'absurde)**　Supposons que $a$ est un minimum local : il existe $\rho > 0$ tel que $\norm{x - a} < \rho \implies f(x) \ge f(a)$. Par l'absurde, supposons qu'il existe un vecteur unitaire $v$ tel que $q := v^THv < 0$. Choisissons $\delta \in \,]0, r]$ tel que $\norm h < \delta \implies \abs{\eps(h)} \le \frac{\abs q}4$. Pour $0 < t < \min(\rho, \delta)$, avec $h = tv$ :
+$$f(a + tv) - f(a) = t^2\big(\tfrac12q + \eps(tv)\big) \le t^2\big(\tfrac12q + \tfrac14\abs q\big) = \tfrac{t^2q}4 < 0,$$
+ce qui contredit $f(a + tv) \ge f(a)$. Donc $H$ est positive.
+
+**Étape 2 (condition suffisante)**　$H$ est symétrique réelle ; d'après le théorème spectral, il existe une base orthonormée de vecteurs propres $(u_1, \dots, u_n)$, de valeurs propres $\lambda_1 \le \dots \le \lambda_n$ ; comme $H$ est définie positive, $\lambda_1 = u_1^THu_1 > 0$. Pour $h = \sum_kc_ku_k$ :
+$$h^THh = \sum_k\lambda_kc_k^2 \ge \lambda_1\sum_kc_k^2 = \lambda_1\norm h^2.$$
+Choisissons $\delta \in \,]0, r]$ tel que $\norm h < \delta \implies \abs{\eps(h)} \le \frac{\lambda_1}4$. Pour $0 < \norm h < \delta$ :
+$$f(a + h) - f(a) \ge \tfrac{\lambda_1}2\norm h^2 - \tfrac{\lambda_1}4\norm h^2 = \tfrac{\lambda_1}4\norm h^2 > 0.$$
+Donc $a$ est un minimum local strict.
+
+**Étape 3 (point col)**　Soient $Hu^+ = \lambda^+u^+$ et $Hu^- = \lambda^-u^-$ avec $\lambda^+ > 0 > \lambda^-$ et $\norm{u^\pm} = 1$. Posons $\mu = \min(\lambda^+, \abs{\lambda^-})$ et choisissons $\delta \in \,]0, r]$ tel que $\norm h < \delta \implies \abs{\eps(h)} \le \frac\mu4$. Pour $0 < t < \delta$ :
+$$f(a + tu^+) - f(a) = t^2\big(\tfrac{\lambda^+}2 + \eps(tu^+)\big) \ge \tfrac{t^2\lambda^+}4 > 0,\qquad f(a + tu^-) - f(a) \le t^2\big(\tfrac{\lambda^-}2 + \tfrac{\abs{\lambda^-}}4\big) = \tfrac{t^2\lambda^-}4 < 0.$$
+Tout voisinage de $a$ contient donc des points où $f > f(a)$ et des points où $f < f(a)$ : $a$ n'est pas un extremum.
+
+**Cas du maximum** : $H_{-f}(a) = -H$ ; on applique les étapes 1 et 2 à $-f$.
+:::
+
+::: rem
+**两个逆命题都不成立，$H$ 退化时没有结论。**
+
+1. 半正定 $\not\Rightarrow$ 极小：$f(x, y) = x^2 + y^3$，$H_f(0) = \operatorname{diag}(2, 0)$ 半正定，但 $f(0, y) = y^3$ 在 $0$ 两侧变号，原点不是极值点。
+2. 严格极小 $\not\Rightarrow$ 正定：$f(x, y) = x^4 + y^4$，原点是严格全局极小点，但 $H_f(0) = 0$。
+3. 当 $H$ 半定且奇异（有零特征值）时，二阶条件无法判断：$x^2 + y^4$（极小）、$x^2 - y^4$（鞍点）、$x^2 + y^3$（非极值）的 Hessian 在原点都是 $\operatorname{diag}(2, 0)$，必须看更高阶的项或直接分析。
+:::
+
+::: lem id=c9-monge zh="2×2 对称矩阵的符号" en="Sign of a 2×2 symmetric matrix" fr="Signe d'une matrice symétrique 2×2" ru="Знакоопределённость симметричной матрицы 2×2" lvl=1
+设 $H = \begin{pmatrix}r & s\\ s & t\end{pmatrix}$ 实对称。则
+
+1. $H$ 正定 $\iff$ $rt - s^2 > 0$ 且 $r > 0$；
+2. $H$ 负定 $\iff$ $rt - s^2 > 0$ 且 $r < 0$；
+3. $H$ 有一正一负两个特征值 $\iff$ $rt - s^2 < 0$。
+:::
+
+::: fr
+Soit $H = \begin{pmatrix}r & s\\ s & t\end{pmatrix}$ symétrique réelle. Alors
+
+1. $H$ est définie positive $\iff$ $rt - s^2 > 0$ et $r > 0$ ;
+2. $H$ est définie négative $\iff$ $rt - s^2 > 0$ et $r < 0$ ;
+3. $H$ a une valeur propre $> 0$ et une valeur propre $< 0$ $\iff$ $rt - s^2 < 0$.
+:::
+
+::: proof
+▷ 思路：$H$ 的两个特征值 $\lambda_1, \lambda_2$ 是实数（谱定理），且 $\lambda_1\lambda_2 = \det H = rt - s^2$，$\lambda_1 + \lambda_2 = \tr H = r + t$。符号问题化为乘积与和的符号。
+
+**第 1 步（3）**　$\lambda_1\lambda_2 < 0$ 当且仅当两个特征值异号。
+
+**第 2 步（1，(⇒)）**　$H$ 正定，则 $\lambda_1, \lambda_2 > 0$（$\lambda_i = u_i^THu_i$，$u_i$ 为单位特征向量），所以 $rt - s^2 = \lambda_1\lambda_2 > 0$；且 $r = e_1^THe_1 > 0$。
+
+**第 3 步（1，(⇐)）**　设 $rt - s^2 > 0$，$r > 0$。则 $rt > s^2 \ge 0$，所以 $t$ 与 $r$ 同号，$t > 0$，$\lambda_1 + \lambda_2 = r + t > 0$。又 $\lambda_1\lambda_2 > 0$，两个特征值同号，和为正，所以都为正。于是（同 {@cs-extremum} 第 2 步）$h^THh \ge \min(\lambda_1, \lambda_2)\norm h^2 > 0$（$h \ne 0$），$H$ 正定。
+
+**第 4 步（2）**　把 1 用于 $-H$：$\det(-H) = \det H$，$-H$ 的左上角元素为 $-r$。
+:::
+
+::: fr
+▷ Méthode : les deux valeurs propres $\lambda_1, \lambda_2$ de $H$ sont réelles (théorème spectral) et $\lambda_1\lambda_2 = \det H = rt - s^2$, $\lambda_1 + \lambda_2 = \tr H = r + t$. On se ramène aux signes du produit et de la somme.
+
+**Étape 1 (point 3)**　$\lambda_1\lambda_2 < 0$ si et seulement si les deux valeurs propres sont de signes opposés.
+
+**Étape 2 (point 1, (⇒))**　Si $H$ est définie positive, $\lambda_1, \lambda_2 > 0$ ($\lambda_i = u_i^THu_i$ avec $u_i$ vecteur propre unitaire), donc $rt - s^2 = \lambda_1\lambda_2 > 0$ ; de plus $r = e_1^THe_1 > 0$.
+
+**Étape 3 (point 1, (⇐))**　Supposons $rt - s^2 > 0$ et $r > 0$. Alors $rt > s^2 \ge 0$, donc $t$ est du signe de $r$, $t > 0$ et $\lambda_1 + \lambda_2 = r + t > 0$. Comme $\lambda_1\lambda_2 > 0$, les deux valeurs propres ont le même signe, et leur somme est positive : elles sont toutes deux strictement positives. Ainsi (comme à l'étape 2 de {@fr:cs-extremum}) $h^THh \ge \min(\lambda_1, \lambda_2)\norm h^2 > 0$ pour $h \ne 0$ : $H$ est définie positive.
+
+**Étape 4 (point 2)**　On applique le point 1 à $-H$ : $\det(-H) = \det H$ et le coefficient en haut à gauche de $-H$ vaut $-r$.
+:::
+
+::: method zh="二元情形：Monge 记号"
+对 $n = 2$，记 $r = \frac{\partial^2 f}{\partial x^2}(a)$，$s = \frac{\partial^2 f}{\partial x\partial y}(a)$，$t = \frac{\partial^2 f}{\partial y^2}(a)$（法国传统记号）。在临界点，由 {@cs-extremum} 与 {@c9-monge}：
+
+- $rt - s^2 > 0$，$r > 0$：严格局部极小；
+- $rt - s^2 > 0$，$r < 0$：严格局部极大；
+- $rt - s^2 < 0$：鞍点；
+- $rt - s^2 = 0$：不能判断，需要更高阶的分析（例如 $x^4 + y^4$ 与 $x^4 - y^4$，Hessian 都是零矩阵）。
+:::
+
+::: ex lvl=1
+$f(x, y) = x^3 + y^3 - 3xy$。
+
+1. **临界点**：$\nabla f = (3x^2 - 3y,\ 3y^2 - 3x) = 0$ 给出 $y = x^2$ 与 $x = y^2 = x^4$，即 $x(x^3 - 1) = 0$，$x \in \{0, 1\}$。临界点为 $(0, 0)$ 与 $(1, 1)$。
+2. **二阶导数**：$r = 6x$，$s = -3$，$t = 6y$。
+3. **在 $(0, 0)$**：$r = t = 0$，$s = -3$，$rt - s^2 = -9 < 0$，鞍点。直接验证：$f(x, x) = x^2(2x - 3) < 0$（$0 < \abs x$ 小），$f(x, -x) = 3x^2 > 0$。
+4. **在 $(1, 1)$**：$r = t = 6$，$s = -3$，$rt - s^2 = 27 > 0$，$r > 0$，严格局部极小，$f(1, 1) = -1$。
+5. **不是全局极小**：$f(x, 0) = x^3 \xrightarrow[x \to -\infty]{} -\infty$。
+:::
+
+::: thm id=convexe-minimum zh="凸函数的临界点" en="Critical points of convex functions" fr="Points critiques d'une fonction convexe" ru="Критические точки выпуклой функции" lvl=1
+设 $U$ 凸，$f : U \to \R$ 可微且凸（即 $\forall x, y \in U,\ \forall t \in [0, 1],\ f((1 - t)x + ty) \le (1 - t)f(x) + tf(y)$）。则对一切 $a, x \in U$，
+$$f(x) \ge f(a) + \dd f(a)(x - a),$$
+因此 $f$ 的任何临界点都是全局极小点。
+:::
+
+::: fr
+Soit $U$ convexe et $f : U \to \R$ différentiable et convexe (c'est-à-dire $\forall x, y \in U,\ \forall t \in [0, 1],\ f((1 - t)x + ty) \le (1 - t)f(x) + tf(y)$). Alors pour tous $a, x \in U$,
+$$f(x) \ge f(a) + \dd f(a)(x - a),$$
+et par conséquent tout point critique de $f$ est un minimum global.
+:::
+
+::: proof
+▷ 思路：凸函数的图像在切平面上方。在凸性不等式中把 $a$ 当作起点、沿 $x - a$ 方向走 $t$，得到「割线斜率 $\ge$ 差商」，再令 $t \to 0^{+}$，差商趋于方向导数 $\dd f(a)(x - a)$。
+
+**第 1 步（凸性不等式）**　固定 $a, x \in U$。对 $t \in \,]0, 1]$，$a + t(x - a) = (1 - t)a + tx \in U$（$U$ 凸），由凸性
+$$f(a + t(x - a)) \le (1 - t)f(a) + tf(x),\qquad\text{即}\qquad \frac{f(a + t(x - a)) - f(a)}{t} \le f(x) - f(a).$$
+
+**第 2 步（取极限）**　令 $t \to 0^{+}$。由 {@diff-prop} 第 3 条，左边趋于 $D_{x-a}f(a) = \dd f(a)(x - a)$。不等式在极限下保持（非严格），所以 $\dd f(a)(x - a) \le f(x) - f(a)$。
+
+**第 3 步（临界点）**　若 $\dd f(a) = 0$，则对一切 $x \in U$，$f(x) \ge f(a)$：$a$ 是全局极小点。
+:::
+
+::: fr
+▷ Méthode : le graphe d'une fonction convexe est au-dessus de ses plans tangents. Dans l'inégalité de convexité, on part de $a$ et on avance de $t$ dans la direction $x - a$ : on obtient « pente de la corde $\ge$ taux d'accroissement », puis on fait $t \to 0^{+}$ ; le taux d'accroissement tend vers la dérivée directionnelle $\dd f(a)(x - a)$.
+
+**Étape 1 (inégalité de convexité)**　Fixons $a, x \in U$. Pour $t \in \,]0, 1]$, $a + t(x - a) = (1 - t)a + tx \in U$ ($U$ convexe), et par convexité
+$$f(a + t(x - a)) \le (1 - t)f(a) + tf(x),\qquad\text{soit}\qquad \frac{f(a + t(x - a)) - f(a)}{t} \le f(x) - f(a).$$
+
+**Étape 2 (passage à la limite)**　Faisons $t \to 0^{+}$. D'après le point 3 de {@fr:diff-prop}, le membre de gauche tend vers $D_{x-a}f(a) = \dd f(a)(x - a)$. Les inégalités larges passent à la limite, donc $\dd f(a)(x - a) \le f(x) - f(a)$.
+
+**Étape 3 (point critique)**　Si $\dd f(a) = 0$, alors $f(x) \ge f(a)$ pour tout $x \in U$ : $a$ est un minimum global.
+:::
+
+::: rem
+1. 若 $U$ 还是开集，由 {@cn-extremum}，对可微凸函数有：$a$ 是全局极小点 $\iff$ $a$ 是临界点。
+2. 凸性不能去掉：$x^3$ 在 $0$ 处是临界点，不是极值点。
+3. 若 $f$ **严格**凸（$x \ne y$、$t \in \,]0,1[$ 时不等式严格），则极小点至多一个：若 $a \ne b$ 都是极小点，值为 $m$，则 $f(\frac{a + b}2) < \frac m2 + \frac m2 = m$，矛盾。
+:::
+
+::: method zh="在紧集上求最值"
+设 $K = \overline{U}$ 紧（$U$ 开且有界），$f$ 在 $K$ 上连续、在 $U$ 内可微。
+
+1. **存在性**：由 {@image-compact}，最大值与最小值都取到。
+2. **内部候选点**：若最值点 $a \in U$，则它是局部极值点，由 {@cn-extremum}，$\nabla f(a) = 0$。解 $\nabla f = 0$。
+3. **边界候选点**：最值点也可能在 $\partial U = K \setminus U$ 上。把边界参数化，化为低维问题（或用第 10 章的 {@lagrange}）。
+4. **比较**：在全部候选点处计算 $f$ 的值，最大者为最大值，最小者为最小值。不需要二阶条件。
+:::
+
+::: ex id=c9-ex-compact lvl=1
+求 $f(x, y) = x^2 + 2y^2 - x$ 在闭单位圆盘 $D = \{x^2 + y^2 \le 1\}$ 上的最值。
+
+1. **存在**：$D$ 是有界闭集，因而紧（{@cor-dimfinie}），$f$ 连续，最值存在。
+2. **内部**：$\nabla f = (2x - 1, 4y) = 0$ 给出 $(\frac12, 0)$，在开圆盘内，$f(\frac12, 0) = -\frac14$。
+3. **边界**：$(x, y) = (\cos\theta, \sin\theta)$，$f = \cos^2\theta + 2\sin^2\theta - \cos\theta = 2 - c^2 - c$，$c = \cos\theta \in [-1, 1]$。$g(c) = 2 - c - c^2$，$g'(c) = -1 - 2c$ 在 $c = -\frac12$ 为零。$g(-1) = 2$，$g(-\frac12) = \frac94$，$g(1) = 0$；所以边界上最大值 $\frac94$（在 $(-\frac12, \pm\frac{\sqrt3}2)$），最小值 $0$（在 $(1, 0)$）。
+4. **比较**：候选值 $-\frac14, \frac94, 2, 0$。最大值 $\frac94$，在 $(-\frac12, \pm\frac{\sqrt3}2)$ 取到；最小值 $-\frac14$，在 $(\frac12, 0)$ 取到。
+:::
+
+::: q
+设 $f(x, y) = x^2 + y^2(1 - x)^3$。证明 $(0, 0)$ 是 $f$ 唯一的临界点，且是严格局部极小点。它是全局极小点吗？（一元情形，「唯一的临界点是局部极小 ⇒ 全局极小」是对的。）
+:::
+
+::: ans
+$\partial_yf = 2y(1 - x)^3 = 0$ 给出 $y = 0$ 或 $x = 1$。若 $y = 0$：$\partial_xf = 2x - 3y^2(1 - x)^2 = 2x = 0$，$x = 0$。若 $x = 1$：$\partial_xf = 2 \ne 0$。所以唯一的临界点是 $(0, 0)$；$H_f(0) = \operatorname{diag}(2, 2)$ 正定，由 {@cs-extremum}，它是严格局部极小点，$f(0,0) = 0$。但 $f(4, 1) = 16 - 27 = -11 < 0$：不是全局极小。二元情形，函数可以「绕过」局部极小点下降到 $-\infty$ 而不产生新的临界点。
+:::
+
+::: q
+求 $f(x, y) = x^4 + y^4 - 2(x - y)^2$ 的临界点并判断其类型。
+:::
+
+::: ans
+$\nabla f = (4x^3 - 4(x - y),\ 4y^3 + 4(x - y))$。两式相加得 $x^3 + y^3 = 0$，即 $y = -x$；代入第一式 $x^3 - 2x = 0$，临界点为 $(0, 0)$、$(\sqrt2, -\sqrt2)$、$(-\sqrt2, \sqrt2)$。$r = 12x^2 - 4$，$s = 4$，$t = 12y^2 - 4$。
+
+- 在 $(\pm\sqrt2, \mp\sqrt2)$：$r = t = 20$，$s = 4$，$rt - s^2 = 384 > 0$，$r > 0$：严格局部极小，$f = -8$（由于 $f \ge x^4 + y^4 - 4(x^2 + y^2) \to +\infty$，它们也是全局极小）。
+- 在 $(0, 0)$：$r = t = -4$，$s = 4$，$rt - s^2 = 0$，二阶条件失效。直接看：$f(x, x) = 2x^4 > 0$，$f(x, 0) = x^4 - 2x^2 < 0$（$0 < \abs x < \sqrt2$），所以原点是鞍点。
+:::
+
+## 向量场与 Poincaré 引理
+
+一元情形，每个连续函数都有原函数。多元情形的对应问题是：给定向量场 $V$，是否存在函数 $f$ 使 $V = \nabla f$？由 Schwarz 定理，有一个明显的必要条件（「交叉偏导数对称」）；Poincaré 引理说，在星形区域上它也是充分的。区域的形状不能去掉，这是拓扑进入分析的第一个例子。
+
+::: def id=c9-def-champs zh="散度、旋度、Laplace 算子" en="Divergence, curl, Laplacian" fr="Divergence, rotationnel, laplacien" ru="Дивергенция, ротор, оператор Лапласа"
+设 $U \subset \R^3$ 开，$V = (P, Q, R) : U \to \R^3$ 是 $\Cc^1$ 向量场。定义
+$$\operatorname{div}V = \partial_xP + \partial_yQ + \partial_zR,\qquad \operatorname{rot}V = \big(\partial_yR - \partial_zQ,\ \partial_zP - \partial_xR,\ \partial_xQ - \partial_yP\big)$$
+（形式上 $\operatorname{rot}V = \nabla \wedge V$）。对 $U \subset \R^n$ 上的 $\Cc^2$ 函数 $f$，**Laplace 算子**为 $\Delta f = \operatorname{div}\nabla f = \sum_i\partial_{x_i}^2f$；$\Delta f = 0$ 的函数称为**调和函数**。若 $V = \nabla f$，称 $V$ 为**梯度场**，$f$ 为 $V$ 的**势函数**。
+:::
+
+::: fr
+Soit $U \subset \R^3$ ouvert et $V = (P, Q, R) : U \to \R^3$ un champ de vecteurs de classe $\mathcal{C}^1$. On définit
+$$\operatorname{div}V = \partial_xP + \partial_yQ + \partial_zR,\qquad \operatorname{rot}V = \big(\partial_yR - \partial_zQ,\ \partial_zP - \partial_xR,\ \partial_xQ - \partial_yP\big)$$
+(formellement $\operatorname{rot}V = \nabla \wedge V$). Pour $f$ de classe $\mathcal{C}^2$ sur $U \subset \R^n$, le **laplacien** est $\Delta f = \operatorname{div}\nabla f = \sum_i\partial_{x_i}^2f$ ; une fonction telle que $\Delta f = 0$ est dite **harmonique**. Si $V = \nabla f$, on dit que $V$ est un **champ de gradient** et que $f$ est un **potentiel** de $V$.
+:::
+
+::: ex id=c9-ex-harmoniques lvl=1
+1. $x^2 - y^2$ 与 $xy$ 在 $\R^2$ 上调和：$\partial_x^2(x^2 - y^2) + \partial_y^2(x^2 - y^2) = 2 - 2 = 0$。
+2. $\ln(x^2 + y^2)$ 在 $\R^2 \setminus \{0\}$ 上调和：$\partial_x^2\ln(x^2 + y^2) = \frac{2(y^2 - x^2)}{(x^2 + y^2)^2}$，$\partial_y^2$ 把 $x, y$ 对调，二者之和为 $0$。$\frac1{\norm x_2}$ 在 $\R^3 \setminus \{0\}$ 上调和（Newton 势）。
+3. 非例：$x^2 + y^2$，$\Delta = 4 \ne 0$。
+:::
+
+::: prop id=c9-rot-grad zh="rot grad = 0，div rot = 0" en="curl grad = 0, div curl = 0" fr="rot grad = 0, div rot = 0" ru="rot grad = 0, div rot = 0" lvl=1
+设 $U \subset \R^3$ 开。
+
+1. 若 $f \in \Cc^2(U)$，则 $\operatorname{rot}\nabla f = 0$。
+2. 若 $V \in \Cc^2(U, \R^3)$，则 $\operatorname{div}\operatorname{rot}V = 0$。
+:::
+
+::: fr
+Soit $U \subset \R^3$ ouvert.
+
+1. Si $f \in \mathcal{C}^2(U)$, alors $\operatorname{rot}\nabla f = 0$.
+2. Si $V \in \mathcal{C}^2(U, \R^3)$, alors $\operatorname{div}\operatorname{rot}V = 0$.
+:::
+
+::: proof
+▷ 思路：展开定义，每一项都是一对互相抵消的混合偏导数，用 Schwarz 定理。
+
+**第 1 步**　$\nabla f = (\partial_xf, \partial_yf, \partial_zf)$，所以
+$$\operatorname{rot}\nabla f = \big(\partial_y\partial_zf - \partial_z\partial_yf,\ \partial_z\partial_xf - \partial_x\partial_zf,\ \partial_x\partial_yf - \partial_y\partial_xf\big) = 0 \qquad\text{（{@schwarz}）}.$$
+
+**第 2 步**　
+$$\operatorname{div}\operatorname{rot}V = (\partial_x\partial_yR - \partial_y\partial_xR) + (\partial_y\partial_zP - \partial_z\partial_yP) + (\partial_z\partial_xQ - \partial_x\partial_zQ) = 0,$$
+每个括号由 {@schwarz} 为零（$P, Q, R$ 是 $\Cc^2$ 的）。
+:::
+
+::: fr
+▷ Méthode : on développe les définitions ; chaque terme est une paire de dérivées croisées qui se compensent, d'après le théorème de Schwarz.
+
+**Étape 1**　$\nabla f = (\partial_xf, \partial_yf, \partial_zf)$, donc
+$$\operatorname{rot}\nabla f = \big(\partial_y\partial_zf - \partial_z\partial_yf,\ \partial_z\partial_xf - \partial_x\partial_zf,\ \partial_x\partial_yf - \partial_y\partial_xf\big) = 0 \qquad\text{({@fr:schwarz})}.$$
+
+**Étape 2**　
+$$\operatorname{div}\operatorname{rot}V = (\partial_x\partial_yR - \partial_y\partial_xR) + (\partial_y\partial_zP - \partial_z\partial_yP) + (\partial_z\partial_xQ - \partial_x\partial_zQ) = 0,$$
+chaque parenthèse étant nulle d'après {@fr:schwarz} ($P, Q, R$ sont de classe $\mathcal{C}^2$).
+:::
+
+::: def id=c9-def-etoile zh="星形集" en="Star-shaped set" fr="Partie étoilée" ru="Звёздное множество"
+$U \subset \R^n$ 关于点 $c \in U$ 是**星形的**，如果
+$$\forall x \in U,\ \forall t \in [0, 1],\qquad c + t(x - c) \in U,$$
+即从 $c$ 到 $U$ 中任一点的线段都在 $U$ 中。
+:::
+
+::: fr
+On dit que $U \subset \R^n$ est **étoilé** par rapport au point $c \in U$ si
+$$\forall x \in U,\ \forall t \in [0, 1],\qquad c + t(x - c) \in U,$$
+c'est-à-dire si le segment joignant $c$ à tout point de $U$ est contenu dans $U$.
+:::
+
+::: ex id=c9-ex-etoile lvl=1
+1. 凸集关于它的每一点都是星形的。
+2. 割缝平面 $\R^2 \setminus (\R_- \times \{0\})$ 不凸（$(-1, 1)$ 与 $(-1, -1)$ 之间的线段经过 $(-1, 0)$），但关于 $c = (1, 0)$ 是星形的：若 $x = (x_1, x_2)$，$x_2 \ne 0$，则线段 $[c, x]$ 只在 $t = 0$ 时与 $x$ 轴相交，交点为 $c$；若 $x_2 = 0$，则 $x_1 > 0$，线段在正半轴上。
+3. 非例：$\R^2 \setminus \{0\}$ 关于任何点都不是星形的：对 $c \ne 0$，从 $c$ 到 $-c$ 的线段经过 $0$。
+:::
+
+::: thm id=poincare zh="Poincaré 引理（星形域）" en="Poincaré lemma (star-shaped domain)" fr="Théorème de Poincaré" ru="Лемма Пуанкаре" lvl=1
+设 $U \subset \R^n$ 是关于 $0$ 的星形开集，$V = (V_1, \dots, V_n)$ 是 $U$ 上的 $\Cc^1$ 向量场。则存在 $f \in \Cc^2(U)$，使 $V = \nabla f$（$V$ 是**梯度场**），当且仅当
+$$\frac{\partial V_i}{\partial x_j} = \frac{\partial V_j}{\partial x_i}\qquad\text{对一切 } i, j.$$
+此时可取 $f(x) = \int_0^1\ps{V(tx), x}\,\dd t$。
+:::
+
+::: fr
+Soit $U \subset \R^n$ un ouvert étoilé par rapport à $0$ et $V = (V_1, \dots, V_n)$ un champ de vecteurs de classe $\mathcal{C}^1$ sur $U$. Il existe $f \in \mathcal{C}^2(U)$ telle que $V = \nabla f$ ($V$ est un **champ de gradient**) si et seulement si
+$$\frac{\partial V_i}{\partial x_j} = \frac{\partial V_j}{\partial x_i}\qquad\text{pour tous } i, j.$$
+Dans ce cas, on peut prendre $f(x) = \int_0^1\ps{V(tx), x}\,\dd t$.
+:::
+
+::: proof
+▷ 思路：必要性就是 Schwarz 定理。充分性模仿一元情形「原函数 $= \int_0^xV$」：沿从 $0$ 到 $x$ 的线段积分 $V$（星形保证线段在 $U$ 中），得到 $f(x) = \int_0^1\ps{V(tx), x}\,\dd t$；然后在积分号下求导，用对称条件把被积函数化成一个对 $t$ 的全导数。
+
+**(⇒)**　若 $V = \nabla f$，$f \in \Cc^2$，则 $\partial_jV_i = \partial_j\partial_if = \partial_i\partial_jf = \partial_iV_j$（{@schwarz}）。
+
+**(⇐) 第 1 步（$f$ 有定义）**　对 $x \in U$ 与 $t \in [0, 1]$，$tx = 0 + t(x - 0) \in U$（星形）。$t \mapsto \ps{V(tx), x} = \sum_iV_i(tx)x_i$ 在 $[0, 1]$ 上连续，所以 $f(x) = \int_0^1\sum_iV_i(tx)x_i\,\dd t$ 有定义。
+
+**(⇐) 第 2 步（对 $x_j$ 求导）**　固定 $x^0 \in U$ 与 $j$。取 $r > 0$ 使 $\overline B(x^0, r) \subset U$，令 $A = \,]-r, r[$。对 $s \in A$，$y(s) = x^0 + se_j \in U$，且
+$$f(y(s)) = \int_0^1\phi(s, t)\,\dd t,\qquad \phi(s, t) = \sum_iV_i\big(t\,y(s)\big)\,y_i(s).$$
+由乘积与链式法则（$\frac{\dd}{\dd s}V_i(t\,y(s)) = t\,\partial_jV_i(t\,y(s))$，$\frac{\dd}{\dd s}y_i(s) = \delta_{ij}$），
+$$\partial_s\phi(s, t) = V_j\big(t\,y(s)\big) + t\sum_iy_i(s)\,\partial_jV_i\big(t\,y(s)\big),$$
+它在 $A \times [0, 1]$ 上连续。**控制**：集合 $K = \{ty : t \in [0, 1],\ y \in \overline B(x^0, r)\}$ 是紧集 $[0, 1] \times \overline B(x^0, r)$ 在连续映射 $(t, y) \mapsto ty$ 下的像，是紧集（{@image-compact}），且由星形 $K \subset U$。连续函数 $V_j$、$\partial_jV_i$ 在 $K$ 上有界，设界为 $M$。于是对一切 $(s, t) \in A \times [0, 1]$，
+$$\abs{\partial_s\phi(s, t)} \le M + \sum_i(\abs{x^0_i} + r)M =: C,$$
+常数 $C$ 在 $[0, 1]$ 上可积。由 {@derivation-parametre}，$s \mapsto f(y(s))$ 在 $A$ 上可导，在 $s = 0$ 处得
+$$\partial_jf(x^0) = \int_0^1\Big(V_j(tx^0) + t\sum_ix^0_i\,\partial_jV_i(tx^0)\Big)\dd t.$$
+
+**(⇐) 第 3 步（用对称条件）**　由假设 $\partial_jV_i = \partial_iV_j$，被积函数等于
+$$V_j(tx^0) + t\sum_ix^0_i\,\partial_iV_j(tx^0) = \frac{\dd}{\dd t}\Big(t\,V_j(tx^0)\Big)$$
+（乘积法则，且由链式法则 $\frac{\dd}{\dd t}V_j(tx^0) = \sum_ix^0_i\,\partial_iV_j(tx^0)$）。
+
+**(⇐) 第 4 步（积分）**　$\partial_jf(x^0) = \big[t\,V_j(tx^0)\big]_{t=0}^{t=1} = V_j(x^0)$。
+
+**(⇐) 第 5 步（正则性）**　$\partial_jf = V_j$ 在 $U$ 上连续，由 {@c1-partielles}，$f$ 是 $\Cc^1$ 的且 $\nabla f = V$；$f$ 的一阶偏导数 $V_j$ 是 $\Cc^1$ 的，所以 $f \in \Cc^2(U)$。
+:::
+
+::: fr
+▷ Méthode : la nécessité est le théorème de Schwarz. Pour la suffisance, on imite le cas d'une variable (« primitive $= \int_0^xV$ ») : on intègre $V$ le long du segment de $0$ à $x$ (contenu dans $U$ car $U$ est étoilé), ce qui donne $f(x) = \int_0^1\ps{V(tx), x}\,\dd t$ ; on dérive sous le signe intégrale, et la condition de symétrie transforme l'intégrande en une dérivée totale par rapport à $t$.
+
+**(⇒)**　Si $V = \nabla f$ avec $f \in \mathcal{C}^2$, alors $\partial_jV_i = \partial_j\partial_if = \partial_i\partial_jf = \partial_iV_j$ ({@fr:schwarz}).
+
+**(⇐) Étape 1 ($f$ est bien définie)**　Pour $x \in U$ et $t \in [0, 1]$, $tx = 0 + t(x - 0) \in U$ ($U$ étoilé). La fonction $t \mapsto \ps{V(tx), x} = \sum_iV_i(tx)x_i$ est continue sur $[0, 1]$, donc $f(x) = \int_0^1\sum_iV_i(tx)x_i\,\dd t$ est bien définie.
+
+**(⇐) Étape 2 (dérivation par rapport à $x_j$)**　Fixons $x^0 \in U$ et $j$. Soit $r > 0$ tel que $\overline B(x^0, r) \subset U$, et $A = \,]-r, r[$. Pour $s \in A$, $y(s) = x^0 + se_j \in U$ et
+$$f(y(s)) = \int_0^1\phi(s, t)\,\dd t,\qquad \phi(s, t) = \sum_iV_i\big(t\,y(s)\big)\,y_i(s).$$
+Par la règle du produit et la règle de la chaîne ($\frac{\dd}{\dd s}V_i(t\,y(s)) = t\,\partial_jV_i(t\,y(s))$, $\frac{\dd}{\dd s}y_i(s) = \delta_{ij}$),
+$$\partial_s\phi(s, t) = V_j\big(t\,y(s)\big) + t\sum_iy_i(s)\,\partial_jV_i\big(t\,y(s)\big),$$
+qui est continue sur $A \times [0, 1]$. **Domination** : l'ensemble $K = \{ty : t \in [0, 1],\ y \in \overline B(x^0, r)\}$ est l'image du compact $[0, 1] \times \overline B(x^0, r)$ par l'application continue $(t, y) \mapsto ty$, donc compact ({@fr:image-compact}), et $K \subset U$ car $U$ est étoilé. Les fonctions continues $V_j$, $\partial_jV_i$ sont bornées sur $K$, disons par $M$. Ainsi, pour tout $(s, t) \in A \times [0, 1]$,
+$$\abs{\partial_s\phi(s, t)} \le M + \sum_i(\abs{x^0_i} + r)M =: C,$$
+et la constante $C$ est intégrable sur $[0, 1]$. D'après {@fr:derivation-parametre}, $s \mapsto f(y(s))$ est dérivable sur $A$ et, en $s = 0$,
+$$\partial_jf(x^0) = \int_0^1\Big(V_j(tx^0) + t\sum_ix^0_i\,\partial_jV_i(tx^0)\Big)\dd t.$$
+
+**(⇐) Étape 3 (on utilise la symétrie)**　Par hypothèse $\partial_jV_i = \partial_iV_j$, donc l'intégrande vaut
+$$V_j(tx^0) + t\sum_ix^0_i\,\partial_iV_j(tx^0) = \frac{\dd}{\dd t}\Big(t\,V_j(tx^0)\Big)$$
+(règle du produit, et $\frac{\dd}{\dd t}V_j(tx^0) = \sum_ix^0_i\,\partial_iV_j(tx^0)$ par la règle de la chaîne).
+
+**(⇐) Étape 4 (intégration)**　$\partial_jf(x^0) = \big[t\,V_j(tx^0)\big]_{t=0}^{t=1} = V_j(x^0)$.
+
+**(⇐) Étape 5 (régularité)**　$\partial_jf = V_j$ est continue sur $U$ ; d'après {@fr:c1-partielles}, $f$ est de classe $\mathcal{C}^1$ et $\nabla f = V$ ; les dérivées partielles $V_j$ de $f$ sont de classe $\mathcal{C}^1$, donc $f \in \mathcal{C}^2(U)$.
+:::
+
+::: rem
+1. 若 $U$ 关于点 $c$ 星形，平移后用定理：$f(x) = \int_0^1\ps{V(c + t(x - c)), x - c}\,\dd t$。
+2. 在 $\R^3$ 中，三个条件 $\partial_jV_i = \partial_iV_j$（$\{i, j\} = \{2,3\}, \{3,1\}, \{1,2\}$）恰好是 $\operatorname{rot}V = 0$ 的三个分量。所以：**星形开集上，$\operatorname{rot}V = 0 \iff V$ 是梯度场**。
+3. 用第 11 章的语言：$\omega = \sum V_i\,\dd x_i$ 是**闭形式**（对称条件）与**恰当形式**（$\omega = \dd f$）；Poincaré 引理说星形开集上闭形式都是恰当的（{@forme-exacte}）。
+:::
+
+::: ex id=c9-ex-potentiel lvl=1
+$V(x, y) = (2xy + 1,\ x^2 + 3y^2)$ 在 $\R^2$ 上。$\partial_yV_1 = 2x = \partial_xV_2$，$\R^2$ 凸，由 {@poincare}，$V$ 有势函数。**求法**：由 $\partial_xf = 2xy + 1$，对 $x$ 积分得 $f = x^2y + x + c(y)$；代入 $\partial_yf = x^2 + c'(y) = x^2 + 3y^2$，得 $c'(y) = 3y^2$，$c(y) = y^3 + C$。所以 $f(x, y) = x^2y + x + y^3$（加任意常数）。用定理中的公式验证：$\int_0^1\big[(2t^2xy + 1)x + (t^2x^2 + 3t^2y^2)y\big]\dd t = \frac23x^2y + x + \frac13x^2y + y^3 = x^2y + x + y^3$。
+:::
+
+::: cex lvl=1
+**星形条件不能省略。** 在 $\R^2 \setminus \{0\}$ 上，$V = \Big(\dfrac{-y}{x^2 + y^2}, \dfrac{x}{x^2 + y^2}\Big)$。
+
+1. **对称条件成立**：$\partial_yV_1 = -\dfrac{(x^2 + y^2) - 2y^2}{(x^2 + y^2)^2} = \dfrac{y^2 - x^2}{(x^2 + y^2)^2}$，$\partial_xV_2 = \dfrac{(x^2 + y^2) - 2x^2}{(x^2 + y^2)^2} = \dfrac{y^2 - x^2}{(x^2 + y^2)^2}$。
+2. **不是梯度场**：反设 $V = \nabla f$，$f \in \Cc^1(\R^2 \setminus \{0\})$。令 $\gamma(t) = (\cos t, \sin t)$，$\varphi = f \circ \gamma$。由链式法则，$\varphi'(t) = \ps{V(\gamma(t)), \gamma'(t)} = (-\sin t)(-\sin t) + \cos t\cos t = 1$，所以 $\varphi(2\pi) - \varphi(0) = 2\pi$；但 $\gamma(2\pi) = \gamma(0)$，$\varphi(2\pi) = \varphi(0)$，矛盾。（这就是沿单位圆的环量 $\oint V\cdot\dd\ell = 2\pi \ne 0$，见第 11 章 {@circulation-vortex}。）
+3. **局部是梯度场**：在割缝平面 $\R^2 \setminus (\R_- \times \{0\})$（关于 $(1, 0)$ 星形，{@c9-ex-etoile}）上，$V = \nabla\theta$，$\theta$ 是 {@accroissements-finis} 之后的注中的极角。但 $\theta$ 不能在整个 $\R^2 \setminus \{0\}$ 上连续地定义。这是 de Rham 上同调的第一个例子。
+:::
+
+::: q
+在 $\R^3$ 上，$V = (yz, xz, xy)$ 是梯度场吗？若是，求势函数。
+:::
+
+::: ans
+$\operatorname{rot}V = (x - x,\ y - y,\ z - z) = 0$，$\R^3$ 凸，由 {@poincare} 及其后注的第 2 条，$V$ 是梯度场。由 $\partial_xf = yz$ 得 $f = xyz + c(y, z)$；$\partial_yf = xz + \partial_yc = xz$ 给出 $c = c(z)$；$\partial_zf = xy + c'(z) = xy$ 给出 $c$ 为常数。所以 $f = xyz$（加常数）。
+:::
+
+## 方法总结
+
+**如何证明多元函数在一点连续（或有极限）？**
+
+1. 由连续函数经运算、复合得到；只在孤立的可疑点单独处理。
+2. 在可疑点用不等式把 $\abs{f(x) - \ell}$ 控制成 $\norm{x - a}$ 的函数（{@c9-ex-continuite}）。
+3. 在 $\R^2$ 中用极坐标，找到与 $\theta$ 无关的上界 $\eps(r) \to 0$（{@c9-lem-polaire}）。
+
+**如何证明没有极限（或不连续）？** 找两条趋于该点的路径使极限不同（{@c9-lem-chemins}）：先试坐标轴与直线，再试 $y = x^2$ 等曲线（{@cex-limite-droites}）。
+
+**如何证明可微？**
+
+1. 由运算法则：线性组合与分量（{@c9-operations}）、复合（{@chain-rule}）、乘积（{@diff-bilineaire}）、$\Cc^k$ 函数的运算（{@c9-ck-operations}）。
+2. 偏导数存在且连续 ⇒ $\Cc^1$ ⇒ 可微（{@c1-partielles}，逐点版本 {@c9-diff-partielles-point}）。
+3. 在孤立的可疑点回到定义：先用偏导数确定**唯一可能**的微分 $L(h) = \sum_jh_j\partial_jf(a)$（{@c9-jacobienne}），再证 $\frac{f(a + h) - f(a) - L(h)}{\norm h} \to 0$（常用极坐标或不等式）。
+4. 对矩阵函数，直接展开 $f(A + H)$ 并估计余项（{@diff-inverse-det}）。
+
+**如何证明不可微？**
+
+1. 不连续 ⇒ 不可微（{@diff-prop}）。
+2. 某个方向导数不存在，或 $v \mapsto D_vf(a)$ 不是线性的（{@diff-prop}，{@cex-directionnelles}）。
+3. 候选微分 $L$ 已知（由偏导数），找一条路径使 $\frac{f(a + h) - f(a) - L(h)}{\norm h} \not\to 0$（{@c9-cex-gateaux}）。
+
+**如何估计增量、证明 Lipschitz 或常数？** 有限增量不等式（{@accroissements-finis}，要求线段在定义域内）；$\dd f = 0$ 且道路连通 ⇒ 常数（{@diff-nulle-constante}）。
+
+**如何求开集上的极值？**
+
+1. 解 $\nabla f = 0$ 得临界点（{@cn-extremum}）。
+2. 在每个临界点算 Hessian：正定 ⇒ 严格极小，负定 ⇒ 严格极大，有正负特征值 ⇒ 鞍点（{@cs-extremum}）；二元时用 $rt - s^2$ 与 $r$ 的符号（{@c9-monge}）。
+3. Hessian 退化时直接分析：沿直线或曲线比较 $f$ 与 $f(a)$ 的大小。
+4. 全局极值：凸函数的临界点是全局极小（{@convexe-minimum}）；紧集上比较内部临界点与边界上的值（{@c9-ex-compact}）；有约束时用第 10 章的 Lagrange 乘子法（{@lagrange}）。
+
+**如何判断向量场是否是梯度场？** 必要条件：交叉偏导数对称（$\R^3$ 中即 $\operatorname{rot}V = 0$）。星形区域上它也充分（{@poincare}），势函数可逐个变量积分求出（{@c9-ex-potentiel}）。在非星形区域上，沿某条闭路的积分不为零就说明不是梯度场。
+
+::: rem
+**常见错误。**
+
+1. **只沿直线检验连续性或可微性。** {@cex-limite-droites} 沿每条直线都趋于 $0$，但沿 $x = y^2$ 趋于 $\frac12$。
+2. **「偏导数存在 ⇒ 可微」或「可微 ⇒ $\Cc^1$」。** 反例：$\frac{xy}{x^2 + y^2}$（{@c9-cex-partielles}）；$x^2\sin\frac1x$（{@c9-ex-c1}）。
+3. **对向量值函数用中值等式。** $f(t) = (\cos t, \sin t)$ 没有「中值点」，只有不等式（{@accroissements-finis}）。
+4. **误用二阶条件。** 在非临界点看 Hessian 毫无意义；$rt - s^2 = 0$ 时不能下结论（$x^2 + y^3$ 与 $x^2 + y^4$ 的 Hessian 相同）；在闭区域的边界上不要求 $\nabla f = 0$。
+5. **忽略定理的条件。** Schwarz 定理要求 $\Cc^2$（{@cex-schwarz}）；Poincaré 引理要求星形（$\R^2 \setminus \{0\}$ 上的涡旋场）；有限增量不等式推出 Lipschitz 要求凸性（割缝圆环上的极角）。
+:::
+
+::: read
+- В. А. Зорич,《Математический анализ》，第 1 卷（Дифференциальное исчисление функций многих переменных）与第 2 卷（Дифференциальное исчисление с более общей точки зрения）。先在 $\R^n$ 中、再在赋范空间之间讲微分，正是本章的路线；例子与几何解释都很丰富。
+- Б. П. Демидович,《Сборник задач и упражнений по математическому анализу》（Частные производные и дифференциалы, экстремумы функций нескольких переменных）。习题按难度排列，适合练偏导数、隐式求导与极值的计算。
+- Г. М. Фихтенгольц,《Курс дифференциального и интегрального исчисления》，第 1 卷（Функции нескольких переменных）。经典的坐标式讲法，对可微性条件、混合偏导数与极值的讨论非常细致。
+- H. Cartan,《Calcul différentiel》（Hermann）。法国的经典教材：Banach 空间中的微分、有限增量定理、高阶微分与 Taylor 公式，本章的写法（微分是线性映射）来源于此。
+- F. Rouvière,《Petit guide de calcul différentiel à l'usage de la licence et de l'agrégation》（Cassini）。以「问题—方法—例子」组织，Monge 记号、极值与 Poincaré 引理都有大量练习。
+- W. Rudin,《Principles of Mathematical Analysis》（Functions of Several Variables）。简洁严格的英文参考，含有限增量不等式与 $\Cc^1$ 判别法的证明。
+:::
+
+::: glossary
+| 中文 | Français | English | Русский |
+|---|---|---|---|
+| 可微 | différentiable | differentiable | дифференцируемый |
+| 微分 | différentielle (f.) | differential | дифференциал |
+| 方向导数 | dérivée directionnelle (f.), dérivée selon un vecteur (f.) | directional derivative | производная по направлению |
+| 偏导数 | dérivée partielle (f.) | partial derivative | частная производная |
+| Jacobi 矩阵 | matrice jacobienne (f.) | Jacobian matrix | матрица Якоби |
+| Jacobi 行列式 | jacobien (m.) | Jacobian (determinant) | якобиан |
+| 梯度 | gradient (m.) | gradient | градиент |
+| 等值线、等值面 | ligne de niveau (f.), surface de niveau (f.) | level curve, level surface | линия уровня, поверхность уровня |
+| 链式法则 | règle de la chaîne (f.), différentielle d'une composée (f.) | chain rule | правило дифференцирования сложной функции |
+| 双线性映射 | application bilinéaire (f.) | bilinear map | билинейное отображение |
+| 算子范数 | norme subordonnée (f.) | operator norm | норма оператора |
+| Neumann 级数 | série de Neumann (f.) | Neumann series | ряд Неймана |
+| 代数余子式 | cofacteur (m.) | cofactor | алгебраическое дополнение |
+| C¹ 映射 | application de classe C¹ (f.) | continuously differentiable map | непрерывно дифференцируемое отображение |
+| 有限增量不等式 | inégalité des accroissements finis (f.) | mean value inequality | неравенство о конечных приращениях |
+| 中值定理 | théorème des accroissements finis (m.) | mean value theorem | теорема Лагранжа о среднем |
+| Lipschitz 映射 | application lipschitzienne (f.) | Lipschitz map | липшицево отображение |
+| 凸集 | partie convexe (f.) | convex set | выпуклое множество |
+| 道路连通 | connexe par arcs | path-connected | линейно связный |
+| 混合偏导数 | dérivée partielle croisée (f.) | mixed partial derivative | смешанная производная |
+| Schwarz 定理 | théorème de Schwarz (m.) | Schwarz's (Clairaut's) theorem | теорема Шварца |
+| Hessian 矩阵 | matrice hessienne (f.) | Hessian matrix | матрица Гессе, гессиан |
+| Taylor–Young 公式 | formule de Taylor–Young (f.) | Taylor's formula with Peano remainder | формула Тейлора с остаточным членом в форме Пеано |
+| 局部极值 | extremum local (m.) | local extremum | локальный экстремум |
+| 全局极值 | extremum global (m.) | global extremum | глобальный экстремум |
+| 临界点 | point critique (m.) | critical point | критическая (стационарная) точка |
+| 鞍点 | point col (m.), point selle (m.) | saddle point | седловая точка |
+| 正定 | défini positif | positive definite | положительно определённый |
+| 半正定 | positif | positive semidefinite | неотрицательно определённый |
+| 凸函数 | fonction convexe (f.) | convex function | выпуклая функция |
+| 齐次函数 | fonction homogène (f.) | homogeneous function | однородная функция |
+| 向量场 | champ de vecteurs (m.) | vector field | векторное поле |
+| 梯度场、势函数 | champ de gradient (m.), potentiel (m.) | gradient field, potential | потенциальное поле, потенциал |
+| 散度 | divergence (f.) | divergence | дивергенция |
+| 旋度 | rotationnel (m.) | curl | ротор, вихрь |
+| Laplace 算子 | laplacien (m.) | Laplacian | оператор Лапласа, лапласиан |
+| 调和函数 | fonction harmonique (f.) | harmonic function | гармоническая функция |
+| 星形集 | partie étoilée (f.) | star-shaped set | звёздное множество |
+| Poincaré 引理 | théorème de Poincaré (m.) | Poincaré lemma | лемма Пуанкаре |
+| Gâteaux 可微 | différentiable au sens de Gâteaux | Gâteaux differentiable | дифференцируемый по Гато |
+| 取极限 | passer à la limite | pass to the limit | перейти к пределу |
+| 限制到直线上 | se restreindre à une droite | restrict to a line | ограничить на прямую |
 :::

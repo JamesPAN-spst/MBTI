@@ -1416,7 +1416,7 @@ Il en est de même pour un produit fini $E_1 \times \cdots \times E_p$ d'evn (av
 $$\norm{x + x'}_E \le \norm{x}_E + \norm{x'}_E \le N(x, y) + N(x', y'),$$
 同样（把 $x, E$ 换成 $y, F$）$\norm{y + y'}_F \le N(x, y) + N(x', y')$；取两者的最大值，$N\big((x,y) + (x',y')\big) \le N(x, y) + N(x', y')$。
 
-**收敛**　(⇒) $\norm{x_n - x}_E \le N\big((x_n, y_n) - (x, y)\big) \to 0$；对 $y_n$ 同样。(⇐) 设 $\eps > 0$。取 $N_1$ 使 $n \ge N_1$ 时 $\norm{x_n - x}_E < \eps$，取 $N_2$ 使 $n \ge N_2$ 时 $\norm{y_n - y}_F < \eps$。对 $n \ge \max(N_1, N_2)$，两者都 $< \eps$，所以最大值 $< \eps$。
+**收敛**　(⇒) $\norm{x_n - x}_E \le N\big((x_n, y_n) - (x, y)\big) \to 0$；同样 $\norm{y_n - y}_F \le N\big((x_n, y_n) - (x, y)\big) \to 0$。(⇐) 设 $\eps > 0$。取 $N_1$ 使 $n \ge N_1$ 时 $\norm{x_n - x}_E < \eps$，取 $N_2$ 使 $n \ge N_2$ 时 $\norm{y_n - y}_F < \eps$。对 $n \ge \max(N_1, N_2)$，两者都 $< \eps$，所以最大值 $< \eps$。
 
 **有限乘积**　把上面的「两个分量的最大值」换成「$p$ 个分量的最大值」，证明逐字不变。
 :::
@@ -1426,7 +1426,7 @@ $$\norm{x + x'}_E \le \norm{x}_E + \norm{x'}_E \le N(x, y) + N(x', y'),$$
 $$\norm{x + x'}_E \le \norm{x}_E + \norm{x'}_E \le N(x, y) + N(x', y'),$$
 et de même (en remplaçant $x, E$ par $y, F$) $\norm{y + y'}_F \le N(x, y) + N(x', y')$ ; en prenant le maximum, $N\big((x,y) + (x',y')\big) \le N(x, y) + N(x', y')$.
 
-**Convergence**　(⇒) $\norm{x_n - x}_E \le N\big((x_n, y_n) - (x, y)\big) \to 0$, et de même pour $y_n$. (⇐) Soit $\eps > 0$. Soit $N_1$ tel que $\norm{x_n - x}_E < \eps$ pour $n \ge N_1$, et $N_2$ tel que $\norm{y_n - y}_F < \eps$ pour $n \ge N_2$. Pour $n \ge \max(N_1, N_2)$, les deux sont $< \eps$, donc leur maximum aussi.
+**Convergence**　(⇒) $\norm{x_n - x}_E \le N\big((x_n, y_n) - (x, y)\big) \to 0$, et de même $\norm{y_n - y}_F \le N\big((x_n, y_n) - (x, y)\big) \to 0$. (⇐) Soit $\eps > 0$. Soit $N_1$ tel que $\norm{x_n - x}_E < \eps$ pour $n \ge N_1$, et $N_2$ tel que $\norm{y_n - y}_F < \eps$ pour $n \ge N_2$. Pour $n \ge \max(N_1, N_2)$, les deux sont $< \eps$, donc leur maximum aussi.
 
 **Produit fini**　On remplace « maximum de deux composantes » par « maximum de $p$ composantes » ; la preuve est mot pour mot la même.
 :::
@@ -1446,7 +1446,7 @@ Toute partie compacte est fermée et bornée. Toute partie fermée d'un compact 
 
 **第 2 步（紧 ⇒ 闭）**　设 $(u_n)$ 是 $K$ 中的数列，$u_n \to a \in E$。由紧性，存在子列 $u_{\varphi(n)} \to b \in K$。由 {@c1-sous-suite} 第 3 条，$u_{\varphi(n)} \to a$。由极限唯一，$a = b \in K$。由 {@carac-seq-adh}，$K$ 是闭集。
 
-**第 3 步（紧集的闭子集）**　设 $K$ 紧，$F \subset K$ 且 $F$ 是 $E$ 的闭集。设 $(u_n)$ 是 $F$ 中的数列。它也是 $K$ 中的数列，所以有子列 $u_{\varphi(n)} \to a \in K$。$a$ 是 $F$ 中数列的极限，$F$ 闭，由 {@carac-seq-adh}，$a \in F$。所以 $F$ 紧。
+**第 3 步（紧集的闭子集）**　设 $K$ 紧，$C \subset K$ 且 $C$ 是 $E$ 的闭集。设 $(u_n)$ 是 $C$ 中的数列。它也是 $K$ 中的数列，所以有子列 $u_{\varphi(n)} \to a \in K$。$a$ 是 $C$ 中数列的极限，$C$ 闭，由 {@carac-seq-adh}，$a \in C$。所以 $C$ 紧。
 
 **第 4 步（乘积）**　设 $K \subset E$、$L \subset F$ 紧，$(x_n, y_n)$ 是 $K \times L$ 中的数列。
 
@@ -1465,7 +1465,7 @@ Toute partie compacte est fermée et bornée. Toute partie fermée d'un compact 
 
 **Étape 2 (compact ⇒ fermé)**　Soit $(u_n)$ une suite de $K$ telle que $u_n \to a \in E$. Par compacité, il existe une suite extraite $u_{\varphi(n)} \to b \in K$. D'après le point 3 du {@fr:c1-sous-suite}, $u_{\varphi(n)} \to a$. Par unicité de la limite, $a = b \in K$. D'après le {@fr:carac-seq-adh}, $K$ est fermé.
 
-**Étape 3 (fermé d'un compact)**　Soient $K$ compact et $F \subset K$ un fermé de $E$. Soit $(u_n)$ une suite de $F$. C'est aussi une suite de $K$ ; elle admet donc une suite extraite $u_{\varphi(n)} \to a \in K$. Le point $a$ est limite d'une suite de $F$ et $F$ est fermé, donc $a \in F$ d'après le {@fr:carac-seq-adh}. Ainsi $F$ est compact.
+**Étape 3 (fermé d'un compact)**　Soient $K$ compact et $C \subset K$ un fermé de $E$. Soit $(u_n)$ une suite de $C$. C'est aussi une suite de $K$ ; elle admet donc une suite extraite $u_{\varphi(n)} \to a \in K$. Le point $a$ est limite d'une suite de $C$ et $C$ est fermé, donc $a \in C$ d'après le {@fr:carac-seq-adh}. Ainsi $C$ est compact.
 
 **Étape 4 (produit)**　Soient $K \subset E$, $L \subset F$ compacts et $(x_n, y_n)$ une suite de $K \times L$.
 
@@ -1848,4 +1848,726 @@ $\M_n(\R)$ 有限维，由 {@cor-dimfinie} 第 1 条，只需证明 $O_n(\R)$ �
 所以 $O_n(\R)$ 紧。由 {@image-compact}，$O_n(\R)$ 上的任何实值连续函数（例如 $M \mapsto \tr(AM)$）都取到最大值。
 :::
 
-<!-- NEXT -->
+## 完备性与不动点
+
+如何在**不知道极限**的情况下证明一个数列收敛？在 $\R$ 中，答案是 Cauchy 准则。本节把它推广到赋范空间：Cauchy 列总收敛的空间称为完备空间（Banach 空间）。有限维空间与 $(\Cc([a,b]), \norm{\cdot}_\infty)$ 是完备的，$(\Cc([0,1]), \norm{\cdot}_1)$ 不是。完备性的两个主要用途：绝对收敛的级数收敛，以及 Banach 不动点定理。
+
+::: def id=def-banach zh="Cauchy 列、完备空间、Banach 空间" en="Cauchy sequence, complete space, Banach space" fr="Suite de Cauchy, espace complet, espace de Banach" ru="Фундаментальная последовательность, полное пространство, банахово пространство"
+$(u_n)$ 是 **Cauchy 列**，如果 $\forall \eps > 0$，$\exists N$，$\forall p, q \ge N$，$\norm{u_p - u_q} < \eps$：
+$$\forall \eps > 0,\ \exists N \in \N,\ \forall p, q \ge N,\quad \norm{u_p - u_q} < \eps.$$
+若 $E$ 中所有 Cauchy 列都收敛，称 $E$ **完备**；完备的赋范空间称为 **Banach 空间**。
+:::
+
+::: fr
+On dit que $(u_n)$ est une **suite de Cauchy** si $\forall \eps > 0$, $\exists N$, $\forall p, q \ge N$, $\norm{u_p - u_q} < \eps$ :
+$$\forall \eps > 0,\ \exists N \in \N,\ \forall p, q \ge N,\quad \norm{u_p - u_q} < \eps.$$
+Si toute suite de Cauchy de $E$ converge, on dit que $E$ est **complet** ; un evn complet est appelé **espace de Banach**.
+:::
+
+白话：从某项起，数列的各项彼此任意接近。与收敛的定义相比，这里没有出现极限 $\ell$——这正是 Cauchy 列的用处。
+
+::: ex zh="完备与不完备"
+1. $\R$ 与 $\C$（范数 $\abs{\cdot}$）完备：这是 L1 的 Cauchy 准则。
+2. 完备性是空间（连同范数）的性质，不只是数列的性质。$\Q$ 不完备：$u_n = 10^{-n}\lfloor 10^n \sqrt2 \rfloor \in \Q$ 满足 $0 \le \sqrt2 - u_n < 10^{-n}$，它在 $\R$ 中收敛到 $\sqrt2$，所以是 Cauchy 列（{@c1-cauchy-prop} 第 1 条）；它在 $\Q$ 中没有极限，因为 $\sqrt2 \notin \Q$ 而极限唯一。
+3. 下面将看到：$(\Cc([0,1]), \norm{\cdot}_1)$（{@cex-c01-l1}）与 $(\R[X], \sup_{[0,1]} \abs{\cdot})$（{@c1-cex-serie-rx}）都不是 Banach 空间。
+:::
+
+::: lem id=c1-cauchy-prop zh="Cauchy 列的基本性质" en="Basic properties of Cauchy sequences" fr="Propriétés des suites de Cauchy" ru="Свойства фундаментальных последовательностей" lvl=1
+设 $(u_n)$ 是 $E$ 中的数列。
+
+1. 若 $(u_n)$ 收敛，则它是 Cauchy 列。
+2. Cauchy 列有界。
+3. 若 Cauchy 列 $(u_n)$ 有一个子列收敛到 $\ell$，则 $u_n \to \ell$。
+4. 若 $N_1, N_2$ 是 $E$ 上等价的范数，则它们有相同的 Cauchy 列；$(E, N_1)$ 完备当且仅当 $(E, N_2)$ 完备。
+:::
+
+::: fr
+Soit $(u_n)$ une suite de $E$.
+
+1. Si $(u_n)$ converge, c'est une suite de Cauchy.
+2. Toute suite de Cauchy est bornée.
+3. Si une suite de Cauchy $(u_n)$ admet une suite extraite qui converge vers $\ell$, alors $u_n \to \ell$.
+4. Si $N_1$ et $N_2$ sont deux normes équivalentes sur $E$, elles ont les mêmes suites de Cauchy ; $(E, N_1)$ est complet si et seulement si $(E, N_2)$ l'est.
+:::
+
+::: proof
+**1**　设 $u_n \to \ell$，$\eps > 0$。取 $N$ 使 $n \ge N$ 时 $\norm{u_n - \ell} < \frac\eps2$。对 $p, q \ge N$：$\norm{u_p - u_q} \le \norm{u_p - \ell} + \norm{\ell - u_q} < \eps$。
+
+**2**　取 $\eps = 1$：存在 $N_1$ 使 $p, q \ge N_1$ 时 $\norm{u_p - u_q} < 1$。取 $q = N_1$：对 $p \ge N_1$，$\norm{u_p} \le \norm{u_p - u_{N_1}} + \norm{u_{N_1}} < 1 + \norm{u_{N_1}}$。令 $M = \max\big(\norm{u_0}, \dots, \norm{u_{N_1 - 1}},\ 1 + \norm{u_{N_1}}\big)$，则对一切 $n$，$\norm{u_n} \le M$。
+
+**3**　设 $u_{\varphi(n)} \to \ell$，$\eps > 0$。
+
+1. 由 Cauchy 性，存在 $N_1$ 使 $p, q \ge N_1$ 时 $\norm{u_p - u_q} < \frac\eps2$。
+2. 由子列收敛，存在 $N_2$ 使 $n \ge N_2$ 时 $\norm{u_{\varphi(n)} - \ell} < \frac\eps2$。
+3. 令 $N = \max(N_1, N_2)$。对 $n \ge N$，$\varphi(n) \ge n \ge N_1$（{@c1-sous-suite} 第 1 条），所以
+   $$\norm{u_n - \ell} \le \norm{u_n - u_{\varphi(n)}} + \norm{u_{\varphi(n)} - \ell} < \frac\eps2 + \frac\eps2 = \eps.$$
+
+**4**　设 $\alpha N_1 \le N_2 \le \beta N_1$，$(u_n)$ 对 $N_1$ 是 Cauchy 列。对 $\eps > 0$，取 $N$ 使 $p, q \ge N$ 时 $N_1(u_p - u_q) < \frac\eps\beta$，则 $N_2(u_p - u_q) \le \beta N_1(u_p - u_q) < \eps$。反方向用 $N_1 \le \frac1\alpha N_2$。两个范数的 Cauchy 列相同，收敛数列也相同（{@equiv-conv}），所以完备性相同。
+:::
+
+::: fr
+**1**　Supposons $u_n \to \ell$ et soit $\eps > 0$. Soit $N$ tel que $\norm{u_n - \ell} < \frac\eps2$ pour $n \ge N$. Pour $p, q \ge N$ : $\norm{u_p - u_q} \le \norm{u_p - \ell} + \norm{\ell - u_q} < \eps$.
+
+**2**　Pour $\eps = 1$ : il existe $N_1$ tel que pour $p, q \ge N_1$, $\norm{u_p - u_q} < 1$. Avec $q = N_1$ : pour $p \ge N_1$, $\norm{u_p} \le \norm{u_p - u_{N_1}} + \norm{u_{N_1}} < 1 + \norm{u_{N_1}}$. Posons $M = \max\big(\norm{u_0}, \dots, \norm{u_{N_1 - 1}},\ 1 + \norm{u_{N_1}}\big)$ ; alors $\norm{u_n} \le M$ pour tout $n$.
+
+**3**　Supposons $u_{\varphi(n)} \to \ell$ et soit $\eps > 0$.
+
+1. Comme $(u_n)$ est de Cauchy, il existe $N_1$ tel que pour $p, q \ge N_1$, $\norm{u_p - u_q} < \frac\eps2$.
+2. Comme la suite extraite converge, il existe $N_2$ tel que pour $n \ge N_2$, $\norm{u_{\varphi(n)} - \ell} < \frac\eps2$.
+3. Posons $N = \max(N_1, N_2)$. Pour $n \ge N$, $\varphi(n) \ge n \ge N_1$ (point 1 du {@fr:c1-sous-suite}), donc
+   $$\norm{u_n - \ell} \le \norm{u_n - u_{\varphi(n)}} + \norm{u_{\varphi(n)} - \ell} < \frac\eps2 + \frac\eps2 = \eps.$$
+
+**4**　Supposons $\alpha N_1 \le N_2 \le \beta N_1$ et $(u_n)$ de Cauchy pour $N_1$. Pour $\eps > 0$, soit $N$ tel que $N_1(u_p - u_q) < \frac\eps\beta$ pour $p, q \ge N$ ; alors $N_2(u_p - u_q) \le \beta N_1(u_p - u_q) < \eps$. Dans l'autre sens, on utilise $N_1 \le \frac1\alpha N_2$. Les deux normes ont les mêmes suites de Cauchy et les mêmes suites convergentes ({@fr:equiv-conv}), donc $E$ est complet pour l'une si et seulement s'il l'est pour l'autre.
+:::
+
+::: thm id=dimfinie-complet lvl=1 zh="有限维空间的完备性" en="Finite-dimensional spaces are complete" fr="Tout evn de dimension finie est complet" ru="Конечномерное пространство полно"
+有限维赋范空间是 Banach 空间。
+:::
+
+::: fr
+Tout espace vectoriel normé de dimension finie est un espace de Banach.
+:::
+
+::: proof
+▷ 思路：Cauchy 列有界 → 落在一个闭球里 → 有限维时闭球紧 → 有收敛子列 → 整个数列收敛。
+
+设 $E$ 有限维，$(u_n)$ 是 $E$ 中的 Cauchy 列。
+
+1. 由 {@c1-cauchy-prop} 第 2 条，存在 $M$ 使对一切 $n$，$u_n \in \overline{B}(0, M)$。
+2. $\overline{B}(0, M)$ 是有界闭集（{@c1-ouverts-stab}），$E$ 有限维，由 {@cor-dimfinie} 第 1 条它是紧集。所以 $(u_n)$ 有子列收敛到某个 $\ell \in \overline{B}(0, M)$。
+3. 由 {@c1-cauchy-prop} 第 3 条，$u_n \to \ell$。
+
+所以 $E$ 中的每个 Cauchy 列都收敛，$E$ 完备。
+:::
+
+::: fr
+▷ Méthode : une suite de Cauchy est bornée → elle est contenue dans une boule fermée → en dimension finie cette boule est compacte → il existe une suite extraite convergente → la suite entière converge.
+
+Soient $E$ de dimension finie et $(u_n)$ une suite de Cauchy de $E$.
+
+1. D'après le point 2 du {@fr:c1-cauchy-prop}, il existe $M$ tel que $u_n \in \overline{B}(0, M)$ pour tout $n$.
+2. La boule $\overline{B}(0, M)$ est fermée et bornée ({@fr:c1-ouverts-stab}) et $E$ est de dimension finie ; d'après le point 1 du {@fr:cor-dimfinie}, elle est compacte. Donc $(u_n)$ admet une suite extraite qui converge vers un certain $\ell \in \overline{B}(0, M)$.
+3. D'après le point 3 du {@fr:c1-cauchy-prop}, $u_n \to \ell$.
+
+Toute suite de Cauchy de $E$ converge donc : $E$ est complet.
+:::
+
+::: rem
+1. 特别地，$\K^n$、$\M_n(\K)$ 对任何范数都是 Banach 空间（第 8 章用它证明 $\exp(A) = \sum \frac{A^k}{k!}$ 收敛）。
+2. **完备子空间是闭的**：若 $F \subset E$ 对限制范数完备，$F \ni u_n \to a \in E$，则 $(u_n)$ 是 Cauchy 列（{@c1-cauchy-prop} 第 1 条），在 $F$ 中收敛到某个 $b$；由极限唯一 $a = b \in F$。这给出 {@cor-dimfinie} 第 3 条的另一个证明。
+3. **反过来**：Banach 空间的闭子集 $F$ 中的 Cauchy 列在 $E$ 中收敛，极限由 {@carac-seq-adh} 属于 $F$。不动点定理中正是这样用到「$F$ 闭」的。
+:::
+
+::: thm id=c0-complet zh="连续函数空间的完备性" en="Completeness of $(C([a,b]), \lVert\cdot\rVert_\infty)$" fr="Complétude de $(\mathcal{C}([a,b]), \lVert\cdot\rVert_\infty)$" ru="Полнота пространства $C[a,b]$" lvl=1
+$(\Cc([a,b], \K), \norm{\cdot}_\infty)$ 是 Banach 空间。
+:::
+
+::: fr
+L'espace $(\Cc([a,b], \K), \norm{\cdot}_\infty)$ est un espace de Banach.
+:::
+
+::: proof
+▷ 思路：三步。(1) 逐点地，$(f_n(x))$ 是 $\K$ 中的 Cauchy 列，得到候选极限 $f$；(2) 在 Cauchy 不等式 $\abs{f_p(x) - f_q(x)} \le \eps$ 中令 $q \to \infty$，得到一致的估计；(3) 用 $\frac\eps3$ 论证证明 $f$ 连续。
+
+设 $(f_n)$ 是 $(\Cc([a,b], \K), \norm{\cdot}_\infty)$ 中的 Cauchy 列。
+
+**第 1 步（逐点极限）**　设 $x \in [a, b]$。对一切 $p, q$，$\abs{f_p(x) - f_q(x)} \le \norm{f_p - f_q}_\infty$。所以 $(f_n(x))$ 是 $\K$ 中的 Cauchy 列（同一个 $N$ 适用），由 $\K$ 完备（L1）收敛。记 $f(x) = \lim_n f_n(x)$。
+
+**第 2 步（一致估计）**　设 $\eps > 0$。由 Cauchy 性，存在 $N$ 使 $p, q \ge N$ 时 $\norm{f_p - f_q}_\infty < \eps$。固定 $x \in [a,b]$ 与 $p \ge N$。对一切 $q \ge N$，$\abs{f_p(x) - f_q(x)} < \eps$。令 $q \to \infty$，由 $f_q(x) \to f(x)$ 与不等式取极限，
+$$\abs{f_p(x) - f(x)} \le \eps \qquad (x \in [a, b],\ p \ge N).$$
+$N$ 不依赖于 $x$，所以对 $p \ge N$，$\sup_{x \in [a,b]} \abs{f_p(x) - f(x)} \le \eps$。
+
+**第 3 步（$f$ 连续）**　设 $x_0 \in [a,b]$，$\eps > 0$。
+
+1. 由第 2 步（用 $\frac\eps3$ 代替 $\eps$），存在 $p$ 使对一切 $x$，$\abs{f_p(x) - f(x)} \le \frac\eps3$。
+2. $f_p$ 在 $x_0$ 连续：存在 $\delta > 0$，使 $x \in [a,b]$、$\abs{x - x_0} < \delta$ 时 $\abs{f_p(x) - f_p(x_0)} < \frac\eps3$。
+3. 对这样的 $x$：
+   $$\begin{aligned}
+   \abs{f(x) - f(x_0)} &\le \abs{f(x) - f_p(x)} + \abs{f_p(x) - f_p(x_0)} + \abs{f_p(x_0) - f(x_0)} && \text{（三角不等式）}\\
+   &< \tfrac\eps3 + \tfrac\eps3 + \tfrac\eps3 = \eps. && \text{（第 1、2 小步）}
+   \end{aligned}$$
+
+所以 $f$ 在每一点连续，$f \in \Cc([a,b], \K)$。这就是「一致收敛保持连续性」（第 3 章 {@cont-limite-unif}）。
+
+**第 4 步（结论）**　由第 3 步 $f \in \Cc([a,b], \K)$，由第 2 步，对 $p \ge N$，$\norm{f_p - f}_\infty \le \eps$。所以 $f_p \to f$（对 $\norm{\cdot}_\infty$），空间完备。
+:::
+
+::: fr
+▷ Méthode : trois étapes. (1) Point par point, $(f_n(x))$ est une suite de Cauchy de $\K$, ce qui fournit une limite candidate $f$ ; (2) dans l'inégalité de Cauchy $\abs{f_p(x) - f_q(x)} \le \eps$, on fait tendre $q$ vers l'infini pour obtenir une estimation uniforme ; (3) un argument en $\frac\eps3$ montre que $f$ est continue.
+
+Soit $(f_n)$ une suite de Cauchy de $(\Cc([a,b], \K), \norm{\cdot}_\infty)$.
+
+**Étape 1 (limite simple)**　Soit $x \in [a, b]$. Pour tous $p, q$, $\abs{f_p(x) - f_q(x)} \le \norm{f_p - f_q}_\infty$. Donc $(f_n(x))$ est une suite de Cauchy de $\K$ (le même $N$ convient), qui converge puisque $\K$ est complet (L1). Notons $f(x) = \lim_n f_n(x)$.
+
+**Étape 2 (estimation uniforme)**　Soit $\eps > 0$. Comme $(f_n)$ est de Cauchy, il existe $N$ tel que $\norm{f_p - f_q}_\infty < \eps$ pour $p, q \ge N$. Fixons $x \in [a,b]$ et $p \ge N$. Pour tout $q \ge N$, $\abs{f_p(x) - f_q(x)} < \eps$. En faisant tendre $q$ vers l'infini, comme $f_q(x) \to f(x)$, par passage à la limite dans les inégalités,
+$$\abs{f_p(x) - f(x)} \le \eps \qquad (x \in [a, b],\ p \ge N).$$
+Comme $N$ ne dépend pas de $x$, pour $p \ge N$, $\sup_{x \in [a,b]} \abs{f_p(x) - f(x)} \le \eps$.
+
+**Étape 3 ($f$ est continue)**　Soient $x_0 \in [a,b]$ et $\eps > 0$.
+
+1. D'après l'étape 2 (avec $\frac\eps3$ au lieu de $\eps$), il existe $p$ tel que pour tout $x$, $\abs{f_p(x) - f(x)} \le \frac\eps3$.
+2. La fonction $f_p$ est continue en $x_0$ : il existe $\delta > 0$ tel que pour $x \in [a,b]$ avec $\abs{x - x_0} < \delta$, $\abs{f_p(x) - f_p(x_0)} < \frac\eps3$.
+3. Pour un tel $x$ :
+   $$\begin{aligned}
+   \abs{f(x) - f(x_0)} &\le \abs{f(x) - f_p(x)} + \abs{f_p(x) - f_p(x_0)} + \abs{f_p(x_0) - f(x_0)} && \text{(inégalité triangulaire)}\\
+   &< \tfrac\eps3 + \tfrac\eps3 + \tfrac\eps3 = \eps. && \text{(points 1 et 2)}
+   \end{aligned}$$
+
+Donc $f$ est continue en tout point : $f \in \Cc([a,b], \K)$. C'est la « continuité de la limite uniforme » (chapitre 3, {@fr:cont-limite-unif}).
+
+**Étape 4 (conclusion)**　D'après l'étape 3, $f \in \Cc([a,b], \K)$, et d'après l'étape 2, $\norm{f_p - f}_\infty \le \eps$ pour $p \ge N$. Ainsi $f_p \to f$ pour $\norm{\cdot}_\infty$, et l'espace est complet.
+:::
+
+::: cex id=cex-c01-l1 lvl=1
+$(\Cc([0,1], \R), \norm{\cdot}_1)$ 不完备。令 $f_n$（$n \ge 2$）在 $[0, \frac12]$ 上为 $0$，在 $[\frac12 + \frac1n, 1]$ 上为 $1$，中间线性连接。则 $\norm{f_p - f_q}_1 \le \frac{1}{\min(p,q)}$，是 Cauchy 列；但它对 $\norm{\cdot}_1$ 的「极限」只能是阶梯函数 $\mathbf{1}_{]1/2, 1]}$，不是连续函数。这正是引入 Lebesgue 空间 $L^1$ 的动机（L3）。
+
+**精确计算。** 设 $2 \le p \le q$。在 $[0, \frac12]$ 上 $f_p = f_q = 0$；在 $[\frac12 + \frac1p, 1]$ 上 $f_p = f_q = 1$（因为 $\frac12 + \frac1q \le \frac12 + \frac1p$）；在 $[\frac12, \frac12 + \frac1p]$ 上 $f_p(x) = p(x - \frac12) \le \min\big(1, q(x - \frac12)\big) = f_q(x)$。所以 $0 \le f_q - f_p$，且
+$$\norm{f_p - f_q}_1 = \int_{1/2}^1 (1 - f_p) - \int_{1/2}^1 (1 - f_q) = \frac{1}{2p} - \frac{1}{2q} \le \frac{1}{2p} \le \frac{1}{\min(p,q)},$$
+（$\int_{1/2}^1 (1 - f_n)$ 是底为 $\frac1n$、高为 $1$ 的三角形面积 $\frac{1}{2n}$）。给定 $\eps > 0$，令 $N = \lfloor 1/\eps \rfloor + 2$，则 $N \ge 2$ 且 $\frac1N < \eps$，对 $p, q \ge N$，$\norm{f_p - f_q}_1 \le \frac{1}{2N} < \eps$。
+
+**没有连续的极限。** 反设 $f \in \Cc([0,1], \R)$ 且 $\norm{f_n - f}_1 \to 0$。
+
+1. 在 $[0, \frac12]$ 上 $f_n = 0$，所以 $\int_0^{1/2} \abs{f} = \int_0^{1/2} \abs{f - f_n} \le \norm{f - f_n}_1 \to 0$，于是 $\int_0^{1/2} \abs{f} = 0$，由 {@c1-int-nulle}，$f = 0$ 于 $[0, \frac12]$。
+2. 设 $c \in \,]\frac12, 1[$。当 $n \ge \frac{1}{c - 1/2}$ 时 $f_n = 1$ 于 $[c, 1]$，所以 $\int_c^1 \abs{1 - f} \le \norm{f_n - f}_1 \to 0$，由 {@c1-int-nulle}，$f = 1$ 于 $[c, 1]$。每个 $x \in \,]\frac12, 1]$ 属于某个这样的 $[c, 1]$（取 $c = \frac{x + 1/2}{2}$），所以 $f = 1$ 于 $]\frac12, 1]$。
+3. 于是 $f(\frac12) = 0$，而 $f(\frac12 + \frac1n) = 1 \to 1 \ne 0$，由 {@carac-seq-cont}，$f$ 在 $\frac12$ 不连续，矛盾。
+
+所以 $(f_n)$ 是不收敛的 Cauchy 列。注意 $(\Cc([0,1]), \norm{\cdot}_\infty)$ 完备（{@c0-complet}）而 $(\Cc([0,1]), \norm{\cdot}_1)$ 不完备，这与 {@c1-cauchy-prop} 第 4 条不矛盾，因为两个范数不等价（{@cex-normes-c01}）。
+:::
+
+::: thm id=serie-abs-banach zh="Banach 空间中绝对收敛的级数收敛" en="Absolutely convergent series converge in a Banach space" fr="Une série absolument convergente d'un espace de Banach converge" ru="Абсолютно сходящийся ряд в банаховом пространстве сходится" lvl=1
+若 $E$ 完备，$\sum \norm{u_n} < \infty$，则 $\sum u_n$ 收敛，且 $\norm{\sum u_n} \le \sum \norm{u_n}$。
+:::
+
+::: fr
+Si $E$ est complet et si $\sum \norm{u_n} < \infty$, alors la série $\sum u_n$ converge, et $\norm{\sum u_n} \le \sum \norm{u_n}$.
+:::
+
+::: proof
+▷ 思路：部分和之差用三角不等式控制为实数级数的「Cauchy 片段」，于是部分和是 Cauchy 列；完备性给出极限。
+
+记 $S_n = \sum_{k=0}^n u_k$，$T_n = \sum_{k=0}^n \norm{u_k}$。由假设 $(T_n)$ 收敛到 $T = \sum_{k=0}^\infty \norm{u_k}$，所以是 $\R$ 中的 Cauchy 列（{@c1-cauchy-prop} 第 1 条）。
+
+**第 1 步（片段估计）**　对 $q > p$，由三角不等式（有限和），
+$$\norm{S_q - S_p} = \Big\|\sum_{k=p+1}^{q} u_k\Big\| \le \sum_{k=p+1}^{q} \norm{u_k} = T_q - T_p = \abs{T_q - T_p}.$$
+
+**第 2 步（$(S_n)$ 是 Cauchy 列）**　设 $\eps > 0$。取 $N$ 使 $p, q \ge N$ 时 $\abs{T_q - T_p} < \eps$。对 $p, q \ge N$：若 $q > p$，由第 1 步 $\norm{S_q - S_p} < \eps$；若 $q < p$，交换 $p, q$；若 $p = q$，$\norm{S_q - S_p} = 0$。由 $E$ 完备，$S_n \to S$，记 $S = \sum_{k=0}^\infty u_k$。
+
+**第 3 步（不等式）**　由三角不等式与 $(T_n)$ 递增，$\norm{S_n} \le T_n \le T$。由 {@c1-suites-prop} 第 3 条，$\norm{S_n} \to \norm{S}$；不等式取极限得 $\norm{S} \le T$。
+:::
+
+::: fr
+▷ Méthode : par l'inégalité triangulaire, la différence de deux sommes partielles est contrôlée par une « tranche de Cauchy » de la série réelle ; les sommes partielles forment donc une suite de Cauchy, et la complétude fournit la limite.
+
+Notons $S_n = \sum_{k=0}^n u_k$ et $T_n = \sum_{k=0}^n \norm{u_k}$. Par hypothèse, $(T_n)$ converge vers $T = \sum_{k=0}^\infty \norm{u_k}$ ; c'est donc une suite de Cauchy de $\R$ (point 1 du {@fr:c1-cauchy-prop}).
+
+**Étape 1 (estimation d'une tranche)**　Pour $q > p$, par l'inégalité triangulaire (somme finie),
+$$\norm{S_q - S_p} = \Big\|\sum_{k=p+1}^{q} u_k\Big\| \le \sum_{k=p+1}^{q} \norm{u_k} = T_q - T_p = \abs{T_q - T_p}.$$
+
+**Étape 2 ($(S_n)$ est de Cauchy)**　Soit $\eps > 0$. Soit $N$ tel que $\abs{T_q - T_p} < \eps$ pour $p, q \ge N$. Pour $p, q \ge N$ : si $q > p$, l'étape 1 donne $\norm{S_q - S_p} < \eps$ ; si $q < p$, on échange $p$ et $q$ ; si $p = q$, $\norm{S_q - S_p} = 0$. Comme $E$ est complet, $S_n \to S$, et on note $S = \sum_{k=0}^\infty u_k$.
+
+**Étape 3 (inégalité)**　Par l'inégalité triangulaire et la croissance de $(T_n)$, $\norm{S_n} \le T_n \le T$. D'après le point 3 de la {@fr:c1-suites-prop}, $\norm{S_n} \to \norm{S}$ ; par passage à la limite, $\norm{S} \le T$.
+:::
+
+::: rem
+**逆命题成立**：若 $E$ 中每个绝对收敛的级数都收敛，则 $E$ 完备。设 $(u_n)$ 是 Cauchy 列。对每个 $k$，取 $N_k$ 使 $p, q \ge N_k$ 时 $\norm{u_p - u_q} < 2^{-k}$，令 $\varphi(k) = \max(N_0, \dots, N_k) + k$（严格递增，且 $\varphi(k) \ge N_k$）。则 $\norm{u_{\varphi(k+1)} - u_{\varphi(k)}} < 2^{-k}$，级数 $\sum_k (u_{\varphi(k+1)} - u_{\varphi(k)})$ 绝对收敛，从而收敛；它的部分和是 $u_{\varphi(K)} - u_{\varphi(0)}$，所以子列 $(u_{\varphi(K)})$ 收敛，由 {@c1-cauchy-prop} 第 3 条整个数列收敛。这个判据常用来证明函数空间的完备性。
+:::
+
+::: cex id=c1-cex-serie-rx lvl=1 zh="完备性不能去掉"
+在 $E = \R[X]$ 上取 $\norm{P} = \sup_{[0,1]} \abs{P}$（{@c1-cex-derivation} 中验证过是范数），$u_k = \frac{X^k}{k!}$。则 $\norm{u_k} = \frac{1}{k!}$，$\sum \norm{u_k} = \e < \infty$，但 $\sum u_k$ 在 $E$ 中不收敛。
+
+**证明。** 记 $S_n = \sum_{k=0}^n \frac{X^k}{k!}$。
+
+1. 由 Taylor–Lagrange 公式，对 $x \in [0,1]$，存在 $c \in \,]0, x[$ 使 $\e^x - S_n(x) = \frac{\e^{c} x^{n+1}}{(n+1)!}$，所以 $\sup_{[0,1]} \abs{\e^x - S_n(x)} \le \frac{\e}{(n+1)!} \to 0$：在 $(\Cc([0,1]), \norm{\cdot}_\infty)$ 中 $S_n \to \exp$。
+2. 反设在 $E$ 中 $S_n \to P \in \R[X]$。$E$ 的范数就是 $\Cc([0,1])$ 的 $\norm{\cdot}_\infty$ 限制在多项式上，所以在 $\Cc([0,1])$ 中也有 $S_n \to P$。由极限唯一，$P = \exp$ 于 $[0,1]$。
+3. 设 $d = \deg P$（$P = 0$ 时取 $d = 0$）。在 $]0, 1[$ 上求 $d + 1$ 阶导数：$P^{(d+1)} = 0$，而 $\exp^{(d+1)} = \exp > 0$，矛盾。
+
+所以 {@serie-abs-banach} 中「$E$ 完备」不能去掉。由上一条注，这也证明了 $E$ 不完备。
+:::
+
+::: thm id=point-fixe zh="Banach 不动点定理（压缩映射原理）" en="Banach fixed-point theorem" fr="Théorème du point fixe de Banach (de Picard)" ru="Принцип сжимающих отображений" lvl=1
+设 $F$ 是 Banach 空间的非空闭子集，$f : F \to F$ 是 $k$-Lipschitz 的，$0 \le k < 1$。则 $f$ 有唯一不动点 $\ell$。对任意 $x_0 \in F$，迭代 $x_{n+1} = f(x_n)$ 收敛到 $\ell$，并且
+$$\norm{x_n - \ell} \le \frac{k^n}{1 - k} \norm{x_1 - x_0}.$$
+:::
+
+::: fr
+Soient $F$ une partie fermée non vide d'un espace de Banach et $f : F \to F$ une application $k$-lipschitzienne avec $0 \le k < 1$. Alors $f$ admet un unique point fixe $\ell$. Pour tout $x_0 \in F$, la suite définie par $x_{n+1} = f(x_n)$ converge vers $\ell$, et
+$$\norm{x_n - \ell} \le \frac{k^n}{1 - k} \norm{x_1 - x_0}.$$
+:::
+
+::: proof
+▷ 思路：唯一性直接由压缩性得到。存在性：迭代数列的相邻两项之差按几何级数衰减，所以是 Cauchy 列；完备性给出极限，$F$ 闭保证极限在 $F$ 中，$f$ 的连续性说明极限是不动点。在 Cauchy 估计中令 $p \to \infty$ 得误差估计。
+
+**第 1 步（唯一性）**　设 $f(\ell) = \ell$，$f(\ell') = \ell'$。则
+$$\norm{\ell - \ell'} = \norm{f(\ell) - f(\ell')} \le k\norm{\ell - \ell'},$$
+即 $(1 - k)\norm{\ell - \ell'} \le 0$。由 $1 - k > 0$，$\norm{\ell - \ell'} = 0$，$\ell = \ell'$。
+
+**第 2 步（数列有定义）**　$x_0 \in F$，且 $f(F) \subset F$；由归纳，对一切 $n$，$x_n \in F$，所以 $x_{n+1} = f(x_n)$ 有定义。
+
+**第 3 步（几何衰减）**　断言：对一切 $n$，$\norm{x_{n+1} - x_n} \le k^n \norm{x_1 - x_0}$（约定 $k^0 = 1$）。**初始化**：$n = 0$ 时是等式。**递推**：设对 $n$ 成立，则
+$$\norm{x_{n+2} - x_{n+1}} = \norm{f(x_{n+1}) - f(x_n)} \le k\norm{x_{n+1} - x_n} \le k^{n+1}\norm{x_1 - x_0}.$$
+
+**第 4 步（Cauchy 列）**　对 $p > n$，由三角不等式与第 3 步，
+$$\norm{x_p - x_n} \le \sum_{j=n}^{p-1} \norm{x_{j+1} - x_j} \le \norm{x_1 - x_0} \sum_{j=n}^{p-1} k^j \le \norm{x_1 - x_0}\, \frac{k^n}{1 - k}. \tag{$\ast$}$$
+（最后一步：$\sum_{j=n}^{p-1} k^j \le \sum_{j \ge n} k^j = \frac{k^n}{1-k}$。）设 $\eps > 0$。由 $0 \le k < 1$，$k^n \to 0$，存在 $N$ 使 $\frac{k^N}{1-k}\norm{x_1 - x_0} < \eps$。对 $p > n \ge N$，由 $(\ast)$ 与 $k^n \le k^N$，$\norm{x_p - x_n} < \eps$。所以 $(x_n)$ 是 Cauchy 列。
+
+**第 5 步（极限在 $F$ 中）**　由空间完备，$x_n \to \ell$；$F$ 闭，由 {@carac-seq-adh}，$\ell \in F$。
+
+**第 6 步（$\ell$ 是不动点）**　$f$ 是 Lipschitz 的，从而连续（{@c1-lip-uc}）。在 $x_{n+1} = f(x_n)$ 中令 $n \to \infty$：左边 $x_{n+1} \to \ell$（$(x_{n+1})$ 是 $(x_n)$ 的子列），右边 $f(x_n) \to f(\ell)$（{@carac-seq-cont}）。由极限唯一，$f(\ell) = \ell$。
+
+**第 7 步（误差估计）**　在 $(\ast)$ 中固定 $n$，令 $p \to \infty$：$\norm{x_p - x_n} \to \norm{\ell - x_n}$（{@c1-suites-prop} 第 3、4 条），不等式取极限得 $\norm{x_n - \ell} \le \frac{k^n}{1-k}\norm{x_1 - x_0}$。
+
+由第 1–7 步，定理得证。
+:::
+
+::: fr
+▷ Méthode : l'unicité découle directement du caractère contractant. Pour l'existence : les écarts entre termes consécutifs de la suite itérée décroissent géométriquement, donc la suite est de Cauchy ; la complétude fournit une limite, la fermeture de $F$ assure qu'elle est dans $F$, et la continuité de $f$ montre que c'est un point fixe. En faisant tendre $p$ vers l'infini dans l'estimation de Cauchy, on obtient l'estimation d'erreur.
+
+**Étape 1 (unicité)**　Soient $\ell, \ell'$ tels que $f(\ell) = \ell$ et $f(\ell') = \ell'$. Alors
+$$\norm{\ell - \ell'} = \norm{f(\ell) - f(\ell')} \le k\norm{\ell - \ell'},$$
+c'est-à-dire $(1 - k)\norm{\ell - \ell'} \le 0$. Comme $1 - k > 0$, $\norm{\ell - \ell'} = 0$, donc $\ell = \ell'$.
+
+**Étape 2 (la suite est bien définie)**　On a $x_0 \in F$ et $f(F) \subset F$ ; par récurrence, $x_n \in F$ pour tout $n$, de sorte que $x_{n+1} = f(x_n)$ est bien défini.
+
+**Étape 3 (décroissance géométrique)**　Montrons que pour tout $n$, $\norm{x_{n+1} - x_n} \le k^n \norm{x_1 - x_0}$ (avec la convention $k^0 = 1$). **Initialisation** : pour $n = 0$, c'est une égalité. **Hérédité** : si c'est vrai au rang $n$, alors
+$$\norm{x_{n+2} - x_{n+1}} = \norm{f(x_{n+1}) - f(x_n)} \le k\norm{x_{n+1} - x_n} \le k^{n+1}\norm{x_1 - x_0}.$$
+
+**Étape 4 (suite de Cauchy)**　Pour $p > n$, par l'inégalité triangulaire et l'étape 3,
+$$\norm{x_p - x_n} \le \sum_{j=n}^{p-1} \norm{x_{j+1} - x_j} \le \norm{x_1 - x_0} \sum_{j=n}^{p-1} k^j \le \norm{x_1 - x_0}\, \frac{k^n}{1 - k}. \tag{$\ast$}$$
+(Pour la dernière inégalité : $\sum_{j=n}^{p-1} k^j \le \sum_{j \ge n} k^j = \frac{k^n}{1-k}$.) Soit $\eps > 0$. Comme $0 \le k < 1$, $k^n \to 0$ : il existe $N$ tel que $\frac{k^N}{1-k}\norm{x_1 - x_0} < \eps$. Pour $p > n \ge N$, d'après $(\ast)$ et puisque $k^n \le k^N$, $\norm{x_p - x_n} < \eps$. La suite $(x_n)$ est donc de Cauchy.
+
+**Étape 5 (la limite est dans $F$)**　L'espace étant complet, $x_n \to \ell$ ; comme $F$ est fermé, $\ell \in F$ d'après le {@fr:carac-seq-adh}.
+
+**Étape 6 ($\ell$ est un point fixe)**　L'application $f$ est lipschitzienne, donc continue ({@fr:c1-lip-uc}). On passe à la limite dans $x_{n+1} = f(x_n)$ : à gauche, $x_{n+1} \to \ell$ (suite extraite de $(x_n)$) ; à droite, $f(x_n) \to f(\ell)$ ({@fr:carac-seq-cont}). Par unicité de la limite, $f(\ell) = \ell$.
+
+**Étape 7 (estimation d'erreur)**　Dans $(\ast)$, on fixe $n$ et on fait tendre $p$ vers l'infini : $\norm{x_p - x_n} \to \norm{\ell - x_n}$ (points 3 et 4 de la {@fr:c1-suites-prop}), et par passage à la limite, $\norm{x_n - \ell} \le \frac{k^n}{1-k}\norm{x_1 - x_0}$.
+
+Les étapes 1 à 7 démontrent le théorème.
+:::
+
+::: rem
+不动点定理贯穿 L2：第 8 章用它证明 Cauchy–Lipschitz 定理，第 10 章用它证明局部逆定理。证明中只用到了「$F$ 中的 Cauchy 列在 $F$ 中收敛」（完备空间的闭子集具有这个性质），所以定理对任何完备度量空间都成立。误差估计是**先验**的：只算出 $x_1$，就知道要迭代多少次。
+:::
+
+::: cex lvl=1
+条件不能减弱为 $\norm{f(x) - f(y)} < \norm{x - y}$：$f(x) = x + \frac1x$ 在 $[1, +\infty[$ 上满足这个严格不等式，却没有不动点。
+
+**验证。** $F = [1, +\infty[$ 是 $\R$ 的闭集；$x + \frac1x \ge 2$，所以 $f(F) \subset F$。对 $x \ne y$ 属于 $F$，$f(x) - f(y) = (x - y)\big(1 - \frac{1}{xy}\big)$，而 $xy > 1$（$x, y \ge 1$ 且不同时为 1），所以 $0 < 1 - \frac{1}{xy} < 1$，$\abs{f(x) - f(y)} < \abs{x - y}$。但 $f(x) = x \iff \frac1x = 0$，无解。比值 $1 - \frac{1}{xy}$ 在 $xy \to \infty$ 时趋于 1，所以不存在一致的 $k < 1$。
+
+**其他条件也不能去掉。**
+1. $F$ 闭：$f(x) = \frac x2$ 在 $F = \,]0, 1]$ 上是 $\frac12$-Lipschitz 的，$f(F) \subset F$，但 $\frac x2 = x \iff x = 0 \notin F$。
+2. $k < 1$：平移 $f(x) = x + 1$ 在 $\R$ 上是 1-Lipschitz 的，没有不动点。
+3. $f(F) \subset F$：$f(x) = \frac x2 + 3$ 在 $F = [0, 1]$ 上是 $\frac12$-Lipschitz 的，唯一的「不动点」$6 \notin F$；问题在于 $f(F) = [3, \frac72] \not\subset F$，迭代无法进行。
+:::
+
+::: q
+证明方程 $\cos x = x$ 在 $\R$ 上有唯一解 $\ell$，并估计：从 $x_0 = 0$ 出发迭代 $x_{n+1} = \cos x_n$，迭代多少次能保证误差 $< 10^{-6}$？
+:::
+
+::: ans
+**化到 $[0,1]$ 上。** 若 $\cos x = x$，则 $\abs{x} \le 1$；若 $x \in [-1, 0[$，则 $\cos x > 0 > x$（$\abs{x} \le 1 < \frac\pi2$）。所以解只可能在 $F = [0, 1]$ 中。
+
+**验证条件。** $\cos$ 在 $[0, 1] \subset [0, \pi]$ 上递减，$\cos([0,1]) = [\cos 1, 1] \subset [0,1]$（$\cos 1 \approx 0.5403 > 0$）。对 $x, y \in [0,1]$，由中值定理存在 $c$ 在 $x, y$ 之间，$\abs{\cos x - \cos y} = \abs{\sin c}\,\abs{x - y} \le \sin 1 \cdot \abs{x - y}$。$k = \sin 1 \approx 0.8415 < 1$，$F$ 是 Banach 空间 $\R$ 的非空闭集。由 {@point-fixe}，在 $[0,1]$ 中有唯一不动点 $\ell \approx 0.739085$，它也是 $\R$ 上唯一的解。
+
+**迭代次数。** $x_0 = 0$，$x_1 = 1$，误差 $\le \frac{k^n}{1 - k}$。要 $\frac{k^n}{1-k} < 10^{-6}$，即 $n > \frac{\ln(10^{-6}(1 - k))}{\ln k} \approx 90.7$，取 $n = 91$ 即可保证。实际上收敛快得多：$n = 33$ 时误差已 $< 10^{-6}$，因为在 $\ell$ 附近真正的压缩常数是 $\sin \ell \approx 0.67$。先验估计保守，但它只用到了 $x_1$。
+:::
+
+::: q
+若 $\norm{u_{n+1} - u_n} \to 0$，$(u_n)$ 一定是 Cauchy 列吗？若 $\norm{u_{n+1} - u_n} \le C\rho^n$（$0 \le \rho < 1$）呢？
+:::
+
+::: ans
+**第一问：不一定。** 在 $\R$ 中，$u_n = \sum_{k=1}^n \frac1k$ 满足 $u_{n+1} - u_n = \frac{1}{n+1} \to 0$，但 $u_{2n} - u_n = \sum_{k=n+1}^{2n} \frac1k \ge n \cdot \frac{1}{2n} = \frac12$，取 $\eps = \frac12$ 即知它不是 Cauchy 列（事实上 $u_n \to +\infty$）。
+
+**第二问：是。** 与 {@point-fixe} 第 4 步完全相同（把 $k$ 换成 $\rho$，$\norm{x_1 - x_0}$ 换成 $C$）：对 $p > n$，$\norm{u_p - u_n} \le C\sum_{j=n}^{p-1} \rho^j \le \frac{C\rho^n}{1 - \rho} \to 0$。所以「相邻项之差按几何级数衰减」是证明 Cauchy 性的常用充分条件，它比「相邻项之差趋于 0」强得多。
+:::
+
+## 道路连通性
+
+L1 的介值定理说：区间上的连续函数的值域是区间。在赋范空间中，「区间」的角色由道路连通集扮演——任意两点都能用一条连续的道路连起来。本节证明连续像保持道路连通，并由此得到广义介值定理；它最常见的用法是**否定**：若某个连续实函数在 $A$ 上的值域不是区间，则 $A$ 不道路连通。
+
+::: def id=c1-def-cpa zh="道路连通" en="Path-connected" fr="Connexe par arcs" ru="Линейно связное множество"
+$A$ **道路连通**，如果任意两点 $a, b \in A$ 之间有连续道路 $\gamma : [0,1] \to A$，$\gamma(0) = a$，$\gamma(1) = b$：
+$$\forall a, b \in A,\ \exists \gamma \in \Cc([0,1], E),\quad \gamma([0,1]) \subset A,\ \gamma(0) = a,\ \gamma(1) = b.$$
+$A$ 称为**星形集**（关于 $c \in A$），如果对一切 $x \in A$，线段 $[c, x] \subset A$。凸集（特别是球）和星形集都是道路连通的（{@c1-convexe-cpa}）。
+:::
+
+::: fr
+Une partie $A$ est **connexe par arcs** si deux points quelconques $a, b \in A$ peuvent être reliés par un chemin continu $\gamma : [0,1] \to A$ avec $\gamma(0) = a$ et $\gamma(1) = b$ :
+$$\forall a, b \in A,\ \exists \gamma \in \Cc([0,1], E),\quad \gamma([0,1]) \subset A,\ \gamma(0) = a,\ \gamma(1) = b.$$
+On dit que $A$ est **étoilée** (par rapport à $c \in A$) si pour tout $x \in A$, le segment $[c, x]$ est contenu dans $A$. Les parties convexes (en particulier les boules) et les parties étoilées sont connexes par arcs ({@fr:c1-convexe-cpa}).
+:::
+
+白话：星形集中有一个「中心」$c$，从 $c$ 出发能「直线看到」集合中的每一点；道路连通则允许走弯路。
+
+::: ex zh="道路连通与星形"
+1. $\R^2 \setminus \{0\}$ 道路连通，但不是星形集。
+   - 不是星形集：对任何 $c \ne 0$，$-c \in \R^2 \setminus \{0\}$，而线段 $[c, -c]$ 的中点是 $0$。
+   - 道路连通：设 $a, b \ne 0$。若 $0 \notin [a, b]$，线段本身就是道路。若 $0 \in [a, b]$，则 $a, b, 0$ 共线；取一点 $p$ 不在这条直线上，则 $0 \notin [a, p]$（否则直线 $(a p)$ 经过 $a$ 与 $0$，与直线 $(a b)$ 重合，$p$ 就在这条直线上），同样 $0 \notin [p, b]$；沿 $[a, p]$ 再沿 $[p, b]$ 走（拼接方法见 {@c1-convexe-cpa} 的证明第 3 步）。
+2. $\R \setminus \{0\}$ 不道路连通：它不是区间（$-1, 1$ 在其中而 $0$ 不在），由下面的 {@image-connexe}。
+:::
+
+::: prop id=c1-convexe-cpa zh="凸 ⇒ 星形 ⇒ 道路连通" en="Convex implies star-shaped implies path-connected" fr="Convexe ⇒ étoilée ⇒ connexe par arcs" ru="Выпуклое ⇒ звёздное ⇒ линейно связное" lvl=1
+非空凸集是星形集（关于其中任一点）；星形集是道路连通的。特别地，球与向量子空间都是道路连通的。
+:::
+
+::: fr
+Une partie convexe non vide est étoilée (par rapport à chacun de ses points) ; une partie étoilée est connexe par arcs. En particulier, les boules et les sous-espaces vectoriels sont connexes par arcs.
+:::
+
+::: proof
+▷ 思路：在星形集中，从 $a$ 沿直线走到中心 $c$，再沿直线走到 $b$。需要两个技术点：线段道路是连续的；两条道路首尾相接仍是连续道路。
+
+**第 1 步（凸 ⇒ 星形）**　设 $A$ 凸、非空，$c \in A$。对 $x \in A$，由凸性，$[c, x] \subset A$。所以 $A$ 关于 $c$ 是星形集。
+
+**第 2 步（线段道路）**　对 $x, y \in E$，令 $\sigma_{x,y}(t) = (1 - t)x + ty$（$t \in [0,1]$）。则 $\sigma_{x,y}(0) = x$，$\sigma_{x,y}(1) = y$，$\sigma_{x,y}([0,1]) = [x, y]$，且
+$$\norm{\sigma_{x,y}(t) - \sigma_{x,y}(s)} = \norm{(s - t)x + (t - s)y} = \abs{t - s}\,\norm{y - x},$$
+所以 $\sigma_{x,y}$ 是 Lipschitz 的，连续（{@c1-lip-uc}）。
+
+**第 3 步（拼接道路）**　设 $\gamma_1, \gamma_2 : [0,1] \to A$ 连续，$\gamma_1(1) = \gamma_2(0)$。令
+$$\gamma(t) = \begin{cases} \gamma_1(2t), & t \in [0, \frac12], \\ \gamma_2(2t - 1), & t \in [\frac12, 1]. \end{cases}$$
+在 $t = \frac12$ 两个公式都给出 $\gamma_1(1) = \gamma_2(0)$，所以 $\gamma$ 有定义，值在 $A$ 中，$\gamma(0) = \gamma_1(0)$，$\gamma(1) = \gamma_2(1)$。连续性：设 $t_0 \in [0,1]$，$\eps > 0$。
+
+- 若 $t_0 < \frac12$：在 $[0, \frac12[$ 上 $\gamma = \gamma_1 \circ (t \mapsto 2t)$，是连续函数的复合（{@c1-cont-operations}），且 $t_0$ 的足够小的邻域含于 $[0, \frac12[$，所以 $\gamma$ 在 $t_0$ 连续。$t_0 > \frac12$ 时把 $\gamma_1(2t)$ 换成 $\gamma_2(2t - 1)$，同样。
+- 若 $t_0 = \frac12$：记 $c = \gamma_1(1) = \gamma_2(0)$。由 $\gamma_1$ 在 $1$ 连续，存在 $\delta_1 > 0$ 使 $\abs{s - 1} < \delta_1 \Rightarrow \norm{\gamma_1(s) - c} < \eps$；由 $\gamma_2$ 在 $0$ 连续，存在 $\delta_2 > 0$ 使 $\abs{s} < \delta_2 \Rightarrow \norm{\gamma_2(s) - c} < \eps$。令 $\delta = \frac12\min(\delta_1, \delta_2)$。若 $\abs{t - \frac12} < \delta$：$t \le \frac12$ 时 $\abs{2t - 1} < 2\delta \le \delta_1$，所以 $\norm{\gamma(t) - c} = \norm{\gamma_1(2t) - c} < \eps$；$t \ge \frac12$ 时 $\abs{2t - 1} < \delta_2$，所以 $\norm{\gamma_2(2t - 1) - c} < \eps$。
+
+**第 4 步（星形 ⇒ 道路连通）**　设 $A$ 关于 $c$ 是星形集，$a, b \in A$。$[a, c] = [c, a] \subset A$，$[c, b] \subset A$。由第 2 步，$\sigma_{a,c}$ 与 $\sigma_{c,b}$ 是 $A$ 中的连续道路，且 $\sigma_{a,c}(1) = c = \sigma_{c,b}(0)$；由第 3 步，拼接得到从 $a$ 到 $b$ 的连续道路。（$A = \varnothing$ 时道路连通的条件无需验证。）
+
+**第 5 步（特例）**　球是凸集（{@c1-boule-convexe}）；向量子空间对线性组合封闭，是凸集。由第 1、4 步，它们道路连通。
+:::
+
+::: fr
+▷ Méthode : dans une partie étoilée, on va de $a$ au centre $c$ en ligne droite, puis de $c$ à $b$ en ligne droite. Il faut deux points techniques : un chemin segment est continu ; la juxtaposition de deux chemins bout à bout est un chemin continu.
+
+**Étape 1 (convexe ⇒ étoilée)**　Soient $A$ convexe non vide et $c \in A$. Pour $x \in A$, par convexité, $[c, x] \subset A$. Donc $A$ est étoilée par rapport à $c$.
+
+**Étape 2 (chemin segment)**　Pour $x, y \in E$, posons $\sigma_{x,y}(t) = (1 - t)x + ty$ ($t \in [0,1]$). Alors $\sigma_{x,y}(0) = x$, $\sigma_{x,y}(1) = y$, $\sigma_{x,y}([0,1]) = [x, y]$, et
+$$\norm{\sigma_{x,y}(t) - \sigma_{x,y}(s)} = \norm{(s - t)x + (t - s)y} = \abs{t - s}\,\norm{y - x},$$
+donc $\sigma_{x,y}$ est lipschitzienne, donc continue ({@fr:c1-lip-uc}).
+
+**Étape 3 (juxtaposition de chemins)**　Soient $\gamma_1, \gamma_2 : [0,1] \to A$ continues avec $\gamma_1(1) = \gamma_2(0)$. Posons
+$$\gamma(t) = \begin{cases} \gamma_1(2t), & t \in [0, \frac12], \\ \gamma_2(2t - 1), & t \in [\frac12, 1]. \end{cases}$$
+En $t = \frac12$, les deux formules donnent $\gamma_1(1) = \gamma_2(0)$ ; ainsi $\gamma$ est bien définie, à valeurs dans $A$, avec $\gamma(0) = \gamma_1(0)$ et $\gamma(1) = \gamma_2(1)$. Continuité : soient $t_0 \in [0,1]$ et $\eps > 0$.
+
+- Si $t_0 < \frac12$ : sur $[0, \frac12[$, $\gamma = \gamma_1 \circ (t \mapsto 2t)$ est une composée de fonctions continues ({@fr:c1-cont-operations}), et un voisinage assez petit de $t_0$ est contenu dans $[0, \frac12[$ ; donc $\gamma$ est continue en $t_0$. Si $t_0 > \frac12$, on remplace $\gamma_1(2t)$ par $\gamma_2(2t - 1)$ et on raisonne de même.
+- Si $t_0 = \frac12$ : notons $c = \gamma_1(1) = \gamma_2(0)$. Par continuité de $\gamma_1$ en $1$, il existe $\delta_1 > 0$ tel que $\abs{s - 1} < \delta_1 \Rightarrow \norm{\gamma_1(s) - c} < \eps$ ; par continuité de $\gamma_2$ en $0$, il existe $\delta_2 > 0$ tel que $\abs{s} < \delta_2 \Rightarrow \norm{\gamma_2(s) - c} < \eps$. Posons $\delta = \frac12\min(\delta_1, \delta_2)$. Si $\abs{t - \frac12} < \delta$ : pour $t \le \frac12$, $\abs{2t - 1} < 2\delta \le \delta_1$, donc $\norm{\gamma(t) - c} = \norm{\gamma_1(2t) - c} < \eps$ ; pour $t \ge \frac12$, $\abs{2t - 1} < \delta_2$, donc $\norm{\gamma_2(2t - 1) - c} < \eps$.
+
+**Étape 4 (étoilée ⇒ connexe par arcs)**　Soient $A$ étoilée par rapport à $c$ et $a, b \in A$. On a $[a, c] = [c, a] \subset A$ et $[c, b] \subset A$. D'après l'étape 2, $\sigma_{a,c}$ et $\sigma_{c,b}$ sont des chemins continus dans $A$, avec $\sigma_{a,c}(1) = c = \sigma_{c,b}(0)$ ; leur juxtaposition (étape 3) est un chemin continu de $a$ à $b$. (Si $A = \varnothing$, il n'y a rien à vérifier.)
+
+**Étape 5 (cas particuliers)**　Les boules sont convexes ({@fr:c1-boule-convexe}) ; les sous-espaces vectoriels sont stables par combinaison linéaire, donc convexes. D'après les étapes 1 et 4, ils sont connexes par arcs.
+:::
+
+在 $\R$ 中，称 $I \subset \R$ 为**区间**，如果 $\forall a, b \in I$，$\forall c \in \R$，$a < c < b \Rightarrow c \in I$。（空集与单点集也是区间。）
+
+::: thm id=image-connexe zh="道路连通集的连续像" en="Continuous image of a path-connected set" fr="Image continue d'un connexe par arcs" ru="Непрерывный образ линейно связного множества" lvl=1
+道路连通集的连续像是道路连通的。$\R$ 的道路连通子集恰是区间。
+:::
+
+::: fr
+L'image d'une partie connexe par arcs par une application continue est connexe par arcs. Les parties connexes par arcs de $\R$ sont exactement les intervalles.
+:::
+
+::: proof
+▷ 思路：把连接 $a, b$ 的道路用 $f$ 推过去。在 $\R$ 中，「道路连通 ⇒ 区间」用 L1 的介值定理；「区间 ⇒ 道路连通」用凸性。
+
+**第 1 步（连续像）**　设 $A$ 道路连通，$f : A \to F$ 连续，$y, y' \in f(A)$。取 $a, b \in A$ 使 $y = f(a)$，$y' = f(b)$，再取连接 $a, b$ 的道路 $\gamma : [0,1] \to A$。则 $f \circ \gamma : [0,1] \to F$ 连续（{@c1-cont-operations}），$(f \circ \gamma)(0) = y$，$(f \circ \gamma)(1) = y'$，值在 $f(A)$ 中。所以 $f(A)$ 道路连通。
+
+**第 2 步（区间 ⇒ 道路连通）**　设 $I$ 是区间，$a, b \in I$，$a \le b$，$t \in [0,1]$。则 $c = (1 - t)a + tb \in [a, b]$：$c = a$ 或 $c = b$ 时 $c \in I$；$a < c < b$ 时由区间的定义 $c \in I$。所以 $I$ 是凸集，由 {@c1-convexe-cpa} 道路连通。
+
+**第 3 步（道路连通 ⇒ 区间）**　设 $A \subset \R$ 道路连通，$a, b \in A$，$a < c < b$。取道路 $\gamma : [0,1] \to A$，$\gamma(0) = a$，$\gamma(1) = b$。$\gamma$ 是 $[0,1]$ 上的实值连续函数，$\gamma(0) < c < \gamma(1)$，由 L1 的介值定理，存在 $t \in [0,1]$ 使 $\gamma(t) = c$。所以 $c = \gamma(t) \in A$，$A$ 是区间。
+:::
+
+::: fr
+▷ Méthode : on transporte par $f$ un chemin reliant $a$ et $b$. Dans $\R$, « connexe par arcs ⇒ intervalle » découle du théorème des valeurs intermédiaires de L1, et « intervalle ⇒ connexe par arcs » de la convexité.
+
+**Étape 1 (image continue)**　Soient $A$ connexe par arcs, $f : A \to F$ continue et $y, y' \in f(A)$. Choisissons $a, b \in A$ tels que $y = f(a)$, $y' = f(b)$, puis un chemin $\gamma : [0,1] \to A$ reliant $a$ à $b$. Alors $f \circ \gamma : [0,1] \to F$ est continue ({@fr:c1-cont-operations}), $(f \circ \gamma)(0) = y$, $(f \circ \gamma)(1) = y'$, et elle est à valeurs dans $f(A)$. Donc $f(A)$ est connexe par arcs.
+
+**Étape 2 (intervalle ⇒ connexe par arcs)**　Soient $I$ un intervalle, $a, b \in I$ avec $a \le b$, et $t \in [0,1]$. Alors $c = (1 - t)a + tb \in [a, b]$ : si $c = a$ ou $c = b$, $c \in I$ ; si $a < c < b$, $c \in I$ par définition d'un intervalle. Donc $I$ est convexe, et connexe par arcs d'après la {@fr:c1-convexe-cpa}.
+
+**Étape 3 (connexe par arcs ⇒ intervalle)**　Soient $A \subset \R$ connexe par arcs, $a, b \in A$ et $a < c < b$. Soit $\gamma : [0,1] \to A$ un chemin avec $\gamma(0) = a$ et $\gamma(1) = b$. La fonction $\gamma$ est réelle et continue sur $[0,1]$, avec $\gamma(0) < c < \gamma(1)$ ; d'après le théorème des valeurs intermédiaires de L1, il existe $t \in [0,1]$ tel que $\gamma(t) = c$. Donc $c = \gamma(t) \in A$, et $A$ est un intervalle.
+:::
+
+::: cor id=tvi-general zh="广义介值定理" en="Generalised intermediate value theorem" fr="Théorème des valeurs intermédiaires généralisé" ru="Обобщённая теорема о промежуточном значении" lvl=1
+若 $A$ 道路连通，$f : A \to \R$ 连续，则 $f(A)$ 是区间。
+:::
+
+::: fr
+Si $A$ est connexe par arcs et $f : A \to \R$ est continue, alors $f(A)$ est un intervalle.
+:::
+
+::: proof
+由 {@image-connexe}（第一部分），$f(A)$ 是 $\R$ 的道路连通子集；再由 {@image-connexe}（第二部分），它是区间。
+:::
+
+::: fr
+D'après le {@fr:image-connexe} (première partie), $f(A)$ est une partie connexe par arcs de $\R$ ; d'après la seconde partie du même théorème, c'est un intervalle.
+:::
+
+::: ex id=c1-ex-gln zh="GLₙ(ℝ) 不道路连通"
+设 $n \ge 1$。$\det : \M_n(\R) \to \R$ 连续（「多项式函数与行列式的连续性」的例子）。
+
+1. $\det(\GL_n(\R)) = \R^* = \R \setminus \{0\}$：对 $M \in \GL_n(\R)$，$\det M \ne 0$；反之对 $t \ne 0$，$D_t = \operatorname{diag}(t, 1, \dots, 1) \in \GL_n(\R)$，$\det D_t = t$。
+2. $\R^*$ 不是区间：$-1, 1 \in \R^*$，$0 \notin \R^*$。
+3. 若 $\GL_n(\R)$ 道路连通，由 {@tvi-general}（用于 $\det$ 在 $\GL_n(\R)$ 上的限制），$\det(\GL_n(\R))$ 是区间，与第 2 步矛盾。
+
+所以 $\GL_n(\R)$ 不道路连通：在可逆矩阵中，不能连续地从 $I_n$ 走到 $D_{-1}$。（相比之下，可以证明 $\GL_n(\C)$ 是道路连通的：$\C \setminus \{0\}$ 不会把平面「切断」。）
+:::
+
+::: rem
+一般拓扑中还有「连通」的概念（不能分成两个不交的非空相对开集）。道路连通 ⇒ 连通，反之不成立：拓扑学家的正弦曲线 $\{(x, \sin\frac1x) : x > 0\} \cup (\{0\} \times [-1,1])$ 连通但不道路连通。在 $\R^n$ 的**开集**上两者等价。
+:::
+
+::: q
+证明 $\R^n$（$n \ge 2$）中的单位球面 $S = \{x : \norm{x}_2 = 1\}$ 道路连通。$n = 1$ 时呢？
+:::
+
+::: ans
+设 $a, b \in S$。
+
+**情形 1：$b \ne -a$。** 线段 $[a, b]$ 不经过 $0$：若 $(1 - t)a + tb = 0$，取范数得 $1 - t = t$，即 $t = \frac12$，于是 $a = -b$，矛盾。所以 $\sigma(t) = (1 - t)a + tb$ 不取零值，$\gamma(t) = \frac{\sigma(t)}{\norm{\sigma(t)}_2}$ 连续（{@c1-cont-operations}：$t \mapsto \norm{\sigma(t)}_2$ 连续且不为零，取倒数再数乘），值在 $S$ 中，$\gamma(0) = a$，$\gamma(1) = b$。
+
+**情形 2：$b = -a$。** 因 $n \ge 2$，存在 $c \in S$ 与 $a$ 正交（$a^\perp$ 是 $n - 1 \ge 1$ 维子空间，取其中的单位向量），于是 $c \ne \pm a$。由情形 1，有从 $a$ 到 $c$、从 $c$ 到 $-a$ 的道路，拼接即可（{@c1-convexe-cpa} 证明第 3 步）。
+
+$n = 1$ 时 $S = \{-1, 1\}$ 不是区间，由 {@image-connexe} 不道路连通。
+:::
+
+::: q
+设 $f : [0, 1] \to [0, 1]$ 连续。证明 $f$ 有不动点。它与 Banach 不动点定理（{@point-fixe}）有什么不同？
+:::
+
+::: ans
+令 $g(x) = f(x) - x$，$g$ 在 $[0,1]$ 上连续。$g(0) = f(0) \ge 0$，$g(1) = f(1) - 1 \le 0$。$[0,1]$ 是凸集，从而道路连通（{@c1-convexe-cpa}），由 {@tvi-general}，$g([0,1])$ 是区间，它含 $g(1) \le 0$ 与 $g(0) \ge 0$，所以含 $0$：存在 $x$ 使 $f(x) = x$。
+
+不同之处：这里不要求压缩，但只得到**存在性**——不动点可以不唯一（$f = \mathrm{id}$），迭代也未必收敛（$f(x) = 1 - x$，从 $x_0 = 0$ 出发迭代在 $0, 1$ 之间来回跳）；而 Banach 定理给出唯一性、构造方法与误差估计。
+:::
+
+## 拓展：Baire 定理
+
+Baire 定理说：在完备空间中，可数个「大」集合（稠密开集）的交仍然「大」（稠密）。它是证明「某种对象存在，而且很多」的有力工具：只要证明「坏」对象的集合包含于可数个无内点的闭集的并中。本节给出证明概要和两个应用。
+
+::: thm id=baire zh="Baire 纲定理" en="Baire category theorem" fr="Théorème de Baire" ru="Теорема Бэра о категориях" lvl=2
+在 Banach 空间中，可数个稠密开集的交仍然稠密。等价地：可数个无内点的闭集的并没有内点。
+:::
+
+::: fr
+Dans un espace de Banach, une intersection dénombrable d'ouverts denses est dense. De manière équivalente : une réunion dénombrable de fermés d'intérieur vide est d'intérieur vide.
+:::
+
+::: sketch
+设 $U_n$ 是稠密开集，$B_0$ 是任一开球。由稠密性 $B_0 \cap U_1 \ne \varnothing$，它是开集，含一个闭球 $\overline{B}_1$，半径 $\le 1$。依次取 $\overline{B}_{n} \subset B_{n-1} \cap U_n$，半径 $\le \frac1n$。球心构成 Cauchy 列，极限属于所有 $\overline{B}_n$，从而属于 $B_0 \cap \bigcap U_n$。
+
+下面把每一步写清楚。设 $E$ 是 Banach 空间，$(U_n)_{n \ge 1}$ 是稠密开集。
+
+**第 0 步（稠密的刻画）**　由 {@c1-carac-int-adh} 第 2 条，$A$ 稠密（$\overline{A} = E$）当且仅当每个开球 $B(a, r)$ 都与 $A$ 相交；而每个非空开集都含一个开球，所以 $A$ 稠密当且仅当 $A$ 与每个非空开集相交。于是只需证明：$G = \bigcap_{n \ge 1} U_n$ 与任意开球 $B_0 = B(a_0, r_0)$ 相交。
+
+**第 1 步（构造套球）**　归纳地构造 $a_n \in E$ 与 $r_n \in \,]0, \frac1n]$（$n \ge 1$），使
+$$\overline{B}(a_n, r_n) \subset B(a_{n-1}, r_{n-1}) \cap U_n.$$
+设已有 $a_{n-1}, r_{n-1}$。$W = B(a_{n-1}, r_{n-1}) \cap U_n$ 是两个开集的交，是开集；它非空，因为 $U_n$ 稠密而 $B(a_{n-1}, r_{n-1})$ 是非空开集（第 0 步）。取 $a_n \in W$ 及 $\rho > 0$ 使 $B(a_n, \rho) \subset W$，令 $r_n = \min(\frac\rho2, \frac1n)$，则 $\overline{B}(a_n, r_n) \subset B(a_n, \rho) \subset W$。
+
+**第 2 步（球心是 Cauchy 列）**　由构造，球是套着的：$p \ge n$ 时 $\overline{B}(a_p, r_p) \subset \overline{B}(a_n, r_n)$，所以 $\norm{a_p - a_n} \le r_n \le \frac1n$。对 $p, q \ge n$，$\norm{a_p - a_q} \le \frac2n$。所以 $(a_n)$ 是 Cauchy 列，由 $E$ 完备收敛到某个 $a$。
+
+**第 3 步（极限在所有集合中）**　固定 $n$。对 $p \ge n$，$a_p \in \overline{B}(a_n, r_n)$，这是闭集，由 {@carac-seq-adh}，$a \in \overline{B}(a_n, r_n) \subset U_n \cap B(a_{n-1}, r_{n-1})$。对一切 $n$ 成立，所以 $a \in \bigcap_n U_n$；又 $a \in \overline{B}(a_1, r_1) \subset B_0$。所以 $G \cap B_0 \ne \varnothing$。
+
+**第 4 步（等价形式）**　设 $F_n$ 是无内点的闭集，令 $U_n = E \setminus F_n$（开集）。由 {@c1-carac-int-adh} 第 3 条，$E \setminus \overline{U_n} = \operatorname{int}(F_n) = \varnothing$，即 $U_n$ 稠密。再对 $A = \bigcap U_n$ 用同一条：$\operatorname{int}\big(\bigcup F_n\big) = \operatorname{int}(E \setminus A) = E \setminus \overline{A} = \varnothing$（由第 1–3 步，$\overline{A} = E$）。
+:::
+
+::: fr
+Soient $U_n$ des ouverts denses et $B_0$ une boule ouverte quelconque. Par densité, $B_0 \cap U_1 \ne \varnothing$ ; c'est un ouvert, qui contient une boule fermée $\overline{B}_1$ de rayon $\le 1$. On choisit successivement $\overline{B}_{n} \subset B_{n-1} \cap U_n$ de rayon $\le \frac1n$. Les centres forment une suite de Cauchy dont la limite appartient à toutes les $\overline{B}_n$, donc à $B_0 \cap \bigcap U_n$.
+
+Détaillons chaque étape. Soient $E$ un espace de Banach et $(U_n)_{n \ge 1}$ des ouverts denses.
+
+**Étape 0 (caractérisation de la densité)**　D'après le point 2 du {@fr:c1-carac-int-adh}, $A$ est dense ($\overline{A} = E$) si et seulement si toute boule ouverte $B(a, r)$ rencontre $A$ ; comme tout ouvert non vide contient une boule ouverte, $A$ est dense si et seulement si $A$ rencontre tout ouvert non vide. Il suffit donc de montrer que $G = \bigcap_{n \ge 1} U_n$ rencontre toute boule ouverte $B_0 = B(a_0, r_0)$.
+
+**Étape 1 (construction de boules emboîtées)**　On construit par récurrence $a_n \in E$ et $r_n \in \,]0, \frac1n]$ ($n \ge 1$) tels que
+$$\overline{B}(a_n, r_n) \subset B(a_{n-1}, r_{n-1}) \cap U_n.$$
+Supposons $a_{n-1}, r_{n-1}$ construits. $W = B(a_{n-1}, r_{n-1}) \cap U_n$ est une intersection de deux ouverts, donc un ouvert ; il est non vide car $U_n$ est dense et $B(a_{n-1}, r_{n-1})$ est un ouvert non vide (étape 0). Choisissons $a_n \in W$ et $\rho > 0$ tels que $B(a_n, \rho) \subset W$, et posons $r_n = \min(\frac\rho2, \frac1n)$ ; alors $\overline{B}(a_n, r_n) \subset B(a_n, \rho) \subset W$.
+
+**Étape 2 (les centres forment une suite de Cauchy)**　Par construction, les boules sont emboîtées : pour $p \ge n$, $\overline{B}(a_p, r_p) \subset \overline{B}(a_n, r_n)$, donc $\norm{a_p - a_n} \le r_n \le \frac1n$. Pour $p, q \ge n$, $\norm{a_p - a_q} \le \frac2n$. La suite $(a_n)$ est donc de Cauchy, et converge vers un certain $a$ puisque $E$ est complet.
+
+**Étape 3 (la limite est dans tous les ensembles)**　Fixons $n$. Pour $p \ge n$, $a_p \in \overline{B}(a_n, r_n)$, qui est fermée ; d'après le {@fr:carac-seq-adh}, $a \in \overline{B}(a_n, r_n) \subset U_n \cap B(a_{n-1}, r_{n-1})$. Ceci vaut pour tout $n$, donc $a \in \bigcap_n U_n$ ; de plus $a \in \overline{B}(a_1, r_1) \subset B_0$. Ainsi $G \cap B_0 \ne \varnothing$.
+
+**Étape 4 (forme équivalente)**　Soient $F_n$ des fermés d'intérieur vide ; posons $U_n = E \setminus F_n$ (ouverts). D'après le point 3 du {@fr:c1-carac-int-adh}, $E \setminus \overline{U_n} = \operatorname{int}(F_n) = \varnothing$, c'est-à-dire que $U_n$ est dense. En appliquant le même point à $A = \bigcap U_n$ : $\operatorname{int}\big(\bigcup F_n\big) = \operatorname{int}(E \setminus A) = E \setminus \overline{A} = \varnothing$ (car $\overline{A} = E$ d'après les étapes 1 à 3).
+:::
+
+::: rem
+完备性用在第 2 步。它不能去掉：在 $E = \R[X]$（任何范数）中，$E = \bigcup_n \R_n[X]$ 是可数个无内点的闭集的并，却有内点（见下面的「想一想」）。
+:::
+
+::: q
+证明：$\R[X]$ 赋予**任何**范数都不是 Banach 空间。
+:::
+
+::: ans
+设 $\norm{\cdot}$ 是 $\R[X]$ 上的任一范数，反设 $(\R[X], \norm{\cdot})$ 完备。
+
+1. $\R[X] = \bigcup_{n \in \N} \R_n[X]$，其中 $\R_n[X]$ 是次数 $\le n$ 的多项式构成的子空间，维数 $n + 1$。由 {@cor-dimfinie} 第 3 条，每个 $\R_n[X]$ 是闭集。
+2. $\R_n[X]$ 无内点：反设 $B(P, r) \subset \R_n[X]$。令 $Q = P + \frac{r}{2}\,\frac{X^{n+1}}{\norm{X^{n+1}}}$，则 $\norm{Q - P} = \frac r2 < r$，$Q \in B(P, r)$；但 $\deg Q = n + 1$（$\deg P \le n$），$Q \notin \R_n[X]$，矛盾。
+3. 由 Baire 定理（闭集形式），$\bigcup_n \R_n[X]$ 无内点；但它等于整个空间 $\R[X]$，其内部是 $\R[X] \ne \varnothing$，矛盾。
+
+所以 $\R[X]$ 对任何范数都不完备。（{@c1-cex-serie-rx} 对一个具体的范数给出了不收敛的绝对收敛级数；这里的论证对所有范数同时成立。）
+:::
+
+::: fr
+Soit $\norm{\cdot}$ une norme quelconque sur $\R[X]$ ; supposons par l'absurde $(\R[X], \norm{\cdot})$ complet.
+
+1. $\R[X] = \bigcup_{n \in \N} \R_n[X]$, où $\R_n[X]$ est le sous-espace des polynômes de degré $\le n$, de dimension $n + 1$. D'après le point 3 du {@fr:cor-dimfinie}, chaque $\R_n[X]$ est fermé.
+2. $\R_n[X]$ est d'intérieur vide : supposons par l'absurde $B(P, r) \subset \R_n[X]$. Posons $Q = P + \frac{r}{2}\,\frac{X^{n+1}}{\norm{X^{n+1}}}$ ; alors $\norm{Q - P} = \frac r2 < r$, donc $Q \in B(P, r)$ ; mais $\deg Q = n + 1$ (car $\deg P \le n$), donc $Q \notin \R_n[X]$ : contradiction.
+3. D'après le théorème de Baire (forme « fermés »), $\bigcup_n \R_n[X]$ est d'intérieur vide ; or c'est l'espace $\R[X]$ tout entier, d'intérieur $\R[X] \ne \varnothing$ : contradiction.
+
+Ainsi $\R[X]$ n'est complet pour aucune norme.
+:::
+
+::: thm id=banach-nulle-part zh="处处不可导函数的普遍性" en="Generic continuous functions are nowhere differentiable" fr="Les fonctions continues nulle part dérivables sont génériques" ru="Типичная непрерывная функция нигде не дифференцируема" lvl=3 ref="Banach, *Studia Math.* 3 (1931)；Oxtoby, *Measure and Category*，第 11 章"
+在 $(\Cc([0,1]), \norm{\cdot}_\infty)$ 中，处处不可导的函数构成的集合**包含**一个稠密 $G_\delta$ 集（可数个稠密开集的交）。从 Baire 的意义上说，「绝大多数」连续函数处处不可导。
+:::
+
+::: fr
+Dans $(\Cc([0,1]), \norm{\cdot}_\infty)$, l'ensemble des fonctions nulle part dérivables **contient** un $G_\delta$ dense (intersection dénombrable d'ouverts denses). Au sens de Baire, « la plupart » des fonctions continues sont nulle part dérivables.
+:::
+
+::: rem
+1. 证明的思路：对每个 $n$，令 $F_n$ 为「存在 $x \in [0, 1 - \frac1n]$，使对一切 $h \in \,]0, \frac1n]$，$\abs{f(x + h) - f(x)} \le nh$」的 $f$ 的集合。可以证明 $F_n$ 闭且无内点（任何连续函数附近都有剧烈锯齿的函数），而在 $[0, 1[$ 的某点有有限右导数的函数都属于某个 $F_n$（在 $1$ 处的左导数用对称的集合处理）。由 Baire 定理，$\bigcup F_n$ 的补集是稠密 $G_\delta$ 集。
+2. 措辞要准确：是「包含」一个稠密 $G_\delta$ 集，而不是「是」一个 $G_\delta$ 集。R. D. Mauldin（1979）证明了处处不可导函数的集合本身甚至不是 Borel 集。
+3. 具体的例子（Weierstrass 函数）见第 3 章。
+:::
+
+::: hist zh="Banach 的基问题"
+Banach 在 1932 年问：可分 Banach 空间是否都有 Schauder 基？这个问题悬而未决四十年，直到 Per Enflo 在 1973 年构造出反例。Mazur 曾为与之密切相关的「逼近问题」（Scottish Book 第 153 题）悬赏一只活鹅。Enflo 构造的空间不具有逼近性质，而有 Schauder 基的空间一定具有逼近性质，所以同时回答了两个问题；他也因此领取了这只鹅。
+:::
+
+## 方法总结
+
+仿照法国讲义的 Synthèse，把本章的工具按「想证明什么」归类。每条后面是对应的结论。
+
+### 如何证明一个映射是范数
+
+1. 逐条验证三条公理（{@def-norme}）；分离性只需验证「$N(x) = 0 \Rightarrow x = 0$」。
+2. $\max$ 型、$\sup$ 型范数：先对每个分量（每个点 $t$）估计，得到与分量无关的上界，再取 $\max$ / $\sup$（「经典范数」的例子）。
+3. $\ell^p$ 型范数：三角不等式就是 Minkowski 不等式（{@holder}），其背后是 Young 不等式（{@young}）。
+4. 函数空间上的积分型范数：分离性要用连续性（{@c1-int-nulle}）。
+
+否定：找一个具体的向量违反某条公理（{@c1-cex-non-norme}）。
+
+### 如何比较两个范数
+
+1. 证明等价：显式写出常数 $\alpha, \beta$（{@def-equiv}）；在有限维空间中不必计算，自动等价（{@equiv-dimfinie}）。
+2. 证明不等价：找数列 $(x_n)$ 使 $\frac{N_2(x_n)}{N_1(x_n)} \to +\infty$ 或 $\to 0$（{@cex-normes-c01}）；等价地，找一个对一个范数收敛而对另一个不收敛的数列，或一个对一个范数有界而对另一个无界的集合。
+3. 只有一边的不等式 $N_1 \le C N_2$：$N_2$-收敛蕴含 $N_1$-收敛，反之不然（§2 的「想一想」）。
+
+### 如何证明一个集合是开集 / 闭集
+
+1. 开：按定义找半径（{@c1-def-ouvert}）。
+2. 闭：序列刻画——集合中收敛数列的极限仍在集合中（{@carac-seq-adh}）。
+3. 写成连续映射下开（闭）集的原像：$\{\varphi < c\}$ 开，$\{\varphi \le c\}$、$\{\varphi = c\}$ 闭（{@cont-ouverts}）。
+4. 运算：开集的任意并与有限交、闭集的任意交与有限并（{@c1-ouverts-stab}）；有限维子空间总是闭的（{@cor-dimfinie}）。
+
+否定：找 $a \in A$ 使每个 $B(a, r)$ 都不含于 $A$（不开）；找 $A$ 中收敛到 $A$ 外一点的数列（不闭）。
+
+### 如何证明一个映射连续 / 不连续
+
+1. $\eps$-$\delta$ 定义（{@c1-def-limite}）或序列刻画（{@carac-seq-cont}）。
+2. 运算：和、积、商、复合（{@c1-cont-operations}）；Lipschitz 映射连续（{@c1-lip-uc}）。
+3. 线性映射：证明 $\norm{u(x)} \le C\norm{x}$（{@lin-continue}）；出发空间有限维时自动连续（{@cor-dimfinie}）。
+4. 计算算子范数：先证上界 $\norm{u(x)} \le C\norm{x}$，再找（一列）$x$ 使等号（近似）成立（{@c1-ex-norme-matrice}）。
+
+否定：找 $x_n \to a$ 使 $f(x_n) \not\to f(a)$（§4 的例子）；对线性映射，找 $x_n \ne 0$ 使 $\frac{\norm{u(x_n)}}{\norm{x_n}} \to +\infty$（{@c1-cex-derivation}）。
+
+### 如何证明一个集合是紧集 / 不是紧集
+
+1. 有限维空间中：证明有界且闭（{@cor-dimfinie}）。
+2. 紧集的连续像（{@image-compact}）、紧集的闭子集、紧集的有限乘积（{@compact-ferme-borne}）。
+3. 按定义：从任意数列中抽出收敛子列，并说明极限在集合中（§5 的「想一想」）。
+
+否定：集合无界或不闭（{@compact-ferme-borne}）；或找一个各项两两距离 $\ge c > 0$ 的数列，它没有收敛子列（{@riesz}、{@c1-cex-boule-c01}）。
+
+### 如何在不知道极限时证明收敛 / 证明空间完备
+
+1. 证明是 Cauchy 列，且空间完备：有限维空间（{@dimfinie-complet}）、$(\Cc([a,b]), \norm{\cdot}_\infty)$（{@c0-complet}）。
+2. Cauchy 列只要有一个收敛子列就收敛（{@c1-cauchy-prop}）。
+3. 级数：在 Banach 空间中，绝对收敛蕴含收敛（{@serie-abs-banach}）。
+4. 迭代数列 $x_{n+1} = f(x_n)$：若 $f$ 是闭集上的压缩映射，则收敛到唯一的不动点（{@point-fixe}）；更一般地，相邻项之差按几何级数衰减就足以推出 Cauchy（§6 的「想一想」）。
+
+否定（不完备）：构造一个 Cauchy 列，证明它唯一可能的极限不在空间中（{@cex-c01-l1}）；或给出绝对收敛而不收敛的级数（{@c1-cex-serie-rx}）；或用 Baire 定理（§8 的「想一想」）。
+
+### 如何证明方程有解、最值存在
+
+1. 唯一解与逼近：写成 $x = f(x)$，验证 $f$ 把非空闭集 $F$ 映入自身且是压缩（{@point-fixe}）。
+2. 只要存在性（实值情形）：广义介值定理（{@tvi-general}）。
+3. 最值：非空紧集上的实值连续函数取到最大值与最小值（{@image-compact}）。
+
+### 如何证明（不）道路连通
+
+1. 凸集、星形集（{@c1-convexe-cpa}）；显式构造道路，必要时拼接；道路连通集的连续像（{@image-connexe}）。
+
+否定：找连续实函数 $f$，使 $f(A)$ 不是区间（{@tvi-general}、{@c1-ex-gln}）。
+
+::: rem
+**常见错误。**
+
+1. 「不开就是闭」：$[0, 1[$ 既不开也不闭；$\varnothing$ 与 $E$ 既开又闭（{@c1-def-ouvert} 后的例子）。
+2. 「有界闭集都是紧集」：只在有限维成立；$(\Cc([0,1]), \norm{\cdot}_\infty)$ 的闭单位球不紧（{@c1-cex-boule-c01}）。
+3. 「线性映射都连续」：只在出发空间有限维时成立；求导映射在 $(\R[X], \sup_{[0,1]} \abs{\cdot})$ 上不连续（{@c1-cex-derivation}）。
+4. 「Cauchy 列都收敛」：需要完备性；$(\Cc([0,1]), \norm{\cdot}_1)$ 中有不收敛的 Cauchy 列（{@cex-c01-l1}）。
+5. 「连续映射把开（闭）集映成开（闭）集」：方向反了，是**原像**；$x \mapsto x^2$ 把 $]-1, 1[$ 映成 $[0, 1[$（{@cont-ouverts} 后的注）。
+6. 「$\norm{u_{n+1} - u_n} \to 0$ 推出 Cauchy」：调和级数的部分和是反例（§6 的「想一想」）。
+7. 「对每个变量分别连续就连续」：$\frac{xy}{x^2 + y^2}$ 是反例（§4 的例子）。
+8. 「严格压缩 $\norm{f(x) - f(y)} < \norm{x - y}$ 就有不动点」：$x + \frac1x$ 在 $[1, +\infty[$ 上是反例（{@point-fixe} 后的反例）。
+:::
+
+::: read
+- В. А. Зорич,《Математический анализ》，часть II —— 主题：«Непрерывные отображения (общая теория)»：метрические и топологические пространства, компактность, связность, полнота; нормированные пространства, непрерывные линейные операторы. Зорич 从一开始就用度量空间与赋范空间的语言讲分析，视角与本章最接近。
+- А. Н. Колмогоров, С. В. Фомин,《Элементы теории функций и функционального анализа》—— 主题：«Метрические пространства: полнота, принцип сжимающих отображений, теорема Бэра, компактность; нормированные пространства». 经典的苏联泛函分析入门，压缩映射原理在微分方程、积分方程上的应用讲得很充分，适合读完本章后延伸。
+- Б. П. Демидович,《Сборник задач и упражнений по математическому анализу》—— 主题：«Функции нескольких переменных: предел, непрерывность, равномерная непрерывность». 大量具体的计算题，适合练习 $\R^n$ 中极限与连续的 $\eps$-$\delta$ 论证。
+- X. Gourdon,《Les maths en tête : Analyse》—— thème : « Topologie des espaces vectoriels normés : normes équivalentes, compacité, connexité par arcs, complétude, applications linéaires continues ». 法国 prépa 与 L2 的标准参考书，习题与本章的内容一一对应，难度中等偏上。
+- E. Ramis, C. Deschamps, J. Odoux,《Cours de mathématiques spéciales》，tome 3 —— thème : « Topologie et éléments d'analyse ». 法国传统的讲义体教材，证明完整，按定义—定理—证明的顺序展开，适合查证细节。
+- W. Rudin,《Principles of Mathematical Analysis》—— topics: "Basic topology" (metric spaces, compact sets, connected sets) and "Continuity". 用有限覆盖定义紧性，可以与本章的序列紧对照；习题中出现 Baire 定理。
+:::
+
+::: glossary
+| 中文 | Français | English | Русский |
+|---|---|---|---|
+| 范数 | norme (f.) | norm | норма |
+| 赋范向量空间 | espace vectoriel normé (m.) | normed vector space | нормированное пространство |
+| 距离 | distance (f.) | distance, metric | расстояние, метрика |
+| 三角不等式 | inégalité triangulaire (f.) | triangle inequality | неравенство треугольника |
+| 半范数 | semi-norme (f.) | seminorm | полунорма |
+| 共轭指数 | exposants conjugués (m. pl.) | conjugate exponents | сопряжённые показатели |
+| Hölder 不等式 | inégalité de Hölder (f.) | Hölder's inequality | неравенство Гёльдера |
+| 开球 / 闭球 | boule ouverte / fermée (f.) | open / closed ball | открытый / замкнутый шар |
+| 球面 | sphère (f.) | sphere | сфера |
+| 有界集 | partie bornée (f.) | bounded set | ограниченное множество |
+| 凸集 | partie convexe (f.) | convex set | выпуклое множество |
+| 等价范数 | normes équivalentes (f. pl.) | equivalent norms | эквивалентные нормы |
+| 子列 | suite extraite (f.), sous-suite (f.) | subsequence | подпоследовательность |
+| 聚点（数列的） | valeur d'adhérence (f.) | cluster point, subsequential limit | частичный предел |
+| 开集 | ouvert (m.) | open set | открытое множество |
+| 闭集 | fermé (m.) | closed set | замкнутое множество |
+| 内部 | intérieur (m.) | interior | внутренность |
+| 闭包 | adhérence (f.) | closure | замыкание |
+| 边界 | frontière (f.) | boundary | граница |
+| 稠密子集 | partie dense (f.) | dense subset | всюду плотное множество |
+| 相对开集 | ouvert relatif (m.) | relatively open set | относительно открытое множество |
+| 原像 | image réciproque (f.) | preimage, inverse image | прообраз |
+| 连续性 | continuité (f.) | continuity | непрерывность |
+| 一致连续性 | continuité uniforme (f.) | uniform continuity | равномерная непрерывность |
+| Lipschitz 映射 | application lipschitzienne (f.) | Lipschitz map | липшицево отображение |
+| 连续线性映射 | application linéaire continue (f.) | bounded (continuous) linear map | непрерывный (ограниченный) линейный оператор |
+| 算子范数 | norme subordonnée (f.) | operator norm | норма оператора |
+| 紧集 | partie compacte (f.), compact (m.) | compact set | компакт, компактное множество |
+| Bolzano–Weierstrass 定理 | théorème de Bolzano-Weierstrass (m.) | Bolzano–Weierstrass theorem | теорема Больцано — Вейерштрасса |
+| 最值定理 | théorème des bornes atteintes (m.) | extreme value theorem | теорема Вейерштрасса о наибольшем и наименьшем значениях |
+| Heine 定理 | théorème de Heine (m.) | Heine–Cantor theorem | теорема Кантора (о равномерной непрерывности) |
+| Riesz 定理 | théorème de Riesz (m.) | Riesz's theorem | теорема Рисса |
+| Cauchy 列 | suite de Cauchy (f.) | Cauchy sequence | фундаментальная последовательность |
+| 完备空间 | espace complet (m.) | complete space | полное пространство |
+| Banach 空间 | espace de Banach (m.) | Banach space | банахово пространство |
+| 绝对收敛级数 | série absolument convergente (f.) | absolutely convergent series | абсолютно сходящийся ряд |
+| 压缩映射 | application contractante (f.) | contraction (mapping) | сжимающее отображение |
+| 不动点 | point fixe (m.) | fixed point | неподвижная точка |
+| 道路 | chemin (m.) | path | путь |
+| 道路连通 | connexe par arcs | path-connected | линейно связный |
+| 星形集 | partie étoilée (f.) | star-shaped set | звёздное множество |
+| 介值定理 | théorème des valeurs intermédiaires (m.) | intermediate value theorem | теорема о промежуточном значении |
+| Baire 定理 | théorème de Baire (m.) | Baire category theorem | теорема Бэра |
+| 取极限 | passer à la limite | pass to the limit | перейти к пределу |
+| 反证法 | raisonnement par l'absurde (m.) | proof by contradiction | доказательство от противного |
+:::

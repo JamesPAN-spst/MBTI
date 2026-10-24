@@ -677,7 +677,7 @@ $\varphi_k$ 与 $x$ 无关，由引理 {@c7-gamma-integrable}（$c = a$ 与 $c =
 
 **第 4 步（$\Cc^\infty$）**　第 1–3 步验证了 {@derivation-ck} 的条件，对每个 $k \ge 1$ 成立。所以 $\Gamma$ 是 $\Cc^\infty$ 的，导数公式成立。
 
-**第 5 步（正性）**　$\Gamma(x)$ 与 $\Gamma''(x)$ 是连续非负函数 $t^{x-1}\e^{-t}$、$(\ln t)^2t^{x-1}\e^{-t}$ 的积分，并且这两个函数在 $[2, 3]$ 上连续且 $> 0$，所以 $\Gamma(x) \ge \int_2^3 t^{x-1}\e^{-t}\,\dd t > 0$，同理 $\Gamma''(x) \ge \int_2^3(\ln t)^2t^{x-1}\e^{-t}\,\dd t > 0$。
+**第 5 步（正性）**　$\Gamma(x)$ 与 $\Gamma''(x)$ 是连续非负函数 $t^{x-1}\e^{-t}$、$(\ln t)^2t^{x-1}\e^{-t}$ 的积分，并且这两个函数在 $[2, 3]$ 上连续且 $> 0$，所以 $\Gamma(x) \ge \int_2^3 t^{x-1}\e^{-t}\,\dd t > 0$；把被积函数换成 $(\ln t)^2t^{x-1}\e^{-t}$，得 $\Gamma''(x) \ge \int_2^3(\ln t)^2t^{x-1}\e^{-t}\,\dd t > 0$。
 
 **第 6 步（判别式）**　固定 $x > 0$。对 $\lambda \in \R$，令
 $$P(\lambda) = \int_0^{+\infty}(\lambda\ln t + 1)^2\,t^{x-1}\e^{-t}\,\dd t \ge 0.$$
@@ -711,7 +711,7 @@ où $\varphi_k$ ne dépend pas de $x$ et est intégrable d'après le {@fr:c7-gam
 
 **Étape 4 (classe $\Cc^\infty$)**　Les étapes 1 à 3 sont les hypothèses de {@fr:derivation-ck}, pour tout $k \ge 1$. Donc $\Gamma$ est $\Cc^\infty$ et la formule des dérivées est vraie.
 
-**Étape 5 (positivité)**　$\Gamma(x)$ et $\Gamma''(x)$ sont les intégrales des fonctions continues positives $t^{x-1}\e^{-t}$ et $(\ln t)^2t^{x-1}\e^{-t}$, qui sont continues et $> 0$ sur $[2, 3]$ ; donc $\Gamma(x) \ge \int_2^3 t^{x-1}\e^{-t}\,\dd t > 0$ et de même $\Gamma''(x) \ge \int_2^3(\ln t)^2t^{x-1}\e^{-t}\,\dd t > 0$.
+**Étape 5 (positivité)**　$\Gamma(x)$ et $\Gamma''(x)$ sont les intégrales des fonctions continues positives $t^{x-1}\e^{-t}$ et $(\ln t)^2t^{x-1}\e^{-t}$, qui sont continues et $> 0$ sur $[2, 3]$ ; donc $\Gamma(x) \ge \int_2^3 t^{x-1}\e^{-t}\,\dd t > 0$ ; en remplaçant l'intégrande par $(\ln t)^2t^{x-1}\e^{-t}$, on obtient $\Gamma''(x) \ge \int_2^3(\ln t)^2t^{x-1}\e^{-t}\,\dd t > 0$.
 
 **Étape 6 (discriminant)**　Soit $x > 0$. Pour $\lambda \in \R$, posons
 $$P(\lambda) = \int_0^{+\infty}(\lambda\ln t + 1)^2\,t^{x-1}\e^{-t}\,\dd t \ge 0.$$
