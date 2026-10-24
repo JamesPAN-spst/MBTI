@@ -247,7 +247,7 @@ $$c_m(P) = \ps{P, e_m} = \sum_{\abs n \le N}\alpha_n\ps{e_n, e_m} = \begin{cases
 
 1. 若 $f$ 是偶函数，则 $b_n(f) = 0$，且 $a_n(f) = \frac2\pi\int_0^\pi f(t)\cos nt\,\dd t$；若 $f$ 是奇函数，则 $a_n(f) = 0$，且 $b_n(f) = \frac2\pi\int_0^\pi f(t)\sin nt\,\dd t$。
 2. 若 $f$ 连续且分段 $\Cc^1$，则 $f'$（在每个周期中有限个点处任意取值）属于 $\mathcal{CM}_{2\pi}$，且对一切 $n \in \Z$，
-$$c_n(f') = \ii n\, c_n(f).$$
+   $$c_n(f') = \ii n\, c_n(f).$$
 3. 对一切 $n \in \Z$，$\abs{c_n(f)} \le \frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{f} \le \norm{f}_\infty$。
 :::
 
@@ -256,7 +256,7 @@ Soit $f \in \mathcal{CM}_{2\pi}$.
 
 1. Si $f$ est paire, alors $b_n(f) = 0$ et $a_n(f) = \frac2\pi\int_0^\pi f(t)\cos nt\,\dd t$ ; si $f$ est impaire, alors $a_n(f) = 0$ et $b_n(f) = \frac2\pi\int_0^\pi f(t)\sin nt\,\dd t$.
 2. Si $f$ est continue et de classe $\Cc^1$ par morceaux, alors $f'$ (définie de façon arbitraire en un nombre fini de points par période) appartient à $\mathcal{CM}_{2\pi}$ et, pour tout $n \in \Z$,
-$$c_n(f') = \ii n\, c_n(f).$$
+   $$c_n(f') = \ii n\, c_n(f).$$
 3. Pour tout $n \in \Z$, $\abs{c_n(f)} \le \frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{f} \le \norm{f}_\infty$.
 :::
 
@@ -344,20 +344,20 @@ $$\ii n\,c_n(f) = c_n(f') + \frac{1}{2\pi}\sum_{k=1}^p s_k\,\e^{-\ii nt_k}.$$
 设 $f \in \mathcal{CM}_{2\pi}$，$N \in \N$。
 
 1. $S_N f$ 是 $f$ 在 $\mathcal{T}_N$ 上的正交投影：对一切 $P \in \mathcal{T}_N$，$\ps{f - S_N f, P} = 0$，并且
-$$\norm{f - P}_2^2 = \norm{f - S_N f}_2^2 + \norm{S_N f - P}_2^2 \ge \norm{f - S_N f}_2^2.$$
+   $$\norm{f - P}_2^2 = \norm{f - S_N f}_2^2 + \norm{S_N f - P}_2^2 \ge \norm{f - S_N f}_2^2.$$
 2. $\norm{f - S_N f}_2^2 = \norm{f}_2^2 - \sum_{\abs n \le N}\abs{c_n(f)}^2$。
 3. （**Bessel 不等式**）级数 $\sum_{n \in \Z}\abs{c_n(f)}^2$ 收敛，且
-$$\sum_{n \in \Z} \abs{c_n(f)}^2 \le \norm{f}_2^2 = \frac{1}{2\pi}\int_{-\pi}^{\pi} \abs{f}^2.$$
+   $$\sum_{n \in \Z} \abs{c_n(f)}^2 \le \norm{f}_2^2 = \frac{1}{2\pi}\int_{-\pi}^{\pi} \abs{f}^2.$$
 :::
 
 ::: fr
 Soit $f \in \mathcal{CM}_{2\pi}$ et $N \in \N$.
 
 1. $S_N f$ est la projection orthogonale de $f$ sur $\mathcal{T}_N$ : pour tout $P \in \mathcal{T}_N$, $\ps{f - S_N f, P} = 0$, et
-$$\norm{f - P}_2^2 = \norm{f - S_N f}_2^2 + \norm{S_N f - P}_2^2 \ge \norm{f - S_N f}_2^2.$$
+   $$\norm{f - P}_2^2 = \norm{f - S_N f}_2^2 + \norm{S_N f - P}_2^2 \ge \norm{f - S_N f}_2^2.$$
 2. $\norm{f - S_N f}_2^2 = \norm{f}_2^2 - \sum_{\abs n \le N}\abs{c_n(f)}^2$.
 3. (**Inégalité de Bessel**) La série $\sum_{n \in \Z}\abs{c_n(f)}^2$ converge et
-$$\sum_{n \in \Z} \abs{c_n(f)}^2 \le \norm{f}_2^2 = \frac{1}{2\pi}\int_{-\pi}^{\pi} \abs{f}^2.$$
+   $$\sum_{n \in \Z} \abs{c_n(f)}^2 \le \norm{f}_2^2 = \frac{1}{2\pi}\int_{-\pi}^{\pi} \abs{f}^2.$$
 :::
 
 ::: proof
@@ -522,7 +522,7 @@ $K_1 = \frac12(D_0 + D_1) = 1 + \cos t \ge 0$。与闭式核对：$\frac12\Big(\
 2. 对 $t \notin 2\pi\Z$，$D_N(t) = \dfrac{\sin\big((N+\frac12)t\big)}{\sin(t/2)}$。
 3. $\dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi}D_N(t)\,\dd t = 1$，$\dfrac{1}{2\pi}\displaystyle\int_0^{\pi}D_N(t)\,\dd t = \dfrac12$。
 4. 对 $f \in \mathcal{CM}_{2\pi}$ 和 $x \in \R$，
-$$S_N f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x - t)\,D_N(t)\,\dd t = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x + t)\,D_N(t)\,\dd t.$$
+   $$S_N f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x - t)\,D_N(t)\,\dd t = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x + t)\,D_N(t)\,\dd t.$$
 :::
 
 ::: fr
@@ -530,7 +530,7 @@ $$S_N f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x - t)\,D_N(t)\,\dd t = \frac{1}{
 2. Pour $t \notin 2\pi\Z$, $D_N(t) = \dfrac{\sin\big((N+\frac12)t\big)}{\sin(t/2)}$.
 3. $\dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi}D_N(t)\,\dd t = 1$ et $\dfrac{1}{2\pi}\displaystyle\int_0^{\pi}D_N(t)\,\dd t = \dfrac12$.
 4. Pour $f \in \mathcal{CM}_{2\pi}$ et $x \in \R$,
-$$S_N f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x - t)\,D_N(t)\,\dd t = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x + t)\,D_N(t)\,\dd t.$$
+   $$S_N f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x - t)\,D_N(t)\,\dd t = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x + t)\,D_N(t)\,\dd t.$$
 :::
 
 ::: proof
@@ -626,7 +626,7 @@ Ceci montre que $f$ est uniformément continue sur $\R$.
 2. $\dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi} K_N(t)\,\dd t = 1$。
 3. 对 $0 < \delta \le \abs{t} \le \pi$，$K_N(t) \le \dfrac{1}{(N+1)\sin^2(\delta/2)}$。
 4. $K_N = \sum_{\abs n \le N}\Big(1 - \dfrac{\abs n}{N+1}\Big)e_n$。因此对 $f \in \mathcal{CM}_{2\pi}$，$\sigma_N f = \sum_{\abs n \le N}\Big(1 - \dfrac{\abs n}{N+1}\Big)c_n(f)\,e_n \in \mathcal{T}_N$，且
-$$\sigma_N f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x - t)\,K_N(t)\,\dd t.$$
+   $$\sigma_N f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x - t)\,K_N(t)\,\dd t.$$
 :::
 
 ::: fr
@@ -634,7 +634,7 @@ $$\sigma_N f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x - t)\,K_N(t)\,\dd t.$$
 2. $\dfrac{1}{2\pi}\displaystyle\int_{-\pi}^{\pi} K_N(t)\,\dd t = 1$.
 3. Pour $0 < \delta \le \abs{t} \le \pi$, $K_N(t) \le \dfrac{1}{(N+1)\sin^2(\delta/2)}$.
 4. $K_N = \sum_{\abs n \le N}\Big(1 - \dfrac{\abs n}{N+1}\Big)e_n$. Par conséquent, pour $f \in \mathcal{CM}_{2\pi}$, $\sigma_N f = \sum_{\abs n \le N}\Big(1 - \dfrac{\abs n}{N+1}\Big)c_n(f)\,e_n \in \mathcal{T}_N$ et
-$$\sigma_N f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x - t)\,K_N(t)\,\dd t.$$
+   $$\sigma_N f(x) = \frac{1}{2\pi}\int_{-\pi}^{\pi} f(x - t)\,K_N(t)\,\dd t.$$
 :::
 
 ::: proof
@@ -998,10 +998,10 @@ où l'on a utilisé $\norm{S_N f}_2 \le \norm f_2$ (étape 2 de la preuve de {@f
 **Bessel 的逆命题在 $\mathcal{CM}_{2\pi}$ 中不成立**：平方可和的序列不一定是某个分段连续函数的 Fourier 系数。令 $\gamma_n = \frac1n$（$n \ge 1$），$\gamma_n = 0$（$n \le 0$），则 $\sum\abs{\gamma_n}^2 = \zeta(2) < \infty$。反设存在 $f \in \mathcal{CM}_{2\pi}$ 使 $c_n(f) = \gamma_n$ 对一切 $n$ 成立。
 
 1. 由 {@fejer-noyau} 第 4 条，
-$$\sigma_N f(0) = \sum_{n=1}^N\Big(1 - \frac{n}{N+1}\Big)\frac1n = \sum_{n=1}^N\frac1n - \frac{N}{N+1} \xrightarrow[N \to \infty]{} +\infty.$$
+   $$\sigma_N f(0) = \sum_{n=1}^N\Big(1 - \frac{n}{N+1}\Big)\frac1n = \sum_{n=1}^N\frac1n - \frac{N}{N+1} \xrightarrow[N \to \infty]{} +\infty.$$
 2. 另一方面，由积分表示与 $K_N \ge 0$、$\frac{1}{2\pi}\int K_N = 1$，
-$$\abs{\sigma_N f(0)} \le \frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{f(-t)}\,K_N(t)\,\dd t \le \norm f_\infty,$$
-而分段连续函数有界。
+   $$\abs{\sigma_N f(0)} \le \frac{1}{2\pi}\int_{-\pi}^{\pi}\abs{f(-t)}\,K_N(t)\,\dd t \le \norm f_\infty,$$
+   而分段连续函数有界。
 
 两者矛盾。（Lebesgue 积分论中的 **Riesz–Fischer 定理**说：每个平方可和序列都是某个 $L^2$ 函数的系数；这里的函数是 $-\ln\abs{1 - \e^{\ii x}} + \ii\,\frac{\pi - x}{2}$（$0 < x < 2\pi$），它在 $0$ 附近无界。）
 :::
@@ -1089,8 +1089,8 @@ $$g(t) = \frac{f(x + t) - f(x^+) + f(x - t) - f(x^-)}{\sin(t/2)}.$$
 
 1. 对每个 $\eta \in\, ]0, \pi[$：分子是 $t$ 的分段连续函数（$f$ 的平移与反射），在 $[x - \pi, x + \pi]$ 中 $f$ 只有有限个间断点；分母 $\sin\frac t2$ 在 $[\eta, \pi]$ 上连续且 $\ge \sin\frac\eta2 > 0$。所以 $g$ 在 $]0, \pi]$ 上只有有限个间断点，在每个间断点处有有限的单侧极限，在 $\pi^-$ 处也是。
 2. 在 $0^+$ 处：写
-$$g(t) = \Big(\frac{f(x + t) - f(x^+)}{t} + \frac{f(x - t) - f(x^-)}{t}\Big)\cdot\frac{t}{\sin(t/2)}.$$
-由 {@c5-taux-lateral}，括号有有限极限；$\frac{t}{\sin(t/2)} \to 2$。所以 $g(0^+)$ 存在且有限。
+   $$g(t) = \Big(\frac{f(x + t) - f(x^+)}{t} + \frac{f(x - t) - f(x^-)}{t}\Big)\cdot\frac{t}{\sin(t/2)}.$$
+   由 {@c5-taux-lateral}，括号有有限极限；$\frac{t}{\sin(t/2)} \to 2$。所以 $g(0^+)$ 存在且有限。
 
 令 $g(0) = 0$（一个点的值不影响积分），$g$ 就是 $[0, \pi]$ 上的分段连续函数。
 
@@ -1120,8 +1120,8 @@ Comme $]0, \pi] \cap 2\pi\Z = \varnothing$, d'après le point 2 de {@fr:c5-diric
 
 1. Pour tout $\eta \in\, ]0, \pi[$ : le numérateur est une fonction continue par morceaux de $t$ (translatée et réfléchie de $f$), et $f$ n'a qu'un nombre fini de discontinuités dans $[x - \pi, x + \pi]$ ; le dénominateur $\sin\frac t2$ est continu et $\ge \sin\frac\eta2 > 0$ sur $[\eta, \pi]$. Ainsi $g$ n'a qu'un nombre fini de discontinuités sur $]0, \pi]$, avec des limites finies à gauche et à droite en chacune d'elles, ainsi qu'en $\pi^-$.
 2. En $0^+$ : écrivons
-$$g(t) = \Big(\frac{f(x + t) - f(x^+)}{t} + \frac{f(x - t) - f(x^-)}{t}\Big)\cdot\frac{t}{\sin(t/2)}.$$
-D'après {@fr:c5-taux-lateral}, la parenthèse a une limite finie ; et $\frac{t}{\sin(t/2)} \to 2$. Donc $g(0^+)$ existe et est finie.
+   $$g(t) = \Big(\frac{f(x + t) - f(x^+)}{t} + \frac{f(x - t) - f(x^-)}{t}\Big)\cdot\frac{t}{\sin(t/2)}.$$
+   D'après {@fr:c5-taux-lateral}, la parenthèse a une limite finie ; et $\frac{t}{\sin(t/2)} \to 2$. Donc $g(0^+)$ existe et est finie.
 
 En posant $g(0) = 0$ (la valeur en un point ne change pas l'intégrale), $g$ est continue par morceaux sur $[0, \pi]$.
 

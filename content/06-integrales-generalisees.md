@@ -782,8 +782,8 @@ donc $\int_a^c f$ et $\int_\gamma^\beta f(\varphi)\abs{\varphi'}$ sont de même 
 2. **$\int_0^1\frac{\dd t}{\sqrt{t(1-t)}} = \pi$。** $\varphi(\theta) = \sin^2\theta$ 是 $]0, \frac\pi2[ \to ]0, 1[$ 的 $\Cc^1$ 递增双射，$\varphi'(\theta) = 2\sin\theta\cos\theta$，$\sqrt{\varphi(1 - \varphi)} = \sin\theta\cos\theta$，被积函数变为 $2$，积分 $= \int_0^{\pi/2}2\,\dd\theta = \pi$。
 3. **$\int_0^{+\infty}\e^{-\sqrt t}\,\dd t = 2$。** $\varphi(u) = u^2$ 是 $]0, +\infty[$ 到自身的 $\Cc^1$ 递增双射：积分 $= \int_0^{+\infty}2u\,\e^{-u}\,\dd u$。由 {@ipp-generalisee}（$u \mapsto -2u\e^{-u}$ 在 $0$ 与 $+\infty$ 处的极限都是 $0$），$\int_0^{+\infty}2u\,\e^{-u}\,\dd u = \int_0^{+\infty}2\,\e^{-u}\,\dd u = 2$。
 4. **$\int_0^{+\infty}\frac{\ln t}{1 + t^2}\,\dd t = 0$。** 先证收敛：在 $0$ 处 $\big|\frac{\ln t}{1 + t^2}\big| \le \abs{\ln t}$，可积（{@riemann-integrales}）；在 $+\infty$ 处 $0 \le \frac{\ln t}{1 + t^2} \le \frac{\ln t}{t^2}$，可积（{@c6-ex-comparaison}）。记积分为 $I$。$\varphi(u) = \frac1u$ 是 $]0, +\infty[$ 到自身的 $\Cc^1$ 递减双射，$\abs{\varphi'(u)} = \frac{1}{u^2}$：
-$$I = \int_0^{+\infty}\frac{\ln(1/u)}{1 + 1/u^2}\cdot\frac{\dd u}{u^2} = \int_0^{+\infty}\frac{-\ln u}{u^2 + 1}\,\dd u = -I,$$
-所以 $I = 0$。
+   $$I = \int_0^{+\infty}\frac{\ln(1/u)}{1 + 1/u^2}\cdot\frac{\dd u}{u^2} = \int_0^{+\infty}\frac{-\ln u}{u^2 + 1}\,\dd u = -I,$$
+   所以 $I = 0$。
 :::
 
 ::: rem
@@ -984,8 +984,8 @@ $$\int_0^{+\infty}\frac{t}{\e^t - 1}\,\dd t = \sum_{n \ge 1}\frac{1}{n^2} = \zet
    （$\sum\frac{(-1)^{n+1}}{n^2} = \zeta(2) - 2\sum_{n\ \text{偶}}\frac{1}{n^2} = \zeta(2) - \frac{\zeta(2)}{2}$。）
 
 2. **逐项积分定理不适用，但控制收敛适用。** 在 $I = [0, 1[$ 上，$\frac{1}{1 + t} = \sum_{n \ge 0}(-t)^n$，而 $\sum_n\int_0^1 t^n\,\dd t = \sum_n\frac{1}{n+1} = +\infty$。改为对**部分和** $S_N(t) = \sum_{n=0}^N(-t)^n = \frac{1 - (-t)^{N+1}}{1 + t}$ 用控制收敛定理：$S_N(t) \to \frac{1}{1 + t}$（$t \in [0, 1[$），且 $\abs{S_N(t)} \le \frac{2}{1 + t} \le 2$，常数 $2$ 在 $[0, 1[$ 上可积。所以
-$$\sum_{n=0}^N\frac{(-1)^n}{n+1} = \int_0^1 S_N \xrightarrow[N \to \infty]{} \int_0^1\frac{\dd t}{1 + t} = \ln 2,$$
-即 $1 - \frac12 + \frac13 - \cdots = \ln 2$（对比第 4 章 {@ln2}）。
+   $$\sum_{n=0}^N\frac{(-1)^n}{n+1} = \int_0^1 S_N \xrightarrow[N \to \infty]{} \int_0^1\frac{\dd t}{1 + t} = \ln 2,$$
+   即 $1 - \frac12 + \frac13 - \cdots = \ln 2$（对比第 4 章 {@ln2}）。
 :::
 
 ::: thm id=cv-monotone zh="单调收敛定理" en="Monotone convergence theorem" fr="Théorème de convergence monotone" ru="Теорема Беппо Леви о монотонной сходимости" lvl=3 ref="L3 积分论；Rudin, *Real and Complex Analysis*，定理 1.26"
