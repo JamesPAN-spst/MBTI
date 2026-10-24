@@ -14,11 +14,20 @@
 
 `design/songzhi/` 是按样品册里的收藏做的设计方案与示范页（第 4 章 §4.1 收敛半径），构建到 `docs/songzhi/index.html`；页内「设计方案」视图写明了配色、字体、排版参数和每个收藏编号的用处。插画素材在 `design/assets/`，说明见 [design/assets/README.md](design/assets/README.md)。
 
+主站按这个方案排版：
+
+- 封面：水墨远山（四层视差）、行书章名、烫金章号、竖排题款与朱印、本章公式跑马灯。
+- 正文：约 37 字一行（17px，宋体 + Garamond），左侧竖排页边，右侧页边留给纸下的插画。
+- 纸面：洒金宣纸。纸纹、金箔、远山和插画在每次打开页面时按随机种子重新生成。插画印在纸下、金箔之下，隔一段放一张，面朝页面里面；页脚有一条青海波，长页面里偶尔出现一幅敦煌藻井。
+- 定理块：上下两道细线。证明可折叠，思路旁白用楷体，证毕处是朱色方块。
+- 顶栏：目录抽屉、全书搜索（快捷键 `/`，中法英俄都能搜）、中 / Fr 总开关、展开全部证明、亮暗主题（从按钮处圆形展开）；翻到上一章 / 下一章时有翻书动画。
+- 样式在 `src/assets/style.css`，页面脚本在 `src/assets/app.js`；各章封面的行书分行与跑马灯公式写在 `content/chapters.json` 的 `lines` 与 `marquee` 里。
+
 ## 目录结构
 
 ```
 content/            正文（Markdown + KaTeX）
-  chapters.json     章节元数据：编号、学期、三语标题、摘要
+  chapters.json     章节元数据：编号、学期、四语标题、摘要、封面分行、跑马灯公式
   01-evn.md …       各章正文
 src/assets/         样式、页面脚本、交互演示（原生 canvas，无外部依赖）
 scripts/build.mjs   构建脚本：content/*.md → docs/*.html
@@ -61,7 +70,7 @@ npm run songzhi               # 只构建「宋纸手稿」示范页
 - `{@id}` 引用任一带 `id` 的块，可以跨章，构建时替换为「定理 3.4」之类的链接。
 - `::: demo id=…` 插入交互演示，块内文字作为说明；演示的实现在 `src/assets/demos.js`。
 - `::: fr` 紧跟在定义、定理、证明之后，写它的法语版本（页面上「中 / Fr」切换）；法语里引用用 `{@fr:id}`。
-- 以 `▷` 开头的段落是灰色的思路旁白；`::: q` + `::: ans` 是「想一想」与折叠的解答；`::: read` 延伸阅读；`::: glossary` 章末中法英俄术语表（汇总到 `glossaire.html`）。
+- 以 `▷` 开头的段落是楷体的思路旁白；`::: q` + `::: ans` 是「想一想」与折叠的解答；`::: read` 延伸阅读；`::: glossary` 章末中法英俄术语表（汇总到 `glossaire.html`）。
 - 详细的写作规范（证明怎么写、法语怎么写、术语表与延伸阅读）见 [`plan/writing-guide.md`](plan/writing-guide.md)。
 
 宏定义（`\R`、`\norm{…}`、`\abs{…}`、`\ps{…}` 等）见 `scripts/build.mjs` 中的 `MACROS`。
