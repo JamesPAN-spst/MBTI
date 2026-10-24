@@ -8,13 +8,13 @@ $\int_0^1 \frac{\dd t}{\sqrt t}$、$\int_1^{+\infty}\frac{\dd t}{t^2}$ 这样的
 
 ::: def id=c6-def-cpm-intervalle zh="区间上的分段连续函数" en="Piecewise continuous function on an interval" fr="Fonction continue par morceaux sur un intervalle" ru="Кусочно-непрерывная функция на промежутке"
 设 $I$ 是 $\R$ 的区间（不退化为一点），$f : I \to \K$。称 $f$ 在 $I$ 上**分段连续**，如果它在 $I$ 的每个闭子区间上分段连续：
-$$\forall [c, d] \subset I,\ \exists\, c = s_0 < s_1 < \cdots < s_q = d,\ \forall j \in \{1, \dots, q\},\ f\big|_{]s_{j-1}, s_j[}\ \text{连续，且在 } s_{j-1}^+,\ s_j^-\ \text{处有有限极限}.$$
+$$\begin{aligned}&\forall [c, d] \subset I,\ \exists\, c = s_0 < s_1 < \cdots < s_q = d,\ \forall j \in \{1, \dots, q\},\\ &\qquad f\big|_{]s_{j-1}, s_j[}\ \text{连续，且在 } s_{j-1}^+,\ s_j^-\ \text{处有有限极限}.\end{aligned}$$
 白话：在 $I$ 的每个有界闭子区间上只有有限个跳跃；但在 $I$ 的开端点附近，$f$ 可以无界、可以振荡，跳跃点也可以有无穷多个（只要它们不在 $I$ 内部聚集）。
 :::
 
 ::: fr
 Soit $I$ un intervalle de $\R$ non réduit à un point et $f : I \to \K$. On dit que $f$ est **continue par morceaux sur $I$** si elle est continue par morceaux sur tout segment inclus dans $I$ :
-$$\forall [c, d] \subset I,\ \exists\, c = s_0 < s_1 < \cdots < s_q = d,\ \forall j \in \{1, \dots, q\},\ f\big|_{]s_{j-1}, s_j[}\ \text{est continue et admet des limites finies en } s_{j-1}^+,\ s_j^-.$$
+$$\begin{aligned}&\forall [c, d] \subset I,\ \exists\, c = s_0 < s_1 < \cdots < s_q = d,\ \forall j \in \{1, \dots, q\},\\ &\qquad f\big|_{]s_{j-1}, s_j[}\ \text{est continue et admet des limites finies en } s_{j-1}^+,\ s_j^-.\end{aligned}$$
 Autrement dit, sur chaque segment de $I$ il n'y a qu'un nombre fini de sauts ; mais au voisinage d'une extrémité ouverte de $I$, $f$ peut être non bornée, osciller, et avoir une infinité de points de discontinuité (pourvu qu'ils ne s'accumulent pas à l'intérieur de $I$).
 :::
 
@@ -980,8 +980,9 @@ $$\int_0^{+\infty}\frac{t}{\e^t - 1}\,\dd t = \sum_{n \ge 1}\frac{1}{n^2} = \zet
 
 ::: ex id=c6-ex-ln2 zh="条件不满足时：对部分和用控制收敛" lvl=1
 1. **逐项积分定理适用。** 对 $t \in\, ]0, 1]$，$\frac{\ln(1 + t)}{t} = \sum_{n \ge 1}\frac{(-1)^{n+1}t^{n-1}}{n}$（第 4 章，$\ln(1 + t)$ 的幂级数展开）。$\int_0^1\frac{t^{n-1}}{n}\,\dd t = \frac{1}{n^2}$，$\sum\frac{1}{n^2} < \infty$，所以
-$$\int_0^1\frac{\ln(1 + t)}{t}\,\dd t = \sum_{n \ge 1}\frac{(-1)^{n+1}}{n^2} = \Big(1 - \frac{2}{4}\Big)\zeta(2) = \frac{\pi^2}{12}.$$
-（$\sum\frac{(-1)^{n+1}}{n^2} = \zeta(2) - 2\sum_{n\ \text{偶}}\frac{1}{n^2} = \zeta(2) - \frac{\zeta(2)}{2}$。）
+   $$\int_0^1\frac{\ln(1 + t)}{t}\,\dd t = \sum_{n \ge 1}\frac{(-1)^{n+1}}{n^2} = \Big(1 - \frac{2}{4}\Big)\zeta(2) = \frac{\pi^2}{12}.$$
+   （$\sum\frac{(-1)^{n+1}}{n^2} = \zeta(2) - 2\sum_{n\ \text{偶}}\frac{1}{n^2} = \zeta(2) - \frac{\zeta(2)}{2}$。）
+
 2. **逐项积分定理不适用，但控制收敛适用。** 在 $I = [0, 1[$ 上，$\frac{1}{1 + t} = \sum_{n \ge 0}(-t)^n$，而 $\sum_n\int_0^1 t^n\,\dd t = \sum_n\frac{1}{n+1} = +\infty$。改为对**部分和** $S_N(t) = \sum_{n=0}^N(-t)^n = \frac{1 - (-t)^{N+1}}{1 + t}$ 用控制收敛定理：$S_N(t) \to \frac{1}{1 + t}$（$t \in [0, 1[$），且 $\abs{S_N(t)} \le \frac{2}{1 + t} \le 2$，常数 $2$ 在 $[0, 1[$ 上可积。所以
 $$\sum_{n=0}^N\frac{(-1)^n}{n+1} = \int_0^1 S_N \xrightarrow[N \to \infty]{} \int_0^1\frac{\dd t}{1 + t} = \ln 2,$$
 即 $1 - \frac12 + \frac13 - \cdots = \ln 2$（对比第 4 章 {@ln2}）。
