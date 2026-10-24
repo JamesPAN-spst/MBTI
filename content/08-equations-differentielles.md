@@ -285,7 +285,7 @@ Par sous-multiplicativité, $\norm{M^k} \le \norm{M}^k$ ; la série est donc abs
 1. $\e^{0} = I$；$\e^{\lambda I} = \sum\frac{\lambda^k}{k!}I = \e^\lambda I$。
 2. **对角矩阵。** $D = \operatorname{diag}(\lambda_1, \dots, \lambda_n)$：$D^k = \operatorname{diag}(\lambda_i^k)$，部分和为 $\operatorname{diag}\big(\sum_{k \le N}\frac{\lambda_i^k}{k!}\big)$，逐元素取极限，$\e^D = \operatorname{diag}(\e^{\lambda_i})$。
 3. **幂零矩阵。** $N = \begin{pmatrix}0 & 1\\ 0 & 0\end{pmatrix}$：$N^2 = 0$，级数只剩两项，$\e^{tN} = I + tN = \begin{pmatrix}1 & t\\ 0 & 1\end{pmatrix}$。一般地，若 $N^p = 0$，$\e^N = \sum_{k < p}\frac{N^k}{k!}$ 是有限和。
-4. **注意：** $\e^M$ 的元素**不是** $M$ 的元素的指数。例如 3 中 $\e^{tN}$ 的 $(1, 1)$ 元是 $1$，不是 $\e^0 = 1$ 碰巧相同，但 $(2, 1)$ 元是 $0 \ne \e^0$。
+4. **注意：** $\e^M$ 的元素**不是** $M$ 的元素的指数（对角矩阵除外）。例如 3 中 $\e^{tN}$ 的 $(2, 1)$ 元是 $0$，而 $\e^{(tN)_{21}} = \e^0 = 1$；$(1, 2)$ 元是 $t$，而 $\e^{(tN)_{12}} = \e^t$。
 :::
 
 ::: prop id=exp-matrice-proprietes zh="矩阵指数的性质" en="Properties of the matrix exponential" fr="Propriétés de l'exponentielle de matrice" ru="Свойства матричной экспоненты" lvl=1
@@ -478,7 +478,7 @@ $$X(t) = \e^{t/2}\begin{pmatrix}-\cos t\\ \sin t\end{pmatrix}$$
 :::
 
 ::: ans
-转置是有限维空间上的线性映射，连续，且 $(A^k)^T = (A^T)^k$，对部分和取极限得 $(\e^{tA})^T = \e^{tA^T} = \e^{-tA}$。由 {@exp-matrice-proprietes} 第 1 条，$\e^{-tA} = (\e^{tA})^{-1}$，所以 $(\e^{tA})^T\e^{tA} = I$。又 $\tr A = 0$（反对称矩阵的对角元为零），由第 4 条 $\det\e^{tA} = \e^{0} = 1$。所以 $\X' = AX$ 的解保持欧氏范数：$\norm{X(t)}_2 = \norm{X(0)}_2$。
+转置是有限维空间上的线性映射，连续，且 $(A^k)^T = (A^T)^k$，对部分和取极限得 $(\e^{tA})^T = \e^{tA^T} = \e^{-tA}$。由 {@exp-matrice-proprietes} 第 1 条，$\e^{-tA} = (\e^{tA})^{-1}$，所以 $(\e^{tA})^T\e^{tA} = I$。又 $\tr A = 0$（反对称矩阵的对角元为零），由第 4 条 $\det\e^{tA} = \e^{0} = 1$。所以 $X' = AX$ 的解保持欧氏范数：$\norm{X(t)}_2 = \norm{X(0)}_2$。
 :::
 
 ::: q

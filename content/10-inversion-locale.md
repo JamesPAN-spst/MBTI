@@ -235,7 +235,7 @@ Si $f : \R^n \to \R^n$ est de classe $\mathcal{C}^1$, si $\dd f(x)$ est inversib
 :::
 
 ::: rem
-**真映射的条件不能去掉。** $f = \Arctan : \R \to \R$，$f' > 0$，单射，但像是 $]-\frac\pi2, \frac\pi2[$，不是满射；$f$ 不是真映射（$f^{-1}([-1, 1]) = [-\tan 1, \tan 1]$ 紧，但 $f^{-1}([0, \frac\pi2]) \ldots$ 更直接地：$\abs{f(x)} \le \frac\pi2$ 不趋于 $\infty$）。复指数 $(x, y) \mapsto (\e^x\cos y, \e^x\sin y)$ 的 Jacobi 行列式 $\e^{2x} > 0$，但它是 $2\pi$ 周期的，不是单射；它也不是真映射（$x \to -\infty$ 时像趋于 $0$）。
+**真映射的条件不能去掉。** $f = \Arctan : \R \to \R$，$f' > 0$，单射，但像是 $]-\frac\pi2, \frac\pi2[$，不是满射；$f$ 不是真映射：紧集 $[0, \frac\pi2]$ 的原像是 $[0, +\infty[$，不紧（等价地，$\abs{f(x)} < \frac\pi2$ 不趋于 $\infty$）。复指数 $(x, y) \mapsto (\e^x\cos y, \e^x\sin y)$ 的 Jacobi 行列式 $\e^{2x} > 0$，但它是 $2\pi$ 周期的，不是单射；它也不是真映射（$x \to -\infty$ 时像趋于 $0$）。
 :::
 
 ::: open zh="Jacobian 猜想"
