@@ -907,7 +907,7 @@ $$E = \Cc\big([t_0 - \tau, t_0 + \tau], \overline{B}(x_0, r)\big),\qquad \norm{x
 
 **第 4 步（最大解）**　令 $J_{\max}$ 为所有解的定义区间之并（都含 $t_0$，所以是区间），对 $t \in J_{\max}$ 令 $x(t) = x_J(t)$，其中 $(J, x_J)$ 是任一定义在 $t$ 处的解；由第 3 步，这与 $J$ 的选取无关。$x$ 在每一点附近与某个解重合，所以 $(J_{\max}, x)$ 是解，而且每个解都是它的限制——它是唯一的最大解。
 
-**第 5 步（区间是开的）**　反设 $J_{\max}$ 包含右端点 $\beta$。对 $(\beta, x(\beta)) \in U$ 用第 2 步，得到 $[\beta - \tau', \beta + \tau']$ 上的解；由第 3 步它与 $x$ 在公共部分相等，拼接后（两边在 $\beta$ 处的单侧导数都等于 $f(\beta, x(\beta))$）得到定义在 $J_{\max} \cup [\beta, \beta + \tau']$ 上的解，与最大性矛盾。左端点同理（把 $\beta$ 换成左端点、$[\beta, \beta + \tau']$ 换成 $[\alpha - \tau', \alpha]$）。
+**第 5 步（区间是开的）**　反设 $J_{\max}$ 包含右端点 $\beta$。对 $(\beta, x(\beta)) \in U$ 用第 2 步，得到 $[\beta - \tau', \beta + \tau']$ 上的解；由第 3 步它与 $x$ 在公共部分相等，拼接后（两边在 $\beta$ 处的单侧导数都等于 $f(\beta, x(\beta))$）得到定义在 $J_{\max} \cup [\beta, \beta + \tau']$ 上的解，与最大性矛盾。对左端点 $\alpha$，把 $\beta$ 换成 $\alpha$、$[\beta, \beta + \tau']$ 换成 $[\alpha - \tau', \alpha]$，论证相同。
 :::
 
 ::: fr
@@ -1091,4 +1091,98 @@ $x(t) = \tan t$ 在 $]-\frac\pi2, \frac\pi2[$ 上是解（$\tan' = 1 + \tan^2$�
 
 ::: open zh="Hilbert 第 16 问题（第二部分）"
 平面多项式向量场 $x' = P(x, y)$，$y' = Q(x, y)$（$\deg P, \deg Q \le d$）的**极限环**（孤立的周期轨道）个数是否有一个只依赖于 $d$ 的上界 $H(d)$？即使 $d = 2$，这个问题也未解决。已知每个具体的向量场只有有限个极限环（Ilyashenko 1991，Écalle 1992）。
+:::
+
+## 方法总结
+
+### 如何解线性方程（组）
+
+1. 一阶标量方程：乘以积分因子 $\e^{-\int a}$（{@c8-ex-ordre1}）。
+2. 常系数方程组：$X(t) = \e^{(t-t_0)A}X_0 + \int_{t_0}^t\e^{(t-s)A}B(s)\,\dd s$（{@solution-coef-constants}）；$\e^{tA}$ 用对角化、Dunford 分解或零化多项式计算（第 2 节「如何计算 $\e^{tA}$」，{@c8-ex-duhamel}）。
+3. 常系数二阶标量方程：特征方程（{@c8-equation-caracteristique}）；右边是 $\cos\Omega t$、$\e^{\lambda t}$ 等时先试同类型的特解，共振时乘以 $t$（{@c8-ex-resonance}）。
+4. 变系数二阶方程：先找齐次方程的基本解组（猜一个解，再用 Liouville 公式降阶，第 3 节第一个「想一想」），再用常数变易法（{@variation-constantes}）。
+5. 检查基本解组：算一点处的 Wronski 行列式（{@c8-wronskien-base}）。
+6. 写出全部解：特解 + 齐次方程的通解（{@structure-solutions}）。
+
+### 如何使用 Cauchy–Lipschitz 定理（唯一性）
+
+1. 先验证条件：$f$ 是 $\Cc^1$ 的就够了（{@c8-c1-lipschitz}）。
+2. 不同解的图像不相交：解被夹在平衡解之间（{@c8-ex-logistique}，第 1 节第二个「想一想」）。
+3. 对称性：若 $t \mapsto y(-t)$ 或 $t \mapsto -y(t)$ 也是解且初值相同，则它等于 $y$（第 4 节第一个「想一想」）。
+4. 齐次线性方程的非零解不可能在某点 $t_0$ 处 $X(t_0) = 0$（{@c8-base-solutions}）；二阶标量方程的非零解没有「二重零点」$y(t_0) = y'(t_0) = 0$。
+
+### 如何证明解全局存在，或证明解爆破
+
+1. 线性方程的解总在整个 $I$ 上（{@cauchy-lipschitz-lineaire}）。
+2. 增长至多线性：{@c8-existence-globale}。
+3. 解被困在一个紧集里：{@sortie-compact}（{@c8-ex-logistique} 第 3 条）。
+4. 爆破：写出显式解（{@ex-explosion}），或者证明 $\norm{x(t)}$ 在有限时间内无界。
+
+### 如何估计解
+
+1. 积分不等式 $\varphi \le c + \int\psi\varphi$：Grönwall 引理（{@gronwall}）；两个解之差：{@dependance-continue}。
+2. 常系数系统的长期行为：看特征值的实部（{@stabilite}）。
+
+::: rem zh="常见错误"
+1. **不验证 Lipschitz 条件就说「解唯一」。** $y' = 3y^{2/3}$ 的右边连续，初值问题却有无穷多个解（{@cex-unicite}）。
+2. **默认非线性方程的解定义在 $\R$ 上。** $y' = y^2$ 的右边是多项式，解仍在有限时间爆破（{@ex-explosion}）。
+3. **对不交换的矩阵用 $\e^{M+N} = \e^M\e^N$**（{@c8-cex-non-commutation}），或者以为 $\e^{tA(t)}$ 的类似公式能解变系数方程。
+4. **用「冻结系数」的特征值判断变系数系统的稳定性**（{@c8-cex-markus-yamabe}）。
+5. **首项系数会变为零的方程直接套用定理**（{@c8-cex-singulier}）；**用 $W \equiv 0$ 判断任意两个函数线性相关**（{@c8-cex-wronskien}）——Wronski 判别法只对同一个线性方程的解成立。
+:::
+
+::: read
+- Л. С. Понтрягин,《Обыкновенные дифференциальные уравнения》：теорема существования и единственности; линейные уравнения с постоянными коэффициентами; устойчивость。篇幅不大、几何直观强，常系数方程与稳定性部分尤其清楚。
+- В. И. Арнольд,《Обыкновенные дифференциальные уравнения》：фазовые потоки, экспонента линейного оператора, теоремы существования。从相流的几何观点讲微分方程，矩阵指数讲得最透彻，适合读完本章后建立直观。
+- А. Ф. Филиппов,《Сборник задач по дифференциальным уравнениям》：经典习题集，从初等积分法到存在唯一性、线性方程组与稳定性，题量大，适合练手。
+- J.-P. Demailly,《Analyse numérique et équations différentielles》：théorème de Cauchy–Lipschitz, solutions maximales, sortie de tout compact, méthodes numériques。法国大学的标准教材，{@sortie-compact} 的完整证明在这里，还讲 Euler、Runge–Kutta 等数值方法（对应本章的交互演示）。
+- X. Gourdon,《Les maths en tête : Analyse》：équations différentielles linéaires, exponentielle de matrice。法国 MP 备考参考书，定理陈述与本章一致，习题有代表性。
+- P. Hartman,《Ordinary Differential Equations》：existence theorems (Peano), differential inequalities。英文的研究级参考书，Peano 定理与各种 Grönwall 型不等式的系统论述。
+:::
+
+::: glossary
+| 中文 | Français | English | Русский |
+|---|---|---|---|
+| 微分方程 | équation différentielle (f.) | differential equation | дифференциальное уравнение |
+| 常微分方程 | équation différentielle ordinaire (f.) | ordinary differential equation | обыкновенное дифференциальное уравнение |
+| 线性微分方程组 | système différentiel linéaire (m.) | linear differential system | линейная система дифференциальных уравнений |
+| 齐次方程 | équation homogène (f.) | homogeneous equation | однородное уравнение |
+| 特解 | solution particulière (f.) | particular solution | частное решение |
+| 通解 | solution générale (f.) | general solution | общее решение |
+| 初值问题 | problème de Cauchy (m.) | initial value problem | задача Коши |
+| 初始条件 | condition initiale (f.) | initial condition | начальное условие |
+| 积分方程 | équation intégrale (f.) | integral equation | интегральное уравнение |
+| Picard 迭代 | itérées de Picard (f. pl.) | Picard iteration | метод последовательных приближений |
+| 解空间 | espace des solutions (m.) | solution space | пространство решений |
+| 基本解组 | système fondamental de solutions (m.) | fundamental system of solutions | фундаментальная система решений |
+| 基本矩阵 | matrice fondamentale (f.) | fundamental matrix | фундаментальная матрица |
+| 矩阵指数 | exponentielle de matrice (f.) | matrix exponential | матричная экспонента |
+| 常系数的 | à coefficients constants | with constant coefficients | с постоянными коэффициентами |
+| 伴随矩阵 | matrice compagnon (f.) | companion matrix | матрица Фробениуса (сопровождающая матрица) |
+| Wronski 行列式 | wronskien (m.) | Wronskian | определитель Вронского |
+| Liouville 公式 | formule de Liouville (f.) | Abel–Liouville identity | формула Лиувилля — Остроградского |
+| 常数变易法 | méthode de variation des constantes (f.) | variation of parameters | метод вариации постоянных |
+| 积分因子 | facteur intégrant (m.) | integrating factor | интегрирующий множитель |
+| 特征方程 | équation caractéristique (f.) | characteristic equation | характеристическое уравнение |
+| 共振 | résonance (f.) | resonance | резонанс |
+| Dunford 分解 | décomposition de Dunford (f.) | Jordan–Chevalley decomposition | разложение Жордана — Шевалле |
+| 稳定性 | stabilité (f.) | stability | устойчивость |
+| 局部 Lipschitz 的 | localement lipschitzienne | locally Lipschitz | локально липшицева |
+| Lipschitz 常数 | constante de Lipschitz (f.) | Lipschitz constant | константа Липшица |
+| 延拓 | prolongement (m.) | extension | продолжение решения |
+| 最大解 | solution maximale (f.) | maximal solution | непродолжаемое решение |
+| Cauchy–Lipschitz 定理 | théorème de Cauchy–Lipschitz (m.) | Picard–Lindelöf theorem | теорема Пикара — Линделёфа |
+| 压缩映射 | application contractante (f.) | contraction mapping | сжимающее отображение |
+| 不动点 | point fixe (m.) | fixed point | неподвижная точка |
+| Grönwall 引理 | lemme de Grönwall (m.) | Grönwall's inequality | лемма Гронуолла |
+| 对初值的连续依赖 | dépendance continue par rapport aux conditions initiales (f.) | continuous dependence on initial data | непрерывная зависимость от начальных данных |
+| 爆破 | explosion en temps fini (f.) | finite-time blow-up | уход решения на бесконечность за конечное время |
+| 逃离紧集定理 | théorème de sortie de tout compact (m.) | blow-up alternative | теорема о продолжении решения |
+| 全局存在 | existence globale (f.) | global existence | существование решения на всей оси |
+| Peano 定理 | théorème de Cauchy–Peano (m.) | Peano existence theorem | теорема Пеано |
+| 方向场 | champ de directions (m.) | slope field | поле направлений |
+| 积分曲线 | courbe intégrale (f.) | integral curve | интегральная кривая |
+| 平衡点 | point d'équilibre (m.) | equilibrium point | положение равновесия |
+| 极限环 | cycle limite (m.) | limit cycle | предельный цикл |
+| 时间反转 | renversement du temps (m.) | time reversal | обращение времени |
 :::
