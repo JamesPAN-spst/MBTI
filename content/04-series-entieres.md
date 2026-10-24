@@ -1036,4 +1036,153 @@ Euler 公式 $\e^{\ii\pi} + 1 = 0$ 在这里是定义的直接推论（第 4 步
 与 $\frac{1}{1 + x^2}$ 对照：那里实轴上没有任何奇点，半径为 $1$ 的原因是复平面上的 $\pm\ii$（$\abs{\pm\ii} = 1$）。
 :::
 
-<!-- APPEND -->
+## 应用：生成函数与微分方程
+
+系数唯一性（{@unicite-coef}）把「数列的问题」与「函数的问题」联系起来：把数列 $(u_n)$ 编码成幂级数 $\sum u_n x^n$（**生成函数**），递推关系变成函数方程，解出函数后再展开，比较系数就得到 $u_n$。反过来，微分方程的解可以通过系数的递推关系求出。两个方向的关键步骤都是：**先证明收敛半径为正**，否则等式没有意义。
+
+::: ex id=fibonacci zh="Fibonacci 数" lvl=1
+$F_0 = 0$，$F_1 = 1$，$F_{n+2} = F_{n+1} + F_n$。证明 Binet 公式
+$$F_n = \frac{\varphi^n - \psi^n}{\sqrt5},\qquad \varphi = \frac{1 + \sqrt5}{2},\ \psi = \frac{1 - \sqrt5}{2}.$$
+
+- **第 1 步（收敛半径为正）**：归纳可证 $0 \le F_n \le 2^n$（$F_0 = 0 \le 1$，$F_1 = 1 \le 2$；若对 $n$、$n + 1$ 成立，则 $F_{n+2} \le 2^{n+1} + 2^n \le 2^{n+2}$）。由 {@comparaison-rayons} 第 1 条，$G(x) = \sum F_n x^n$ 的收敛半径 $\ge \frac12$。
+- **第 2 步（函数方程）**：对 $\abs x < \frac12$，三个收敛级数相加（约定 $F_{-1} = F_{-2} = 0$）：
+  $$G(x) - xG(x) - x^2G(x) = \sum_{n \ge 0} (F_n - F_{n-1} - F_{n-2}) x^n = F_0 + (F_1 - F_0)x = x,$$
+  因为 $n \ge 2$ 时括号为 $0$。
+- **第 3 步（解出 $G$）**：$\varphi + \psi = 1$，$\varphi\psi = -1$，所以 $1 - x - x^2 = (1 - \varphi x)(1 - \psi x)$，它的根 $\frac1\varphi \approx 0.618$、$\frac1\psi \approx -1.618$ 都在 $\abs x < \frac12$ 之外。于是 $G(x) = \frac{x}{(1 - \varphi x)(1 - \psi x)}$。部分分式：
+  $$\frac{x}{(1 - \varphi x)(1 - \psi x)} = \frac{1}{\varphi - \psi}\Big(\frac{1}{1 - \varphi x} - \frac{1}{1 - \psi x}\Big)$$
+  （通分：分子 $(1 - \psi x) - (1 - \varphi x) = (\varphi - \psi)x$），$\varphi - \psi = \sqrt5$。
+- **第 4 步（展开并比较系数）**：对 $\abs x < \frac1\varphi$（$\abs\psi < \varphi$），$\frac{1}{1 - \varphi x} = \sum \varphi^n x^n$，$\frac{1}{1 - \psi x} = \sum \psi^n x^n$。所以在 $\abs x < \frac12$ 上 $\sum F_n x^n = \sum \frac{\varphi^n - \psi^n}{\sqrt5} x^n$，由 {@unicite-coef}，$F_n = \frac{\varphi^n - \psi^n}{\sqrt5}$。
+:::
+
+::: ex id=bernoulli zh="Bernoulli 数" lvl=2
+函数 $\frac{x}{\e^x - 1}$（在 $0$ 处补充定义为 $1$）在 $0$ 附近可展开为 $\sum_{n \ge 0} \frac{B_n}{n!} x^n$，$B_n$ 称为 **Bernoulli 数**。$B_0 = 1$，$B_1 = -\frac12$，$B_2 = \frac16$，$B_4 = -\frac{1}{30}$，奇数下标 $\ge 3$ 时 $B_n = 0$。
+
+- **第 1 步（用递推定义系数）**：令 $E(x) = \frac{\e^x - 1}{x} = \sum_{j \ge 0} \frac{x^j}{(j+1)!}$（收敛半径 $+\infty$）。若 $\big(\sum b_n x^n\big) E(x) = 1$，比较 $x^n$ 的系数（Cauchy 乘积）应有 $b_0 = 1$，且对 $n \ge 1$
+  $$\sum_{k=0}^n \frac{b_k}{(n-k+1)!} = 0, \qquad\text{即}\qquad b_n = -\sum_{k=0}^{n-1} \frac{b_k}{(n-k+1)!}.$$
+  用这个递推**定义** $(b_n)$。乘以 $(n+1)!$ 并记 $B_n = n!\,b_n$，得 $\sum_{k=0}^n \binom{n+1}{k} B_k = 0$（$n \ge 1$），由此依次算出 $B_1 = -\frac12$，$B_2 = \frac16$，$B_3 = 0$，$B_4 = -\frac1{30}$。
+- **第 2 步（收敛半径 $\ge 1$）**：强归纳证明 $\abs{b_n} \le 1$。$b_0 = 1$；若 $\abs{b_k} \le 1$（$k < n$），则 $\abs{b_n} \le \sum_{k=0}^{n-1}\frac{1}{(n-k+1)!} = \sum_{j=2}^{n+1}\frac{1}{j!} \le \e - 2 < 1$。由 {@c4-rayon-pratique}（$z_0 = 1$），收敛半径 $\ge 1$。
+- **第 3 步（等式）**：对 $0 < \abs x < 1$，两个级数都绝对收敛，由 {@comparaison-rayons} 第 3 条与第 1 步，$\big(\sum b_n x^n\big)E(x) = 1$；$x \ne 0$ 时 $E(x) \ne 0$，所以 $\sum b_n x^n = \frac{x}{\e^x - 1}$。$x = 0$ 时两边都是 $1$。
+- **第 4 步（奇数下标）**：$\frac{x}{\e^x - 1} + \frac x2 = \frac x2 \cdot \frac{\e^x + 1}{\e^x - 1}$ 是偶函数（把 $x$ 换成 $-x$，分子分母同乘 $\e^x$ 即可验证）。由 {@unicite-coef}，它的奇数次系数为 $0$：$b_1 + \frac12 = 0$，$b_{2k+1} = 0$（$k \ge 1$）。
+
+收敛半径实际上是 $2\pi$：在复平面上 $\e^z - 1$ 的非零零点是 $\pm 2\pi\ii, \pm 4\pi\ii, \dots$（{@def-pi} 后的「想一想」），最近的是 $\pm 2\pi\ii$；严格证明需要复分析。Bernoulli 数出现在 Euler 公式
+$$\zeta(2k) = \frac{(-1)^{k+1} B_{2k} (2\pi)^{2k}}{2\,(2k)!}$$
+中（$k = 1$ 给出 $\frac{\pi^2}{6}$，$k = 2$ 给出 $\frac{\pi^4}{90}$；第 5 章用 Parseval 恒等式证明这两个情形，{@bale}），也出现在 Euler–Maclaurin 求和公式中。
+:::
+
+::: ex id=airy zh="Airy 方程" lvl=1
+求 $y'' = xy$ 的幂级数解。
+
+- **第 1 步（化为系数的递推）**：设 $y = \sum a_n x^n$ 的收敛半径 $R > 0$。在 $]-R, R[$ 上，由 {@derivation-se}，$y''(x) = \sum_{n \ge 0} (n+2)(n+1)a_{n+2} x^n$，而 $xy(x) = \sum_{n \ge 1} a_{n-1} x^n$。由 {@unicite-coef}，$y'' = xy$ 于 $]-R, R[$ 当且仅当
+  $$2a_2 = 0, \qquad (n+2)(n+1)\,a_{n+2} = a_{n-1} \quad (n \ge 1).$$
+- **第 2 步（解递推）**：令 $m = n + 2$，递推即 $m(m-1)\,a_m = a_{m-3}$（$m \ge 3$）。$a_0, a_1$ 任意，$a_2 = 0$，从而 $a_{3k+2} = 0$；
+  $$a_{3k} = \frac{a_0}{\prod_{j=1}^k (3j)(3j-1)}, \qquad a_{3k+1} = \frac{a_1}{\prod_{j=1}^k (3j+1)(3j)}.$$
+- **第 3 步（收敛半径为 $+\infty$）**：系数有无穷多个为 $0$，不能直接用 {@dalembert-rayon}。设 $r > 0$ 且 $a_0 \ne 0$，令 $u_k = \abs{a_{3k}} r^{3k}$，则 $\frac{u_{k}}{u_{k-1}} = \frac{r^3}{3k(3k-1)} \to 0$，由 d'Alembert 判别法（{@dalembert}），$\sum u_k$ 收敛，$u_k \to 0$；同样处理 $\abs{a_{3k+1}} r^{3k+1}$（$a_1 \ne 0$ 时）；$a_0 = 0$ 或 $a_1 = 0$ 时对应的子列恒为 $0$。所以 $(a_m r^m)$ 有界，$r \le R$；$r$ 任意，$R = +\infty$。
+- **第 4 步（结论）**：$R = +\infty$，第 1 步的等价在整个 $\R$ 上成立，所以由第 2 步定义的每个幂级数都是 $y'' = xy$ 在 $\R$ 上的解。$(a_0, a_1) = (1, 0)$ 与 $(0, 1)$ 给出两个解 $y_1, y_2$，它们线性无关（$y_1(0) = 1$，$y_1'(0) = 0$；$y_2(0) = 0$，$y_2'(0) = 1$）。由第 8 章（{@structure-solutions}），二阶线性方程的解空间是二维的，所以每个解都是 $a_0 y_1 + a_1 y_2$，在 $\R$ 上可展开为幂级数。
+:::
+
+::: q
+设 $u_0 = 0$，$u_{n+1} = 2u_n + 1$。用生成函数求 $u_n$。
+:::
+
+::: ans
+**收敛半径**：归纳得 $0 \le u_n \le 3^n$（$u_{n+1} \le 2 \cdot 3^n + 1 \le 3^{n+1}$），所以 $U(x) = \sum u_n x^n$ 的收敛半径 $\ge \frac13$（{@comparaison-rayons}）。
+
+**函数方程**：对 $\abs x < \frac13$，
+$$U(x) - 2xU(x) = u_0 + \sum_{n \ge 1} (u_n - 2u_{n-1}) x^n = \sum_{n \ge 1} x^n = \frac{x}{1 - x}.$$
+所以 $U(x) = \frac{x}{(1 - x)(1 - 2x)} = \frac{1}{1 - 2x} - \frac{1}{1 - x}$（通分：分子 $(1 - x) - (1 - 2x) = x$）$= \sum (2^n - 1) x^n$。由 {@unicite-coef}，$u_n = 2^n - 1$。
+:::
+
+## 方法总结
+
+::: method zh="如何求收敛半径"
+1. **系数比值有极限**：$\big|\frac{a_{n+1}}{a_n}\big| \to \ell$，则 $R = \frac1\ell$（{@dalembert-rayon}）。
+2. **缺项或比值无极限**：对通项 $\abs{a_n z^n}$ 本身用比值或根值判别法，再用 {@c4-rayon-pratique}（{@c4-ex-lacunaire}）；或用 Cauchy–Hadamard 公式 $R = 1/\limsup \abs{a_n}^{1/n}$（{@hadamard}），上极限按 {@c4-limsup-carac} (D) 分拆计算。
+3. **比较**：$a_n = O(b_n) \Rightarrow R_a \ge R_b$；$a_n \sim b_n \Rightarrow R_a = R_b$；乘以 $n^k$ 不改变半径（{@comparaison-rayons}）。
+4. **看一个特殊点 $z_0$**：通项有界 $\Rightarrow R \ge \abs{z_0}$；级数发散 $\Rightarrow R \le \abs{z_0}$；半收敛 $\Rightarrow R = \abs{z_0}$（{@c4-rayon-pratique}）。
+5. **和与积**：半径 $\ge \min(R_a, R_b)$；$R_a \ne R_b$ 时和的半径恰为最小值（{@comparaison-rayons} 后的注）。
+:::
+
+::: method zh="如何研究和函数"
+1. 在开圆盘（开区间）内：连续，$\Cc^\infty$，可以逐项求导、逐项积分，导数级数半径不变（{@cv-normale-disque}，{@derivation-se}）。
+2. 一致收敛只在闭子圆盘 $\overline{D}(0, r)$（$r < R$）上保证（{@c4-cex-geom-unif}）。
+3. 在端点 $x = R$：若 $\sum a_n R^n$ 收敛，Abel 定理给出 $\lim_{x \to R^-} S(x) = \sum a_n R^n$（{@abel-radial}）；反之不成立（{@tauber}）。
+4. 系数由和函数决定：$a_n = \frac{S^{(n)}(0)}{n!}$；在 $0$ 的邻域上相等的两个幂级数系数相同；偶函数只有偶数次项（{@unicite-coef}）。
+:::
+
+::: method zh="如何展开一个函数 / 证明不能展开"
+1. 用常用展开（{@dse-usuels}，{@binome}）做代数运算、代入、部分分式分解（第 3 节第一个「想一想」）。
+2. 逐项积分已知的导数展开（$\ln$、$\Arctan$、$\arcsin$：{@c4-ex-arcsin}）。
+3. 微分方程 + 系数递推，验证半径 $> 0$，再用唯一性（{@binome}，{@airy}）。
+4. 估计 Taylor 余项（{@taylor-reste}），适用于各阶导数一致有界的函数。
+5. **不能展开**：函数不是 $\Cc^\infty$；或 Taylor 级数在 $x \ne 0$ 处不收敛到 $f$（{@cex-non-dse}）；或 Taylor 级数的半径小于所要求的区间（{@c4-ex-dse} 第 3 条）。
+:::
+
+::: method zh="如何用幂级数求和、解递推与微分方程"
+1. **数项级数求和**：把 $\sum a_n x_0^n$ 看成已知和函数在 $x_0$ 处的值；$x_0$ 在边界上时必须用 Abel 定理（{@ln2}）。$\sum n a_n x^n = x S'(x)$，$\sum \frac{a_n}{n+1}x^{n+1} = \int_0^x S$ 用来处理多项式或有理因子。
+2. **线性递推**：写出生成函数，证明半径 $> 0$，由递推得函数方程，部分分式展开，比较系数（{@fibonacci}）。
+3. **线性微分方程**：代入幂级数，比较系数得递推，证明半径 $> 0$（缺项时按子列分别处理），最后说明它就是所求的解（{@airy}）。
+:::
+
+::: rem
+**常见错误。**
+
+1. **在收敛区间的端点直接代入。** $\ln(1 + x) = \sum \frac{(-1)^{n+1}}{n}x^n$ 只在 $]-1, 1[$ 上由逐项积分得到；$x = 1$ 处的等式需要 Abel 定理（{@ln2}）。
+2. **缺项级数套用系数比值。** $\sum \frac{z^{2n}}{4^n}$ 的「系数」$\frac{1}{4^n}$ 属于 $z^{2n}$，不是 $z^n$：$R = 2$，不是 $4$（{@c4-ex-lacunaire}）。
+3. **以为在整个收敛圆盘上一致收敛。** $\sum x^n$ 在 $]-1, 1[$ 上不一致收敛（{@c4-cex-geom-unif}）；连续性、逐项求导等结论要通过闭子区间局部化得到。
+4. **以为 $\Cc^\infty$ 函数等于它的 Taylor 级数**（{@cex-non-dse}），或以为 Taylor 级数的半径由实轴上的奇点决定（$\frac{1}{1+x^2}$，{@c4-ex-dse}）。
+5. **把「$\ge \min(R_a, R_b)$」当成等式**：积的半径可以更大（$(1 - z)\sum z^n = 1$）。
+6. **生成函数方法中忘记先证明半径 $> 0$**：没有这一步，函数方程只是形式运算。
+:::
+
+::: read
+- Г. М. Фихтенгольц,《Курс дифференциального и интегрального исчисления》，т. II：степенные ряды, разложение элементарных функций в степенные ряды, теорема Абеля. ——展开计算写得最细，大量具体函数的展开与数值例子。
+- В. А. Зорич,《Математический анализ》，ч. I：степенные ряды в комплексной области, экспонента, формула Эйлера и взаимосвязь элементарных функций. ——与本章第 4 节同样用级数定义 $\exp$、$\cos$、$\sin$，观点现代。
+- Б. П. Демидович,《Сборник задач и упражнений по математическому анализу》：степенные ряды, область сходимости, разложение функций в степенные ряды. ——求收敛半径与展开的计算题非常多，按难度排列。
+- X. Gourdon,《Les maths en tête : Analyse》：séries entières. ——法国 MP 风格的标准参考书，生成函数与微分方程方法的例题丰富。
+- W. Rudin,《Principles of Mathematical Analysis》：Some Special Functions（第 8 章：幂级数、Abel 定理、指数与三角函数、π 的定义）。——简洁严格，可与第 4 节对照。
+- G. H. Hardy,《Divergent Series》：Abel 求和与 Tauber 型定理。——想深入了解 Abel 定理之逆的读者的经典读物。
+:::
+
+::: glossary
+| 中文 | Français | English | Русский |
+|---|---|---|---|
+| 幂级数 | série entière (f.) | power series | степенной ряд |
+| 系数 | coefficient (m.) | coefficient | коэффициент |
+| 收敛半径 | rayon de convergence (m.) | radius of convergence | радиус сходимости |
+| 收敛圆盘 | disque ouvert de convergence (m.) | disc of convergence | круг сходимости |
+| 收敛区间 | intervalle ouvert de convergence (m.) | interval of convergence | интервал сходимости |
+| Abel 引理 | lemme (m.) d'Abel | Abel's lemma | лемма Абеля |
+| 上极限 | limite supérieure (f.) | limit superior | верхний предел |
+| Cauchy–Hadamard 公式 | formule (f.) de Cauchy–Hadamard | Cauchy–Hadamard formula | формула Коши — Адамара |
+| 比值判别法（d'Alembert） | règle (f.) de d'Alembert | ratio test | признак Даламбера |
+| 粗发散 | divergence grossière (f.) | divergence (terms not tending to 0) | расходимость (общий член не стремится к нулю) |
+| 半收敛 | semi-convergence (f.) | conditional convergence | условная сходимость |
+| 缺项级数 | série lacunaire (f.) | lacunary series | лакунарный ряд |
+| 和函数 | fonction somme (f.) | sum function | сумма ряда |
+| Cauchy 乘积 | produit (m.) de Cauchy | Cauchy product | произведение рядов по Коши |
+| 闭子圆盘上的正规收敛 | convergence normale (f.) sur tout disque fermé | normal convergence on closed subdiscs | нормальная сходимость в замкнутом подкруге |
+| 逐项求导 | dérivation (f.) terme à terme | term-by-term differentiation | почленное дифференцирование |
+| 逐项积分 | intégration (f.) terme à terme | term-by-term integration | почленное интегрирование |
+| 系数的唯一性 | unicité (f.) des coefficients | uniqueness of coefficients | единственность разложения |
+| 比较系数 | identifier les coefficients | compare coefficients | сравнить коэффициенты |
+| Abel 径向定理 | théorème radial (m.) d'Abel | Abel's theorem | теорема Абеля (вторая) |
+| Tauber 型定理 | théorème taubérien (m.) | Tauberian theorem | тауберова теорема |
+| 可展开为幂级数 | développable en série entière (DSE) | expandable in a power series | разложимая в степенной ряд |
+| Taylor 级数 | série (f.) de Taylor | Taylor series | ряд Тейлора |
+| 积分余项 | reste intégral (m.) | integral remainder | остаточный член в интегральной форме |
+| 解析函数 | fonction analytique (f.) | analytic function | аналитическая функция |
+| 二项式级数 | série (f.) du binôme | binomial series | биномиальный ряд |
+| 广义二项式系数 | coefficient binomial généralisé (m.) | generalized binomial coefficient | обобщённый биномиальный коэффициент |
+| 部分分式分解 | décomposition (f.) en éléments simples | partial fraction decomposition | разложение на простейшие дроби |
+| Borel 引理 | lemme (m.) de Borel | Borel's lemma | лемма Бореля |
+| 复指数函数 | exponentielle complexe (f.) | complex exponential | комплексная экспонента |
+| 指数的函数方程 | propriété (f.) de morphisme de l'exponentielle | functional equation of the exponential | основное свойство экспоненты |
+| Euler 公式 | formule (f.) d'Euler | Euler's formula | формула Эйлера |
+| 单位圆 | cercle unité (m.) | unit circle | единичная окружность |
+| 周期 | période (f.) | period | период |
+| 生成函数 | série génératrice (f.) | generating function | производящая функция |
+| 递推关系 | relation (f.) de récurrence | recurrence relation | рекуррентное соотношение |
+| Bernoulli 数 | nombres (m. pl.) de Bernoulli | Bernoulli numbers | числа Бернулли |
+| Airy 方程 | équation (f.) d'Airy | Airy equation | уравнение Эйри |
+| 幂级数解 | solution (f.) développable en série entière | power series solution | решение в виде степенного ряда |
+:::
