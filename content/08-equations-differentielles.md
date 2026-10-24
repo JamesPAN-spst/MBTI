@@ -488,3 +488,607 @@ $$X(t) = \e^{t/2}\begin{pmatrix}-\cos t\\ \sin t\end{pmatrix}$$
 ::: ans
 $A^k = A$（$k \ge 1$），所以 $\e^{tA} = I + \sum_{k \ge 1}\frac{t^k}{k!}A = I + (\e^t - 1)A$。这是零化多项式方法（$P(X) = X^2 - X$，$d = 2$）的一个例子。
 :::
+
+## 标量线性方程
+
+$n$ 阶标量方程 $y^{(n)} + a_{n-1}y^{(n-1)} + \dots + a_0y = b$ 是方程组的特例：把 $y$ 及其前 $n - 1$ 阶导数排成向量即可。本节把第 1 节的结论翻译到这个情形，并重点讨论二阶方程：Wronski 行列式判别基本解组，常数变易法求特解。
+
+::: def id=c8-def-edl-scalaire zh="$n$ 阶线性方程与 Wronski 行列式" en="Scalar linear equations, Wronskian" fr="Équations scalaires d'ordre $n$, wronskien" ru="Линейные уравнения $n$-го порядка, определитель Вронского"
+设 $a_0, \dots, a_{n-1}, b : I \to \K$ 连续。$n$ 阶线性方程
+$$y^{(n)} + a_{n-1}(t)y^{(n-1)} + \dots + a_0(t)y = b(t) \tag{$E_n$}$$
+的**解**是 $I$ 上 $n$ 次可导且满足 $(E_n)$ 的函数 $y$；$b = 0$ 时记为 $(H_n)$。通过 $X = (y, y', \dots, y^{(n-1)})^T$，$(E_n)$ 化为一阶方程组 $X' = C(t)X + b(t)e_n$，其中 $e_n = (0, \dots, 0, 1)^T$，**伴随矩阵**为
+$$C(t) = \begin{pmatrix}0 & 1 & & \\ & \ddots & \ddots & \\ & & 0 & 1\\ -a_0(t) & -a_1(t) & \cdots & -a_{n-1}(t)\end{pmatrix}.$$
+对 $(H_n)$ 的 $n$ 个解 $y_1, \dots, y_n$，**Wronski 行列式**为 $W(t) = \det\big(y_j^{(i-1)}(t)\big)_{1 \le i, j \le n}$。对二阶方程 $y'' + a(t)y' + b(t)y = 0$ 的两个解 $y_1, y_2$，
+$$W(t) = \begin{vmatrix}y_1 & y_2\\ y_1' & y_2'\end{vmatrix} = y_1y_2' - y_1'y_2.$$
+:::
+
+::: fr
+Soient $a_0, \dots, a_{n-1}, b : I \to \K$ continues. Une **solution** de l'équation linéaire d'ordre $n$
+$$y^{(n)} + a_{n-1}(t)y^{(n-1)} + \dots + a_0(t)y = b(t) \tag{$E_n$}$$
+est une fonction $y$, $n$ fois dérivable sur $I$, qui vérifie $(E_n)$ ; si $b = 0$, on note $(H_n)$ l'équation. En posant $X = (y, y', \dots, y^{(n-1)})^T$, $(E_n)$ se ramène au système $X' = C(t)X + b(t)e_n$, où $e_n = (0, \dots, 0, 1)^T$ et où la **matrice compagnon** est
+$$C(t) = \begin{pmatrix}0 & 1 & & \\ & \ddots & \ddots & \\ & & 0 & 1\\ -a_0(t) & -a_1(t) & \cdots & -a_{n-1}(t)\end{pmatrix}.$$
+Pour $n$ solutions $y_1, \dots, y_n$ de $(H_n)$, le **wronskien** est $W(t) = \det\big(y_j^{(i-1)}(t)\big)_{1 \le i, j \le n}$. Pour deux solutions $y_1, y_2$ de l'équation d'ordre 2 $y'' + a(t)y' + b(t)y = 0$,
+$$W(t) = \begin{vmatrix}y_1 & y_2\\ y_1' & y_2'\end{vmatrix} = y_1y_2' - y_1'y_2.$$
+:::
+
+::: prop id=c8-ordre-n zh="$n$ 阶方程的 Cauchy–Lipschitz 定理" en="Cauchy–Lipschitz for scalar equations of order $n$" fr="Cauchy–Lipschitz pour les équations scalaires d'ordre $n$" ru="Теорема существования и единственности для уравнения $n$-го порядка" lvl=1
+1. $y$ 是 $(E_n)$ 的解，当且仅当 $X = (y, y', \dots, y^{(n-1)})^T$ 是 $X' = C(t)X + b(t)e_n$ 的解。
+2. 对任意 $t_0 \in I$ 和 $(c_0, \dots, c_{n-1}) \in \K^n$，存在唯一的解 $y$ 满足 $y^{(k)}(t_0) = c_k$（$0 \le k \le n - 1$），它定义在整个 $I$ 上。
+3. $(H_n)$ 的解集是 $n$ 维向量空间，$y \mapsto \big(y(t_0), \dots, y^{(n-1)}(t_0)\big)$ 是它到 $\K^n$ 的同构。
+:::
+
+::: fr
+1. $y$ est solution de $(E_n)$ si et seulement si $X = (y, y', \dots, y^{(n-1)})^T$ est solution de $X' = C(t)X + b(t)e_n$.
+2. Pour tous $t_0 \in I$ et $(c_0, \dots, c_{n-1}) \in \K^n$, il existe une unique solution $y$ vérifiant $y^{(k)}(t_0) = c_k$ ($0 \le k \le n - 1$), et elle est définie sur tout $I$.
+3. L'ensemble des solutions de $(H_n)$ est un espace vectoriel de dimension $n$, et $y \mapsto \big(y(t_0), \dots, y^{(n-1)}(t_0)\big)$ en est un isomorphisme sur $\K^n$.
+:::
+
+::: proof
+▷ 思路：1 是逐个分量的验证；2、3 由 1 把 {@cauchy-lipschitz-lineaire} 与 {@structure-solutions} 搬过来。
+
+**1. (⇒)**　$y$ 是 $n$ 次可导的，所以 $X$ 的每个分量 $y^{(k)}$（$k \le n - 1$）可导，$X' = (y', \dots, y^{(n-1)}, y^{(n)})^T$。前 $n - 1$ 个分量就是 $X$ 的后 $n - 1$ 个分量；最后一个分量 $y^{(n)} = b - \sum_k a_ky^{(k)}$。这正是 $X' = CX + be_n$。
+
+**1. (⇐)**　设 $X = (x_1, \dots, x_n)^T$ 是方程组的解。前 $n - 1$ 行给出 $x_{k+1} = x_k'$（$1 \le k \le n - 1$），所以由归纳 $x_1$ 是 $n - 1$ 次可导的，$x_k = x_1^{(k-1)}$；最后一行给出 $x_n' = b - \sum_k a_kx_{k+1}$，所以 $y = x_1$ 是 $n$ 次可导的且满足 $(E_n)$，并且 $X = (y, \dots, y^{(n-1)})^T$。
+
+**2.**　条件 $y^{(k)}(t_0) = c_k$ 就是 $X(t_0) = (c_0, \dots, c_{n-1})^T$。$C$ 与 $be_n$ 在 $I$ 上连续，由 {@cauchy-lipschitz-lineaire}，方程组的这个初值问题在 $I$ 上有唯一解；由 1，它对应 $(E_n)$ 的唯一解。
+
+**3.**　由 1，$y \mapsto X$ 是 $(H_n)$ 的解集到 $X' = CX$ 的解集 $\mathcal{S}_H$ 的线性双射（逆映射是取第一个分量）。再复合 {@structure-solutions} 中的同构 $X \mapsto X(t_0)$。
+:::
+
+::: fr
+▷ Méthode : 1 se vérifie composante par composante ; 2 et 3 se déduisent de {@fr:cauchy-lipschitz-lineaire} et {@fr:structure-solutions} grâce à 1.
+
+**1. (⇒)**　Comme $y$ est $n$ fois dérivable, chaque composante $y^{(k)}$ ($k \le n - 1$) de $X$ est dérivable et $X' = (y', \dots, y^{(n-1)}, y^{(n)})^T$. Les $n - 1$ premières composantes sont les $n - 1$ dernières composantes de $X$ ; la dernière vaut $y^{(n)} = b - \sum_k a_ky^{(k)}$. C'est exactement $X' = CX + be_n$.
+
+**1. (⇐)**　Soit $X = (x_1, \dots, x_n)^T$ une solution du système. Les $n - 1$ premières lignes donnent $x_{k+1} = x_k'$ ($1 \le k \le n - 1$), donc par récurrence $x_1$ est $n - 1$ fois dérivable et $x_k = x_1^{(k-1)}$ ; la dernière ligne donne $x_n' = b - \sum_k a_kx_{k+1}$, donc $y = x_1$ est $n$ fois dérivable, vérifie $(E_n)$, et $X = (y, \dots, y^{(n-1)})^T$.
+
+**2.**　La condition $y^{(k)}(t_0) = c_k$ s'écrit $X(t_0) = (c_0, \dots, c_{n-1})^T$. Les fonctions $C$ et $be_n$ sont continues sur $I$ ; d'après {@fr:cauchy-lipschitz-lineaire}, ce problème de Cauchy pour le système a une unique solution sur $I$, qui correspond d'après 1 à une unique solution de $(E_n)$.
+
+**3.**　D'après 1, $y \mapsto X$ est une bijection linéaire de l'ensemble des solutions de $(H_n)$ sur l'ensemble $\mathcal{S}_H$ des solutions de $X' = CX$ (la bijection réciproque est la première composante). On compose avec l'isomorphisme $X \mapsto X(t_0)$ de {@fr:structure-solutions}.
+:::
+
+::: thm id=liouville-formule zh="Liouville 公式" en="Abel–Liouville identity" fr="Formule de Liouville" ru="Формула Лиувилля — Остроградского" lvl=1
+对方程组 $X' = A(t)X$，若 $\Phi(t)$ 是由 $n$ 个解作为列构成的矩阵，则 $W(t) = \det\Phi(t)$ 满足 $W' = \tr(A)\,W$，即
+$$W(t) = W(t_0)\exp\Big(\int_{t_0}^t\tr A(s)\,\dd s\Big).$$
+对二阶方程 $y'' + a(t)y' + b(t)y = 0$：$W' = -a(t)W$。因此 $W$ 要么恒为零，要么处处不为零。
+:::
+
+::: fr
+Pour le système $X' = A(t)X$, si $\Phi(t)$ est la matrice dont les colonnes sont $n$ solutions, alors $W(t) = \det\Phi(t)$ vérifie $W' = \tr(A)\,W$, c'est-à-dire
+$$W(t) = W(t_0)\exp\Big(\int_{t_0}^t\tr A(s)\,\dd s\Big).$$
+Pour l'équation d'ordre 2 $y'' + a(t)y' + b(t)y = 0$ : $W' = -a(t)W$. Par conséquent, $W$ est soit identiquement nul, soit partout non nul.
+:::
+
+::: proof
+▷ 思路：行列式关于列是多重线性的，所以 $W'$ 是「每次把一列换成它的导数」所得的 $n$ 个行列式之和；把 $X_j' = AX_j$ 代入，再用一个代数事实——$\sum_j\det(v_1, \dots, Av_j, \dots, v_n) = \tr(A)\det(v_1, \dots, v_n)$。最后解一阶标量方程。
+
+记 $X_1, \dots, X_n$ 为 $\Phi$ 的列，$X_j = (x_{1j}, \dots, x_{nj})^T$。
+
+**第 1 步（行列式的导数）**　$W = \sum_{\sigma}\varepsilon(\sigma)\prod_{j=1}^n x_{\sigma(j)j}$（对 $\{1, \dots, n\}$ 的置换求和）。对每个乘积用乘积的求导法则，再按「哪一个因子被求导」重新分组：
+$$W' = \sum_{j=1}^n\sum_\sigma\varepsilon(\sigma)\,x_{\sigma(j)j}'\prod_{l \ne j}x_{\sigma(l)l} = \sum_{j=1}^n\det(X_1, \dots, X_j', \dots, X_n).$$
+
+**第 2 步（代入方程）**　$X_j' = AX_j$，所以 $W'(t) = \sum_j\det\big(X_1, \dots, A(t)X_j, \dots, X_n\big)$。
+
+**第 3 步（代数引理）**　固定矩阵 $A$，令 $\varphi(v_1, \dots, v_n) = \sum_j\det(v_1, \dots, Av_j, \dots, v_n)$。
+
+- $\varphi$ 是 $n$ 重线性的：每一项关于每个 $v_l$ 线性（$\det$ 多重线性，$A$ 线性）。
+- $\varphi$ 是交错的：设 $v_p = v_q$（$p < q$）。$j \notin \{p, q\}$ 的项有两列相等，为零；$j = p$ 与 $j = q$ 的两项，交换第 $p$、$q$ 列可以互相得到，行列式变号，相加为零。
+
+$\K^n$ 上的交错 $n$ 重线性形式构成一维空间，由 $\det$ 张成，所以 $\varphi = c\det$。在标准基上计算：$Ae_j = \sum_i a_{ij}e_i$，$\det(e_1, \dots, Ae_j, \dots, e_n) = a_{jj}$（只有 $i = j$ 的项不出现重复列），所以 $c = \sum_j a_{jj} = \tr A$。
+
+**第 4 步（解标量方程）**　由第 2、3 步，$W' = \tr(A(t))\,W$。这是一阶标量线性方程，由 {@c8-ex-ordre1}（$b = 0$），$W(t) = W(t_0)\exp\big(\int_{t_0}^t\tr A\big)$。指数不为零，所以 $W(t_0) = 0$ 时 $W \equiv 0$，否则 $W$ 处处不为零。
+
+**第 5 步（二阶方程）**　二阶方程的伴随矩阵是 $C(t) = \begin{pmatrix}0 & 1\\ -b(t) & -a(t)\end{pmatrix}$，$\tr C = -a$，而 $W = y_1y_2' - y_1'y_2$ 正是 $\det(X_1, X_2)$。所以 $W' = -aW$。也可以直接计算：
+$$W' = y_1y_2'' - y_1''y_2 = y_1(-ay_2' - by_2) - (-ay_1' - by_1)y_2 = -a(y_1y_2' - y_1'y_2) = -aW.$$
+:::
+
+::: fr
+▷ Méthode : le déterminant est multilinéaire en les colonnes, donc $W'$ est la somme des $n$ déterminants obtenus en dérivant une colonne à la fois ; on remplace $X_j'$ par $AX_j$ et on utilise un fait algébrique : $\sum_j\det(v_1, \dots, Av_j, \dots, v_n) = \tr(A)\det(v_1, \dots, v_n)$. On résout enfin une équation scalaire du premier ordre.
+
+Notons $X_1, \dots, X_n$ les colonnes de $\Phi$, $X_j = (x_{1j}, \dots, x_{nj})^T$.
+
+**Étape 1 (dérivée d'un déterminant)**　On a $W = \sum_{\sigma}\varepsilon(\sigma)\prod_{j=1}^n x_{\sigma(j)j}$ (somme sur les permutations de $\{1, \dots, n\}$). En dérivant chaque produit et en regroupant selon le facteur dérivé :
+$$W' = \sum_{j=1}^n\sum_\sigma\varepsilon(\sigma)\,x_{\sigma(j)j}'\prod_{l \ne j}x_{\sigma(l)l} = \sum_{j=1}^n\det(X_1, \dots, X_j', \dots, X_n).$$
+
+**Étape 2 (on utilise l'équation)**　Comme $X_j' = AX_j$, $W'(t) = \sum_j\det\big(X_1, \dots, A(t)X_j, \dots, X_n\big)$.
+
+**Étape 3 (lemme algébrique)**　Soit $A$ fixée ; posons $\varphi(v_1, \dots, v_n) = \sum_j\det(v_1, \dots, Av_j, \dots, v_n)$.
+
+- $\varphi$ est $n$-linéaire : chaque terme est linéaire en chaque $v_l$ ($\det$ est multilinéaire et $A$ linéaire).
+- $\varphi$ est alternée : supposons $v_p = v_q$ ($p < q$). Les termes avec $j \notin \{p, q\}$ ont deux colonnes égales, donc sont nuls ; les termes $j = p$ et $j = q$ s'échangent en permutant les colonnes $p$ et $q$, donc sont opposés et leur somme est nulle.
+
+L'espace des formes $n$-linéaires alternées sur $\K^n$ est de dimension 1, engendré par $\det$ ; donc $\varphi = c\det$. Calcul sur la base canonique : $Ae_j = \sum_i a_{ij}e_i$ et $\det(e_1, \dots, Ae_j, \dots, e_n) = a_{jj}$ (seul le terme $i = j$ ne crée pas de colonne répétée), donc $c = \sum_j a_{jj} = \tr A$.
+
+**Étape 4 (résolution de l'équation scalaire)**　D'après les étapes 2 et 3, $W' = \tr(A(t))\,W$. C'est une équation scalaire linéaire du premier ordre ; d'après {@fr:c8-ex-ordre1} (avec $b = 0$), $W(t) = W(t_0)\exp\big(\int_{t_0}^t\tr A\big)$. L'exponentielle ne s'annule pas : si $W(t_0) = 0$, $W \equiv 0$ ; sinon $W$ ne s'annule jamais.
+
+**Étape 5 (équation d'ordre 2)**　La matrice compagnon est $C(t) = \begin{pmatrix}0 & 1\\ -b(t) & -a(t)\end{pmatrix}$, de trace $-a$, et $W = y_1y_2' - y_1'y_2$ est exactement $\det(X_1, X_2)$. Donc $W' = -aW$. On peut aussi le vérifier directement :
+$$W' = y_1y_2'' - y_1''y_2 = y_1(-ay_2' - by_2) - (-ay_1' - by_1)y_2 = -a(y_1y_2' - y_1'y_2) = -aW.$$
+:::
+
+::: cor id=c8-wronskien-base zh="Wronski 行列式判别基本解组" en="Wronskian criterion" fr="Critère du wronskien" ru="Критерий Вронского" lvl=1
+设 $y_1, \dots, y_n$ 是 $(H_n)$ 的解。以下三条等价：(i) 它们构成解空间的基；(ii) 存在 $t_0 \in I$ 使 $W(t_0) \ne 0$；(iii) 对一切 $t \in I$，$W(t) \ne 0$。
+:::
+
+::: fr
+Soient $y_1, \dots, y_n$ des solutions de $(H_n)$. Les assertions suivantes sont équivalentes : (i) elles forment une base de l'espace des solutions ; (ii) il existe $t_0 \in I$ tel que $W(t_0) \ne 0$ ; (iii) pour tout $t \in I$, $W(t) \ne 0$.
+:::
+
+::: proof
+▷ 思路：把标量解换成伴随方程组的解，用 {@c8-base-solutions}；(ii)⇔(iii) 是 Liouville 公式。
+
+令 $X_j = (y_j, \dots, y_j^{(n-1)})^T$，则 $W = \det(X_1, \dots, X_n)$。
+
+**(i)⇔(ii)**　由 {@c8-ordre-n} 第 3 条的证明，$y \mapsto X$ 是同构，所以 $(y_j)$ 是基 $\iff$ $(X_j)$ 是 $\mathcal{S}_H$ 的基 $\iff$（{@c8-base-solutions}，任取 $t_0$）$(X_j(t_0))$ 是 $\K^n$ 的基 $\iff$ $W(t_0) \ne 0$。
+
+**(ii)⇔(iii)**　(iii)⇒(ii) 不需证明；(ii)⇒(iii) 由 {@liouville-formule}：$W$ 不恒为零，就处处不为零。
+:::
+
+::: fr
+▷ Méthode : on remplace les solutions scalaires par les solutions du système compagnon et on applique {@fr:c8-base-solutions} ; (ii)⇔(iii) est la formule de Liouville.
+
+Posons $X_j = (y_j, \dots, y_j^{(n-1)})^T$, de sorte que $W = \det(X_1, \dots, X_n)$.
+
+**(i)⇔(ii)**　D'après la preuve du point 3 de {@fr:c8-ordre-n}, $y \mapsto X$ est un isomorphisme ; donc $(y_j)$ est une base $\iff$ $(X_j)$ est une base de $\mathcal{S}_H$ $\iff$ ({@fr:c8-base-solutions}, pour n'importe quel $t_0$) $(X_j(t_0))$ est une base de $\K^n$ $\iff$ $W(t_0) \ne 0$.
+
+**(ii)⇔(iii)**　(iii)⇒(ii) est immédiat ; (ii)⇒(iii) découle de {@fr:liouville-formule} : $W$ n'étant pas identiquement nul, il ne s'annule jamais.
+:::
+
+::: cex id=c8-cex-wronskien zh="不是同一方程的解时，$W \equiv 0$ 不推出线性相关" lvl=1
+$y_1(t) = t^3$，$y_2(t) = \abs{t}^3$ 在 $\R$ 上是 $\Cc^2$ 的（$y_2' = 3t\abs t$，$y_2'' = 6\abs t$）。
+$$W(t) = t^3\cdot 3t\abs{t} - 3t^2\cdot\abs{t}^3 = 3t^4\abs t - 3t^4\abs t = 0\qquad(\abs{t}^3 = t^2\abs t).$$
+但它们线性无关：若 $\lambda t^3 + \mu\abs{t}^3 \equiv 0$，取 $t = 1$ 得 $\lambda + \mu = 0$，取 $t = -1$ 得 $-\lambda + \mu = 0$，所以 $\lambda = \mu = 0$。由 {@c8-wronskien-base}，$t^3$ 与 $\abs t^3$ 不可能同时是某个 $y'' + a(t)y' + b(t)y = 0$（$a, b$ 在 $\R$ 上连续）的解。「都是同一个线性方程的解」这个条件不能省略。
+:::
+
+::: prop id=c8-equation-caracteristique zh="常系数二阶方程：特征方程" en="Constant-coefficient second-order equations" fr="Équation caractéristique (ordre 2, coefficients constants)" ru="Характеристическое уравнение (второй порядок, постоянные коэффициенты)" lvl=1
+设 $p, q \in \K$，$\chi(r) = r^2 + pr + q$。方程 $y'' + py' + qy = 0$ 的解空间的一组基为：
+
+1. $\chi$ 有两个不同的根 $r_1 \ne r_2$（在 $\C$ 中；$\K = \R$ 时要求它们是实数）：$\e^{r_1t}$，$\e^{r_2t}$；
+2. $\chi$ 有二重根 $r$：$\e^{rt}$，$t\,\e^{rt}$；
+3. $\K = \R$，$\chi$ 的根为 $\alpha \pm \ii\beta$（$\beta \ne 0$）：$\e^{\alpha t}\cos\beta t$，$\e^{\alpha t}\sin\beta t$。
+:::
+
+::: fr
+Soient $p, q \in \K$ et $\chi(r) = r^2 + pr + q$. Une base de l'espace des solutions de $y'' + py' + qy = 0$ est :
+
+1. si $\chi$ a deux racines distinctes $r_1 \ne r_2$ (dans $\C$ ; réelles si $\K = \R$) : $\e^{r_1t}$, $\e^{r_2t}$ ;
+2. si $\chi$ a une racine double $r$ : $\e^{rt}$, $t\,\e^{rt}$ ;
+3. si $\K = \R$ et les racines de $\chi$ sont $\alpha \pm \ii\beta$ ($\beta \ne 0$) : $\e^{\alpha t}\cos\beta t$, $\e^{\alpha t}\sin\beta t$.
+:::
+
+::: proof
+▷ 思路：逐个验证是解，再算 $W(0) \ne 0$；解空间是二维的（{@c8-ordre-n}），由 {@c8-wronskien-base}，两个解构成基。
+
+**1.**　$(\e^{rt})'' + p(\e^{rt})' + q\e^{rt} = \chi(r)\e^{rt}$，所以 $\chi(r_i) = 0$ 时 $\e^{r_it}$ 是解。$W(0) = \begin{vmatrix}1 & 1\\ r_1 & r_2\end{vmatrix} = r_2 - r_1 \ne 0$。
+
+**2.**　二重根满足 $\chi(r) = 0$ 与 $\chi'(r) = 2r + p = 0$。令 $y = t\e^{rt}$，则 $y' = (1 + rt)\e^{rt}$，$y'' = (2r + r^2t)\e^{rt}$，
+$$y'' + py' + qy = \big(t(r^2 + pr + q) + (2r + p)\big)\e^{rt} = \big(t\chi(r) + \chi'(r)\big)\e^{rt} = 0.$$
+$W(0) = \begin{vmatrix}1 & 0\\ r & 1\end{vmatrix} = 1 \ne 0$。
+
+**3.**　由 1（在 $\C$ 上），$z = \e^{(\alpha + \ii\beta)t}$ 是解。$p, q$ 是实数，对 $z'' + pz' + qz = 0$ 取实部与虚部，$\operatorname{Re}z = \e^{\alpha t}\cos\beta t$ 与 $\operatorname{Im}z = \e^{\alpha t}\sin\beta t$ 都是实解。$W(0) = \begin{vmatrix}1 & 0\\ \alpha & \beta\end{vmatrix} = \beta \ne 0$。
+
+三种情形中，所给的两个解都满足 $W(0) \ne 0$，由 {@c8-wronskien-base} 构成基。
+:::
+
+::: fr
+▷ Méthode : on vérifie que ce sont des solutions, puis que $W(0) \ne 0$ ; l'espace des solutions est de dimension 2 ({@fr:c8-ordre-n}) et {@fr:c8-wronskien-base} conclut.
+
+**1.**　$(\e^{rt})'' + p(\e^{rt})' + q\e^{rt} = \chi(r)\e^{rt}$, donc $\e^{r_it}$ est solution lorsque $\chi(r_i) = 0$. $W(0) = \begin{vmatrix}1 & 1\\ r_1 & r_2\end{vmatrix} = r_2 - r_1 \ne 0$.
+
+**2.**　Une racine double vérifie $\chi(r) = 0$ et $\chi'(r) = 2r + p = 0$. Pour $y = t\e^{rt}$, on a $y' = (1 + rt)\e^{rt}$, $y'' = (2r + r^2t)\e^{rt}$ et
+$$y'' + py' + qy = \big(t(r^2 + pr + q) + (2r + p)\big)\e^{rt} = \big(t\chi(r) + \chi'(r)\big)\e^{rt} = 0.$$
+$W(0) = \begin{vmatrix}1 & 0\\ r & 1\end{vmatrix} = 1 \ne 0$.
+
+**3.**　D'après 1 (dans $\C$), $z = \e^{(\alpha + \ii\beta)t}$ est solution. Comme $p, q$ sont réels, en prenant parties réelle et imaginaire dans $z'' + pz' + qz = 0$, on obtient que $\operatorname{Re}z = \e^{\alpha t}\cos\beta t$ et $\operatorname{Im}z = \e^{\alpha t}\sin\beta t$ sont des solutions réelles. $W(0) = \begin{vmatrix}1 & 0\\ \alpha & \beta\end{vmatrix} = \beta \ne 0$.
+
+Dans les trois cas, les deux solutions proposées vérifient $W(0) \ne 0$ et forment donc une base d'après {@fr:c8-wronskien-base}.
+:::
+
+::: thm id=variation-constantes zh="常数变易法" en="Variation of parameters" fr="Méthode de variation des constantes" ru="Метод вариации постоянных" lvl=1
+设 $y_1, y_2$ 是 $y'' + a(t)y' + b(t)y = 0$ 的基本解组，$c : I \to \K$ 连续。则 $y = \lambda_1 y_1 + \lambda_2 y_2$ 是 $y'' + ay' + by = c(t)$ 的解，只要 $\lambda_1, \lambda_2$ 满足
+$$\begin{cases}\lambda_1'y_1 + \lambda_2'y_2 = 0\\ \lambda_1'y_1' + \lambda_2'y_2' = c\end{cases}\qquad\text{即}\quad \lambda_1' = -\frac{c\,y_2}{W},\ \lambda_2' = \frac{c\,y_1}{W}.$$
+这样的 $\lambda_1, \lambda_2$ 存在（取右边的原函数）。
+:::
+
+::: fr
+Soient $y_1, y_2$ un système fondamental de solutions de $y'' + a(t)y' + b(t)y = 0$ et $c : I \to \K$ continue. Alors $y = \lambda_1 y_1 + \lambda_2 y_2$ est solution de $y'' + ay' + by = c(t)$ dès que $\lambda_1, \lambda_2$ vérifient
+$$\begin{cases}\lambda_1'y_1 + \lambda_2'y_2 = 0\\ \lambda_1'y_1' + \lambda_2'y_2' = c\end{cases}\qquad\text{c'est-à-dire}\quad \lambda_1' = -\frac{c\,y_2}{W},\ \lambda_2' = \frac{c\,y_1}{W}.$$
+De tels $\lambda_1, \lambda_2$ existent (primitives des seconds membres).
+:::
+
+::: proof
+▷ 思路：让齐次解的「常数」随 $t$ 变化。第一个条件是我们**自己加**的，目的是让 $y'$ 中不出现 $\lambda_i'$；代入方程后，齐次部分消去，剩下的正是第二个条件。
+
+**第 1 步（$W$ 处处不为零）**　$y_1, y_2$ 是基本解组，由 {@c8-wronskien-base}，对一切 $t$，$W(t) \ne 0$。
+
+**第 2 步（解出 $\lambda_i'$）**　关于未知数 $(\lambda_1', \lambda_2')$ 的线性方程组的行列式就是 $W(t) \ne 0$，由 Cramer 法则，它有唯一解
+$$\lambda_1' = \frac{\begin{vmatrix}0 & y_2\\ c & y_2'\end{vmatrix}}{W} = -\frac{c\,y_2}{W},\qquad \lambda_2' = \frac{\begin{vmatrix}y_1 & 0\\ y_1' & c\end{vmatrix}}{W} = \frac{c\,y_1}{W}.$$
+右边在 $I$ 上连续，取 $\lambda_1, \lambda_2$ 为它们的原函数，$\lambda_i$ 是 $\Cc^1$ 的。
+
+**第 3 步（$y'$）**　$y = \lambda_1y_1 + \lambda_2y_2$ 可导，由第一个条件，
+$$y' = \lambda_1y_1' + \lambda_2y_2' + \underbrace{(\lambda_1'y_1 + \lambda_2'y_2)}_{= 0} = \lambda_1y_1' + \lambda_2y_2'.$$
+
+**第 4 步（$y''$）**　$\lambda_i$ 与 $y_i'$ 可导，所以 $y'$ 可导，由第二个条件，
+$$y'' = \lambda_1y_1'' + \lambda_2y_2'' + \underbrace{(\lambda_1'y_1' + \lambda_2'y_2')}_{= c} = \lambda_1y_1'' + \lambda_2y_2'' + c.$$
+
+**第 5 步（代入）**
+$$y'' + ay' + by = \lambda_1\underbrace{(y_1'' + ay_1' + by_1)}_{= 0} + \lambda_2\underbrace{(y_2'' + ay_2' + by_2)}_{= 0} + c = c.$$
+
+这就证明了 $y$ 是解。由 {@structure-solutions}，一切解为 $y + \mu_1y_1 + \mu_2y_2$（相当于原函数中的积分常数）。这与 Duhamel 公式 {@solution-coef-constants} 是同一个想法（让齐次解的「常数」随 $t$ 变化），只是推广到了变系数方程。
+:::
+
+::: fr
+▷ Méthode : on fait varier les « constantes » de la solution homogène. La première condition est **imposée par nous**, pour que $\lambda_i'$ n'apparaisse pas dans $y'$ ; en reportant dans l'équation, la partie homogène disparaît et il reste exactement la seconde condition.
+
+**Étape 1 ($W$ ne s'annule pas)**　$y_1, y_2$ est un système fondamental ; d'après {@fr:c8-wronskien-base}, $W(t) \ne 0$ pour tout $t$.
+
+**Étape 2 (calcul des $\lambda_i'$)**　Le déterminant du système linéaire d'inconnues $(\lambda_1', \lambda_2')$ est $W(t) \ne 0$ ; par les formules de Cramer, il admet une unique solution
+$$\lambda_1' = \frac{\begin{vmatrix}0 & y_2\\ c & y_2'\end{vmatrix}}{W} = -\frac{c\,y_2}{W},\qquad \lambda_2' = \frac{\begin{vmatrix}y_1 & 0\\ y_1' & c\end{vmatrix}}{W} = \frac{c\,y_1}{W}.$$
+Les seconds membres sont continus sur $I$ ; on prend pour $\lambda_1, \lambda_2$ des primitives, qui sont $\Cc^1$.
+
+**Étape 3 ($y'$)**　La fonction $y = \lambda_1y_1 + \lambda_2y_2$ est dérivable et, d'après la première condition,
+$$y' = \lambda_1y_1' + \lambda_2y_2' + \underbrace{(\lambda_1'y_1 + \lambda_2'y_2)}_{= 0} = \lambda_1y_1' + \lambda_2y_2'.$$
+
+**Étape 4 ($y''$)**　Les $\lambda_i$ et les $y_i'$ sont dérivables, donc $y'$ aussi et, d'après la seconde condition,
+$$y'' = \lambda_1y_1'' + \lambda_2y_2'' + \underbrace{(\lambda_1'y_1' + \lambda_2'y_2')}_{= c} = \lambda_1y_1'' + \lambda_2y_2'' + c.$$
+
+**Étape 5 (report dans l'équation)**
+$$y'' + ay' + by = \lambda_1\underbrace{(y_1'' + ay_1' + by_1)}_{= 0} + \lambda_2\underbrace{(y_2'' + ay_2' + by_2)}_{= 0} + c = c.$$
+
+Ceci montre que $y$ est solution. D'après {@fr:structure-solutions}, toutes les solutions sont les $y + \mu_1y_1 + \mu_2y_2$ (ce qui revient aux constantes d'intégration des primitives). C'est la même idée que la formule de Duhamel {@fr:solution-coef-constants} (faire varier les « constantes » de la solution homogène), étendue aux coefficients variables.
+:::
+
+::: ex id=c8-ex-resonance zh="共振" lvl=1
+$y'' + \omega^2y = \cos(\Omega t)$，$\omega, \Omega > 0$。齐次方程的基本解组为 $y_1 = \cos\omega t$，$y_2 = \sin\omega t$（{@c8-equation-caracteristique}，根 $\pm\ii\omega$），$W = \omega$。
+
+- **$\Omega \ne \omega$。** 试 $y = A\cos\Omega t$：$y'' + \omega^2y = A(\omega^2 - \Omega^2)\cos\Omega t$，取 $A = \frac{1}{\omega^2 - \Omega^2}$。特解 $\frac{\cos\Omega t}{\omega^2 - \Omega^2}$ 有界，所以一切解有界。
+- **$\Omega = \omega$。** 上面的分母为零。用常数变易法：$\lambda_1' = -\frac{\cos\omega t\sin\omega t}{\omega}$，$\lambda_2' = \frac{\cos^2\omega t}{\omega}$。取原函数 $\lambda_1 = \frac{\cos^2\omega t}{2\omega^2}$，$\lambda_2 = \frac{t}{2\omega} + \frac{\sin 2\omega t}{4\omega^2}$。于是
+  $$y = \lambda_1\cos\omega t + \lambda_2\sin\omega t = \frac{\cos^3\omega t}{2\omega^2} + \frac{t\sin\omega t}{2\omega} + \frac{\sin^2\omega t\cos\omega t}{2\omega^2} = \frac{t\sin\omega t}{2\omega} + \frac{\cos\omega t}{2\omega^2}$$
+  （用了 $\sin 2\omega t\sin\omega t = 2\sin^2\omega t\cos\omega t$ 与 $\cos^2 + \sin^2 = 1$）。去掉齐次部分 $\frac{\cos\omega t}{2\omega^2}$，特解为 $\frac{t\sin\omega t}{2\omega}$。由 {@structure-solutions}，**每个**解都等于它加上一个有界的齐次解，所以每个解的振幅都线性增长：这就是**共振**。
+:::
+
+::: rem zh="幂级数解"
+系数为多项式（或解析函数）时，可以寻找幂级数形式的解，见第 4 章的 Airy 方程 {@airy}。由 {@c8-ordre-n}，幂级数方法找到的解（在其收敛区间上）就是唯一解。正则奇点的情形（例如 Bessel 方程 $t^2y'' + ty' + (t^2 - \nu^2)y = 0$）需要 Frobenius 方法，寻找 $t^r\sum a_kt^k$ 形式的解；注意 Bessel 方程在 $t = 0$ 处首项系数为零，不是 $(E_n)$ 的形式（对比 {@c8-cex-singulier}）。
+:::
+
+::: q
+（降阶法）设 $y_1$ 是 $y'' + a(t)y' + b(t)y = 0$ 在 $I$ 上的一个不取零值的解。用 Liouville 公式求第二个解，并对 $t^2y'' - ty' + y = 0$（$t > 0$，$y_1 = t$）计算。
+:::
+
+::: ans
+若 $y_2$ 是另一个解，则 $W = y_1y_2' - y_1'y_2 = y_1^2\big(\frac{y_2}{y_1}\big)'$。由 {@liouville-formule}，$W = C\e^{-\int a}$，所以 $\big(\frac{y_2}{y_1}\big)' = \frac{C\e^{-\int a}}{y_1^2}$，取 $C = 1$：
+$$y_2 = y_1\int\frac{\e^{-\int a}}{y_1^2}.$$
+反过来可以直接验证它是解，且 $W = \e^{-\int a} \ne 0$。例子中方程化为 $y'' - \frac1ty' + \frac{1}{t^2}y = 0$，$a = -\frac1t$，$\e^{-\int a} = t$，$y_2 = t\int\frac{t}{t^2}\,\dd t = t\ln t$。验证：$y_2' = \ln t + 1$，$y_2'' = \frac1t$，$t^2\cdot\frac1t - t(\ln t + 1) + t\ln t = 0$。
+:::
+
+::: q
+求 $y'' + y = \tan t$ 在 $]-\frac\pi2, \frac\pi2[$ 上的一个特解。
+:::
+
+::: ans
+$y_1 = \cos t$，$y_2 = \sin t$，$W = 1$。$\lambda_1' = -\tan t\sin t = -\frac{\sin^2 t}{\cos t} = \cos t - \frac{1}{\cos t}$，$\lambda_2' = \tan t\cos t = \sin t$。取 $\lambda_1 = \sin t - \ln\frac{1 + \sin t}{\cos t}$（$\big(\ln\frac{1 + \sin t}{\cos t}\big)' = \frac{1}{\cos t}$），$\lambda_2 = -\cos t$。于是
+$$y_p = \lambda_1\cos t + \lambda_2\sin t = -\cos t\,\ln\frac{1 + \sin t}{\cos t}.$$
+:::
+
+## 非线性方程
+
+对一般的方程 $x' = f(t, x)$，没有解的公式，也没有「解定义在整个区间上」的保证。我们问三个问题：解是否存在？是否唯一？能延伸多远？答案分别是 Peano 定理（只要 $f$ 连续）、Cauchy–Lipschitz 定理（要求 $f$ 关于 $x$ 局部 Lipschitz）、逃离紧集定理。全节 $U \subset \R \times \R^n$ 是开集，$f : U \to \R^n$ 连续。
+
+::: def id=def-lipschitz-local zh="局部 Lipschitz 条件" en="Locally Lipschitz in the state variable" fr="Fonction localement lipschitzienne par rapport à la seconde variable" ru="Локальное условие Липшица по второй переменной"
+设 $U \subset \R \times \R^n$ 是开集，$f : U \to \R^n$ 连续。若每一点都有一个邻域 $V$ 和常数 $k$，使 $\norm{f(t, x) - f(t, y)} \le k\norm{x - y}$ 对 $(t,x), (t,y) \in V$ 成立，称 $f$ 关于第二个变量**局部 Lipschitz**。若 $f$ 是 $\Cc^1$ 的，由中值不等式（第 9 章），这个条件成立（{@c8-c1-lipschitz}）。
+:::
+
+::: fr
+Soient $U \subset \R \times \R^n$ un ouvert et $f : U \to \R^n$ continue. On dit que $f$ est **localement lipschitzienne** par rapport à la seconde variable si tout point admet un voisinage $V$ et une constante $k$ tels que $\norm{f(t, x) - f(t, y)} \le k\norm{x - y}$ pour tous $(t,x), (t,y) \in V$. Si $f$ est de classe $\Cc^1$, cette condition est vérifiée d'après l'inégalité des accroissements finis (chapitre 9), voir {@fr:c8-c1-lipschitz}.
+:::
+
+白话：在每个点附近，$f(t, \cdot)$ 的「斜率」有一个与 $t$ 无关的上界。量词的位置很重要：常数 $k$ 可以随点变化（局部），但在一个邻域内对所有 $t$ 共用。
+
+::: ex id=c8-ex-lipschitz zh="局部 Lipschitz：是与不是" lvl=1
+1. **是（但不是全局的）。** $n = 1$，$f(t, x) = x^2$。在 $V = \R \times ]x_0 - 1, x_0 + 1[$ 上，$\abs{x^2 - y^2} = \abs{x + y}\,\abs{x - y} \le 2(\abs{x_0} + 1)\abs{x - y}$。但 $\abs{x + y}$ 在 $\R^2$ 上无界，所以没有全局的 Lipschitz 常数。
+2. **是（关于 $x$ 全局）。** 线性情形 $f(t, x) = A(t)x + B(t)$，$U = \mathring{I} \times \R^n$：对 $I$ 的闭子区间 $J$ 和 $t \in J$，$\norm{f(t, x) - f(t, y)} = \norm{A(t)(x - y)} \le k_J\norm{x - y}$，$k_J = \sup_J\norm{A}$。
+3. **不是。** $f(x) = 3x^{2/3}$（$x^{2/3} = (x^2)^{1/3}$）在 $x = 0$ 附近：$\frac{\abs{f(x) - f(0)}}{\abs{x - 0}} = 3\abs{x}^{-1/3} \to +\infty$（$x \to 0$），所以在 $0$ 的任何邻域上都没有 Lipschitz 常数。在 $x \ne 0$ 处 $f$ 是 $\Cc^1$ 的，局部 Lipschitz。
+:::
+
+::: prop id=c8-c1-lipschitz zh="$\Cc^1$ 蕴含局部 Lipschitz" en="$C^1$ implies locally Lipschitz" fr="Une fonction $\mathcal{C}^1$ est localement lipschitzienne" ru="Непрерывно дифференцируемая функция локально липшицева" lvl=1
+若 $f : U \to \R^n$ 连续，并且关于 $x$ 的偏微分 $\partial_x f(t, x) \in \Lin(\R^n)$ 存在且在 $U$ 上连续（特别地，若 $f$ 是 $\Cc^1$ 的），则 $f$ 关于 $x$ 局部 Lipschitz。
+:::
+
+::: fr
+Si $f : U \to \R^n$ est continue et si la différentielle partielle $\partial_x f(t, x) \in \Lin(\R^n)$ existe et est continue sur $U$ (en particulier si $f$ est de classe $\Cc^1$), alors $f$ est localement lipschitzienne par rapport à $x$.
+:::
+
+::: proof
+▷ 思路：在一个紧的「圆柱」上 $\norm{\partial_x f}$ 有界；圆柱在 $x$ 方向是凸的，在线段上用有限增量不等式。
+
+**第 1 步（选圆柱）**　设 $(t_0, x_0) \in U$。$U$ 是开集，存在 $r > 0$ 使紧集 $C = [t_0 - r, t_0 + r] \times \overline{B}(x_0, r) \subset U$。令 $V = ]t_0 - r, t_0 + r[ \times B(x_0, r)$，它是 $(t_0, x_0)$ 的邻域。
+
+**第 2 步（偏微分有界）**　$(t, x) \mapsto \norm{\partial_x f(t, x)}$ 在紧集 $C$ 上连续，从而有界（{@image-compact}），令 $k = \max_C\norm{\partial_x f}$。
+
+**第 3 步（有限增量）**　设 $(t, x), (t, y) \in V$。球 $B(x_0, r)$ 是凸的，所以线段 $[x, y] \subset B(x_0, r)$。对 $g = f(t, \cdot)$ 在 $B(x_0, r)$ 上用 {@accroissements-finis}：
+$$\norm{f(t, x) - f(t, y)} \le \sup_{z \in [x, y]}\norm{\partial_x f(t, z)}\,\norm{x - y} \le k\norm{x - y}.$$
+这就是 $(t_0, x_0)$ 处的局部 Lipschitz 条件。
+:::
+
+::: fr
+▷ Méthode : sur un « cylindre » compact, $\norm{\partial_x f}$ est bornée ; le cylindre est convexe en $x$, et on applique l'inégalité des accroissements finis sur un segment.
+
+**Étape 1 (choix du cylindre)**　Soit $(t_0, x_0) \in U$. Comme $U$ est ouvert, il existe $r > 0$ tel que le compact $C = [t_0 - r, t_0 + r] \times \overline{B}(x_0, r)$ soit inclus dans $U$. Posons $V = ]t_0 - r, t_0 + r[ \times B(x_0, r)$, voisinage de $(t_0, x_0)$.
+
+**Étape 2 (la différentielle partielle est bornée)**　La fonction $(t, x) \mapsto \norm{\partial_x f(t, x)}$ est continue sur le compact $C$, donc bornée ({@fr:image-compact}) ; posons $k = \max_C\norm{\partial_x f}$.
+
+**Étape 3 (accroissements finis)**　Soient $(t, x), (t, y) \in V$. La boule $B(x_0, r)$ est convexe, donc le segment $[x, y]$ est inclus dans $B(x_0, r)$. En appliquant {@fr:accroissements-finis} à $g = f(t, \cdot)$ sur $B(x_0, r)$ :
+$$\norm{f(t, x) - f(t, y)} \le \sup_{z \in [x, y]}\norm{\partial_x f(t, z)}\,\norm{x - y} \le k\norm{x - y}.$$
+C'est la condition de Lipschitz locale en $(t_0, x_0)$.
+:::
+
+::: def id=c8-def-solution-maximale zh="解、延拓与最大解" en="Solutions, extensions, maximal solutions" fr="Solutions, prolongements, solutions maximales" ru="Решения, продолжения, непродолжаемые решения"
+方程 $x' = f(t, x)$ 的一个**解**是一对 $(J, x)$：$J$ 是不退化为一点的区间，$x : J \to \R^n$ 可导，且对一切 $t \in J$，$(t, x(t)) \in U$，$x'(t) = f(t, x(t))$。若 $J \subset \tilde J$ 且 $\tilde x|_J = x$，称解 $(\tilde J, \tilde x)$ **延拓**了 $(J, x)$。没有异于自身的延拓的解称为**最大解**。
+:::
+
+::: fr
+Une **solution** de $x' = f(t, x)$ est un couple $(J, x)$ où $J$ est un intervalle non réduit à un point et $x : J \to \R^n$ est dérivable, avec, pour tout $t \in J$, $(t, x(t)) \in U$ et $x'(t) = f(t, x(t))$. Une solution $(\tilde J, \tilde x)$ **prolonge** $(J, x)$ si $J \subset \tilde J$ et $\tilde x|_J = x$. Une solution qui n'admet pas d'autre prolongement qu'elle-même est dite **maximale**.
+:::
+
+::: ex id=c8-ex-solution-maximale zh="最大解：是与不是" lvl=1
+方程 $y' = y^2$（$U = \R^2$），初值 $y(0) = 1$。
+
+- $\big(]-1, \frac12[,\ t \mapsto \frac{1}{1 - t}\big)$ 是解（$y' = \frac{1}{(1-t)^2} = y^2$），但**不是**最大解：$\big(]-\infty, 1[,\ \frac{1}{1-t}\big)$ 延拓了它。
+- $\big(]-\infty, 1[,\ \frac{1}{1-t}\big)$ 是最大解：任何延拓都要在 $t = 1$ 处有定义且连续，而 $\frac{1}{1-t} \to +\infty$（$t \to 1^{-}$）。详见 {@ex-explosion}。
+:::
+
+在证明 Cauchy–Lipschitz 定理之前，先给出估计解的基本工具。
+
+::: lem id=gronwall zh="Grönwall 引理" en="Grönwall's inequality" fr="Lemme de Grönwall" ru="Лемма Гронуолла" lvl=1
+设 $\varphi, \psi$ 在 $[t_0, T]$ 上连续非负，$c \ge 0$，且
+$$\varphi(t) \le c + \int_{t_0}^t\psi(s)\varphi(s)\,\dd s\qquad (t \in [t_0, T]).$$
+则 $\varphi(t) \le c\exp\Big(\int_{t_0}^t\psi\Big)$。特别地，$c = 0$ 时 $\varphi \equiv 0$。
+:::
+
+::: fr
+Soient $\varphi, \psi$ continues et positives sur $[t_0, T]$, et $c \ge 0$, telles que
+$$\varphi(t) \le c + \int_{t_0}^t\psi(s)\varphi(s)\,\dd s\qquad (t \in [t_0, T]).$$
+Alors $\varphi(t) \le c\exp\Big(\int_{t_0}^t\psi\Big)$. En particulier, si $c = 0$, $\varphi \equiv 0$.
+:::
+
+::: proof
+▷ 思路：把右边记为 $R(t)$。$R$ 可导，且 $R' = \psi\varphi \le \psi R$——这是一个「微分不等式」。像 {@c8-ex-ordre1} 那样乘以积分因子 $\e^{-\int\psi}$，得到一个递减函数。
+
+**第 1 步（微分不等式）**　令 $R(t) = c + \int_{t_0}^t\psi\varphi$。$\psi\varphi$ 连续，由微积分基本定理，$R$ 是 $\Cc^1$ 的，$R' = \psi\varphi$。由假设 $\varphi \le R$，又 $\psi \ge 0$，所以 $R' = \psi\varphi \le \psi R$。
+
+**第 2 步（积分因子）**　令 $\Psi(t) = \int_{t_0}^t\psi$。则
+$$\big(R\,\e^{-\Psi}\big)' = (R' - \psi R)\,\e^{-\Psi} \le 0,$$
+所以 $R\,\e^{-\Psi}$ 在 $[t_0, T]$ 上递减：$R(t)\e^{-\Psi(t)} \le R(t_0)\e^{0} = c$。
+
+**第 3 步（结论）**　$\varphi(t) \le R(t) \le c\,\e^{\Psi(t)}$。$c = 0$ 时 $0 \le \varphi \le 0$。
+:::
+
+::: fr
+▷ Méthode : notons $R(t)$ le membre de droite. $R$ est dérivable et $R' = \psi\varphi \le \psi R$ : c'est une « inégalité différentielle ». Comme dans {@fr:c8-ex-ordre1}, on multiplie par le facteur intégrant $\e^{-\int\psi}$ pour obtenir une fonction décroissante.
+
+**Étape 1 (inégalité différentielle)**　Posons $R(t) = c + \int_{t_0}^t\psi\varphi$. Comme $\psi\varphi$ est continue, $R$ est $\Cc^1$ et $R' = \psi\varphi$ (théorème fondamental de l'analyse). Par hypothèse $\varphi \le R$ et $\psi \ge 0$, donc $R' = \psi\varphi \le \psi R$.
+
+**Étape 2 (facteur intégrant)**　Posons $\Psi(t) = \int_{t_0}^t\psi$. Alors
+$$\big(R\,\e^{-\Psi}\big)' = (R' - \psi R)\,\e^{-\Psi} \le 0,$$
+donc $R\,\e^{-\Psi}$ est décroissante sur $[t_0, T]$ : $R(t)\e^{-\Psi(t)} \le R(t_0)\e^{0} = c$.
+
+**Étape 3 (conclusion)**　$\varphi(t) \le R(t) \le c\,\e^{\Psi(t)}$. Si $c = 0$, $0 \le \varphi \le 0$.
+:::
+
+::: rem
+**$\psi \ge 0$ 不能去掉**（第 1 步从 $\varphi \le R$ 推出 $\psi\varphi \le \psi R$ 时用到）。反例：$\psi \equiv -1$，$c = 1$，$\varphi \equiv \frac12$ 在 $[0, 1]$ 上。假设成立：$\frac12 \le 1 - \frac t2$（$t \le 1$）。结论不成立：$\frac12 \le \e^{-1} \approx 0.368$ 是错的。
+:::
+
+::: thm id=cauchy-lipschitz zh="Cauchy–Lipschitz 定理（局部版本）" en="Picard–Lindelöf theorem" fr="Théorème de Cauchy–Lipschitz" ru="Теорема Пикара — Линделёфа" lvl=2
+设 $f$ 在开集 $U$ 上连续，且关于 $x$ 局部 Lipschitz。则对每个 $(t_0, x_0) \in U$，初值问题 $x' = f(t, x)$，$x(t_0) = x_0$ 有唯一的**最大解**，其定义区间是开区间；任何其他解都是它的限制。
+:::
+
+::: fr
+Soit $f$ continue sur l'ouvert $U$ et localement lipschitzienne par rapport à $x$. Pour tout $(t_0, x_0) \in U$, le problème de Cauchy $x' = f(t, x)$, $x(t_0) = x_0$ admet une unique **solution maximale**, définie sur un intervalle ouvert ; toute autre solution en est une restriction.
+:::
+
+::: sketch
+▷ 思路：(i) 在 $(t_0, x_0)$ 附近的紧圆柱上，积分算子 $\Phi$ 是压缩映射，Banach 不动点定理给出局部解；(ii) 两个解在公共区间上相等（Grönwall）；(iii) 把所有解拼起来就是最大解；(iv) 最大解的区间若包含端点，可以再延拓，矛盾。
+
+**第 1 步（积分方程）**　与 {@c8-equation-integrale} 相同：$(J, x)$ 是初值问题的解，当且仅当 $x$ 连续、图像在 $U$ 中，且 $x(t) = x_0 + \int_{t_0}^t f(s, x(s))\,\dd s$。
+
+**第 2 步（局部存在）**　由 {@def-lipschitz-local}，$(t_0, x_0)$ 有邻域 $V$ 和常数 $k > 0$（必要时把 $k$ 加大）。取 $a, r > 0$ 使紧圆柱 $C = [t_0 - a, t_0 + a] \times \overline{B}(x_0, r) \subset V \cap U$。令 $M = \max_C\norm f$，$\tau = \min(a, \frac rM)$（$M = 0$ 时 $\tau = a$）。在
+$$E = \Cc\big([t_0 - \tau, t_0 + \tau], \overline{B}(x_0, r)\big),\qquad \norm{x}_k = \sup_t\e^{-2k\abs{t - t_0}}\norm{x(t)}$$
+上考虑 $\Phi(x)(t) = x_0 + \int_{t_0}^t f(s, x(s))\,\dd s$。
+
+- $E$ 完备：$\e^{-2k\tau}\norm{x}_\infty \le \norm{x}_k \le \norm{x}_\infty$，两个范数等价；$E$ 是 Banach 空间 $\Cc([t_0 - \tau, t_0 + \tau], \R^n)$（{@c0-complet}，逐分量）的闭子集。
+- $\Phi(E) \subset E$：$\norm{\Phi(x)(t) - x_0} \le \abs{t - t_0}M \le \tau M \le r$——$\tau \le \frac rM$ 正是为此。
+- $\Phi$ 是 $\frac12$-压缩的：
+  $$\norm{\Phi(x)(t) - \Phi(y)(t)} \le \Big|\int_{t_0}^t k\,\e^{2k\abs{s - t_0}}\,\dd s\Big|\,\norm{x - y}_k = \frac{\e^{2k\abs{t - t_0}} - 1}{2}\norm{x - y}_k \le \frac12\e^{2k\abs{t - t_0}}\norm{x - y}_k,$$
+  乘以 $\e^{-2k\abs{t - t_0}}$ 取上确界，$\norm{\Phi(x) - \Phi(y)}_k \le \frac12\norm{x - y}_k$。
+
+由 {@point-fixe}，$\Phi$ 有不动点，由第 1 步它是 $[t_0 - \tau, t_0 + \tau]$ 上的解。
+
+**第 3 步（唯一性：两个解在公共区间上相等）**　设 $(J_1, x_1)$、$(J_2, x_2)$ 是解，$J = J_1 \cap J_2$。反设存在 $t_1 \in J$，$t_1 > t_0$，$x_1(t_1) \ne x_2(t_1)$。令 $T = \sup\{s \in [t_0, t_1] : x_1 = x_2 \text{ 于 } [t_0, s]\}$，则 $T < t_1$，由连续性 $x_1(T) = x_2(T) =: p$。取 $(T, p)$ 处的邻域 $V'$ 与常数 $k'$；由连续性存在 $\eta > 0$，使 $[T, T + \eta] \subset J$ 且 $s \in [T, T + \eta]$ 时 $(s, x_i(s)) \in V'$。于是 $\norm{x_1(s) - x_2(s)} \le \int_T^s k'\norm{x_1 - x_2}$，由 {@gronwall}（$c = 0$），$x_1 = x_2$ 于 $[T, T + \eta]$，与 $T$ 的定义矛盾。$t_1 < t_0$ 的情形：把 $\sup$ 换成 $\inf$、$[T, T + \eta]$ 换成 $[T - \eta, T]$，并对 $s \mapsto x_i(T - s)$ 用 Grönwall（时间反转，见 {@dependance-continue} 的证明第 2 步）。
+
+**第 4 步（最大解）**　令 $J_{\max}$ 为所有解的定义区间之并（都含 $t_0$，所以是区间），对 $t \in J_{\max}$ 令 $x(t) = x_J(t)$，其中 $(J, x_J)$ 是任一定义在 $t$ 处的解；由第 3 步，这与 $J$ 的选取无关。$x$ 在每一点附近与某个解重合，所以 $(J_{\max}, x)$ 是解，而且每个解都是它的限制——它是唯一的最大解。
+
+**第 5 步（区间是开的）**　反设 $J_{\max}$ 包含右端点 $\beta$。对 $(\beta, x(\beta)) \in U$ 用第 2 步，得到 $[\beta - \tau', \beta + \tau']$ 上的解；由第 3 步它与 $x$ 在公共部分相等，拼接后（两边在 $\beta$ 处的单侧导数都等于 $f(\beta, x(\beta))$）得到定义在 $J_{\max} \cup [\beta, \beta + \tau']$ 上的解，与最大性矛盾。左端点同理（把 $\beta$ 换成左端点、$[\beta, \beta + \tau']$ 换成 $[\alpha - \tau', \alpha]$）。
+:::
+
+::: fr
+▷ Méthode : (i) sur un cylindre compact autour de $(t_0, x_0)$, l'opérateur intégral $\Phi$ est contractant et le théorème du point fixe de Banach fournit une solution locale ; (ii) deux solutions coïncident sur leur intervalle commun (Grönwall) ; (iii) en recollant toutes les solutions on obtient la solution maximale ; (iv) si l'intervalle de la solution maximale contenait une extrémité, on pourrait encore la prolonger, ce qui est absurde.
+
+**Étape 1 (équation intégrale)**　Comme dans le {@fr:c8-equation-integrale}, $(J, x)$ est solution du problème de Cauchy si et seulement si $x$ est continue, à graphe dans $U$, et $x(t) = x_0 + \int_{t_0}^t f(s, x(s))\,\dd s$.
+
+**Étape 2 (existence locale)**　D'après {@fr:def-lipschitz-local}, $(t_0, x_0)$ admet un voisinage $V$ et une constante $k > 0$ (quitte à augmenter $k$). Choisissons $a, r > 0$ tels que le cylindre compact $C = [t_0 - a, t_0 + a] \times \overline{B}(x_0, r)$ soit inclus dans $V \cap U$. Posons $M = \max_C\norm f$ et $\tau = \min(a, \frac rM)$ ($\tau = a$ si $M = 0$). On considère $\Phi(x)(t) = x_0 + \int_{t_0}^t f(s, x(s))\,\dd s$ sur
+$$E = \Cc\big([t_0 - \tau, t_0 + \tau], \overline{B}(x_0, r)\big),\qquad \norm{x}_k = \sup_t\e^{-2k\abs{t - t_0}}\norm{x(t)}.$$
+
+- $E$ est complet : $\e^{-2k\tau}\norm{x}_\infty \le \norm{x}_k \le \norm{x}_\infty$, les deux normes sont équivalentes, et $E$ est une partie fermée de l'espace de Banach $\Cc([t_0 - \tau, t_0 + \tau], \R^n)$ ({@fr:c0-complet}, composante par composante).
+- $\Phi(E) \subset E$ : $\norm{\Phi(x)(t) - x_0} \le \abs{t - t_0}M \le \tau M \le r$ — c'est la raison du choix $\tau \le \frac rM$.
+- $\Phi$ est $\frac12$-contractante :
+  $$\norm{\Phi(x)(t) - \Phi(y)(t)} \le \Big|\int_{t_0}^t k\,\e^{2k\abs{s - t_0}}\,\dd s\Big|\,\norm{x - y}_k = \frac{\e^{2k\abs{t - t_0}} - 1}{2}\norm{x - y}_k \le \frac12\e^{2k\abs{t - t_0}}\norm{x - y}_k ;$$
+  en multipliant par $\e^{-2k\abs{t - t_0}}$ et en passant au sup, $\norm{\Phi(x) - \Phi(y)}_k \le \frac12\norm{x - y}_k$.
+
+D'après {@fr:point-fixe}, $\Phi$ admet un point fixe, qui est une solution sur $[t_0 - \tau, t_0 + \tau]$ d'après l'étape 1.
+
+**Étape 3 (unicité : deux solutions coïncident sur leur intervalle commun)**　Soient $(J_1, x_1)$, $(J_2, x_2)$ deux solutions et $J = J_1 \cap J_2$. Par l'absurde, supposons qu'il existe $t_1 \in J$, $t_1 > t_0$, avec $x_1(t_1) \ne x_2(t_1)$. Posons $T = \sup\{s \in [t_0, t_1] : x_1 = x_2 \text{ sur } [t_0, s]\}$ ; alors $T < t_1$ et, par continuité, $x_1(T) = x_2(T) =: p$. Soient $V'$ et $k'$ le voisinage et la constante en $(T, p)$ ; par continuité, il existe $\eta > 0$ tel que $[T, T + \eta] \subset J$ et $(s, x_i(s)) \in V'$ pour $s \in [T, T + \eta]$. Alors $\norm{x_1(s) - x_2(s)} \le \int_T^s k'\norm{x_1 - x_2}$ et, d'après {@fr:gronwall} (avec $c = 0$), $x_1 = x_2$ sur $[T, T + \eta]$, ce qui contredit la définition de $T$. Cas $t_1 < t_0$ : on remplace $\sup$ par $\inf$ et $[T, T + \eta]$ par $[T - \eta, T]$, et on applique Grönwall à $s \mapsto x_i(T - s)$ (renversement du temps, voir l'étape 2 de la preuve de {@fr:dependance-continue}).
+
+**Étape 4 (solution maximale)**　Soit $J_{\max}$ la réunion des intervalles de toutes les solutions (ils contiennent tous $t_0$, donc $J_{\max}$ est un intervalle). Pour $t \in J_{\max}$, posons $x(t) = x_J(t)$, où $(J, x_J)$ est une solution quelconque définie en $t$ ; d'après l'étape 3, cela ne dépend pas de $J$. Au voisinage de chaque point, $x$ coïncide avec une solution ; donc $(J_{\max}, x)$ est une solution, et toute solution en est une restriction : c'est l'unique solution maximale.
+
+**Étape 5 (l'intervalle est ouvert)**　Par l'absurde, supposons que $J_{\max}$ contienne son extrémité droite $\beta$. L'étape 2 appliquée en $(\beta, x(\beta)) \in U$ donne une solution sur $[\beta - \tau', \beta + \tau']$ ; d'après l'étape 3 elle coïncide avec $x$ sur la partie commune et, en recollant (les dérivées à gauche et à droite en $\beta$ valent toutes deux $f(\beta, x(\beta))$), on obtient une solution sur $J_{\max} \cup [\beta, \beta + \tau']$, ce qui contredit la maximalité. On raisonne de même pour l'extrémité gauche (en remplaçant $\beta$ par l'extrémité gauche $\alpha$ et $[\beta, \beta + \tau']$ par $[\alpha - \tau', \alpha]$).
+:::
+
+::: cor id=dependance-continue zh="解对初值的连续依赖" en="Continuous dependence on initial conditions" fr="Dépendance continue par rapport aux conditions initiales" ru="Непрерывная зависимость решения от начальных данных" lvl=1
+在 {@cauchy-lipschitz} 的条件下，若 $f$ 关于 $x$ 是全局 $k$-Lipschitz 的（对一切 $(t, x), (t, y) \in U$，$\norm{f(t, x) - f(t, y)} \le k\norm{x - y}$），则定义在同一区间 $J \ni t_0$ 上的两个解满足
+$\norm{x(t) - y(t)} \le \norm{x(t_0) - y(t_0)}\,\e^{k\abs{t - t_0}}$（$t \in J$）。
+:::
+
+::: fr
+Sous les hypothèses de {@fr:cauchy-lipschitz}, si $f$ est globalement $k$-lipschitzienne en $x$ (pour tous $(t, x), (t, y) \in U$, $\norm{f(t, x) - f(t, y)} \le k\norm{x - y}$), alors deux solutions définies sur un même intervalle $J \ni t_0$ vérifient
+$\norm{x(t) - y(t)} \le \norm{x(t_0) - y(t_0)}\,\e^{k\abs{t - t_0}}$ ($t \in J$).
+:::
+
+::: proof
+▷ 思路：两个积分方程相减，用 Lipschitz 条件得到 Grönwall 引理的假设；$t < t_0$ 时把时间反过来。
+
+记 $\varphi(t) = \norm{x(t) - y(t)}$，它连续且非负。
+
+**第 1 步（$t \ge t_0$）**　由积分方程（{@cauchy-lipschitz} 证明第 1 步），
+$$x(t) - y(t) = x(t_0) - y(t_0) + \int_{t_0}^t\big(f(s, x(s)) - f(s, y(s))\big)\,\dd s,$$
+所以
+$$\varphi(t) \le \varphi(t_0) + \int_{t_0}^t\norm{f(s, x(s)) - f(s, y(s))}\,\dd s \le \varphi(t_0) + \int_{t_0}^t k\,\varphi(s)\,\dd s.$$
+对每个 $T \in J$，$T \ge t_0$，在 $[t_0, T]$ 上用 {@gronwall}（$\psi = k$，$c = \varphi(t_0)$）：$\varphi(t) \le \varphi(t_0)\e^{k(t - t_0)}$。
+
+**第 2 步（$t \le t_0$）**　对 $s \ge 0$ 且 $t_0 - s \in J$，令 $\tilde\varphi(s) = \varphi(t_0 - s)$。同样相减（积分从 $t_0 - s$ 到 $t_0$）并换元 $u = t_0 - \sigma$：
+$$\tilde\varphi(s) \le \tilde\varphi(0) + \int_{t_0 - s}^{t_0}k\,\varphi(u)\,\dd u = \tilde\varphi(0) + \int_0^s k\,\tilde\varphi(\sigma)\,\dd\sigma.$$
+由 {@gronwall}，$\tilde\varphi(s) \le \varphi(t_0)\e^{ks}$，即 $\varphi(t) \le \varphi(t_0)\e^{k(t_0 - t)}$。
+
+合起来就是 $\varphi(t) \le \varphi(t_0)\e^{k\abs{t - t_0}}$。
+:::
+
+::: fr
+▷ Méthode : on soustrait les deux équations intégrales et la condition de Lipschitz donne l'hypothèse du lemme de Grönwall ; pour $t < t_0$, on renverse le temps.
+
+Notons $\varphi(t) = \norm{x(t) - y(t)}$, continue et positive.
+
+**Étape 1 ($t \ge t_0$)**　D'après l'équation intégrale (étape 1 de la preuve de {@fr:cauchy-lipschitz}),
+$$x(t) - y(t) = x(t_0) - y(t_0) + \int_{t_0}^t\big(f(s, x(s)) - f(s, y(s))\big)\,\dd s,$$
+donc
+$$\varphi(t) \le \varphi(t_0) + \int_{t_0}^t\norm{f(s, x(s)) - f(s, y(s))}\,\dd s \le \varphi(t_0) + \int_{t_0}^t k\,\varphi(s)\,\dd s.$$
+Pour tout $T \in J$ avec $T \ge t_0$, {@fr:gronwall} sur $[t_0, T]$ (avec $\psi = k$ et $c = \varphi(t_0)$) donne $\varphi(t) \le \varphi(t_0)\e^{k(t - t_0)}$.
+
+**Étape 2 ($t \le t_0$)**　Pour $s \ge 0$ tel que $t_0 - s \in J$, posons $\tilde\varphi(s) = \varphi(t_0 - s)$. En soustrayant de même (intégrale de $t_0 - s$ à $t_0$) et en posant $u = t_0 - \sigma$ :
+$$\tilde\varphi(s) \le \tilde\varphi(0) + \int_{t_0 - s}^{t_0}k\,\varphi(u)\,\dd u = \tilde\varphi(0) + \int_0^s k\,\tilde\varphi(\sigma)\,\dd\sigma.$$
+D'après {@fr:gronwall}, $\tilde\varphi(s) \le \varphi(t_0)\e^{ks}$, c'est-à-dire $\varphi(t) \le \varphi(t_0)\e^{k(t_0 - t)}$.
+
+Au total, $\varphi(t) \le \varphi(t_0)\e^{k\abs{t - t_0}}$.
+:::
+
+::: rem
+1. **意义。** 初值的误差至多按 $\e^{k\abs{t - t_0}}$ 放大：在有限时间内，解连续地依赖于初值（$c = 0$ 时就是唯一性）。但放大因子随时间指数增长——这就是长期预报困难（「混沌」）的来源。
+2. **局部版本。** 只假设局部 Lipschitz 时，在每个紧时间区间上同样的结论成立（用一个紧邻域上的 Lipschitz 常数），这属于 L3 的内容。
+:::
+
+::: cex id=cex-unicite lvl=1
+Lipschitz 条件不能省略。$y' = 3y^{2/3}$，$y(0) = 0$ 有无穷多个解：$y \equiv 0$，以及对任意 $c \ge 0$，
+$$y_c(t) = \begin{cases}0 & t \le c\\ (t - c)^3 & t > c.\end{cases}$$
+$f(y) = 3y^{2/3}$ 在 $y = 0$ 处连续但不 Lipschitz（导数在 $0$ 处趋于无穷）。
+
+**验证。** $t > c$ 时 $y_c' = 3(t - c)^2 = 3\big((t - c)^3\big)^{2/3}$；$t < c$ 时两边都为 $0$；在 $t = c$ 处左右导数都是 $0$，且 $3y_c(c)^{2/3} = 0$。所以 $y_c$ 是 $\R$ 上的（$\Cc^1$）解。$f$ 不是局部 Lipschitz 的，见 {@c8-ex-lipschitz} 第 3 条。（$f$ 连续，所以存在性由 {@cauchy-peano} 保证；失去的只是唯一性。在 $y \ne 0$ 的区域 $f$ 是 $\Cc^1$ 的，解在离开 $0$ 之前是唯一的。）
+:::
+
+::: ex id=ex-explosion lvl=1
+最大解的区间可以是有界的。$y' = y^2$，$y(0) = 1$ 的解 $y = \frac{1}{1 - t}$ 在 $t \to 1^-$ 时爆破。$f(y) = y^2$ 是 $\Cc^1$ 的，但不是全局 Lipschitz 的。
+
+**细节。** $f$ 是 $\Cc^1$ 的，由 {@c8-c1-lipschitz} 与 {@cauchy-lipschitz}，存在唯一的最大解。$\big(]-\infty, 1[, \frac{1}{1-t}\big)$ 是解，且不能延拓（任何延拓在 $1$ 处连续，而 $\frac{1}{1-t} \to +\infty$），所以它就是最大解（{@cauchy-lipschitz}：最大解延拓一切解）。一般地，$y(0) = y_0 > 0$ 的最大解是 $\frac{y_0}{1 - y_0t}$，定义在 $]-\infty, \frac{1}{y_0}[$ 上：初值越大，爆破越早。右边光滑并不能阻止爆破；阻止爆破的是「增长至多线性」（{@c8-existence-globale}）。
+:::
+
+::: thm id=sortie-compact zh="爆破判据（逃离紧集定理）" en="Blow-up alternative" fr="Théorème de sortie de tout compact" ru="Теорема о продолжении решения" lvl=3 ref="Demailly, *Analyse numérique et équations différentielles*（EDP Sciences）"
+设 $x$ 是最大解，定义在 $]\alpha, \beta[$ 上，$\beta < +\infty$。则当 $t \to \beta^-$ 时，$(t, x(t))$ 最终离开 $U$ 的任何紧子集。特别地，若 $U = \R \times \R^n$，则 $\norm{x(t)} \to +\infty$。推论：若 $U = \R \times \R^n$，且 $f$ 有界或 $\norm{f(t, x)} \le a(t) + b(t)\norm x$（$a, b$ 连续），则最大解定义在整个 $\R$ 上（证明见 {@c8-existence-globale}）。
+:::
+
+::: fr
+Soit $x$ une solution maximale, définie sur $]\alpha, \beta[$ avec $\beta < +\infty$. Alors, quand $t \to \beta^-$, $(t, x(t))$ finit par sortir de tout compact de $U$. En particulier, si $U = \R \times \R^n$, $\norm{x(t)} \to +\infty$. Corollaire : si $U = \R \times \R^n$ et si $f$ est bornée ou vérifie $\norm{f(t, x)} \le a(t) + b(t)\norm x$ ($a, b$ continues), alors les solutions maximales sont définies sur $\R$ tout entier (preuve : {@fr:c8-existence-globale}).
+:::
+
+::: cor id=c8-existence-globale zh="增长至多线性时解全局存在" en="Global existence under linear growth" fr="Existence globale sous croissance au plus linéaire" ru="Глобальная разрешимость при линейном росте" lvl=1
+设 $f : \R \times \R^n \to \R^n$ 连续，关于 $x$ 局部 Lipschitz，并且存在连续函数 $a, b \ge 0$ 使 $\norm{f(t, x)} \le a(t) + b(t)\norm{x}$。则每个最大解都定义在整个 $\R$ 上。
+:::
+
+::: fr
+Soit $f : \R \times \R^n \to \R^n$ continue, localement lipschitzienne en $x$, et telle qu'il existe des fonctions continues $a, b \ge 0$ vérifiant $\norm{f(t, x)} \le a(t) + b(t)\norm{x}$. Alors toute solution maximale est définie sur $\R$ tout entier.
+:::
+
+::: proof
+▷ 思路：反设最大解在有限时刻 $\beta$ 结束。由 Grönwall，$\norm{x(t)}$ 在 $[t_0, \beta[$ 上有界，于是 $(t, x(t))$ 留在一个紧集里，与 {@sortie-compact} 矛盾。
+
+设最大解 $x$ 定义在 $]\alpha, \beta[$ 上，$t_0 \in ]\alpha, \beta[$。
+
+**第 1 步（反设）**　设 $\beta < +\infty$。令 $C = \norm{x(t_0)} + \int_{t_0}^\beta a$，$B = \max_{[t_0, \beta]}b$（连续函数在闭区间上有界）。
+
+**第 2 步（Grönwall）**　对 $t \in [t_0, \beta[$，由积分方程，
+$$\norm{x(t)} \le \norm{x(t_0)} + \int_{t_0}^t\big(a(s) + b(s)\norm{x(s)}\big)\,\dd s \le C + \int_{t_0}^t B\,\norm{x(s)}\,\dd s.$$
+对每个 $T \in [t_0, \beta[$ 在 $[t_0, T]$ 上用 {@gronwall}：$\norm{x(t)} \le C\e^{B(t - t_0)} \le C\e^{B(\beta - t_0)} =: R$。
+
+**第 3 步（矛盾）**　对 $t \in [t_0, \beta[$，$(t, x(t))$ 属于紧集 $[t_0, \beta] \times \overline{B}(0, R)$，不会「最终离开」它，与 {@sortie-compact} 矛盾。所以 $\beta = +\infty$。
+
+**第 4 步（左端）**　$\alpha > -\infty$ 的情形：对 $t \in ]\alpha, t_0]$ 用 {@dependance-continue} 证明中的时间反转，得到同样的界，矛盾。所以 $\alpha = -\infty$。
+
+（$f$ 有界是 $b = 0$ 的特殊情形；线性方程组 $f = A(t)x + B(t)$ 也是特殊情形，与 {@cauchy-lipschitz-lineaire} 一致。）
+:::
+
+::: fr
+▷ Méthode : par l'absurde, supposons que la solution maximale s'arrête en un temps fini $\beta$. Le lemme de Grönwall montre que $\norm{x(t)}$ reste borné sur $[t_0, \beta[$, donc que $(t, x(t))$ reste dans un compact, ce qui contredit {@fr:sortie-compact}.
+
+Soit $x$ une solution maximale définie sur $]\alpha, \beta[$ et $t_0 \in ]\alpha, \beta[$.
+
+**Étape 1 (hypothèse absurde)**　Supposons $\beta < +\infty$. Posons $C = \norm{x(t_0)} + \int_{t_0}^\beta a$ et $B = \max_{[t_0, \beta]}b$ (fonction continue sur un segment).
+
+**Étape 2 (Grönwall)**　Pour $t \in [t_0, \beta[$, d'après l'équation intégrale,
+$$\norm{x(t)} \le \norm{x(t_0)} + \int_{t_0}^t\big(a(s) + b(s)\norm{x(s)}\big)\,\dd s \le C + \int_{t_0}^t B\,\norm{x(s)}\,\dd s.$$
+Pour tout $T \in [t_0, \beta[$, {@fr:gronwall} sur $[t_0, T]$ donne $\norm{x(t)} \le C\e^{B(t - t_0)} \le C\e^{B(\beta - t_0)} =: R$.
+
+**Étape 3 (contradiction)**　Pour $t \in [t_0, \beta[$, $(t, x(t))$ appartient au compact $[t_0, \beta] \times \overline{B}(0, R)$ et n'en sort donc pas, ce qui contredit {@fr:sortie-compact}. Donc $\beta = +\infty$.
+
+**Étape 4 (extrémité gauche)**　Si $\alpha > -\infty$, on renverse le temps sur $]\alpha, t_0]$ comme dans la preuve de {@fr:dependance-continue} et on obtient la même majoration, d'où une contradiction. Donc $\alpha = -\infty$.
+
+(Le cas $f$ bornée correspond à $b = 0$ ; les systèmes linéaires $f = A(t)x + B(t)$ sont aussi un cas particulier, en accord avec {@fr:cauchy-lipschitz-lineaire}.)
+:::
+
+::: ex id=c8-ex-logistique zh="用唯一性做定性分析：logistic 方程" lvl=1
+$y' = y(1 - y)$，$y(0) = y_0 \in ]0, 1[$。不解方程，只用 {@cauchy-lipschitz}：
+
+1. **解夹在两个平衡解之间。** $f(y) = y(1 - y)$ 是 $\Cc^1$ 的，常函数 $0$ 和 $1$ 是解。若最大解 $y$ 在某个 $t_1$ 处取值 $0$，则 $y$ 与零解是同一个初值问题（时刻 $t_1$）的最大解，由唯一性 $y \equiv 0$，与 $y(0) = y_0 \ne 0$ 矛盾。同样 $y$ 不取值 $1$。$y$ 连续，$y(0) \in ]0, 1[$，由介值定理，$0 < y(t) < 1$ 处处成立。
+2. **单调。** $y' = y(1 - y) > 0$，所以 $y$ 严格递增。
+3. **全局存在。** 若最大区间的右端点 $\beta < +\infty$，则对 $t \in [0, \beta[$，$(t, y(t))$ 在紧集 $[0, \beta] \times [0, 1]$ 中，与 {@sortie-compact} 矛盾。左端点 $\alpha > -\infty$ 时，把紧集换成 $[\alpha, 0] \times [0, 1]$，同样矛盾（{@sortie-compact} 对左端点也成立：把 $t$ 换成 $-t$）。所以 $y$ 定义在 $\R$ 上。
+4. **极限。** $y$ 递增且有界，$\ell = \lim_{+\infty}y \in ]0, 1]$ 存在。若 $\ell < 1$，则对 $t \ge 0$，$y(t) \in [y_0, \ell]$，$y' = y(1 - y) \ge y_0(1 - \ell) > 0$，积分得 $y(t) \ge y_0 + y_0(1 - \ell)t \to +\infty$，矛盾。所以 $\ell = 1$。在 $-\infty$ 处，$\ell' = \lim_{-\infty}y \in [0, y_0[$ 存在；若 $\ell' > 0$，则对 $t \le 0$，$y(t) \in [\ell', y_0]$，$y' \ge \ell'(1 - y_0) > 0$，于是 $y_0 - y(t) = \int_t^0 y' \ge \ell'(1 - y_0)\abs t \to +\infty$，与 $y_0 - y(t) \le y_0$ 矛盾。所以 $\ell' = 0$。
+
+（显式解 $y(t) = \frac{1}{1 + (1/y_0 - 1)\e^{-t}}$ 验证了这些结论。）
+:::
+
+::: thm id=cauchy-peano zh="Cauchy–Peano 定理" en="Peano existence theorem" fr="Théorème de Cauchy–Peano–Arzelà" ru="Теорема Пеано" lvl=3 ref="Hartman, *Ordinary Differential Equations*，第 II 章"
+若 $f$ 只是连续的，初值问题仍有（局部）解，但可能不唯一（{@cex-unicite}）。证明：构造 Euler 折线近似解，它们一致有界且等度连续，由 Arzelà–Ascoli 定理 {@arzela-ascoli} 抽取一致收敛子列，极限就是解。
+:::
+
+::: fr
+Si $f$ est seulement continue, le problème de Cauchy admet encore une solution (locale), mais elle peut ne pas être unique ({@fr:cex-unicite}). Preuve : on construit des solutions approchées affines par morceaux (méthode d'Euler) ; elles sont uniformément bornées et équicontinues, et le théorème d'Arzelà–Ascoli {@fr:arzela-ascoli} permet d'en extraire une sous-suite uniformément convergente, dont la limite est solution.
+:::
+
+::: demo id=slopefield
+方向场与解曲线。点击画布添加初值条件，曲线用四阶 Runge–Kutta 方法向两个方向积分。可以试试 $y' = y^2$（有限时间爆破）和 $y' = 3y^{2/3}$（从 $y(0) = 0$ 出发，数值方法只给出零解，而理论上有无穷多个解）。
+:::
+
+::: q
+设 $y$ 是单摆方程 $y'' = -\sin y$ 满足 $y(0) = a$、$y'(0) = 0$ 的最大解。证明 $y$ 定义在 $\R$ 上，且是偶函数。
+:::
+
+::: ans
+写成方程组 $X = (y, y')$，$X' = F(X) = (y', -\sin y)$。$F$ 是 $\Cc^1$ 的，且 $\norm{F(X)}_1 = \abs{y'} + \abs{\sin y} \le 1 + \norm{X}_1$，由 {@c8-existence-globale}，最大解定义在 $\R$ 上。令 $z(t) = y(-t)$，则 $z'(t) = -y'(-t)$，$z''(t) = y''(-t) = -\sin z(t)$，$z(0) = a$，$z'(0) = -y'(0) = 0$。所以 $z$ 与 $y$ 是同一个初值问题在 $\R$ 上的解，由 {@cauchy-lipschitz} 的唯一性，$z = y$，即 $y(-t) = y(t)$。
+:::
+
+::: q
+求 $x' = 1 + x^2$，$x(0) = 0$ 的最大解。为什么它不能延拓到 $\R$？
+:::
+
+::: ans
+$x(t) = \tan t$ 在 $]-\frac\pi2, \frac\pi2[$ 上是解（$\tan' = 1 + \tan^2$），且 $t \to \pm\frac\pi2$ 时 $\abs{\tan t} \to +\infty$，不能延拓，所以它就是最大解。$1 + x^2$ 的增长是二次的，{@c8-existence-globale} 不适用——与 {@sortie-compact} 一致：$\abs{x(t)} \to +\infty$。
+:::
+
+::: open zh="Hilbert 第 16 问题（第二部分）"
+平面多项式向量场 $x' = P(x, y)$，$y' = Q(x, y)$（$\deg P, \deg Q \le d$）的**极限环**（孤立的周期轨道）个数是否有一个只依赖于 $d$ 的上界 $H(d)$？即使 $d = 2$，这个问题也未解决。已知每个具体的向量场只有有限个极限环（Ilyashenko 1991，Écalle 1992）。
+:::

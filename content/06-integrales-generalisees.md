@@ -1,173 +1,502 @@
 L1 的 Riemann 积分只处理闭区间上的有界函数。本章把积分推广到任意区间（$\left]0, 1\right]$、$[0, +\infty[$、$\R$ 等）上的分段连续函数，这就是广义积分（反常积分）。法国 MP 大纲在这里做了一个重要的选择：**陈述 Lebesgue 的控制收敛定理和逐项积分定理，但不证明**，把证明留到 L3 的测度论。本网页同样处理，这两个定理标为 ★★★。全章 $I$ 是区间，函数分段连续，取值于 $\K$。
 
+本章的路线：先定义收敛并给出最基本的性质（§1）；对非负函数，收敛问题完全归结为比较（§2）；对变号函数，先看绝对收敛，不行再用分部积分或 Abel 判别法（§3）；计算积分的两个工具是分部积分和变量替换（§4）；最后是交换极限与积分的两个「已承认」的定理（§5）。与第 2 章的级数对照着读，几乎每个结论都有级数版本，但也有重要的差别（例如 $\int_a^{+\infty} f$ 收敛**不**蕴含 $f \to 0$）。
+
 ## 广义积分的收敛
 
+$\int_0^1 \frac{\dd t}{\sqrt t}$、$\int_1^{+\infty}\frac{\dd t}{t^2}$ 这样的积分在 L1 的意义下没有定义：前者的被积函数无界，后者的区间无界。自然的办法是先在闭子区间上积分，再让端点趋于「有问题的」端点。本节给出定义，说明它与 Riemann 积分相容，并给出判断收敛的 Cauchy 准则。
+
+::: def id=c6-def-cpm-intervalle zh="区间上的分段连续函数" en="Piecewise continuous function on an interval" fr="Fonction continue par morceaux sur un intervalle" ru="Кусочно-непрерывная функция на промежутке"
+设 $I$ 是 $\R$ 的区间（不退化为一点），$f : I \to \K$。称 $f$ 在 $I$ 上**分段连续**，如果它在 $I$ 的每个闭子区间上分段连续：
+$$\forall [c, d] \subset I,\ \exists\, c = s_0 < s_1 < \cdots < s_q = d,\ \forall j \in \{1, \dots, q\},\ f\big|_{]s_{j-1}, s_j[}\ \text{连续，且在 } s_{j-1}^+,\ s_j^-\ \text{处有有限极限}.$$
+白话：在 $I$ 的每个有界闭子区间上只有有限个跳跃；但在 $I$ 的开端点附近，$f$ 可以无界、可以振荡，跳跃点也可以有无穷多个（只要它们不在 $I$ 内部聚集）。
+:::
+
+::: fr
+Soit $I$ un intervalle de $\R$ non réduit à un point et $f : I \to \K$. On dit que $f$ est **continue par morceaux sur $I$** si elle est continue par morceaux sur tout segment inclus dans $I$ :
+$$\forall [c, d] \subset I,\ \exists\, c = s_0 < s_1 < \cdots < s_q = d,\ \forall j \in \{1, \dots, q\},\ f\big|_{]s_{j-1}, s_j[}\ \text{est continue et admet des limites finies en } s_{j-1}^+,\ s_j^-.$$
+Autrement dit, sur chaque segment de $I$ il n'y a qu'un nombre fini de sauts ; mais au voisinage d'une extrémité ouverte de $I$, $f$ peut être non bornée, osciller, et avoir une infinité de points de discontinuité (pourvu qu'ils ne s'accumulent pas à l'intérieur de $I$).
+:::
+
+::: ex id=c6-ex-cpm lvl=1
+1. $f(t) = \frac1t$ 在 $]0, 1]$ 上连续，因而分段连续；但无论 $f(0)$ 取何值，它在 $[0, 1]$ 上都不是分段连续的：$0^+$ 处没有有限极限。
+2. $g(t) = \sin\frac1t$ 在 $]0, 1]$ 上连续，因而分段连续；它在 $0^+$ 处振荡。
+3. $h(t) = E\big(\frac1t\big)$（$E$ 为整数部分）在 $]0, 1]$ 上分段连续：在每个 $[c, 1]$（$0 < c \le 1$）上，它只在有限个点 $\frac1k$（$1 \le k \le \frac1c$）处跳跃，在相邻两个跳跃点之间是常数。跳跃点 $\frac1k$ 在 $0$ 处聚集，但 $0 \notin\, ]0, 1]$。
+4. **非例子**：$\mathbf{1}_\Q$ 在任何区间上都不是分段连续的，因为它在每一点都不连续，而分段连续函数在每个闭子区间上只有有限个间断点。
+:::
+
 ::: def id=def-integrale-generalisee zh="广义积分的收敛" en="Convergent improper integral" fr="Intégrale généralisée convergente" ru="Сходящийся несобственный интеграл"
-设 $f$ 在 $[a, b[$（$b \le +\infty$）上分段连续。若 $\lim_{x \to b^-}\int_a^x f$ 存在且有限，称广义积分 $\int_a^b f$ **收敛**，并以此极限为其值。对 $]a, b]$ 同理。对 $]a, b[$，取 $c \in ]a,b[$，要求 $\int_a^c f$ 与 $\int_c^b f$ **分别**收敛。
+设 $-\infty < a < b \le +\infty$，$f$ 在 $[a, b[$ 上分段连续。若极限
+$$\lim_{x \to b^-}\int_a^x f(t)\,\dd t$$
+存在且**有限**，称广义积分 $\int_a^b f$ **收敛**，并以此极限为其值；否则称它**发散**。量词形式：$\int_a^b f$ 收敛于 $\ell \in \K$，当且仅当
+$$\forall \eps > 0,\ \exists A \in [a, b[,\ \forall x \in [A, b[,\quad \Big|\int_a^x f - \ell\Big| < \eps.$$
+对 $]a, b]$（$-\infty \le a < b < +\infty$）同理，取 $x \to a^+$。对 $]a, b[$（$-\infty \le a < b \le +\infty$），取 $c \in\, ]a, b[$，要求 $\int_a^c f$ 与 $\int_c^b f$ **分别**收敛，并令 $\int_a^b f = \int_a^c f + \int_c^b f$（与 $c$ 无关，见 {@c6-coherence}）。
+
+白话：先在闭子区间上积分，再让端点趋于「有问题的」端点。两个端点都有问题时，两端必须**各自独立地**取极限。
+:::
+
+::: fr
+Soit $-\infty < a < b \le +\infty$ et $f$ continue par morceaux sur $[a, b[$. Si la limite
+$$\lim_{x \to b^-}\int_a^x f(t)\,\dd t$$
+existe et est **finie**, on dit que l'intégrale généralisée $\int_a^b f$ **converge**, et sa valeur est cette limite ; sinon, on dit qu'elle **diverge**. Avec des quantificateurs : $\int_a^b f$ converge vers $\ell \in \K$ si et seulement si
+$$\forall \eps > 0,\ \exists A \in [a, b[,\ \forall x \in [A, b[,\quad \Big|\int_a^x f - \ell\Big| < \eps.$$
+On procède de même sur $]a, b]$ ($-\infty \le a < b < +\infty$) en faisant $x \to a^+$. Sur $]a, b[$ ($-\infty \le a < b \le +\infty$), on choisit $c \in\, ]a, b[$ et on exige que $\int_a^c f$ et $\int_c^b f$ convergent **toutes les deux** ; on pose alors $\int_a^b f = \int_a^c f + \int_c^b f$ (ce qui ne dépend pas de $c$, cf. {@fr:c6-coherence}).
+
+Autrement dit, on intègre d'abord sur un segment, puis on fait tendre la borne vers l'extrémité « impropre ». Lorsque les deux extrémités sont impropres, les deux passages à la limite doivent se faire **indépendamment**.
 :::
 
 ::: ex id=riemann-integrales zh="Riemann 积分（参考积分）" lvl=1
 $$\int_1^{+\infty}\frac{\dd t}{t^\alpha}\ \text{收敛} \iff \alpha > 1,\qquad \int_0^1\frac{\dd t}{t^\alpha}\ \text{收敛} \iff \alpha < 1,\qquad \int_0^{+\infty}\e^{-\lambda t}\,\dd t = \frac1\lambda\ (\lambda > 0).$$
-直接计算原函数即得。$\int_0^1 \ln t\,\dd t = -1$ 也收敛。
+直接计算原函数即得：
+
+1. **$[1, +\infty[$。** 对 $\alpha \ne 1$，$\int_1^x t^{-\alpha}\,\dd t = \frac{x^{1-\alpha} - 1}{1 - \alpha}$。$x \to +\infty$ 时，若 $\alpha > 1$，$x^{1-\alpha} \to 0$，积分 $\to \frac{1}{\alpha - 1}$；若 $\alpha < 1$，$x^{1-\alpha} \to +\infty$，发散。$\alpha = 1$ 时 $\int_1^x \frac{\dd t}{t} = \ln x \to +\infty$，发散。
+2. **$]0, 1]$。** 对 $\alpha \ne 1$，$\int_x^1 t^{-\alpha}\,\dd t = \frac{1 - x^{1-\alpha}}{1 - \alpha}$。$x \to 0^+$ 时，若 $\alpha < 1$，$x^{1-\alpha} \to 0$，积分 $\to \frac{1}{1 - \alpha}$；若 $\alpha > 1$，$x^{1-\alpha} \to +\infty$，发散。$\alpha = 1$ 时 $\int_x^1\frac{\dd t}{t} = -\ln x \to +\infty$，发散。
+3. **指数。** $\int_0^x \e^{-\lambda t}\,\dd t = \frac{1 - \e^{-\lambda x}}{\lambda} \to \frac1\lambda$（$\lambda > 0$）。$\lambda = 0$ 时积分为 $x$，$\lambda < 0$ 时为 $\frac{\e^{\abs\lambda x} - 1}{\abs\lambda}$，都发散。
+4. **对数。** $\int_x^1\ln t\,\dd t = \big[t\ln t - t\big]_x^1 = -1 - x\ln x + x \to -1$（$x \to 0^+$，因为 $x\ln x \to 0$）。所以 $\int_0^1\ln t\,\dd t = -1$ 收敛，尽管 $\ln t \to -\infty$。
+5. **两端都有问题。** $\int_0^{+\infty}\frac{\dd t}{t^\alpha}$ 对**任何** $\alpha$ 都发散：按定义要求 $\int_0^1$ 与 $\int_1^{+\infty}$ 都收敛，即 $\alpha < 1$ 且 $\alpha > 1$，不可能。
 :::
 
 ::: cex lvl=1
-$\int_{-\infty}^{+\infty} t\,\dd t$ 发散，尽管 $\int_{-x}^{x} t\,\dd t = 0$ 对一切 $x$ 成立。对称截断的极限称为 **Cauchy 主值**，它不是广义积分。
+$\int_{-\infty}^{+\infty} t\,\dd t$ 发散，尽管 $\int_{-x}^{x} t\,\dd t = 0$ 对一切 $x$ 成立。按定义，要求 $\int_0^{+\infty} t\,\dd t$ 收敛，但 $\int_0^x t\,\dd t = \frac{x^2}{2} \to +\infty$。对称截断的极限 $\lim_{x \to +\infty}\int_{-x}^x f$ 称为 **Cauchy 主值**，它不是广义积分：两端没有各自独立地取极限。
 :::
 
-::: prop id=cauchy-integrale zh="广义积分的 Cauchy 准则" en="Cauchy criterion for improper integrals" fr="Critère de Cauchy pour les intégrales" ru="Критерий Коши сходимости несобственного интеграла" lvl=1
-$\int_a^b f$（$b$ 处广义）收敛，当且仅当
-$\forall \eps > 0$，$\exists c < b$，$\forall x, y \in [c, b[$，$\Big|\int_x^y f\Big| < \eps$。
+::: prop id=c6-coherence zh="定义的相容性" en="Consistency of the definition" fr="Cohérence de la définition" ru="Согласованность определения" lvl=1
+1. 若 $b < +\infty$ 且 $f$ 在闭区间 $[a, b]$ 上分段连续，则广义积分 $\int_a^b f$（视为 $[a, b[$ 上的）收敛，其值等于 Riemann 积分。
+2. 设 $f$ 在 $[a, b[$ 上分段连续，$c \in [a, b[$。则 $\int_a^b f$ 收敛 $\iff$ $\int_c^b f$ 收敛，且此时 $\int_a^b f = \int_a^c f + \int_c^b f$。
+3. 在 $]a, b[$ 的定义中，收敛性与积分值都与 $c$ 的选取无关。
+:::
+
+::: fr
+1. Si $b < +\infty$ et si $f$ est continue par morceaux sur le segment $[a, b]$, l'intégrale généralisée $\int_a^b f$ (vue sur $[a, b[$) converge et sa valeur est l'intégrale de Riemann.
+2. Soit $f$ continue par morceaux sur $[a, b[$ et $c \in [a, b[$. Alors $\int_a^b f$ converge $\iff$ $\int_c^b f$ converge, et dans ce cas $\int_a^b f = \int_a^c f + \int_c^b f$.
+3. Dans la définition sur $]a, b[$, la convergence et la valeur ne dépendent pas du choix de $c$.
 :::
 
 ::: proof
-这是函数 $F(x) = \int_a^x f$ 在 $b^-$ 处有极限的 Cauchy 准则（由数列的 Cauchy 准则和 Heine 归结原理得到）。
+▷ 思路：1 用「积分上限函数是 Lipschitz 的」；2、3 都是 Chasles 关系：去掉一个闭区间上的积分只改变一个常数。
+
+**1.**　记 $F(x) = \int_a^x f$（Riemann 积分，$x \in [a, b]$），$M = \sup_{[a,b]}\abs f$（闭区间上的分段连续函数有界）。对 $x \in [a, b[$，
+$$\abs{F(b) - F(x)} = \Big|\int_x^b f\Big| \le M(b - x) \xrightarrow[x \to b^{-}]{} 0.$$
+所以 $\lim_{x \to b^-}F(x) = F(b)$。
+
+**2.**　对 $x \in [c, b[$，由 Chasles 关系，$\int_a^x f = \int_a^c f + \int_c^x f$，其中 $\int_a^c f$ 是与 $x$ 无关的常数（闭区间上的 Riemann 积分）。所以当 $x \to b^-$ 时，一边有有限极限当且仅当另一边有，且两个极限相差 $\int_a^c f$。
+
+**3.**　设 $c < c'$ 都在 $]a, b[$ 中。由 2（以 $c$ 为起点），$\int_c^b f$ 收敛 $\iff$ $\int_{c'}^b f$ 收敛，且 $\int_c^b f = \int_c^{c'} f + \int_{c'}^b f$。把 2 用于 $a$ 端（$x \to a^+$，论证相同），$\int_a^{c'} f$ 收敛 $\iff$ $\int_a^c f$ 收敛，且 $\int_a^{c'} f = \int_a^c f + \int_c^{c'} f$。于是
+$$\int_a^{c'} f + \int_{c'}^b f = \int_a^c f + \int_c^{c'} f + \int_{c'}^b f = \int_a^c f + \int_c^b f.$$
+:::
+
+::: fr
+▷ Méthode : pour 1, la fonction « intégrale fonction de sa borne supérieure » est lipschitzienne ; 2 et 3 reposent sur la relation de Chasles : retirer l'intégrale sur un segment ne change qu'une constante.
+
+**1.**　Notons $F(x) = \int_a^x f$ (intégrale de Riemann, $x \in [a, b]$) et $M = \sup_{[a,b]}\abs f$ (une fonction continue par morceaux sur un segment est bornée). Pour $x \in [a, b[$,
+$$\abs{F(b) - F(x)} = \Big|\int_x^b f\Big| \le M(b - x) \xrightarrow[x \to b^{-}]{} 0.$$
+Donc $\lim_{x \to b^-}F(x) = F(b)$.
+
+**2.**　Pour $x \in [c, b[$, la relation de Chasles donne $\int_a^x f = \int_a^c f + \int_c^x f$, où $\int_a^c f$ est une constante indépendante de $x$ (intégrale de Riemann sur un segment). Quand $x \to b^-$, un membre a une limite finie si et seulement si l'autre en a une, et les limites diffèrent de $\int_a^c f$.
+
+**3.**　Soient $c < c'$ dans $]a, b[$. D'après 2 (avec $c$ pour origine), $\int_c^b f$ converge $\iff$ $\int_{c'}^b f$ converge, et $\int_c^b f = \int_c^{c'} f + \int_{c'}^b f$. Le même argument du côté de $a$ ($x \to a^+$) montre que $\int_a^{c'} f$ converge $\iff$ $\int_a^c f$ converge, et $\int_a^{c'} f = \int_a^c f + \int_c^{c'} f$. Ainsi
+$$\int_a^{c'} f + \int_{c'}^b f = \int_a^c f + \int_c^{c'} f + \int_{c'}^b f = \int_a^c f + \int_c^b f.$$
+:::
+
+::: prop id=c6-proprietes zh="收敛积分的运算性质" en="Properties of convergent integrals" fr="Propriétés des intégrales convergentes" ru="Свойства сходящихся несобственных интегралов" lvl=1
+设 $I$ 是区间，$f, g, h$ 在 $I$ 上分段连续，$\int_I f$ 与 $\int_I g$ 收敛，$\lambda \in \K$。
+
+1. （线性）$\int_I (f + \lambda g)$ 收敛，且 $\int_I (f + \lambda g) = \int_I f + \lambda\int_I g$。
+2. （单调性）若 $\K = \R$ 且 $f \le g$ 在 $I$ 上成立，则 $\int_I f \le \int_I g$；特别地，$f \ge 0 \Rightarrow \int_I f \ge 0$。
+3. （收敛 + 发散 = 发散）若 $\int_I h$ 发散，则 $\int_I(f + h)$ 发散。
+4. （严格正性）若 $f$ 在 $I$ 上连续、非负，且 $\int_I f = 0$，则 $f = 0$ 在 $I$ 上成立。
+:::
+
+::: fr
+Soit $I$ un intervalle, $f, g, h$ continues par morceaux sur $I$, avec $\int_I f$ et $\int_I g$ convergentes, et $\lambda \in \K$.
+
+1. (Linéarité) $\int_I (f + \lambda g)$ converge et $\int_I (f + \lambda g) = \int_I f + \lambda\int_I g$.
+2. (Croissance) Si $\K = \R$ et $f \le g$ sur $I$, alors $\int_I f \le \int_I g$ ; en particulier $f \ge 0 \Rightarrow \int_I f \ge 0$.
+3. (Convergente + divergente = divergente) Si $\int_I h$ diverge, alors $\int_I(f + h)$ diverge.
+4. (Stricte positivité) Si $f$ est continue et positive sur $I$ et si $\int_I f = 0$, alors $f = 0$ sur $I$.
+:::
+
+::: proof
+▷ 思路：1、2 是闭区间上相应性质取极限；3 由 1 反证；4 用连续性在某点附近得到一块正的面积。对 $]a, b[$ 型区间，在某个 $c$ 处分开，分别处理两个半开区间（{@c6-coherence}），下面只写 $I = [a, b[$ 的情形。
+
+**1.**　对 $x \in [a, b[$，$\int_a^x(f + \lambda g) = \int_a^x f + \lambda\int_a^x g$（闭区间上的线性）。右边当 $x \to b^-$ 时有有限极限 $\int_I f + \lambda\int_I g$，所以左边也有。
+
+**2.**　对 $x \in [a, b[$，$\int_a^x f \le \int_a^x g$（闭区间上的单调性）。令 $x \to b^-$，大小关系在极限中保持（不等式取极限）。
+
+**3.**　反设 $\int_I(f + h)$ 收敛。由 1（取 $\lambda = -1$），$\int_I h = \int_I\big((f + h) - f\big)$ 收敛，矛盾。
+
+**4.**　反设存在 $x_0 \in I$ 使 $f(x_0) = m > 0$。由连续性，存在 $I$ 的闭子区间 $J = [\alpha, \beta]$（$\alpha < \beta$，$x_0 \in J$），在 $J$ 上 $f \ge \frac m2$。由 Chasles 关系与 2（$f \ge 0$），$\int_I f \ge \int_\alpha^\beta f \ge \frac m2(\beta - \alpha) > 0$，矛盾。
+:::
+
+::: fr
+▷ Méthode : 1 et 2 s'obtiennent par passage à la limite à partir des propriétés sur un segment ; 3 se déduit de 1 par l'absurde ; pour 4, la continuité fournit une « aire » strictement positive au voisinage d'un point. Pour un intervalle $]a, b[$, on coupe en un point $c$ et on traite séparément les deux intervalles semi-ouverts ({@fr:c6-coherence}) ; on écrit seulement le cas $I = [a, b[$.
+
+**1.**　Pour $x \in [a, b[$, $\int_a^x(f + \lambda g) = \int_a^x f + \lambda\int_a^x g$ (linéarité sur un segment). Le membre de droite a une limite finie $\int_I f + \lambda\int_I g$ quand $x \to b^-$, donc le membre de gauche aussi.
+
+**2.**　Pour $x \in [a, b[$, $\int_a^x f \le \int_a^x g$ (croissance sur un segment). On passe à la limite $x \to b^-$ dans l'inégalité.
+
+**3.**　Par l'absurde, supposons que $\int_I(f + h)$ converge. D'après 1 (avec $\lambda = -1$), $\int_I h = \int_I\big((f + h) - f\big)$ converge, contradiction.
+
+**4.**　Par l'absurde, supposons qu'il existe $x_0 \in I$ avec $f(x_0) = m > 0$. Par continuité, il existe un segment $J = [\alpha, \beta] \subset I$ ($\alpha < \beta$, $x_0 \in J$) sur lequel $f \ge \frac m2$. Par la relation de Chasles et le point 2 ($f \ge 0$), $\int_I f \ge \int_\alpha^\beta f \ge \frac m2(\beta - \alpha) > 0$, contradiction.
+:::
+
+::: prop id=cauchy-integrale zh="广义积分的 Cauchy 准则" en="Cauchy criterion for improper integrals" fr="Critère de Cauchy pour les intégrales" ru="Критерий Коши сходимости несобственного интеграла" lvl=1
+设 $f$ 在 $[a, b[$ 上分段连续（$b \le +\infty$）。$\int_a^b f$ 收敛，当且仅当
+$$\forall \eps > 0,\ \exists c \in [a, b[,\ \forall x, y \in [c, b[,\quad \Big|\int_x^y f\Big| < \eps.$$
+:::
+
+::: fr
+Soit $f$ continue par morceaux sur $[a, b[$ ($b \le +\infty$). L'intégrale $\int_a^b f$ converge si et seulement si
+$$\forall \eps > 0,\ \exists c \in [a, b[,\ \forall x, y \in [c, b[,\quad \Big|\int_x^y f\Big| < \eps.$$
+:::
+
+::: proof
+▷ 思路：这是函数 $F(x) = \int_a^x f$ 在 $b^-$ 处有极限的 Cauchy 准则。(⇒) 用三角不等式；(⇐) 先沿任一趋于 $b$ 的数列得到一个极限（$\K$ 完备），再说明它不依赖于数列，最后用反证法回到函数的极限。
+
+记 $F(x) = \int_a^x f$，则 $\int_x^y f = F(y) - F(x)$（Chasles）。
+
+**(⇒)**　设 $F(x) \to \ell$（$x \to b^-$），$\eps > 0$。存在 $c \in [a, b[$，使对一切 $x \in [c, b[$，$\abs{F(x) - \ell} < \frac\eps2$。于是对 $x, y \in [c, b[$，
+$$\Big|\int_x^y f\Big| = \abs{F(y) - F(x)} \le \abs{F(y) - \ell} + \abs{\ell - F(x)} < \frac\eps2 + \frac\eps2 = \eps.$$
+
+**(⇐)　第 1 步（沿数列）**　设 $(x_n)$ 是 $[a, b[$ 中趋于 $b$ 的数列，$\eps > 0$，$c$ 由假设给出。因为 $x_n \to b$ 且 $c < b$，存在 $N$ 使 $n \ge N \Rightarrow x_n \ge c$。于是 $p, q \ge N$ 时 $\abs{F(x_p) - F(x_q)} < \eps$：$(F(x_n))$ 是 Cauchy 列，在 $\K$ 中收敛（$\K$ 完备）。
+
+**第 2 步（极限与数列无关）**　设 $(x_n)$、$(y_n)$ 是两个这样的数列，令 $z_{2n} = x_n$，$z_{2n+1} = y_n$，则 $z_n \to b$。由第 1 步，$(F(z_n))$ 收敛；它的两个子列 $(F(x_n))$、$(F(y_n))$ 有同一极限。记这个公共极限为 $\ell$。
+
+**第 3 步（函数的极限）**　反设 $F(x) \not\to \ell$（$x \to b^-$）：存在 $\eps_0 > 0$ 和 $[a, b[$ 中趋于 $b$ 的数列 $(x_n)$，使 $\abs{F(x_n) - \ell} \ge \eps_0$。但由第 2 步 $F(x_n) \to \ell$，矛盾。所以 $\int_a^b f$ 收敛于 $\ell$。
+:::
+
+::: fr
+▷ Méthode : c'est le critère de Cauchy pour l'existence d'une limite de $F(x) = \int_a^x f$ en $b^-$. (⇒) par l'inégalité triangulaire ; (⇐) on obtient d'abord une limite le long d'une suite tendant vers $b$ ($\K$ est complet), on montre qu'elle ne dépend pas de la suite, puis on revient par l'absurde à la limite de la fonction.
+
+Notons $F(x) = \int_a^x f$ ; alors $\int_x^y f = F(y) - F(x)$ (Chasles).
+
+**(⇒)**　Supposons $F(x) \to \ell$ quand $x \to b^-$, et soit $\eps > 0$. Il existe $c \in [a, b[$ tel que pour tout $x \in [c, b[$, $\abs{F(x) - \ell} < \frac\eps2$. Pour $x, y \in [c, b[$,
+$$\Big|\int_x^y f\Big| = \abs{F(y) - F(x)} \le \abs{F(y) - \ell} + \abs{\ell - F(x)} < \frac\eps2 + \frac\eps2 = \eps.$$
+
+**(⇐)　Étape 1 (le long d'une suite)**　Soit $(x_n)$ une suite de $[a, b[$ tendant vers $b$, $\eps > 0$ et $c$ donné par l'hypothèse. Comme $x_n \to b$ et $c < b$, il existe $N$ tel que $n \ge N \Rightarrow x_n \ge c$. Pour $p, q \ge N$, $\abs{F(x_p) - F(x_q)} < \eps$ : la suite $(F(x_n))$ est de Cauchy, donc converge dans $\K$ (complet).
+
+**Étape 2 (indépendance vis-à-vis de la suite)**　Soient $(x_n)$, $(y_n)$ deux telles suites ; posons $z_{2n} = x_n$, $z_{2n+1} = y_n$, de sorte que $z_n \to b$. D'après l'étape 1, $(F(z_n))$ converge ; ses deux suites extraites $(F(x_n))$ et $(F(y_n))$ ont donc la même limite, notée $\ell$.
+
+**Étape 3 (limite de la fonction)**　Par l'absurde, supposons que $F(x) \not\to \ell$ quand $x \to b^-$ : il existe $\eps_0 > 0$ et une suite $(x_n)$ de $[a, b[$ tendant vers $b$ telle que $\abs{F(x_n) - \ell} \ge \eps_0$. Or $F(x_n) \to \ell$ d'après l'étape 2, contradiction. Donc $\int_a^b f$ converge vers $\ell$.
+:::
+
+::: prop id=c6-faux-probleme zh="有限端点处的有界函数（「假问题」）" en="Bounded integrand at a finite endpoint" fr="Faux problème en une borne finie" ru="Ограниченная функция у конечного конца" lvl=1
+设 $b < +\infty$，$f$ 在 $[a, b[$ 上分段连续且**有界**（例如 $f$ 在 $b^-$ 处有有限极限）。则 $\int_a^b f$ 收敛。
+:::
+
+::: fr
+Soit $b < +\infty$ et $f$ continue par morceaux et **bornée** sur $[a, b[$ (par exemple, $f$ admet une limite finie en $b^-$). Alors $\int_a^b f$ converge.
+:::
+
+::: proof
+▷ 思路：验证 Cauchy 准则：区间 $[x, y]$ 的长度不超过 $b - c$，被积函数有界，所以积分小。
+
+**第 1 步（翻译假设）**　设 $\abs f \le M$ 在 $[a, b[$ 上成立（若 $f$ 在 $b^-$ 处有有限极限 $\ell$，则存在 $c_0 \in [a, b[$ 使 $[c_0, b[$ 上 $\abs f \le \abs\ell + 1$，而 $[a, c_0]$ 上 $f$ 分段连续因而有界）。
+
+**第 2 步（选 $c$）**　设 $\eps > 0$，令 $c = \max\Big(a,\ b - \dfrac{\eps}{M + 1}\Big) \in [a, b[$。对 $x, y \in [c, b[$，
+$$\Big|\int_x^y f\Big| \le M\abs{y - x} \le M(b - c) \le \frac{M\eps}{M + 1} < \eps.$$
+由 Cauchy 准则 {@cauchy-integrale}，$\int_a^b f$ 收敛。
+:::
+
+::: fr
+▷ Méthode : on vérifie le critère de Cauchy : l'intervalle $[x, y]$ a une longueur au plus $b - c$ et l'intégrande est bornée, donc l'intégrale est petite.
+
+**Étape 1 (on traduit l'hypothèse)**　Soit $M$ tel que $\abs f \le M$ sur $[a, b[$ (si $f$ admet une limite finie $\ell$ en $b^-$, il existe $c_0 \in [a, b[$ tel que $\abs f \le \abs\ell + 1$ sur $[c_0, b[$, et $f$ est bornée sur le segment $[a, c_0]$ car continue par morceaux).
+
+**Étape 2 (choix de $c$)**　Soit $\eps > 0$ ; posons $c = \max\Big(a,\ b - \dfrac{\eps}{M + 1}\Big) \in [a, b[$. Pour $x, y \in [c, b[$,
+$$\Big|\int_x^y f\Big| \le M\abs{y - x} \le M(b - c) \le \frac{M\eps}{M + 1} < \eps.$$
+D'après le critère de Cauchy ({@fr:cauchy-integrale}), $\int_a^b f$ converge.
 :::
 
 ::: rem
-与级数不同，$\int_a^{+\infty} f$ 收敛**不**蕴含 $f(t) \to 0$。例：$f$ 在每个 $[n, n + \frac{1}{n^3}]$ 上是高度为 $n$ 的三角形脉冲，其余为 $0$。$\int_0^\infty f = \sum \frac{1}{2n^2}$ 收敛，但 $\limsup f = +\infty$。不过，若 $f$ 一致连续且积分收敛，则 $f \to 0$（Barbălat 引理）。
+1. **例。** $\int_0^1\frac{\sin t}{t}\,\dd t$、$\int_0^1\frac{1 - \cos t}{t^2}\,\dd t$、$\int_0^1\sin\frac1t\,\dd t$ 都收敛：被积函数在 $]0, 1]$ 上有界（前两个在 $0^+$ 处有有限极限 $1$ 和 $\frac12$，第三个以 $1$ 为界）。这类端点在法国讲义里叫「假问题」（faux problème）。
+2. **有限端点是必要的。** 在无穷端点处，有界不够：$\int_0^x\cos t\,\dd t = \sin x$ 在 $x \to +\infty$ 时没有极限，所以 $\int_0^{+\infty}\cos t\,\dd t$ 发散。
+3. **有界也是必要的。** $\frac1t$ 在 $]0, 1]$ 上无界，$\int_0^1\frac{\dd t}{t}$ 发散（{@riemann-integrales}）。
 :::
 
-## 非负函数与可积性
+::: rem
+**与级数不同，$\int_a^{+\infty} f$ 收敛不蕴含 $f(t) \to 0$。** 例：对 $n \ge 2$，令 $f$ 在每个 $[n, n + \frac{1}{n^3}]$ 上是底边为这个区间、高为 $n$ 的三角形脉冲，其余为 $0$。这些区间两两不交，$f$ 连续且非负，第 $n$ 个脉冲的面积为 $\frac12\cdot\frac{1}{n^3}\cdot n = \frac{1}{2n^2}$。对 $x \ge 2$，$\int_0^x f \le \sum_{n \ge 2}\frac{1}{2n^2}$，有界且递增，所以 $\int_0^{+\infty} f$ 收敛（{@c6-positif-borne}）；但 $f(n + \frac{1}{2n^3}) = n$，$\limsup_{+\infty} f = +\infty$。即使 $f$ 有界也不够：$\int_0^{+\infty}\sin(t^2)\,\dd t$ 收敛（§4 的「想一想」），而 $\sin(t^2)$ 不趋于 $0$。不过，若 $f$ 有极限，或 $f$ 一致连续，则 $f \to 0$（下面两个命题）。
+:::
+
+::: prop id=c6-limite-infini zh="有极限的被积函数" en="Integrand with a limit at infinity" fr="Intégrande admettant une limite en $+\infty$" ru="Подынтегральная функция, имеющая предел на бесконечности" lvl=1
+设 $f$ 在 $[a, +\infty[$ 上分段连续，$\int_a^{+\infty} f$ 收敛，且 $f(t) \to \ell$（$t \to +\infty$），其中 $\ell \in \K$，或 $\K = \R$ 时 $\ell = \pm\infty$。则 $\ell = 0$。
+:::
+
+::: fr
+Soit $f$ continue par morceaux sur $[a, +\infty[$ telle que $\int_a^{+\infty} f$ converge et $f(t) \to \ell$ quand $t \to +\infty$, avec $\ell \in \K$, ou $\ell = \pm\infty$ si $\K = \R$. Alors $\ell = 0$.
+:::
+
+::: proof
+▷ 思路：若 $\ell \ne 0$，$f$ 最终离开 $0$ 一段距离且符号固定，积分就像 $\int c\,\dd t$ 一样趋于无穷。
+
+**情形 1（$\K = \R$，$\ell > 0$ 或 $\ell = +\infty$）**　令 $m = \frac\ell2$（$\ell = +\infty$ 时取 $m = 1$）。由极限的定义，存在 $c \ge a$，使 $t \ge c$ 时 $f(t) \ge m$。于是对 $x \ge c$，
+$$\int_a^x f = \int_a^c f + \int_c^x f \ge \int_a^c f + m(x - c) \xrightarrow[x \to +\infty]{} +\infty,$$
+与收敛矛盾。
+
+**情形 2（$\K = \R$，$\ell < 0$ 或 $\ell = -\infty$）**　把 $f$ 换成 $-f$（$\int(-f)$ 也收敛），由情形 1 得矛盾。
+
+**情形 3（$\K = \C$）**　$\operatorname{Re}\int_a^x f = \int_a^x\operatorname{Re}f$，所以 $\int_a^{+\infty}\operatorname{Re}f$ 收敛，且 $\operatorname{Re}f \to \operatorname{Re}\ell$；由情形 1、2，$\operatorname{Re}\ell = 0$。同理（把 $\operatorname{Re}$ 换成 $\operatorname{Im}$）$\operatorname{Im}\ell = 0$。
+
+所以 $\ell = 0$。
+:::
+
+::: fr
+▷ Méthode : si $\ell \ne 0$, $f$ finit par rester à distance de $0$ avec un signe fixe, et l'intégrale tend vers l'infini comme $\int c\,\dd t$.
+
+**Cas 1 ($\K = \R$, $\ell > 0$ ou $\ell = +\infty$)**　Posons $m = \frac\ell2$ ($m = 1$ si $\ell = +\infty$). Par définition de la limite, il existe $c \ge a$ tel que $f(t) \ge m$ pour $t \ge c$. Pour $x \ge c$,
+$$\int_a^x f = \int_a^c f + \int_c^x f \ge \int_a^c f + m(x - c) \xrightarrow[x \to +\infty]{} +\infty,$$
+ce qui contredit la convergence.
+
+**Cas 2 ($\K = \R$, $\ell < 0$ ou $\ell = -\infty$)**　On remplace $f$ par $-f$ (dont l'intégrale converge aussi) et on applique le cas 1.
+
+**Cas 3 ($\K = \C$)**　$\operatorname{Re}\int_a^x f = \int_a^x\operatorname{Re}f$, donc $\int_a^{+\infty}\operatorname{Re}f$ converge, et $\operatorname{Re}f \to \operatorname{Re}\ell$ ; d'après les cas 1 et 2, $\operatorname{Re}\ell = 0$. En remplaçant $\operatorname{Re}$ par $\operatorname{Im}$, $\operatorname{Im}\ell = 0$.
+
+Donc $\ell = 0$.
+:::
+
+::: prop id=c6-barbalat zh="Barbălat 引理" en="Barbălat's lemma" fr="Lemme de Barbălat" ru="Лемма Барбалата" lvl=2
+若 $f$ 在 $[a, +\infty[$ 上一致连续，且 $\int_a^{+\infty} f$ 收敛，则 $f(t) \to 0$（$t \to +\infty$）。
+:::
+
+::: fr
+Si $f$ est uniformément continue sur $[a, +\infty[$ et si $\int_a^{+\infty} f$ converge, alors $f(t) \to 0$ quand $t \to +\infty$.
+:::
+
+::: sketch
+▷ 思路：若 $f$ 在无穷多个点 $x_n$ 处 $\ge \eps$，一致连续性保证 $f$ 在每个 $[x_n, x_n + \delta]$ 上 $\ge \frac\eps2$（$\delta$ 与 $n$ 无关），这些小区间上的积分 $\ge \frac{\eps\delta}{2}$，与 Cauchy 准则矛盾。
+
+**实值情形。** 反设 $f \not\to 0$：存在 $\eps > 0$ 和 $x_n \to +\infty$，使 $\abs{f(x_n)} \ge \eps$。$f(x_n) \ge \eps$ 或 $f(x_n) \le -\eps$ 之一对无穷多个 $n$ 成立；必要时把 $f$ 换成 $-f$ 并抽取子列，可设 $f(x_n) \ge \eps$ 对一切 $n$ 成立。由一致连续，存在 $\delta > 0$，使 $\abs{x - y} \le \delta \Rightarrow \abs{f(x) - f(y)} \le \frac\eps2$；于是在 $[x_n, x_n + \delta]$ 上 $f \ge \frac\eps2$，$\int_{x_n}^{x_n + \delta} f \ge \frac{\eps\delta}{2}$。由 Cauchy 准则 {@cauchy-integrale}（取 $\frac{\eps\delta}{2}$），存在 $c$ 使 $x, y \ge c \Rightarrow \abs{\int_x^y f} < \frac{\eps\delta}{2}$；取 $n$ 使 $x_n \ge c$，矛盾。
+
+**复值情形。** $\operatorname{Re}f$、$\operatorname{Im}f$ 也一致连续（$\abs{\operatorname{Re}u} \le \abs u$），积分也收敛，分别用实值情形。
+:::
+
+::: fr
+▷ Méthode : si $f \ge \eps$ en une infinité de points $x_n$, l'uniforme continuité assure $f \ge \frac\eps2$ sur chaque $[x_n, x_n + \delta]$ ($\delta$ indépendant de $n$) ; les intégrales sur ces petits intervalles sont $\ge \frac{\eps\delta}{2}$, ce qui contredit le critère de Cauchy.
+
+**Cas réel.** Par l'absurde, supposons $f \not\to 0$ : il existe $\eps > 0$ et $x_n \to +\infty$ avec $\abs{f(x_n)} \ge \eps$. L'une des conditions $f(x_n) \ge \eps$, $f(x_n) \le -\eps$ est vraie pour une infinité de $n$ ; quitte à remplacer $f$ par $-f$ et à extraire, on peut supposer $f(x_n) \ge \eps$ pour tout $n$. Par uniforme continuité, il existe $\delta > 0$ tel que $\abs{x - y} \le \delta \Rightarrow \abs{f(x) - f(y)} \le \frac\eps2$ ; donc $f \ge \frac\eps2$ sur $[x_n, x_n + \delta]$ et $\int_{x_n}^{x_n + \delta} f \ge \frac{\eps\delta}{2}$. D'après le critère de Cauchy ({@fr:cauchy-integrale}, avec $\frac{\eps\delta}{2}$), il existe $c$ tel que $x, y \ge c \Rightarrow \abs{\int_x^y f} < \frac{\eps\delta}{2}$ ; en prenant $n$ avec $x_n \ge c$, on obtient une contradiction.
+
+**Cas complexe.** $\operatorname{Re}f$ et $\operatorname{Im}f$ sont uniformément continues ($\abs{\operatorname{Re}u} \le \abs u$) et d'intégrales convergentes ; on applique le cas réel à chacune.
+:::
+
+::: q
+设 $f$ 在 $[a, +\infty[$ 上递减，且 $\int_a^{+\infty} f$ 收敛。证明 $f(t) \to 0$，且 $t\,f(t) \to 0$。（对比第 2 章：$u_n$ 递减且 $\sum u_n$ 收敛 ⟹ $n u_n \to 0$。）
+:::
+
+::: ans
+$f$ 递减，所以在 $+\infty$ 处有极限 $\ell \in [-\infty, +\infty[$；由 {@c6-limite-infini}，$\ell = 0$，因此 $f \ge 0$（递减到 $0$）。对 $x \ge \max(2a, 0) + 1$（保证 $\frac x2 \ge a$），由 $f$ 递减，
+$$\int_{x/2}^x f \ge \frac x2\,f(x) \ge 0.$$
+由 Cauchy 准则 {@cauchy-integrale}，$\frac x2 \to +\infty$ 时左边趋于 $0$，所以 $x f(x) \to 0$。
+:::
+
+::: q
+$\int_0^1\sin\frac1t\,\dd t$ 收敛吗？$\int_0^1\frac1t\sin\frac1t\,\dd t$ 呢？
+:::
+
+::: ans
+第一个收敛，而且绝对收敛：$\abs{\sin\frac1t} \le 1$，有界函数在有限端点处是假问题（{@c6-faux-probleme}，用于 $f$ 和 $\abs f$）。第二个的被积函数在 $0^+$ 附近无界，不是假问题。换元 $u = \frac1t$（$\dd t = -\frac{\dd u}{u^2}$，{@changement-variable-gen}）把它变成
+$$\int_1^{+\infty}u\sin u\cdot\frac{\dd u}{u^2} = \int_1^{+\infty}\frac{\sin u}{u}\,\dd u,$$
+后者收敛但不绝对收敛（{@sinc}）。所以第二个积分收敛，但不绝对收敛。
+:::
+
+## 非负函数的积分：比较定理
+
+当 $f \ge 0$ 时，$x \mapsto \int_a^x f$ 递增，收敛问题变成「有没有界」的问题，于是可以像第 2 章的正项级数一样用比较定理。本节的参考尺度是 Riemann 积分 {@riemann-integrales} 与 Bertrand 积分。
+
+::: lem id=c6-positif-borne zh="非负函数的积分收敛当且仅当有界" en="Non-negative integrands: convergence iff boundedness" fr="Intégrale d'une fonction positive : convergence et majoration" ru="Интеграл от неотрицательной функции сходится тогда и только тогда, когда ограничен" lvl=1
+设 $f$ 在 $[a, b[$ 上分段连续且 $f \ge 0$，$F(x) = \int_a^x f$。则 $F$ 在 $[a, b[$ 上递增，且
+$$\int_a^b f\ \text{收敛} \iff F\ \text{有上界}.$$
+此时 $\int_a^b f = \sup_{x \in [a, b[}F(x)$；否则 $F(x) \to +\infty$（$x \to b^-$）。
+:::
+
+::: fr
+Soit $f$ continue par morceaux et positive sur $[a, b[$, et $F(x) = \int_a^x f$. Alors $F$ est croissante sur $[a, b[$ et
+$$\int_a^b f\ \text{converge} \iff F\ \text{est majorée}.$$
+Dans ce cas, $\int_a^b f = \sup_{x \in [a, b[}F(x)$ ; sinon $F(x) \to +\infty$ quand $x \to b^-$.
+:::
+
+::: proof
+▷ 思路：这是单调函数的极限定理。
+
+**第 1 步（递增）**　对 $a \le x \le y < b$，$F(y) - F(x) = \int_x^y f \ge 0$（Chasles 与闭区间上积分的正性）。
+
+**第 2 步（⇐）**　设 $F$ 有上界，令 $S = \sup F$。设 $\eps > 0$，由上确界的刻画，存在 $x_\eps \in [a, b[$ 使 $F(x_\eps) > S - \eps$。由第 1 步，对 $x \in [x_\eps, b[$，$S - \eps < F(x_\eps) \le F(x) \le S$。所以 $F(x) \to S$（$x \to b^-$）。
+
+**第 3 步（⇒ 与无界情形）**　若 $F$ 无上界，对任意 $A > 0$，存在 $x_A$ 使 $F(x_A) > A$，由递增性 $x \ge x_A \Rightarrow F(x) > A$，所以 $F(x) \to +\infty$，积分发散。逆否即得 (⇒)。
+:::
+
+::: fr
+▷ Méthode : c'est le théorème de la limite monotone.
+
+**Étape 1 (croissance)**　Pour $a \le x \le y < b$, $F(y) - F(x) = \int_x^y f \ge 0$ (Chasles et positivité de l'intégrale sur un segment).
+
+**Étape 2 (⇐)**　Supposons $F$ majorée et posons $S = \sup F$. Soit $\eps > 0$ ; par caractérisation de la borne supérieure, il existe $x_\eps \in [a, b[$ tel que $F(x_\eps) > S - \eps$. D'après l'étape 1, pour $x \in [x_\eps, b[$, $S - \eps < F(x_\eps) \le F(x) \le S$. Donc $F(x) \to S$ quand $x \to b^-$.
+
+**Étape 3 (⇒ et cas non majoré)**　Si $F$ n'est pas majorée, pour tout $A > 0$ il existe $x_A$ avec $F(x_A) > A$, et par croissance $x \ge x_A \Rightarrow F(x) > A$ ; donc $F(x) \to +\infty$ et l'intégrale diverge. Par contraposée, on obtient (⇒).
+:::
 
 ::: thm id=comparaison-integrales zh="比较定理" en="Comparison test for integrals" fr="Théorème de comparaison pour les intégrales" ru="Признак сравнения для несобственных интегралов" lvl=1
 设 $f, g$ 在 $[a, b[$ 上分段连续且非负。
 
-1. 若 $f \le g$ 且 $\int_a^b g$ 收敛，则 $\int_a^b f$ 收敛。
+1. 若 $f \le g$（在某个 $[c, b[$ 上即可）且 $\int_a^b g$ 收敛，则 $\int_a^b f$ 收敛；等价地，若 $\int_a^b f$ 发散，则 $\int_a^b g$ 发散。
 2. 若 $f(t) = O(g(t))$（$t \to b$）且 $\int_a^b g$ 收敛，则 $\int_a^b f$ 收敛。
 3. 若 $f(t) \sim g(t)$（$t \to b$），则两积分同敛散。
 :::
 
-::: proof
-$f \ge 0$ 时 $x \mapsto \int_a^x f$ 递增，所以积分收敛当且仅当它有界。之后与 {@comparaison} 完全相同。
-:::
+::: fr
+Soient $f, g$ continues par morceaux et positives sur $[a, b[$.
 
-::: def id=def-integrable zh="可积函数" en="Integrable function" fr="Fonction intégrable" ru="Абсолютно интегрируемая функция"
-$f$ 在 $I$ 上**可积**（intégrable），如果 $\int_I \abs{f}$ 收敛（**绝对收敛**）。$I$ 上可积的分段连续函数构成向量空间，记为 $L^1(I)$。
-:::
-
-::: thm id=integrable-convergente lvl=1
-若 $f$ 在 $I$ 上可积，则 $\int_I f$ 收敛，且 $\Big|\int_I f\Big| \le \int_I \abs{f}$。
+1. Si $f \le g$ (sur un intervalle $[c, b[$ suffit) et si $\int_a^b g$ converge, alors $\int_a^b f$ converge ; de façon équivalente, si $\int_a^b f$ diverge, alors $\int_a^b g$ diverge.
+2. Si $f(t) = O(g(t))$ quand $t \to b$ et si $\int_a^b g$ converge, alors $\int_a^b f$ converge.
+3. Si $f(t) \sim g(t)$ quand $t \to b$, les deux intégrales sont de même nature.
 :::
 
 ::: proof
-$\K = \R$ 时写 $f = f^+ - f^-$，$0 \le f^\pm \le \abs{f}$，由比较定理 $\int f^\pm$ 都收敛。复值时分别处理实部和虚部。不等式对闭区间成立，取极限即可。也可以直接用 Cauchy 准则：$\big|\int_x^y f\big| \le \int_x^y \abs f$。
+▷ 思路：由 {@c6-positif-borne}，非负函数的积分收敛当且仅当积分上限函数有界；有界性在不等式下传递。2、3 先把渐近关系翻译成某个 $[c, b[$ 上的不等式，再用 1。与级数的比较定理 {@comparaison} 完全平行。
+
+**1.**　**第 1 步（化到 $[c, b[$）**　由 {@c6-coherence} 第 2 条，$\int_a^b$ 与 $\int_c^b$ 同敛散，所以可设 $f \le g$ 在整个 $[c, b[$ 上，并只讨论 $\int_c^b$。**第 2 步（有界性传递）**　对 $x \in [c, b[$，$\int_c^x f \le \int_c^x g \le \int_c^b g$（第二个不等式：$\int_c^x g$ 递增趋于 $\int_c^b g$，见 {@c6-positif-borne}）。所以 $x \mapsto \int_c^x f$ 有上界，由 {@c6-positif-borne}，$\int_c^b f$ 收敛。后半句是前半句的逆否命题。
+
+**2.**　**翻译假设**：存在 $c \in [a, b[$ 和 $M \ge 0$，使对 $t \in [c, b[$，$f(t) \le M g(t)$。由 {@c6-proprietes} 第 1 条，$\int_a^b Mg$ 收敛；由 1，$\int_a^b f$ 收敛。
+
+**3.**　**翻译假设**：$f(t) = g(t)\big(1 + \eps(t)\big)$，$\eps(t) \to 0$（$t \to b$）。取 $c \in [a, b[$ 使 $t \in [c, b[$ 时 $\abs{\eps(t)} \le \frac12$，则在 $[c, b[$ 上
+$$\tfrac12 g \le f \le \tfrac32 g.$$
+若 $\int g$ 收敛，由右边不等式和 1（用于 $\frac32 g$），$\int f$ 收敛；若 $\int f$ 收敛，由左边不等式和 1（用于 $2f \ge g$），$\int g$ 收敛。
 :::
 
-::: ex id=sinc lvl=1
-$\int_0^{+\infty}\frac{\sin t}{t}\,\dd t$ 收敛但不绝对收敛。
+::: fr
+▷ Méthode : d'après {@fr:c6-positif-borne}, l'intégrale d'une fonction positive converge si et seulement si la fonction « borne supérieure » est majorée ; la majoration se transmet par inégalité. Pour 2 et 3, on traduit d'abord la relation asymptotique en une inégalité sur un intervalle $[c, b[$, puis on applique 1. C'est exactement parallèle au théorème de comparaison des séries ({@fr:comparaison}).
 
-收敛：$\frac{\sin t}{t} \to 1$（$t \to 0$），所以在 $0$ 处没有问题。在 $[1, x]$ 上分部积分：
-$$\int_1^x \frac{\sin t}{t}\,\dd t = \Big[-\frac{\cos t}{t}\Big]_1^x - \int_1^x\frac{\cos t}{t^2}\,\dd t,$$
-右边第二个积分绝对收敛（被 $\frac{1}{t^2}$ 控制）。
+**1.**　**Étape 1 (réduction à $[c, b[$)**　D'après le point 2 de {@fr:c6-coherence}, $\int_a^b$ et $\int_c^b$ sont de même nature ; on peut donc supposer $f \le g$ sur tout $[c, b[$ et ne considérer que $\int_c^b$. **Étape 2 (transmission de la majoration)**　Pour $x \in [c, b[$, $\int_c^x f \le \int_c^x g \le \int_c^b g$ (la seconde inégalité car $\int_c^x g$ croît vers $\int_c^b g$, cf. {@fr:c6-positif-borne}). Donc $x \mapsto \int_c^x f$ est majorée et, d'après {@fr:c6-positif-borne}, $\int_c^b f$ converge. La seconde phrase est la contraposée de la première.
 
-不绝对收敛：$\int_{k\pi}^{(k+1)\pi}\frac{\abs{\sin t}}{t}\,\dd t \ge \frac{1}{(k+1)\pi}\int_0^\pi\sin = \frac{2}{(k+1)\pi}$，求和发散。
+**2.**　**On traduit l'hypothèse** : il existe $c \in [a, b[$ et $M \ge 0$ tels que $f(t) \le M g(t)$ pour $t \in [c, b[$. D'après le point 1 de {@fr:c6-proprietes}, $\int_a^b Mg$ converge ; d'après 1, $\int_a^b f$ converge.
 
-其值为 $\frac{\pi}{2}$（Dirichlet 积分，第 7 章 {@dirichlet-integrale}）。
+**3.**　**On traduit l'hypothèse** : $f(t) = g(t)\big(1 + \eps(t)\big)$ avec $\eps(t) \to 0$ quand $t \to b$. Choisissons $c \in [a, b[$ tel que $\abs{\eps(t)} \le \frac12$ pour $t \in [c, b[$ ; alors sur $[c, b[$,
+$$\tfrac12 g \le f \le \tfrac32 g.$$
+Si $\int g$ converge, l'inégalité de droite et 1 (appliqué à $\frac32 g$) montrent que $\int f$ converge ; si $\int f$ converge, l'inégalité de gauche et 1 (appliqué à $2f \ge g$) montrent que $\int g$ converge.
+:::
+
+::: rem
+1. **正性不能去掉。** 第 3 条对变号函数不成立，反例见 {@c6-cex-equiv-signe}（§3）。
+2. **只看端点附近。** 由于 {@c6-coherence}，比较只需在问题端点附近成立；有多个问题点时（例如 $]0, +\infty[$），在中间某点分开，每个端点分别比较。
+3. **$O$ 不能换成双向的结论。** 第 2 条只给一个方向：$f = O(g)$ 且 $\int f$ 收敛推不出 $\int g$ 收敛。例：在 $[1, +\infty[$ 上 $\frac{1}{t^2} = O\big(\frac1t\big)$，$\int_1^{+\infty}\frac{\dd t}{t^2}$ 收敛，而 $\int_1^{+\infty}\frac{\dd t}{t}$ 发散。要判断发散，必须找一个**下界**，其积分发散。
+
+:::
+
+::: ex id=c6-ex-comparaison zh="比较定理的四个例子" lvl=1
+1. **$\int_0^{+\infty}\e^{-t^2}\,\dd t$ 收敛。** 唯一的问题点是 $+\infty$。对 $t \ge 1$，$t^2 \ge t$，所以 $0 \le \e^{-t^2} \le \e^{-t}$；$\int_1^{+\infty}\e^{-t}\,\dd t$ 收敛（{@riemann-integrales}），由比较定理第 1 条即得。
+2. **$\int_0^1\frac{\dd t}{\sqrt{t(1-t)}}$ 收敛。** 两个问题点 $0$ 与 $1$，在 $\frac12$ 处分开。$t \to 0^+$ 时 $\frac{1}{\sqrt{t(1-t)}} \sim \frac{1}{\sqrt t}$，而 $\int_0^{1/2} t^{-1/2}\,\dd t$ 收敛（$\alpha = \frac12 < 1$）；$t \to 1^-$ 时 $\sim \frac{1}{\sqrt{1 - t}}$，换元 $u = 1 - t$ 化为同样的情形。由第 3 条，两半都收敛。（其值为 $\pi$，见 {@c6-ex-changement}。）
+3. **$\int_1^{+\infty}\frac{\ln t}{t^2}\,\dd t$ 收敛。** $t^{3/2}\cdot\frac{\ln t}{t^2} = \frac{\ln t}{\sqrt t} \to 0$，所以 $\frac{\ln t}{t^2} = o\big(t^{-3/2}\big)$，特别地 $= O\big(t^{-3/2}\big)$；$\int_1^{+\infty}t^{-3/2}\,\dd t$ 收敛（$\frac32 > 1$），由第 2 条即得。（分部积分可得其值为 $1$。）
+4. **$\int_2^{+\infty}\frac{\dd t}{\ln t}$ 发散。** 对 $t \ge 2$，$0 < \ln t \le t$，所以 $\frac{1}{\ln t} \ge \frac1t$；$\int_2^{+\infty}\frac{\dd t}{t}$ 发散，由第 1 条的逆否形式即得。
 :::
 
 ::: thm id=bertrand-integrales zh="Bertrand 积分" en="Bertrand integrals" fr="Intégrales de Bertrand" ru="Интегралы Бертрана" lvl=2
 $\int_2^{+\infty}\dfrac{\dd t}{t^\alpha(\ln t)^\beta}$ 收敛，当且仅当 $\alpha > 1$，或 $\alpha = 1$ 且 $\beta > 1$。
 :::
 
+::: fr
+L'intégrale $\int_2^{+\infty}\dfrac{\dd t}{t^\alpha(\ln t)^\beta}$ converge si et seulement si $\alpha > 1$, ou $\alpha = 1$ et $\beta > 1$.
+:::
+
 ::: sketch
-与 Bertrand 级数 {@bertrand} 相同：$\alpha \ne 1$ 时与 $t^{-(1+\alpha)/2}$ 比较；$\alpha = 1$ 时换元 $u = \ln t$ 化为 $\int \frac{\dd u}{u^\beta}$。
+▷ 思路：与 Bertrand 级数 {@bertrand} 相同。$\alpha \ne 1$ 时，用介于 $\alpha$ 与 $1$ 之间的指数 $\frac{1 + \alpha}{2}$ 吸收对数因子；$\alpha = 1$ 时，换元 $u = \ln t$ 化为 Riemann 积分。记 $f(t) = \frac{1}{t^\alpha(\ln t)^\beta} > 0$。
+
+**情形 1（$\alpha > 1$）**　令 $\gamma = \frac{1 + \alpha}{2} \in\, ]1, \alpha[$。则 $\frac{f(t)}{t^{-\gamma}} = \frac{t^{\gamma - \alpha}}{(\ln t)^\beta} = \frac{1}{t^{(\alpha - 1)/2}(\ln t)^\beta} \to 0$（幂函数压倒对数，对任何 $\beta$），所以 $f = o(t^{-\gamma})$。$\int_2^{+\infty}t^{-\gamma}$ 收敛，由比较定理第 2 条，收敛。
+
+**情形 2（$\alpha < 1$）**　同样令 $\gamma = \frac{1 + \alpha}{2} \in\, ]\alpha, 1[$。则 $\frac{f(t)}{t^{-\gamma}} = \frac{t^{(1 - \alpha)/2}}{(\ln t)^\beta} \to +\infty$，所以存在 $c$ 使 $t \ge c$ 时 $f(t) \ge t^{-\gamma}$。$\int_c^{+\infty}t^{-\gamma}$ 发散，由比较定理第 1 条，发散。
+
+**情形 3（$\alpha = 1$）**　对 $x > 2$，令 $u = \ln t$（$\dd u = \frac{\dd t}{t}$）：$\int_2^x\frac{\dd t}{t(\ln t)^\beta} = \int_{\ln 2}^{\ln x}\frac{\dd u}{u^\beta}$。$x \to +\infty$ 时 $\ln x \to +\infty$，由 {@riemann-integrales}，右边收敛当且仅当 $\beta > 1$。（$\beta = 1$ 时原函数是 $\ln\ln t$。）
 :::
 
-::: method zh="判断广义积分收敛的步骤"
-1. 找出所有「问题点」（无穷端点、函数无界的点），在每个问题点附近分别讨论。
-2. 函数非负（或最终同号）时：求等价量，与 Riemann 积分或 Bertrand 积分比较。
-3. 函数变号时：先试绝对收敛；不行再用分部积分（如 $\frac{\sin t}{t}$）或 Abel 型判别法。
-4. 积分与级数的转换：{@serie-integrale}。
+::: fr
+▷ Méthode : comme pour les séries de Bertrand ({@fr:bertrand}). Si $\alpha \ne 1$, l'exposant intermédiaire $\frac{1 + \alpha}{2}$ absorbe le facteur logarithmique ; si $\alpha = 1$, le changement de variable $u = \ln t$ ramène à une intégrale de Riemann. Notons $f(t) = \frac{1}{t^\alpha(\ln t)^\beta} > 0$.
+
+**Cas 1 ($\alpha > 1$)**　Posons $\gamma = \frac{1 + \alpha}{2} \in\, ]1, \alpha[$. Alors $\frac{f(t)}{t^{-\gamma}} = \frac{t^{\gamma - \alpha}}{(\ln t)^\beta} = \frac{1}{t^{(\alpha - 1)/2}(\ln t)^\beta} \to 0$ (croissances comparées, pour tout $\beta$), donc $f = o(t^{-\gamma})$. Comme $\int_2^{+\infty}t^{-\gamma}$ converge, le point 2 du théorème de comparaison donne la convergence.
+
+**Cas 2 ($\alpha < 1$)**　Posons encore $\gamma = \frac{1 + \alpha}{2} \in\, ]\alpha, 1[$. Alors $\frac{f(t)}{t^{-\gamma}} = \frac{t^{(1 - \alpha)/2}}{(\ln t)^\beta} \to +\infty$, donc il existe $c$ tel que $f(t) \ge t^{-\gamma}$ pour $t \ge c$. Comme $\int_c^{+\infty}t^{-\gamma}$ diverge, le point 1 du théorème de comparaison donne la divergence.
+
+**Cas 3 ($\alpha = 1$)**　Pour $x > 2$, posons $u = \ln t$ ($\dd u = \frac{\dd t}{t}$) : $\int_2^x\frac{\dd t}{t(\ln t)^\beta} = \int_{\ln 2}^{\ln x}\frac{\dd u}{u^\beta}$. Quand $x \to +\infty$, $\ln x \to +\infty$, et d'après {@fr:riemann-integrales} le membre de droite converge si et seulement si $\beta > 1$. (Pour $\beta = 1$, une primitive est $\ln\ln t$.)
 :::
 
-## 积分技巧
-
-::: thm id=ipp-generalisee zh="广义分部积分" en="Integration by parts on an interval" fr="Intégration par parties généralisée" ru="Интегрирование по частям в несобственном интеграле" lvl=1
-设 $u, v \in \Cc^1(]a, b[)$，且 $uv$ 在 $a^+$ 和 $b^-$ 处有有限极限。则 $\int_a^b u'v$ 与 $\int_a^b uv'$ 同敛散，收敛时
-$$\int_a^b u'v = \big[uv\big]_a^b - \int_a^b uv',\qquad \big[uv\big]_a^b = \lim_{b^-} uv - \lim_{a^+} uv.$$
+::: lem id=c6-serie-integrale-pos zh="非负函数：积分与级数" en="Non-negative integrands: integral versus series" fr="Fonctions positives : intégrale et série" ru="Неотрицательные функции: интеграл и ряд" lvl=1
+设 $f$ 在 $[a, +\infty[$ 上分段连续且 $f \ge 0$，令 $u_n = \int_{a+n}^{a+n+1} f$（$n \in \N$）。则 $\int_a^{+\infty} f$ 收敛，当且仅当 $\sum u_n$ 收敛，且此时 $\int_a^{+\infty} f = \sum_{n \ge 0}u_n$。
 :::
 
-::: proof
-在 $[x, y] \subset ]a, b[$ 上做普通的分部积分，然后令 $x \to a$，$y \to b$。
-:::
-
-::: thm id=changement-variable-gen zh="广义变量替换" en="Change of variables" fr="Changement de variable" ru="Замена переменной в несобственном интеграле" lvl=1
-设 $\varphi : ]\alpha, \beta[ \to ]a, b[$ 是 $\Cc^1$ 的严格单调双射。则 $\int_a^b f(t)\,\dd t$ 与 $\int_\alpha^\beta f(\varphi(u))\abs{\varphi'(u)}\,\dd u$ 同敛散，收敛时相等。
-:::
-
-::: proof
-在闭子区间上用普通的变量替换公式，然后取极限。$\varphi$ 是双射，所以 $u \to \alpha^+, \beta^-$ 对应 $t$ 趋于 $a, b$（顺序由单调方向决定，绝对值处理了递减的情形）。
-:::
-
-::: def id=def-gamma zh="Γ 函数" en="Gamma function" fr="Fonction Gamma d'Euler" ru="Гамма-функция Эйлера"
-对 $x > 0$，
-$$\Gamma(x) = \int_0^{+\infty} t^{x-1}\e^{-t}\,\dd t.$$
-积分在 $0$ 处与 $t^{x-1}$ 比较（$x > 0$ 时收敛），在 $+\infty$ 处 $t^{x-1}\e^{-t} = O(t^{-2})$。
-:::
-
-::: prop id=gamma-factorielle lvl=1
-$\Gamma(x + 1) = x\,\Gamma(x)$，$\Gamma(1) = 1$，从而 $\Gamma(n + 1) = n!$。
+::: fr
+Soit $f$ continue par morceaux et positive sur $[a, +\infty[$, et $u_n = \int_{a+n}^{a+n+1} f$ ($n \in \N$). Alors $\int_a^{+\infty} f$ converge si et seulement si $\sum u_n$ converge, et dans ce cas $\int_a^{+\infty} f = \sum_{n \ge 0}u_n$.
 :::
 
 ::: proof
-用 {@ipp-generalisee}，$u = -\e^{-t}$，$v = t^x$：边界项 $\big[-t^x\e^{-t}\big]_0^\infty = 0$（$x > 0$），所以 $\Gamma(x + 1) = x\int_0^\infty t^{x-1}\e^{-t}\,\dd t$。
+▷ 思路：两者都是递增量的有界性问题，而 $F(a + N)$ 恰好是级数的部分和。
+
+记 $F(x) = \int_a^x f$，$S_N = \sum_{n=0}^{N-1}u_n$。由 Chasles 关系，$S_N = F(a + N)$。
+
+**(⇒)**　若 $\int_a^{+\infty} f$ 收敛，由 {@c6-positif-borne}，$S_N = F(a + N) \le \sup F < \infty$，正项级数 $\sum u_n$ 的部分和有界，所以收敛。
+
+**(⇐)**　若 $\sum u_n$ 收敛于 $S$，对 $x \ge a$，取 $N = E(x - a) + 1$，则 $a + N > x$，由 $F$ 递增，$F(x) \le F(a + N) = S_N \le S$。由 {@c6-positif-borne}，$\int_a^{+\infty} f$ 收敛。
+
+**（值）**　收敛时 $F(a + N) \to \int_a^{+\infty} f$（沿数列 $a + N \to +\infty$ 取极限），而 $F(a + N) = S_N \to \sum u_n$。
 :::
 
-## 控制收敛与逐项积分
+::: fr
+▷ Méthode : dans les deux cas, il s'agit de majorer une quantité croissante, et $F(a + N)$ est exactement une somme partielle de la série.
 
-以下两个定理来自 Lebesgue 积分论。法国 MP 大纲把它们作为**已承认的定理**使用（théorèmes admis），因为它们的证明需要测度论，但它们的应用完全不需要。
+Notons $F(x) = \int_a^x f$ et $S_N = \sum_{n=0}^{N-1}u_n$. Par la relation de Chasles, $S_N = F(a + N)$.
 
-::: thm id=cv-dominee zh="控制收敛定理" en="Dominated convergence theorem" fr="Théorème de convergence dominée" ru="Теорема Лебега о мажорированной сходимости" lvl=3 ref="L3 积分论；Rudin, *Real and Complex Analysis*，定理 1.34；Briane–Pagès, *Théorie de l'intégration*"
-设 $(f_n)$ 是 $I$ 上分段连续的函数列，满足：
+**(⇒)**　Si $\int_a^{+\infty} f$ converge, d'après {@fr:c6-positif-borne}, $S_N = F(a + N) \le \sup F < \infty$ : les sommes partielles de la série à termes positifs $\sum u_n$ sont majorées, donc elle converge.
 
-1. $(f_n)$ 在 $I$ 上逐点收敛到分段连续的函数 $f$；
-2. （控制条件）存在 $I$ 上可积的非负函数 $\varphi$，使 $\abs{f_n} \le \varphi$ 对一切 $n$ 成立（$\varphi$ 不依赖于 $n$）。
+**(⇐)**　Si $\sum u_n$ converge vers $S$, pour $x \ge a$ posons $N = E(x - a) + 1$ ; alors $a + N > x$ et, $F$ étant croissante, $F(x) \le F(a + N) = S_N \le S$. D'après {@fr:c6-positif-borne}, $\int_a^{+\infty} f$ converge.
 
-则 $f_n$、$f$ 都在 $I$ 上可积，且
-$$\int_I f_n \xrightarrow[n \to \infty]{} \int_I f.$$
+**(Valeur)**　En cas de convergence, $F(a + N) \to \int_a^{+\infty} f$ (limite le long de la suite $a + N \to +\infty$), et $F(a + N) = S_N \to \sum u_n$.
 :::
 
-::: rem
-与 {@integration-unif} 比较：这里只需要**逐点**收敛，区间可以是无界的；代价是需要一个可积的控制函数。在法国教材中，这是讨论「极限与积分交换」最常用的工具。第 7 章会把它推广到连续参数。
-:::
-
-::: ex id=ex-cv-dominee lvl=1
-求 $\lim_{n \to \infty}\int_0^n\Big(1 - \frac tn\Big)^n\,\dd t$。令 $f_n(t) = (1 - \frac tn)^n\mathbf{1}_{[0,n]}(t)$。由 $\ln(1 - u) \le -u$，$0 \le f_n(t) \le \e^{-t}$，而 $\e^{-t}$ 在 $[0, +\infty[$ 上可积。$f_n(t) \to \e^{-t}$ 逐点成立。由控制收敛定理，极限为 $\int_0^\infty\e^{-t}\,\dd t = 1$。
-（$f_n$ 在 $t = n$ 处连续，所以是分段连续的。）
-:::
-
-::: cex id=cex-domination lvl=1
-控制条件不能省略。$f_n = n\,\mathbf{1}_{]0, 1/n]}$ 在 $]0, 1]$ 上逐点收敛到 $0$，但 $\int f_n = 1$。任何控制函数都必须满足 $\varphi \ge \sup_n f_n$，而 $\sup_n f_n(t) \ge \frac{1}{2t}$ 在 $]0, 1]$ 上不可积。{@cex-bosse} 也是同样的现象。
-:::
-
-::: thm id=integration-terme-a-terme zh="逐项积分定理" en="Term-by-term integration theorem" fr="Théorème d'intégration terme à terme" ru="Теорема о почленном интегрировании ряда" lvl=3 ref="L3 积分论（单调收敛定理的推论）；Rudin, *Real and Complex Analysis*，定理 1.38"
-设 $f_n$ 在 $I$ 上分段连续且可积，$\sum f_n$ 逐点收敛到分段连续的函数 $f$，并且
-$$\sum_{n}\int_I \abs{f_n} < +\infty.$$
-则 $f$ 在 $I$ 上可积，且 $\displaystyle\int_I \sum_n f_n = \sum_n\int_I f_n$。
-:::
-
-::: ex id=ex-zeta2-integrale lvl=1
-$$\int_0^{+\infty}\frac{t}{\e^t - 1}\,\dd t = \zeta(2) = \frac{\pi^2}{6}.$$
-对 $t > 0$，$\frac{t}{\e^t - 1} = \sum_{n \ge 1} t\,\e^{-nt}$。令 $f_n(t) = t\,\e^{-nt} \ge 0$，$\int_0^\infty f_n = \frac{1}{n^2}$，$\sum\frac{1}{n^2} < \infty$。由逐项积分定理即得。一般地，对 $s > 1$，$\int_0^\infty\frac{t^{s-1}}{\e^t - 1}\,\dd t = \Gamma(s)\zeta(s)$。
-:::
-
-::: thm id=cv-monotone zh="单调收敛定理" en="Monotone convergence theorem" fr="Théorème de convergence monotone" ru="Теорема Беппо Леви о монотонной сходимости" lvl=3 ref="L3 积分论；Rudin, *Real and Complex Analysis*，定理 1.26"
-设 $0 \le f_0 \le f_1 \le \cdots$ 逐点收敛到 $f$（均为分段连续）。则 $\int_I f_n \to \int_I f$（在 $[0, +\infty]$ 中，即两边可以同时为 $+\infty$）。逐项积分定理对非负函数项级数的情形是它的直接推论。
-:::
-
-## 级数与积分的比较（续）
-
-::: prop id=serie-integrale-reste lvl=1
-设 $f : [1, +\infty[ \to \R_+$ 连续递减，$\int_1^\infty f$ 收敛。则余项满足
+::: prop id=serie-integrale-reste zh="级数余项的积分估计" en="Integral bounds for the remainder of a series" fr="Encadrement du reste d'une série par des intégrales" ru="Оценка остатка ряда интегралами" lvl=1
+设 $f : [1, +\infty[ \to \R_+$ 连续递减，$\int_1^\infty f$ 收敛。则对 $n \ge 1$，余项满足
 $$\int_{n+1}^{+\infty} f \le \sum_{k > n} f(k) \le \int_n^{+\infty} f.$$
 例：$\sum_{k > n}\frac{1}{k^2} \sim \frac1n$，$\sum_{k > n}\frac{1}{k^\alpha} \sim \frac{n^{1-\alpha}}{\alpha - 1}$（$\alpha > 1$）。
 :::
 
-::: proof
-对 {@serie-integrale} 中的不等式从 $n+1$ 到 $\infty$ 求和。等价关系：两边的积分都等价于 $\frac{n^{1-\alpha}}{\alpha - 1}$。
+::: fr
+Soit $f : [1, +\infty[ \to \R_+$ continue et décroissante, avec $\int_1^\infty f$ convergente. Pour $n \ge 1$, le reste vérifie
+$$\int_{n+1}^{+\infty} f \le \sum_{k > n} f(k) \le \int_n^{+\infty} f.$$
+Exemple : $\sum_{k > n}\frac{1}{k^2} \sim \frac1n$, et $\sum_{k > n}\frac{1}{k^\alpha} \sim \frac{n^{1-\alpha}}{\alpha - 1}$ ($\alpha > 1$).
 :::
 
-::: hist zh="从 Riemann 到 Lebesgue"
-Riemann 积分的缺陷在于极限运算：可积函数的逐点极限（即使有界）未必 Riemann 可积，例如有理数的指示函数是阶梯函数序列的逐点极限。Lebesgue 在 1902 年的博士论文中用测度重建了积分，得到控制收敛定理和完备的 $L^1$ 空间（对比 {@cex-c01-l1}）。本章的「已承认定理」正是这个理论在分段连续函数上的投影。
+::: proof
+▷ 思路：对 {@serie-integrale} 中每一项的夹逼不等式从 $k = n + 1$ 到 $+\infty$ 求和；等价关系由夹逼得到。
+
+**第 1 步（逐项夹逼）**　由 {@serie-integrale}（$f$ 在 $[k - 1, k + 1]$ 上递减），对 $k \ge 2$，$\int_k^{k+1} f \le f(k) \le \int_{k-1}^k f$。
+
+**第 2 步（求和）**　对 $k = n + 1, \dots, m$ 求和（$k - 1 \ge n \ge 1$），由 Chasles 关系，
+$$\int_{n+1}^{m+1} f \le \sum_{k=n+1}^m f(k) \le \int_n^m f.$$
+令 $m \to \infty$：两端积分收敛（{@c6-coherence}），中间是收敛的正项级数（由右边有界），取极限得结论。
+
+**第 3 步（例）**　$f(t) = t^{-\alpha}$（$\alpha > 1$）：$\int_n^{+\infty}t^{-\alpha}\,\dd t = \frac{n^{1-\alpha}}{\alpha - 1}$，$\int_{n+1}^{+\infty}t^{-\alpha}\,\dd t = \frac{(n+1)^{1-\alpha}}{\alpha - 1}$。因为 $\big(\frac{n+1}{n}\big)^{1-\alpha} \to 1$，两端都等价于 $\frac{n^{1-\alpha}}{\alpha - 1}$，由夹逼，余项也等价于它。$\alpha = 2$ 时为 $\frac1n$。
+:::
+
+::: fr
+▷ Méthode : on somme pour $k$ de $n + 1$ à $+\infty$ l'encadrement terme à terme de {@fr:serie-integrale} ; l'équivalent s'obtient par encadrement.
+
+**Étape 1 (encadrement terme à terme)**　D'après {@fr:serie-integrale} ($f$ décroissante sur $[k - 1, k + 1]$), pour $k \ge 2$, $\int_k^{k+1} f \le f(k) \le \int_{k-1}^k f$.
+
+**Étape 2 (sommation)**　En sommant pour $k = n + 1, \dots, m$ ($k - 1 \ge n \ge 1$) et par la relation de Chasles,
+$$\int_{n+1}^{m+1} f \le \sum_{k=n+1}^m f(k) \le \int_n^m f.$$
+On fait tendre $m$ vers $+\infty$ : les intégrales aux extrémités convergent ({@fr:c6-coherence}), le terme du milieu est une série à termes positifs convergente (majorée par le membre de droite), et on passe à la limite.
+
+**Étape 3 (exemple)**　Pour $f(t) = t^{-\alpha}$ ($\alpha > 1$) : $\int_n^{+\infty}t^{-\alpha}\,\dd t = \frac{n^{1-\alpha}}{\alpha - 1}$ et $\int_{n+1}^{+\infty}t^{-\alpha}\,\dd t = \frac{(n+1)^{1-\alpha}}{\alpha - 1}$. Comme $\big(\frac{n+1}{n}\big)^{1-\alpha} \to 1$, les deux bornes sont équivalentes à $\frac{n^{1-\alpha}}{\alpha - 1}$, donc le reste aussi, par encadrement. Pour $\alpha = 2$, on obtient $\frac1n$.
+:::
+
+::: method zh="判断广义积分收敛的步骤"
+1. 找出所有「问题点」（无穷端点、函数无界或振荡的端点），在每两个问题点之间取一个分点，对每个问题点分别讨论（{@def-integrale-generalisee}）。有界函数在有限端点处是「假问题」（{@c6-faux-probleme}）。
+2. 函数非负（或在问题点附近定号）时：求等价量或上界，与 Riemann 积分（{@riemann-integrales}）或 Bertrand 积分（{@bertrand-integrales}）比较（{@comparaison-integrales}）。
+3. 函数变号时：先试绝对收敛（{@integrable-convergente}）；不行再用分部积分（如 $\frac{\sin t}{t}$，{@sinc}）或 Abel 判别法（{@c6-abel-integrales}）。
+4. 积分与级数的转换：{@serie-integrale}、{@c6-serie-integrale-pos}。
+:::
+
+::: q
+对哪些 $(\alpha, \beta)$，$\int_0^{1/2}\dfrac{\dd t}{t^\alpha\abs{\ln t}^\beta}$ 收敛？
+:::
+
+::: ans
+换元 $t = \frac1u$（$\dd t = -\frac{\dd u}{u^2}$，$\abs{\ln t} = \ln u$，{@changement-variable-gen}）：
+$$\int_0^{1/2}\frac{\dd t}{t^\alpha\abs{\ln t}^\beta} = \int_2^{+\infty}\frac{u^\alpha}{(\ln u)^\beta}\cdot\frac{\dd u}{u^2} = \int_2^{+\infty}\frac{\dd u}{u^{2-\alpha}(\ln u)^\beta}.$$
+由 {@bertrand-integrales}，收敛当且仅当 $2 - \alpha > 1$，或 $2 - \alpha = 1$ 且 $\beta > 1$，即 **$\alpha < 1$，或 $\alpha = 1$ 且 $\beta > 1$**。注意在 $0$ 处与在 $+\infty$ 处，$\alpha$ 的临界方向相反。
 :::

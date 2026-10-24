@@ -10,13 +10,13 @@
 设 $P = [a_1, b_1] \times \dots \times [a_n, b_n]$（$a_i < b_i$）是闭矩形（pavé），体积 $\operatorname{vol}(P) = \prod_{i=1}^n (b_i - a_i)$。
 
 1. **分割**：对每个 $i$ 取 $[a_i, b_i]$ 的分点 $a_i = t_{i,0} < t_{i,1} < \dots < t_{i,N_i} = b_i$。所有形如
-$$Q = [t_{1,j_1-1}, t_{1,j_1}] \times \dots \times [t_{n,j_n-1}, t_{n,j_n}] \qquad (1 \le j_i \le N_i)$$
-的小矩形组成的集合 $\sigma$ 称为 $P$ 的一个**分割**（每个坐标区间分割的乘积）。展开乘积 $\prod_{i}\sum_{j}(t_{i,j} - t_{i,j-1})$ 可知 $\sum_{Q \in \sigma}\operatorname{vol}(Q) = \operatorname{vol}(P)$。若 $\sigma'$ 在每个坐标上的分点都包含 $\sigma$ 的分点，称 $\sigma'$ 比 $\sigma$ **细**；把 $\sigma$、$\tau$ 的分点逐个坐标取并，得到比两者都细的**公共加细** $\sigma \vee \tau$。
+   $$Q = [t_{1,j_1-1}, t_{1,j_1}] \times \dots \times [t_{n,j_n-1}, t_{n,j_n}] \qquad (1 \le j_i \le N_i)$$
+   的小矩形组成的集合 $\sigma$ 称为 $P$ 的一个**分割**（每个坐标区间分割的乘积）。展开乘积 $\prod_{i}\sum_{j}(t_{i,j} - t_{i,j-1})$ 可知 $\sum_{Q \in \sigma}\operatorname{vol}(Q) = \operatorname{vol}(P)$。若 $\sigma'$ 在每个坐标上的分点都包含 $\sigma$ 的分点，称 $\sigma'$ 比 $\sigma$ **细**；把 $\sigma$、$\tau$ 的分点逐个坐标取并，得到比两者都细的**公共加细** $\sigma \vee \tau$。
 2. **Darboux 和**：设 $f : P \to \R$ 有界。对 $Q \in \sigma$ 记 $M_Q(f) = \sup_Q f$，$m_Q(f) = \inf_Q f$，定义 Darboux 上和与下和
-$$S^+(f, \sigma) = \sum_{Q \in \sigma} M_Q(f)\operatorname{vol}(Q),\qquad S^-(f, \sigma) = \sum_{Q \in \sigma} m_Q(f)\operatorname{vol}(Q).$$
+   $$S^+(f, \sigma) = \sum_{Q \in \sigma} M_Q(f)\operatorname{vol}(Q),\qquad S^-(f, \sigma) = \sum_{Q \in \sigma} m_Q(f)\operatorname{vol}(Q).$$
 3. **可积**：若
-$$\inf_{\sigma} S^+(f, \sigma) = \sup_{\sigma} S^-(f, \sigma),$$
-称 $f$ 在 $P$ 上 **Riemann 可积**，这个公共值记为 $\int_P f$；二维时也写 $\iint_P f(x, y)\,\dd x\,\dd y$，三维时写 $\iiint_P f$。
+   $$\inf_{\sigma} S^+(f, \sigma) = \sup_{\sigma} S^-(f, \sigma),$$
+   称 $f$ 在 $P$ 上 **Riemann 可积**，这个公共值记为 $\int_P f$；二维时也写 $\iint_P f(x, y)\,\dd x\,\dd y$，三维时写 $\iiint_P f$。
 
 白话：用分片常数函数从上、下两侧夹住 $f$；如果上、下两侧的「带符号体积」可以任意接近，它们共同的值就是积分。
 :::
@@ -25,13 +25,13 @@ $$\inf_{\sigma} S^+(f, \sigma) = \sup_{\sigma} S^-(f, \sigma),$$
 Soit $P = [a_1, b_1] \times \dots \times [a_n, b_n]$ ($a_i < b_i$) un pavé fermé, de volume $\operatorname{vol}(P) = \prod_{i=1}^n (b_i - a_i)$.
 
 1. **Subdivision** : pour chaque $i$, on choisit des points $a_i = t_{i,0} < t_{i,1} < \dots < t_{i,N_i} = b_i$. L'ensemble $\sigma$ des sous-pavés
-$$Q = [t_{1,j_1-1}, t_{1,j_1}] \times \dots \times [t_{n,j_n-1}, t_{n,j_n}] \qquad (1 \le j_i \le N_i)$$
-est appelé une **subdivision** de $P$ (produit de subdivisions des intervalles). En développant le produit $\prod_{i}\sum_{j}(t_{i,j} - t_{i,j-1})$, on obtient $\sum_{Q \in \sigma}\operatorname{vol}(Q) = \operatorname{vol}(P)$. On dit que $\sigma'$ est **plus fine** que $\sigma$ si, pour chaque coordonnée, les points de $\sigma'$ contiennent ceux de $\sigma$ ; en réunissant coordonnée par coordonnée les points de $\sigma$ et de $\tau$, on obtient une subdivision $\sigma \vee \tau$ plus fine que les deux.
+   $$Q = [t_{1,j_1-1}, t_{1,j_1}] \times \dots \times [t_{n,j_n-1}, t_{n,j_n}] \qquad (1 \le j_i \le N_i)$$
+   est appelé une **subdivision** de $P$ (produit de subdivisions des intervalles). En développant le produit $\prod_{i}\sum_{j}(t_{i,j} - t_{i,j-1})$, on obtient $\sum_{Q \in \sigma}\operatorname{vol}(Q) = \operatorname{vol}(P)$. On dit que $\sigma'$ est **plus fine** que $\sigma$ si, pour chaque coordonnée, les points de $\sigma'$ contiennent ceux de $\sigma$ ; en réunissant coordonnée par coordonnée les points de $\sigma$ et de $\tau$, on obtient une subdivision $\sigma \vee \tau$ plus fine que les deux.
 2. **Sommes de Darboux** : soit $f : P \to \R$ bornée. Pour $Q \in \sigma$, on note $M_Q(f) = \sup_Q f$, $m_Q(f) = \inf_Q f$, et l'on définit les sommes de Darboux supérieure et inférieure
-$$S^+(f, \sigma) = \sum_{Q \in \sigma} M_Q(f)\operatorname{vol}(Q),\qquad S^-(f, \sigma) = \sum_{Q \in \sigma} m_Q(f)\operatorname{vol}(Q).$$
+   $$S^+(f, \sigma) = \sum_{Q \in \sigma} M_Q(f)\operatorname{vol}(Q),\qquad S^-(f, \sigma) = \sum_{Q \in \sigma} m_Q(f)\operatorname{vol}(Q).$$
 3. **Intégrabilité** : si
-$$\inf_{\sigma} S^+(f, \sigma) = \sup_{\sigma} S^-(f, \sigma),$$
-on dit que $f$ est **intégrable au sens de Riemann** sur $P$ ; la valeur commune est notée $\int_P f$, ou $\iint_P f(x, y)\,\dd x\,\dd y$ si $n = 2$, $\iiint_P f$ si $n = 3$.
+   $$\inf_{\sigma} S^+(f, \sigma) = \sup_{\sigma} S^-(f, \sigma),$$
+   on dit que $f$ est **intégrable au sens de Riemann** sur $P$ ; la valeur commune est notée $\int_P f$, ou $\iint_P f(x, y)\,\dd x\,\dd y$ si $n = 2$, $\iiint_P f$ si $n = 3$.
 
 Autrement dit : on encadre $f$ par des fonctions constantes par morceaux ; si les « volumes algébriques » des encadrements supérieur et inférieur peuvent être rendus arbitrairement proches, leur valeur commune est l'intégrale.
 :::
@@ -40,7 +40,7 @@ Autrement dit : on encadre $f$ par des fonctions constantes par morceaux ; si le
 设 $f : P \to \R$ 有界，$\sigma, \tau$ 是 $P$ 的分割。
 
 1. 若 $\tau$ 比 $\sigma$ 细，则
-$$S^-(f, \sigma) \le S^-(f, \tau) \le S^+(f, \tau) \le S^+(f, \sigma).$$
+   $$S^-(f, \sigma) \le S^-(f, \tau) \le S^+(f, \tau) \le S^+(f, \sigma).$$
 2. 对任意两个分割 $\sigma, \tau$，$S^-(f, \sigma) \le S^+(f, \tau)$。
 
 因此 $\sup_\sigma S^-(f, \sigma) \le \inf_\tau S^+(f, \tau)$（这两个数分别称为 $f$ 的**下积分**与**上积分**）。
@@ -50,7 +50,7 @@ $$S^-(f, \sigma) \le S^-(f, \tau) \le S^+(f, \tau) \le S^+(f, \sigma).$$
 Soient $f : P \to \R$ bornée et $\sigma, \tau$ deux subdivisions de $P$.
 
 1. Si $\tau$ est plus fine que $\sigma$, alors
-$$S^-(f, \sigma) \le S^-(f, \tau) \le S^+(f, \tau) \le S^+(f, \sigma).$$
+   $$S^-(f, \sigma) \le S^-(f, \tau) \le S^+(f, \tau) \le S^+(f, \sigma).$$
 2. Pour toutes subdivisions $\sigma, \tau$, on a $S^-(f, \sigma) \le S^+(f, \tau)$.
 
 Par conséquent $\sup_\sigma S^-(f, \sigma) \le \inf_\tau S^+(f, \tau)$ (ces deux nombres sont appelés **intégrale inférieure** et **intégrale supérieure** de $f$).
@@ -158,7 +158,10 @@ Comme $\eps$ est arbitraire, $I^+ = I^-$ : $f$ est intégrable.
 用定义计算 $\iint_{[0,1]^2} xy\,\dd x\,\dd y$。取正则分割 $\sigma_N$：每个坐标区间 $[0, 1]$ 分成 $N$ 等份，小矩形 $Q_{ij} = [\frac{i-1}{N}, \frac iN] \times [\frac{j-1}{N}, \frac jN]$（$1 \le i, j \le N$），面积 $\frac1{N^2}$。在 $Q_{ij}$ 上 $x, y \ge 0$，$xy$ 对每个变量单调递增，所以上确界在右上角取到、下确界在左下角取到：
 $$M_{Q_{ij}} = \frac{ij}{N^2},\qquad m_{Q_{ij}} = \frac{(i-1)(j-1)}{N^2}.$$
 用 $\sum_{i=1}^N i = \frac{N(N+1)}{2}$：
-$$S^+(f, \sigma_N) = \frac1{N^4}\Big(\sum_{i=1}^N i\Big)\Big(\sum_{j=1}^N j\Big) = \frac{(N+1)^2}{4N^2},\qquad S^-(f, \sigma_N) = \frac1{N^4}\Big(\sum_{i=1}^{N} (i-1)\Big)^2 = \frac{(N-1)^2}{4N^2}.$$
+$$\begin{aligned}
+S^+(f, \sigma_N) &= \frac1{N^4}\Big(\sum_{i=1}^N i\Big)\Big(\sum_{j=1}^N j\Big) = \frac{(N+1)^2}{4N^2},\\
+S^-(f, \sigma_N) &= \frac1{N^4}\Big(\sum_{i=1}^{N} (i-1)\Big)^2 = \frac{(N-1)^2}{4N^2}.
+\end{aligned}$$
 于是 $S^+ - S^- = \frac{(N+1)^2 - (N-1)^2}{4N^2} = \frac1N \to 0$，由 {@c11-critere-riemann}，$f$ 可积；又 $\int f$ 夹在 $S^-(f, \sigma_N)$ 与 $S^+(f, \sigma_N)$ 之间，两者都趋于 $\frac14$，所以 $\iint_{[0,1]^2} xy = \frac14$。
 :::
 
@@ -565,7 +568,7 @@ $D = \Q^2 \cap [0, 1]^2$ **不是** Jordan 可测的。$[0, 1]^2$ 的每一点�
 2. （覆盖估计）若 Jordan 可测集 $E \subset R_1 \cup \dots \cup R_m$（闭矩形），则 $\operatorname{vol}(E) \le \sum_k\operatorname{vol}(R_k)$。特别地，零容度的 Jordan 可测集体积为 $0$。
 3. $\abs{\int_Df} \le \sup_D\abs f\cdot\operatorname{vol}(D)$。
 4. （可加性）$D_1 \cup D_2$、$D_1 \cap D_2$、$D_1 \setminus D_2$ 都是 Jordan 可测的；若 $\operatorname{vol}(D_1 \cap D_2) = 0$（例如 $D_1 \cap D_2 = \varnothing$ 或是零容度集），则对 $D_1 \cup D_2$ 上的连续有界函数 $f$，
-$$\int_{D_1 \cup D_2}f = \int_{D_1}f + \int_{D_2}f.$$
+   $$\int_{D_1 \cup D_2}f = \int_{D_1}f + \int_{D_2}f.$$
 5. （小差集）若 $D \subset D'$ 且 $D' \setminus D \subset R_1 \cup \dots \cup R_m$，则 $\abs{\int_{D'}f - \int_Df} \le \sup_{D'}\abs f\cdot\sum_k\operatorname{vol}(R_k)$。
 6. （对区域单调）若 $D \subset D'$ 且在 $D'$ 上 $f \ge 0$，则 $\int_Df \le \int_{D'}f$。
 :::
@@ -577,7 +580,7 @@ Soient $D, D', D_1, D_2 \subset \R^n$ des parties mesurables au sens de Jordan, 
 2. (Majoration par un recouvrement) Si $E$ est mesurable au sens de Jordan et $E \subset R_1 \cup \dots \cup R_m$ (pavés fermés), alors $\operatorname{vol}(E) \le \sum_k\operatorname{vol}(R_k)$. En particulier, une partie mesurable de contenu nul est de volume nul.
 3. $\abs{\int_Df} \le \sup_D\abs f\cdot\operatorname{vol}(D)$.
 4. (Additivité) $D_1 \cup D_2$, $D_1 \cap D_2$ et $D_1 \setminus D_2$ sont mesurables au sens de Jordan ; si $\operatorname{vol}(D_1 \cap D_2) = 0$ (par exemple si $D_1 \cap D_2 = \varnothing$ ou est de contenu nul), alors pour toute $f$ continue et bornée sur $D_1 \cup D_2$,
-$$\int_{D_1 \cup D_2}f = \int_{D_1}f + \int_{D_2}f.$$
+   $$\int_{D_1 \cup D_2}f = \int_{D_1}f + \int_{D_2}f.$$
 5. (Petite différence) Si $D \subset D'$ et $D' \setminus D \subset R_1 \cup \dots \cup R_m$, alors $\abs{\int_{D'}f - \int_Df} \le \sup_{D'}\abs f\cdot\sum_k\operatorname{vol}(R_k)$.
 6. (Croissance par rapport au domaine) Si $D \subset D'$ et $f \ge 0$ sur $D'$, alors $\int_Df \le \int_{D'}f$.
 :::
@@ -820,12 +823,18 @@ $$\norm{\dd\psi(y)} = \norm{J_\Phi(c)^{-1}\big(J_\Phi(y) - J_\Phi(c)\big)} \le C
 $$\operatorname{vol}(\Phi(Q)) \le \abs{\det J_\Phi(c)}\,(1 + \eps)^nh^n = (1 + \eps)^n\abs{\det J_\Phi(c)}\operatorname{vol}(Q).$$
 
 **第 4 步（$f \ge 0$ 时的「$\le$」）**　设 $f \ge 0$，令 $g = (f \circ \Phi)\abs{\det J_\Phi}$（$D$ 上连续，$\ge 0$）。取边长 $h \le \delta$ 的立方体网格，$Q_1, \dots, Q_N$ 为与 $D$ 相交的那些（它们包含于 $K$），中心为 $c_j$。$\Phi(D \cap Q_j)$ 覆盖 $\Phi(D)$ 且两两只交于面的像，由 {@c11-additivite} 第 4、3、6 条与第 3 步，
-$$\int_{\Phi(D)}f = \sum_j\int_{\Phi(D \cap Q_j)}f \le \sum_j\sup_{D \cap Q_j}(f \circ \Phi)\operatorname{vol}(\Phi(Q_j)) \le (1 + \eps)^n\sum_j\sup_{D \cap Q_j}(f \circ \Phi)\abs{\det J_\Phi(c_j)}\operatorname{vol}(Q_j).$$
+$$\begin{aligned}
+\int_{\Phi(D)}f &= \sum_j\int_{\Phi(D \cap Q_j)}f \le \sum_j\sup_{D \cap Q_j}(f \circ \Phi)\operatorname{vol}(\Phi(Q_j))\\
+&\le (1 + \eps)^n\sum_j\sup_{D \cap Q_j}(f \circ \Phi)\abs{\det J_\Phi(c_j)}\operatorname{vol}(Q_j).
+\end{aligned}$$
 把右边的和分成两部分（常规估计）：(α) $Q_j \subset D$ 的项：由 $f \circ \Phi$ 与 $\abs{\det J_\Phi}$ 的一致连续性，$\sup_{D \cap Q_j}(f \circ \Phi)\abs{\det J_\Phi(c_j)} \le g(x) + \omega(h)$ 对 $x \in Q_j$ 成立，$\omega(h) \to 0$，所以这部分 $\le \int_Dg + \omega(h)\operatorname{vol}(K)$；(β) 其余的 $Q_j$ 与 $\partial D$ 相交，它们的总体积 $V_h \to 0$（$\partial D$ 被总体积 $< \eta$ 的矩形 $R_k$ 覆盖，这些 $Q_j$ 都落在 $R_k$ 向外放大 $h$ 的矩形中），被积项有界。令 $h \to 0$，再令 $\eps \to 0$：
 $$\int_{\Phi(D)}f \le \int_D(f \circ \Phi)\abs{\det J_\Phi}.$$
 
 **第 5 步（反向不等式与结论）**　$\Phi^{-1} : V \to U$ 也是 $\Cc^1$ 微分同胚，$\Phi(D)$ 是紧的 Jordan 可测集。对 $\Phi^{-1}$、集合 $\Phi(D)$ 与函数 $g \ge 0$ 用第 4 步：
-$$\int_Dg \le \int_{\Phi(D)}g(\Phi^{-1}(y))\abs{\det J_{\Phi^{-1}}(y)}\,\dd y = \int_{\Phi(D)}f(y)\,\abs{\det J_\Phi(\Phi^{-1}(y))}\,\abs{\det J_{\Phi^{-1}}(y)}\,\dd y = \int_{\Phi(D)}f,$$
+$$\begin{aligned}
+\int_Dg &\le \int_{\Phi(D)}g(\Phi^{-1}(y))\abs{\det J_{\Phi^{-1}}(y)}\,\dd y\\
+&= \int_{\Phi(D)}f(y)\,\abs{\det J_\Phi(\Phi^{-1}(y))}\,\abs{\det J_{\Phi^{-1}}(y)}\,\dd y = \int_{\Phi(D)}f,
+\end{aligned}$$
 因为由链式法则（{@chain-rule}，对 $\Phi \circ \Phi^{-1} = \Id$），$J_\Phi(\Phi^{-1}(y))\,J_{\Phi^{-1}}(y) = I_n$，行列式之积为 $1$。所以 $f \ge 0$ 时等式成立。一般的 $f$：令 $M = \max_{\Phi(D)}\abs f$，$f = (f + M) - M$，两项都 $\ge 0$，由线性得结论。
 :::
 
@@ -850,12 +859,18 @@ donc, par l'{@fr:accroissements-finis}, $\norm{\psi(y)}_\infty = \norm{\psi(y) -
 $$\operatorname{vol}(\Phi(Q)) \le \abs{\det J_\Phi(c)}\,(1 + \eps)^nh^n = (1 + \eps)^n\abs{\det J_\Phi(c)}\operatorname{vol}(Q).$$
 
 **Étape 4 (« $\le$ » pour $f \ge 0$)**　Soit $f \ge 0$ et posons $g = (f \circ \Phi)\abs{\det J_\Phi}$ (continue et $\ge 0$ sur $D$). Considérons la grille de cubes de côté $h \le \delta$ et notons $Q_1, \dots, Q_N$ ceux qui rencontrent $D$ (ils sont contenus dans $K$), de centres $c_j$. Les $\Phi(D \cap Q_j)$ recouvrent $\Phi(D)$ et ne se rencontrent que selon des images de faces ; par les points 4, 3 et 6 de la {@fr:c11-additivite} et l'étape 3,
-$$\int_{\Phi(D)}f = \sum_j\int_{\Phi(D \cap Q_j)}f \le \sum_j\sup_{D \cap Q_j}(f \circ \Phi)\operatorname{vol}(\Phi(Q_j)) \le (1 + \eps)^n\sum_j\sup_{D \cap Q_j}(f \circ \Phi)\abs{\det J_\Phi(c_j)}\operatorname{vol}(Q_j).$$
+$$\begin{aligned}
+\int_{\Phi(D)}f &= \sum_j\int_{\Phi(D \cap Q_j)}f \le \sum_j\sup_{D \cap Q_j}(f \circ \Phi)\operatorname{vol}(\Phi(Q_j))\\
+&\le (1 + \eps)^n\sum_j\sup_{D \cap Q_j}(f \circ \Phi)\abs{\det J_\Phi(c_j)}\operatorname{vol}(Q_j).
+\end{aligned}$$
 On coupe la somme de droite en deux (estimation usuelle) : (α) termes avec $Q_j \subset D$ : par continuité uniforme de $f \circ \Phi$ et de $\abs{\det J_\Phi}$, $\sup_{D \cap Q_j}(f \circ \Phi)\abs{\det J_\Phi(c_j)} \le g(x) + \omega(h)$ pour $x \in Q_j$, avec $\omega(h) \to 0$, donc cette partie est $\le \int_Dg + \omega(h)\operatorname{vol}(K)$ ; (β) les autres $Q_j$ rencontrent $\partial D$ et leur volume total $V_h$ tend vers $0$ ($\partial D$ est recouvert par des pavés $R_k$ de volume total $< \eta$, et ces $Q_j$ sont contenus dans les $R_k$ agrandis de $h$), les termes étant bornés. En faisant tendre $h$ puis $\eps$ vers $0$ :
 $$\int_{\Phi(D)}f \le \int_D(f \circ \Phi)\abs{\det J_\Phi}.$$
 
 **Étape 5 (inégalité inverse et conclusion)**　$\Phi^{-1} : V \to U$ est aussi un $\Cc^1$-difféomorphisme et $\Phi(D)$ est un compact mesurable. L'étape 4 appliquée à $\Phi^{-1}$, à $\Phi(D)$ et à $g \ge 0$ donne
-$$\int_Dg \le \int_{\Phi(D)}g(\Phi^{-1}(y))\abs{\det J_{\Phi^{-1}}(y)}\,\dd y = \int_{\Phi(D)}f(y)\,\abs{\det J_\Phi(\Phi^{-1}(y))}\,\abs{\det J_{\Phi^{-1}}(y)}\,\dd y = \int_{\Phi(D)}f,$$
+$$\begin{aligned}
+\int_Dg &\le \int_{\Phi(D)}g(\Phi^{-1}(y))\abs{\det J_{\Phi^{-1}}(y)}\,\dd y\\
+&= \int_{\Phi(D)}f(y)\,\abs{\det J_\Phi(\Phi^{-1}(y))}\,\abs{\det J_{\Phi^{-1}}(y)}\,\dd y = \int_{\Phi(D)}f,
+\end{aligned}$$
 car par la règle de la chaîne ({@fr:chain-rule}, appliquée à $\Phi \circ \Phi^{-1} = \Id$), $J_\Phi(\Phi^{-1}(y))\,J_{\Phi^{-1}}(y) = I_n$, dont le déterminant vaut $1$. D'où l'égalité pour $f \ge 0$. Pour $f$ quelconque, posons $M = \max_{\Phi(D)}\abs f$ et écrivons $f = (f + M) - M$, deux fonctions $\ge 0$ ; la linéarité conclut.
 :::
 
@@ -868,24 +883,24 @@ car par la règle de la chaîne ({@fr:chain-rule}, appliquée à $\Phi \circ \Ph
 
 ::: ex id=coord-polaires zh="极坐标、柱坐标、球坐标" lvl=1
 1. **极坐标**：$\Phi(r, \theta) = (r\cos\theta, r\sin\theta)$，
-$$J_\Phi = \begin{pmatrix}\cos\theta & -r\sin\theta\\ \sin\theta & r\cos\theta\end{pmatrix},\qquad \det J_\Phi = r\cos^2\theta + r\sin^2\theta = r.$$
-记作 $\dd x\,\dd y = r\,\dd r\,\dd\theta$。$\Phi$ 是从 $]0, +\infty[ \times ]-\pi, \pi[$ 到 $\R^2 \setminus (\R_- \times \{0\})$ 的 $\Cc^\infty$ 微分同胚（{@polaires}）。
+   $$J_\Phi = \begin{pmatrix}\cos\theta & -r\sin\theta\\ \sin\theta & r\cos\theta\end{pmatrix},\qquad \det J_\Phi = r\cos^2\theta + r\sin^2\theta = r.$$
+   记作 $\dd x\,\dd y = r\,\dd r\,\dd\theta$。$\Phi$ 是从 $]0, +\infty[ \times ]-\pi, \pi[$ 到 $\R^2 \setminus (\R_- \times \{0\})$ 的 $\Cc^\infty$ 微分同胚（{@polaires}）。
 2. **柱坐标**：$\Phi(r, \theta, z) = (r\cos\theta, r\sin\theta, z)$，
-$$\det J_\Phi = \begin{vmatrix}\cos\theta & -r\sin\theta & 0\\ \sin\theta & r\cos\theta & 0\\ 0 & 0 & 1\end{vmatrix} = 1\cdot\begin{vmatrix}\cos\theta & -r\sin\theta\\ \sin\theta & r\cos\theta\end{vmatrix} = r\qquad\text{（按第三行展开）}.$$
+   $$\det J_\Phi = \begin{vmatrix}\cos\theta & -r\sin\theta & 0\\ \sin\theta & r\cos\theta & 0\\ 0 & 0 & 1\end{vmatrix} = 1\cdot\begin{vmatrix}\cos\theta & -r\sin\theta\\ \sin\theta & r\cos\theta\end{vmatrix} = r\qquad\text{（按第三行展开）}.$$
 3. **球坐标**：$\Psi(r, \varphi, \theta) = (r\sin\varphi\cos\theta, r\sin\varphi\sin\theta, r\cos\varphi)$，$\varphi \in [0, \pi]$ 是与 $z$ 轴的夹角，$\theta$ 是经度。
-$$\det J_\Psi = \begin{vmatrix}\sin\varphi\cos\theta & r\cos\varphi\cos\theta & -r\sin\varphi\sin\theta\\ \sin\varphi\sin\theta & r\cos\varphi\sin\theta & r\sin\varphi\cos\theta\\ \cos\varphi & -r\sin\varphi & 0\end{vmatrix}.$$
-按第三行展开：第 $(3,1)$ 个余子式 $= r^2\cos\varphi\sin\varphi\cos^2\theta + r^2\cos\varphi\sin\varphi\sin^2\theta = r^2\sin\varphi\cos\varphi$；第 $(3,2)$ 个余子式 $= r\sin^2\varphi\cos^2\theta + r\sin^2\varphi\sin^2\theta = r\sin^2\varphi$，带符号 $(-1)^{3+2} = -1$。于是
-$$\det J_\Psi = \cos\varphi\cdot r^2\sin\varphi\cos\varphi - (-r\sin\varphi)\cdot r\sin^2\varphi = r^2\sin\varphi(\cos^2\varphi + \sin^2\varphi) = r^2\sin\varphi.$$
-$\varphi \in [0, \pi]$ 时 $\sin\varphi \ge 0$，所以 $\abs{\det J_\Psi} = r^2\sin\varphi$，记作 $\dd x\,\dd y\,\dd z = r^2\sin\varphi\,\dd r\,\dd\varphi\,\dd\theta$。
+   $$\det J_\Psi = \begin{vmatrix}\sin\varphi\cos\theta & r\cos\varphi\cos\theta & -r\sin\varphi\sin\theta\\ \sin\varphi\sin\theta & r\cos\varphi\sin\theta & r\sin\varphi\cos\theta\\ \cos\varphi & -r\sin\varphi & 0\end{vmatrix}.$$
+   按第三行展开：第 $(3,1)$ 个余子式 $= r^2\cos\varphi\sin\varphi\cos^2\theta + r^2\cos\varphi\sin\varphi\sin^2\theta = r^2\sin\varphi\cos\varphi$；第 $(3,2)$ 个余子式 $= r\sin^2\varphi\cos^2\theta + r\sin^2\varphi\sin^2\theta = r\sin^2\varphi$，带符号 $(-1)^{3+2} = -1$。于是
+   $$\det J_\Psi = \cos\varphi\cdot r^2\sin\varphi\cos\varphi - (-r\sin\varphi)\cdot r\sin^2\varphi = r^2\sin\varphi(\cos^2\varphi + \sin^2\varphi) = r^2\sin\varphi.$$
+   $\varphi \in [0, \pi]$ 时 $\sin\varphi \ge 0$，所以 $\abs{\det J_\Psi} = r^2\sin\varphi$，记作 $\dd x\,\dd y\,\dd z = r^2\sin\varphi\,\dd r\,\dd\varphi\,\dd\theta$。
 
 这些映射在一个零容度集（例如极坐标中 $r = 0$ 的边、或 $\theta = \pm\pi$ 对应的半直线）上不是微分同胚，但零容度集不影响积分：先在去掉一个小邻域的紧集上用 {@changement-variables}，再令邻域缩小。下面的 {@c11-polaires-justif} 把这一点写成严格的命题。
 :::
 
 ::: prop id=c11-polaires-justif zh="极坐标、球坐标下的积分公式" en="Integration in polar and spherical coordinates" fr="Intégration en coordonnées polaires et sphériques" ru="Интегрирование в полярных и сферических координатах" lvl=1
 1. **极坐标。** 设 $0 \le r_1 < r_2$，$\theta_1 < \theta_2 \le \theta_1 + 2\pi$，$\Delta = [r_1, r_2] \times [\theta_1, \theta_2]$，$S = \Phi(\Delta)$（$\Phi$ 为极坐标映射）。则 $S$ 是紧的可求面积集，且对 $S$ 上的任意连续函数 $f$，
-$$\iint_Sf(x, y)\,\dd x\,\dd y = \int_{\theta_1}^{\theta_2}\Big(\int_{r_1}^{r_2}f(r\cos\theta, r\sin\theta)\,r\,\dd r\Big)\dd\theta.$$
+   $$\iint_Sf(x, y)\,\dd x\,\dd y = \int_{\theta_1}^{\theta_2}\Big(\int_{r_1}^{r_2}f(r\cos\theta, r\sin\theta)\,r\,\dd r\Big)\dd\theta.$$
 2. **球坐标。** 设 $0 \le r_1 < r_2$，$0 \le \varphi_1 < \varphi_2 \le \pi$，$\theta_1 < \theta_2 \le \theta_1 + 2\pi$，$\Delta = [r_1, r_2] \times [\varphi_1, \varphi_2] \times [\theta_1, \theta_2]$。则 $\Psi(\Delta)$ 是紧的 Jordan 可测集，且对其上的连续函数 $f$，
-$$\iiint_{\Psi(\Delta)}f = \iiint_\Delta f(\Psi(r, \varphi, \theta))\,r^2\sin\varphi\,\dd r\,\dd\varphi\,\dd\theta.$$
+   $$\iiint_{\Psi(\Delta)}f = \iiint_\Delta f(\Psi(r, \varphi, \theta))\,r^2\sin\varphi\,\dd r\,\dd\varphi\,\dd\theta.$$
 3. **柱坐标**同理，$\Delta = [r_1, r_2] \times [\theta_1, \theta_2] \times [z_1, z_2]$，Jacobi 因子为 $r$。
 
 右边的积分是矩形上连续函数的积分，由 {@fubini-pave} 可以按任意次序逐次计算。
@@ -893,9 +908,9 @@ $$\iiint_{\Psi(\Delta)}f = \iiint_\Delta f(\Psi(r, \varphi, \theta))\,r^2\sin\va
 
 ::: fr
 1. **Coordonnées polaires.** Soient $0 \le r_1 < r_2$, $\theta_1 < \theta_2 \le \theta_1 + 2\pi$, $\Delta = [r_1, r_2] \times [\theta_1, \theta_2]$ et $S = \Phi(\Delta)$ ($\Phi$ l'application des coordonnées polaires). Alors $S$ est un compact quarrable et, pour toute fonction $f$ continue sur $S$,
-$$\iint_Sf(x, y)\,\dd x\,\dd y = \int_{\theta_1}^{\theta_2}\Big(\int_{r_1}^{r_2}f(r\cos\theta, r\sin\theta)\,r\,\dd r\Big)\dd\theta.$$
+   $$\iint_Sf(x, y)\,\dd x\,\dd y = \int_{\theta_1}^{\theta_2}\Big(\int_{r_1}^{r_2}f(r\cos\theta, r\sin\theta)\,r\,\dd r\Big)\dd\theta.$$
 2. **Coordonnées sphériques.** Soient $0 \le r_1 < r_2$, $0 \le \varphi_1 < \varphi_2 \le \pi$, $\theta_1 < \theta_2 \le \theta_1 + 2\pi$ et $\Delta = [r_1, r_2] \times [\varphi_1, \varphi_2] \times [\theta_1, \theta_2]$. Alors $\Psi(\Delta)$ est un compact mesurable au sens de Jordan et, pour $f$ continue sur cet ensemble,
-$$\iiint_{\Psi(\Delta)}f = \iiint_\Delta f(\Psi(r, \varphi, \theta))\,r^2\sin\varphi\,\dd r\,\dd\varphi\,\dd\theta.$$
+   $$\iiint_{\Psi(\Delta)}f = \iiint_\Delta f(\Psi(r, \varphi, \theta))\,r^2\sin\varphi\,\dd r\,\dd\varphi\,\dd\theta.$$
 3. **Coordonnées cylindriques** : de même, avec $\Delta = [r_1, r_2] \times [\theta_1, \theta_2] \times [z_1, z_2]$ et le facteur jacobien $r$.
 
 Les membres de droite sont des intégrales de fonctions continues sur des pavés ; d'après le {@fr:fubini-pave}, on peut les calculer par intégrations successives dans n'importe quel ordre.
@@ -961,15 +976,19 @@ $$\iiint_{\norm x \le R}1 = \int_0^R\int_0^\pi\int_0^{2\pi}r^2\sin\varphi\,\dd\t
 
 1. 圆盘 $\overline B(0, R) = \Phi([0, R] \times [0, 2\pi])$（满射性的验证同上例），由 {@c11-polaires-justif}，面积 $= \int_0^{2\pi}\int_0^Rr\,\dd r\,\dd\theta = 2\pi\cdot\frac{R^2}2 = \pi R^2$，与 {@c11-ex-disque} 一致，但不需要三角代换。
 2. 圆环 $S = \{1 \le x^2 + y^2 \le 4\} = \Phi([1, 2] \times [0, 2\pi])$。$f(x, y) = \ln(x^2 + y^2)$ 在 $S$ 上连续，$f(\Phi(r, \theta)) = \ln r^2 = 2\ln r$。由 {@c11-polaires-justif}（$\theta_2 - \theta_1 = 2\pi$ 允许）：
-$$\iint_S\ln(x^2 + y^2)\,\dd x\,\dd y = \int_0^{2\pi}\Big(\int_1^22r\ln r\,\dd r\Big)\dd\theta.$$
-分部积分（$u = \ln r$，$\dd v = 2r\,\dd r$，$v = r^2$）：$\int_1^22r\ln r\,\dd r = \big[r^2\ln r\big]_1^2 - \int_1^2r\,\dd r = 4\ln2 - \frac32$。所以积分 $= 2\pi\big(4\ln2 - \frac32\big) = 8\pi\ln2 - 3\pi \approx 7.996$。
+   $$\iint_S\ln(x^2 + y^2)\,\dd x\,\dd y = \int_0^{2\pi}\Big(\int_1^22r\ln r\,\dd r\Big)\dd\theta.$$
+   分部积分（$u = \ln r$，$\dd v = 2r\,\dd r$，$v = r^2$）：$\int_1^22r\ln r\,\dd r = \big[r^2\ln r\big]_1^2 - \int_1^2r\,\dd r = 4\ln2 - \frac32$。所以积分 $= 2\pi\big(4\ln2 - \frac32\big) = 8\pi\ln2 - 3\pi \approx 7.996$。
 :::
 
 ::: ex id=c11-ex-parallelogramme lvl=1
 **线性代换。** 计算 $\iint_D(x + y)\,\e^{x - y}\,\dd x\,\dd y$，$D = \{(x, y) : 0 \le x + y \le 2,\ 0 \le x - y \le 2\}$（一个正方形，边不平行于坐标轴）。边界由 $x + y = \text{常数}$、$x - y = \text{常数}$ 组成，被积函数也只依赖于 $x + y$ 与 $x - y$，所以令 $u = x + y$，$v = x - y$，即
 $$\Phi(u, v) = \Big(\frac{u + v}2, \frac{u - v}2\Big),\qquad J_\Phi = \begin{pmatrix}\frac12 & \frac12\\ \frac12 & -\frac12\end{pmatrix},\qquad \det J_\Phi = -\frac14 - \frac14 = -\frac12.$$
 $\Phi$ 是可逆线性映射（$\R^2$ 上的微分同胚），且 $(u, v) \in [0, 2]^2 \iff \Phi(u, v) \in D$，故 $D = \Phi([0, 2]^2)$。由 {@changement-variables} 与 {@fubini-pave}，
-$$\iint_D(x + y)\,\e^{x - y}\,\dd x\,\dd y = \iint_{[0,2]^2}u\,\e^v\cdot\Big\lvert-\frac12\Big\rvert\,\dd u\,\dd v = \frac12\Big(\int_0^2u\,\dd u\Big)\Big(\int_0^2\e^v\,\dd v\Big) = \frac12\cdot2\cdot(\e^2 - 1) = \e^2 - 1.$$
+$$\begin{aligned}
+\iint_D(x + y)\,\e^{x - y}\,\dd x\,\dd y &= \iint_{[0,2]^2}u\,\e^v\cdot\Big\lvert-\frac12\Big\rvert\,\dd u\,\dd v && \text{（变量替换）}\\
+&= \frac12\Big(\int_0^2u\,\dd u\Big)\Big(\int_0^2\e^v\,\dd v\Big) && \text{（乘积形式）}\\
+&= \frac12\cdot2\cdot(\e^2 - 1) = \e^2 - 1.
+\end{aligned}$$
 :::
 
 ::: q
@@ -1008,13 +1027,13 @@ et cette valeur commune définit l'intégrale généralisée $\iint_{I \times J}
 **没有绝对可积性，两个累次积分可以不同。** 令 $f(x, y) = \dfrac{x^2 - y^2}{(x^2 + y^2)^2}$，$(x, y) \in ]0, 1]^2$。
 
 1. **内层积分。** 固定 $x \in ]0, 1]$，$y \mapsto f(x, y)$ 在 $[0, 1]$ 上连续（分母 $\ge x^4 > 0$）。由
-$$\frac{\partial}{\partial y}\Big(\frac{y}{x^2 + y^2}\Big) = \frac{(x^2 + y^2) - 2y^2}{(x^2 + y^2)^2} = f(x, y),$$
-得 $\int_0^1f(x, y)\,\dd y = \Big[\frac y{x^2 + y^2}\Big]_{y=0}^{y=1} = \frac1{1 + x^2}$。
+   $$\frac{\partial}{\partial y}\Big(\frac{y}{x^2 + y^2}\Big) = \frac{(x^2 + y^2) - 2y^2}{(x^2 + y^2)^2} = f(x, y),$$
+   得 $\int_0^1f(x, y)\,\dd y = \Big[\frac y{x^2 + y^2}\Big]_{y=0}^{y=1} = \frac1{1 + x^2}$。
 2. **外层积分。** $\int_0^1\Big(\int_0^1f(x, y)\,\dd y\Big)\dd x = \int_0^1\frac{\dd x}{1 + x^2} = \Arctan 1 = \frac\pi4$。
 3. **另一个次序。** $f(y, x) = -f(x, y)$。把积分变量 $x, y$ 改名，$\int_0^1\big(\int_0^1f(x, y)\,\dd x\big)\dd y = \int_0^1\big(\int_0^1f(y, x)\,\dd y\big)\dd x = -\frac\pi4$。
 4. **与 {@tonelli-continu} 不矛盾：$\iint\abs f = +\infty$。** 对 $x \in ]0, 1]$，在 $[0, x]$ 上 $f \ge 0$，所以
-$$\int_0^1\abs{f(x, y)}\,\dd y \ge \int_0^xf(x, y)\,\dd y = \frac{x}{2x^2} = \frac1{2x},\qquad \int_0^1\frac{\dd x}{2x} = +\infty.$$
-由 {@tonelli-continu}（用于连续函数 $\abs f \ge 0$），$\iint_{]0,1]^2}\abs f = +\infty$。直观上，用极坐标 $\abs f = \frac{\abs{\cos2\theta}}{r^2}$，乘以 Jacobi 因子 $r$ 后像 $\frac1r$ 那样在原点附近不可积。这是第 2 章二重级数反例 {@cex-fubini} 的连续版本。
+   $$\int_0^1\abs{f(x, y)}\,\dd y \ge \int_0^xf(x, y)\,\dd y = \frac{x}{2x^2} = \frac1{2x},\qquad \int_0^1\frac{\dd x}{2x} = +\infty.$$
+   由 {@tonelli-continu}（用于连续函数 $\abs f \ge 0$），$\iint_{]0,1]^2}\abs f = +\infty$。直观上，用极坐标 $\abs f = \frac{\abs{\cos2\theta}}{r^2}$，乘以 Jacobi 因子 $r$ 后像 $\frac1r$ 那样在原点附近不可积。这是第 2 章二重级数反例 {@cex-fubini} 的连续版本。
 :::
 
 ::: thm id=gauss-polaires zh="用极坐标计算 Gauss 积分" en="Gaussian integral via polar coordinates" fr="Intégrale de Gauss par les coordonnées polaires" ru="Вычисление интеграла Эйлера — Пуассона в полярных координатах" lvl=1
@@ -1157,7 +1176,7 @@ $$W_n = 2\int_0^1(1 - s)^{\frac{n-1}2}\frac{\dd s}{2\sqrt s} = \int_0^1s^{-\frac
 
 - **初始化**：$\Gamma(\frac32) = \frac12\Gamma(\frac12) = \frac{\sqrt\pi}2$（{@gamma-factorielle} 与 {@beta-gamma} 的推论），所以 $\pi^{1/2}/\Gamma(\frac32) = 2 = V_1$。
 - **递推**：设 $\mathcal H(n-1)$ 成立（$n \ge 2$）。由第 2、3 步与 $\Gamma(\frac12) = \sqrt\pi$，
-$$V_n = \frac{\pi^{\frac{n-1}2}}{\Gamma(\frac{n+1}2)}\cdot\frac{\sqrt\pi\,\Gamma(\frac{n+1}2)}{\Gamma(\frac n2 + 1)} = \frac{\pi^{n/2}}{\Gamma(\frac n2 + 1)}\qquad\Big(\tfrac{n-1}2 + 1 = \tfrac{n+1}2\Big).$$
+  $$V_n = \frac{\pi^{\frac{n-1}2}}{\Gamma(\frac{n+1}2)}\cdot\frac{\sqrt\pi\,\Gamma(\frac{n+1}2)}{\Gamma(\frac n2 + 1)} = \frac{\pi^{n/2}}{\Gamma(\frac n2 + 1)}\qquad\Big(\tfrac{n-1}2 + 1 = \tfrac{n+1}2\Big).$$
 
 **第 5 步（数值）**　由 $\Gamma(s + 1) = s\Gamma(s)$：$\Gamma(2) = 1$，$\Gamma(\frac52) = \frac32\cdot\frac12\sqrt\pi = \frac34\sqrt\pi$，$\Gamma(3) = 2$，$\Gamma(\frac72) = \frac52\cdot\frac34\sqrt\pi = \frac{15}8\sqrt\pi$。于是 $V_2 = \pi$，$V_3 = \pi^{3/2}\cdot\frac4{3\sqrt\pi} = \frac43\pi$，$V_4 = \frac{\pi^2}2$，$V_5 = \pi^{5/2}\cdot\frac8{15\sqrt\pi} = \frac{8\pi^2}{15}$。
 
@@ -1182,7 +1201,7 @@ la dernière égalité par le {@fr:beta-gamma}, avec $\frac12 + \frac{n+1}2 = \f
 
 - **Initialisation.** $\Gamma(\frac32) = \frac12\Gamma(\frac12) = \frac{\sqrt\pi}2$ ({@fr:gamma-factorielle} et corollaire du {@fr:beta-gamma}), donc $\pi^{1/2}/\Gamma(\frac32) = 2 = V_1$.
 - **Hérédité.** Supposons $\mathcal H(n-1)$ vraie ($n \ge 2$). Par les étapes 2 et 3 et $\Gamma(\frac12) = \sqrt\pi$,
-$$V_n = \frac{\pi^{\frac{n-1}2}}{\Gamma(\frac{n+1}2)}\cdot\frac{\sqrt\pi\,\Gamma(\frac{n+1}2)}{\Gamma(\frac n2 + 1)} = \frac{\pi^{n/2}}{\Gamma(\frac n2 + 1)}\qquad\Big(\tfrac{n-1}2 + 1 = \tfrac{n+1}2\Big).$$
+  $$V_n = \frac{\pi^{\frac{n-1}2}}{\Gamma(\frac{n+1}2)}\cdot\frac{\sqrt\pi\,\Gamma(\frac{n+1}2)}{\Gamma(\frac n2 + 1)} = \frac{\pi^{n/2}}{\Gamma(\frac n2 + 1)}\qquad\Big(\tfrac{n-1}2 + 1 = \tfrac{n+1}2\Big).$$
 
 **Étape 5 (valeurs)**　Par $\Gamma(s + 1) = s\Gamma(s)$ : $\Gamma(2) = 1$, $\Gamma(\frac52) = \frac32\cdot\frac12\sqrt\pi = \frac34\sqrt\pi$, $\Gamma(3) = 2$, $\Gamma(\frac72) = \frac52\cdot\frac34\sqrt\pi = \frac{15}8\sqrt\pi$. D'où $V_2 = \pi$, $V_3 = \pi^{3/2}\cdot\frac4{3\sqrt\pi} = \frac43\pi$, $V_4 = \frac{\pi^2}2$, $V_5 = \pi^{5/2}\cdot\frac8{15\sqrt\pi} = \frac{8\pi^2}{15}$.
 
@@ -1447,8 +1466,11 @@ donc l'aire vaut $\frac12\int_0^{2\pi}ab\,\dd t = \pi ab$. (C'est cohérent avec
 :::
 
 ::: ex id=c11-ex-cycloide lvl=1
-**摆线下的面积。** 半径为 $1$ 的圆沿 $x$ 轴滚动一周，圆周上一点画出摆线 $x(t) = t - \sin t$，$y(t) = 1 - \cos t$，$t \in [0, 2\pi]$。$x'(t) = 1 - \cos t \ge 0$，只在 $t = 0, 2\pi$ 处为 $0$，所以 $x$ 是 $[0, 2\pi] \to [0, 2\pi]$ 的连续严格递增双射，摆线是连续函数 $\varphi_2$ 的图像，摆线与 $x$ 轴之间的区域 $D = \{0 \le x \le 2\pi,\ 0 \le y \le \varphi_2(x)\}$ 是 $y$-型。由前面注的第 2 条，$\operatorname{aire}(D) = -\oint_{\partial D}y\,\dd x$ 只需要 $y$-型。正向边界：下边 $x$ 轴从 $(0, 0)$ 到 $(2\pi, 0)$（$y = 0$，贡献 $0$），两条竖直线段退化为点（$\varphi_2(0) = \varphi_2(2\pi) = 0$），上边是摆线**反向**走（$t$ 从 $2\pi$ 到 $0$）。由 {@c11-reparametrage}，
-$$\operatorname{aire}(D) = -\Big(0 - \int_0^{2\pi}y(t)\,x'(t)\,\dd t\Big) = \int_0^{2\pi}(1 - \cos t)^2\,\dd t = \int_0^{2\pi}\big(1 - 2\cos t + \cos^2t\big)\,\dd t = 2\pi - 0 + \pi = 3\pi,$$
+**摆线下的面积。** 半径为 $1$ 的圆沿 $x$ 轴滚动一周，圆周上一点画出摆线 $x(t) = t - \sin t$，$y(t) = 1 - \cos t$，$t \in [0, 2\pi]$。$x'(t) = 1 - \cos t \ge 0$，只在 $t = 0, 2\pi$ 处为 $0$，所以 $x$ 是 $[0, 2\pi] \to [0, 2\pi]$ 的连续严格递增双射，摆线是连续函数 $\varphi_2$ 的图像，摆线与 $x$ 轴之间的区域 $D = \{0 \le x \le 2\pi,\ 0 \le y \le \varphi_2(x)\}$ 是 $y$-型。由 {@green-riemann} 后的注第 2 条，$\operatorname{aire}(D) = -\oint_{\partial D}y\,\dd x$ 只需要 $y$-型。正向边界：下边 $x$ 轴从 $(0, 0)$ 到 $(2\pi, 0)$（$y = 0$，贡献 $0$），两条竖直线段退化为点（$\varphi_2(0) = \varphi_2(2\pi) = 0$），上边是摆线**反向**走（$t$ 从 $2\pi$ 到 $0$）。由 {@c11-reparametrage}，
+$$\begin{aligned}
+\operatorname{aire}(D) &= -\Big(0 - \int_0^{2\pi}y(t)\,x'(t)\,\dd t\Big) = \int_0^{2\pi}(1 - \cos t)^2\,\dd t\\
+&= \int_0^{2\pi}\big(1 - 2\cos t + \cos^2t\big)\,\dd t = 2\pi - 0 + \pi = 3\pi,
+\end{aligned}$$
 恰是滚动圆面积的 $3$ 倍。
 :::
 
@@ -1506,8 +1528,8 @@ C'est l'objet du cours de géométrie différentielle (L3).
 **Green–Riemann 是二维的散度定理，也是平面上的 Stokes 公式。**
 
 1. **通量形式。** 对平面向量场 $F = (F_1, F_2)$，在 {@green-riemann} 中取 $P = -F_2$、$Q = F_1$：
-$$\oint_{\partial D}(F_1\,\dd y - F_2\,\dd x) = \iint_D\Big(\frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y}\Big) = \iint_D\operatorname{div}F.$$
-若 $\gamma = (x, y)$ 是逆时针参数化，$(y', -x')$ 是指向区域外部的法向量乘以速率 $\norm{\gamma'}$，所以左边是穿出边界的通量 $\oint F\cdot\vec n\,\dd s$：这正是 {@ostrogradski} 的二维版本。
+   $$\oint_{\partial D}(F_1\,\dd y - F_2\,\dd x) = \iint_D\Big(\frac{\partial F_1}{\partial x} + \frac{\partial F_2}{\partial y}\Big) = \iint_D\operatorname{div}F.$$
+   若 $\gamma = (x, y)$ 是逆时针参数化，$(y', -x')$ 是指向区域外部的法向量乘以速率 $\norm{\gamma'}$，所以左边是穿出边界的通量 $\oint F\cdot\vec n\,\dd s$：这正是 {@ostrogradski} 的二维版本。
 2. **环量形式。** 把 $V = (P, Q, 0)$ 看成 $\R^3$ 中的向量场，$\operatorname{rot}V\cdot\vec e_z = \partial_xQ - \partial_yP$。对平面区域 $D$（法向量 $\vec e_z$），{@green-riemann} 就是 {@stokes}。
 :::
 
@@ -1523,4 +1545,108 @@ $\operatorname{div}V = 1 + 1 + 1 = 3$，左边 $= 3\operatorname{vol}(\Omega) = 
 **Besicovitch 集**是 $\R^n$ 中在每个方向上都包含一条单位线段的集合。Besicovitch（1919）构造出 Lebesgue 测度为零的这种集合，这本身就说明了 Jordan 测度（即本章的「体积」）的局限。**Kakeya 猜想**断言：这样的集合的 Hausdorff 维数（以及 Minkowski 维数）一定是 $n$。$n = 2$ 的情形由 Davies（1971）证明。2025 年 Hong Wang 与 Joshua Zahl 发表预印本，宣布证明了 $n = 3$ 的情形；$n \ge 4$ 时仍未解决。它与调和分析中的 Fourier 限制猜想密切相关。
 :::
 
-<!-- APPEND -->
+## 方法总结
+
+按「想算什么、想证什么」整理本章的方法。
+
+### 如何计算二重、三重积分？
+
+1. **矩形上的连续函数**：逐次积分，次序任选（{@fubini-pave}）；被积函数是乘积 $f(x)g(y)$ 时直接分离成两个一元积分。选让内层积分最简单的次序（§1 的「想一想」）。
+2. **一般区域**：先画图，把区域写成 $y$-型或 $x$-型（{@def-domaine-elementaire}），再用 {@fubini-domaine}。若内层积分没有初等原函数，换成另一种描述，交换积分次序（{@ex-triangle}，§2 的「想一想」）。交换次序时**积分限必须从图上重新读出**。
+3. **区域不是基本区域**：沿坐标轴或其他直线切成若干基本区域，用可加性 {@c11-additivite} 第 4 条相加（例如圆环切成四块）。
+4. **含 $x^2 + y^2$ 的被积函数或圆形、扇形、圆环区域**：极坐标；**含 $x^2 + y^2 + z^2$ 或球形区域**：球坐标；**绕 $z$ 轴旋转对称**：柱坐标（{@coord-polaires}，{@c11-polaires-justif}）。先把区域写成 $\Phi(\Delta)$，$\Delta$ 是参数空间中的矩形，再验证 $\Phi(\Delta)$ 恰好是所给区域；不要忘记 Jacobi 因子 $r$ 或 $r^2\sin\varphi$。
+5. **区域由 $u(x, y) = \text{常数}$、$v(x, y) = \text{常数}$ 围成**：令 $(u, v)$ 为新变量（{@changement-variables}，{@c11-ex-parallelogramme}）。Jacobi 因子是 $\abs{\det\frac{\partial(x, y)}{\partial(u, v)}}$；若只容易算出 $\det\frac{\partial(u, v)}{\partial(x, y)}$，取倒数（§3 第 2 个「想一想」）。
+6. **对称性**：若 $D$ 关于 $x \mapsto -x$ 对称且 $f(-x, y) = -f(x, y)$，则 $\iint_Df = 0$（用 $\Phi(x, y) = (-x, y)$，$\abs{\det} = 1$，{@changement-variables} 给出 $\iint_Df = -\iint_Df$）。
+7. **体积**：已知截面面积 $A(t)$ 时，$\operatorname{vol} = \int A(t)\,\dd t$（{@c11-fubini-riemann} 的切片法，见 {@volume-boule} 第 2 步）。
+
+### 如何计算广义重积分？
+
+1. **被积函数 $\ge 0$**：可以随意交换积分次序，也可以用任意穷竭序列（{@tonelli-continu}）；常用圆盘或「极坐标矩形」作穷竭序列（{@gauss-polaires}，{@beta-gamma}）。
+2. **被积函数变号**：先验证 $\iint\abs f < +\infty$，再交换次序；否则可能出错（{@c11-cex-fubini}：两个次序分别得 $\pm\frac\pi4$）。
+3. **把一元积分的平方或乘积写成二重积分**，再换坐标：Gauss 积分（{@gauss-polaires}）、$\Gamma(x)\Gamma(y)$（{@beta-gamma}）。也可以用夹逼代替穷竭序列（{@gauss-polaires} 第 4 步）。
+
+### 如何证明一个函数可积、一个集合可测（或否定它）？
+
+1. 连续 ⇒ 可积（{@continue-integrable}）；不连续点包含于零容度集 ⇒ 可积（{@c11-integrable-negligeable}）；精确刻画是 {@lebesgue-critere}。
+2. 用定义：构造分割使上下和之差任意小（{@c11-critere-riemann}，{@c11-ex-xy}）。
+3. 集合 Jordan 可测：证明边界包含于有限个连续函数的图像与线段之并（{@c11-graphe-negligeable}），或者它是可测紧集在 $\Cc^1$ 微分同胚下的像（{@changement-variables} 第 0 步）。
+4. 不可积、不可测：说明每个小矩形上振幅 $M_Q - m_Q$ 都不小（{@c11-cex-dirichlet}，{@c11-cex-iterees}）。
+
+### 如何计算曲线积分？
+
+1. **直接参数化**（{@def-integrale-curviligne}）；结果与保持方向的参数化无关，反向变号（{@c11-reparametrage}）。
+2. **恰当形式**：先检查 $\partial_yP = \partial_xQ$；在星形开集上由 {@poincare} 找到势函数 $f$，积分等于端点值之差（{@forme-exacte}）。
+3. **闭曲线围成区域，且 $P, Q$ 在区域上 $\Cc^1$**：用 {@green-riemann} 化成二重积分；面积用 {@aire-green}。
+4. **区域内有奇点**：挖去一个小圆盘，在剩下的环形区域上用 Green–Riemann（{@green-riemann} 后的「更一般的区域」），把问题化成小圆周上的积分。
+
+### 如何证明一个形式不是恰当的？
+
+找一条闭路径，使沿它的积分 $\ne 0$；由 {@forme-exacte} 的逆否命题即得（{@circulation-vortex}）。注意：「闭」不能推出「恰当」，除非区域是星形的（{@poincare}）。
+
+::: rem
+**常见错误。**
+
+1. **忘记 Jacobi 因子**：在极坐标中写成 $\dd x\,\dd y = \dd r\,\dd\theta$。检查方法：取 $f = 1$ 算圆盘面积，应得 $\pi R^2$，而漏掉 $r$ 会得到 $2\pi R$。
+2. **交换次序时照抄积分限**：$\int_0^1\int_x^1(\dots)\,\dd y\,\dd x$ 不等于 $\int_0^1\int_x^1(\dots)\,\dd x\,\dd y$——后者内层积分限依赖于外层积分变量之外的 $x$，没有意义。正确做法是画出区域 $\{0 \le x \le y \le 1\}$，重新写成 $\int_0^1\int_0^y(\dots)\,\dd x\,\dd y$。
+3. **对不绝对可积的函数交换积分次序**：{@c11-cex-fubini} 的两个累次积分是 $\frac\pi4$ 与 $-\frac\pi4$。
+4. **区域内有奇点仍用 Green–Riemann**：漩涡形式沿单位圆的积分是 $2\pi$，而「$\iint 0$」是 $0$（{@green-riemann} 后的注）。
+5. **定向错误**：Green–Riemann 中边界必须逆时针（区域在左侧）；带洞区域的内边界是顺时针的。例如摆线下的面积（{@c11-ex-cycloide}），按参数增加的方向走摆线是顺时针，必须反向。
+6. **坐标映射不是单射**：用 $\theta \in [0, 4\pi]$ 或 $\varphi \in [0, 2\pi]$ 会把区域覆盖两次，体积加倍（{@changement-variables} 后的注）。
+:::
+
+::: read
+- Г. М. Фихтенгольц,《Курс дифференциального и интегрального исчисления》，第三卷：«Криволинейные интегралы», «Двойные интегралы», «Тройные и многократные интегралы», формула Грина。例子极多，各种区域与坐标变换都有完整的计算，适合对照本章的例子练手。
+- В. А. Зорич,《Математический анализ》，第二卷：«Кратные интегралы»（Jordan 可测集上的 Riemann 积分、Fubini 定理、变量替换公式）与 «Криволинейные и поверхностные интегралы»（формулы Грина, Гаусса — Остроградского, Стокса）。本章 ★★ 证明（变量替换公式）的完整版本在这里，并用微分形式统一了三个积分公式。
+- Б. П. Демидович,《Сборник задач и упражнений по математическому анализу》：кратные и криволинейные интегралы。计算题按难度排列，适合练积分次序、坐标变换与 Green 公式。
+- J. Lelong-Ferrand, J.-M. Arnaudiès,《Cours de mathématiques》，第 4 卷：intégrales multiples, intégrales curvilignes。法国经典教材，记号与术语和法国课堂一致。
+- M. Spivak,《Calculus on Manifolds》：integration on rectangles, content zero, Fubini's theorem, change of variables, Stokes' theorem。一百多页讲完本章全部理论，变量替换与 Stokes 公式都有完整证明，是 ★★ 与 ★★★ 结论的最佳参考。
+:::
+
+::: glossary
+| 中文 | Français | English | Русский |
+|---|---|---|---|
+| 矩形（闭长方体） | pavé (m.) | box, closed rectangle | брус, (n-мерный) промежуток |
+| 分割 | subdivision (f.) | partition | разбиение |
+| 加细 | raffinement (m.), subdivision plus fine (f.) | refinement | измельчение разбиения |
+| Darboux 上和 / 下和 | somme de Darboux supérieure / inférieure (f.) | upper / lower Darboux sum | верхняя / нижняя сумма Дарбу |
+| 上积分 / 下积分 | intégrale supérieure / inférieure (f.) | upper / lower integral | верхний / нижний интеграл Дарбу |
+| Riemann 可积 | intégrable au sens de Riemann | Riemann integrable | интегрируемая по Риману |
+| 振幅 | oscillation (f.) | oscillation | колебание функции |
+| 重积分 | intégrale multiple (f.) | multiple integral | кратный интеграл |
+| 二重积分 / 三重积分 | intégrale double / triple (f.) | double / triple integral | двойной / тройной интеграл |
+| 累次积分 | intégrale itérée (f.) | iterated integral | повторный интеграл |
+| Fubini 定理 | théorème de Fubini (m.) | Fubini's theorem | теорема Фубини |
+| 交换积分次序 | intervertir l'ordre d'intégration | change the order of integration | изменить порядок интегрирования |
+| 零容度集 | partie (f.) de contenu nul | set of (Jordan) content zero | множество жордановой меры нуль |
+| Jordan 可测集 | partie quarrable (f.), mesurable au sens de Jordan | Jordan measurable set | множество, измеримое по Жордану |
+| 面积 / 体积 | aire (f.) / volume (m.) | area / volume | площадь / объём |
+| Lebesgue 零测集 | partie négligeable (f.) au sens de Lebesgue | (Lebesgue) null set | множество лебеговой меры нуль |
+| 基本区域 | domaine élémentaire (m.) | elementary (simple) region | элементарная область |
+| 截口 / 切片 | section (f.), tranche (f.) | section, slice | сечение |
+| 变量替换 | changement de variables (m.) | change of variables | замена переменных |
+| Jacobi 行列式 | jacobien (m.) | Jacobian (determinant) | якобиан |
+| 微分同胚 | difféomorphisme (m.) | diffeomorphism | диффеоморфизм |
+| 极坐标 | coordonnées polaires (f. pl.) | polar coordinates | полярные координаты |
+| 柱坐标 | coordonnées cylindriques (f. pl.) | cylindrical coordinates | цилиндрические координаты |
+| 球坐标 | coordonnées sphériques (f. pl.) | spherical coordinates | сферические координаты |
+| 广义重积分 | intégrale multiple généralisée (f.) | improper multiple integral | несобственный кратный интеграл |
+| 穷竭序列 | suite exhaustive (f.) | exhausting sequence | исчерпание (множества) |
+| Γ 函数 / Β 函数 | fonction gamma / bêta (f.) | gamma / beta function | гамма- / бета-функция |
+| 单位球的体积 | volume (m.) de la boule unité | volume of the unit ball | объём единичного шара |
+| 测度集中 | concentration (f.) de la mesure | concentration of measure | концентрация меры |
+| 路径（分段 $\Cc^1$） | chemin (m.) ($\Cc^1$ par morceaux) | (piecewise $C^1$) path | (кусочно гладкий) путь |
+| 闭路径 | lacet (m.) | closed path, loop | замкнутый путь |
+| 曲线积分（第二型） | intégrale curviligne (f.) | line integral | криволинейный интеграл второго рода |
+| 微分 1-形式 | forme différentielle (f.) de degré 1 | differential 1-form | дифференциальная 1-форма |
+| 恰当形式 / 闭形式 | forme exacte / fermée (f.) | exact / closed form | точная / замкнутая форма |
+| 势函数 | primitive (f.) d'une forme, potentiel (m.) | potential | потенциал, первообразная формы |
+| 重新参数化 | reparamétrage (m.) | reparametrization | замена параметра |
+| 正向（逆时针） | sens direct (m.), sens trigonométrique | positive (counterclockwise) orientation | положительное направление обхода |
+| 环量 | circulation (f.) | circulation | циркуляция |
+| Green–Riemann 公式 | formule de Green–Riemann (f.) | Green's theorem | формула Грина |
+| 散度定理 | formule de Green–Ostrogradski (f.) | divergence theorem | формула Остроградского — Гаусса |
+| Stokes 公式 | formule de Stokes (f.) | Stokes' theorem | формула Стокса |
+| 散度 / 旋度 | divergence (f.) / rotationnel (m.) | divergence / curl | дивергенция / ротор |
+| 外法向量 | normale sortante (f.) | outward normal | внешняя нормаль |
+| 取极限 | passer à la limite | pass to the limit | перейти к пределу |
+:::

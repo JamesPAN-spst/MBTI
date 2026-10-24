@@ -438,7 +438,7 @@ Soient $(u_n)$, $(v_n)$ deux suites de $E$ et $(\lambda_n)$ une suite de $\K$.
 ::: proof
 ▷ 思路：每一条都是「翻译假设 → 三角不等式 → 选 $N$」。
 
-**1（唯一性）**　▷ 要证 $\norm{\ell - \ell'} = 0$；为此证明这个非负实数小于任意 $\eps > 0$。
+**1（唯一性）**　要证 $\norm{\ell - \ell'} = 0$；为此证明这个非负实数小于任意 $\eps > 0$。
 
 设 $\eps > 0$。由 $u_n \to \ell$，存在 $N_1$，使 $n \ge N_1$ 时 $\norm{u_n - \ell} < \frac{\eps}{2}$；由 $u_n \to \ell'$，存在 $N_2$，使 $n \ge N_2$ 时 $\norm{u_n - \ell'} < \frac{\eps}{2}$。令 $n = \max(N_1, N_2)$：
 $$\norm{\ell - \ell'} \le \norm{\ell - u_n} + \norm{u_n - \ell'} < \frac{\eps}{2} + \frac{\eps}{2} = \eps.$$
@@ -460,8 +460,8 @@ $$\lambda_n u_n - \lambda \ell = \lambda_n (u_n - \ell) + (\lambda_n - \lambda)\
 设 $\eps > 0$。取 $N_1$ 使 $n \ge N_1$ 时 $\norm{u_n - \ell} < \frac{\eps}{2(M + 1)}$，取 $N_2$ 使 $n \ge N_2$ 时 $\abs{\lambda_n - \lambda} < \frac{\eps}{2(\norm{\ell} + 1)}$（分母加 1 是为了处理 $M = 0$ 或 $\ell = 0$ 的情形）。令 $N = \max(N_1, N_2)$，对 $n \ge N$：
 $$\begin{aligned}
 \norm{\lambda_n u_n - \lambda \ell} &\le \abs{\lambda_n}\,\norm{u_n - \ell} + \abs{\lambda_n - \lambda}\,\norm{\ell} && \text{（三角不等式、齐次性）}\\
-&< M \cdot \frac{\eps}{2(M + 1)} + \frac{\eps}{2(\norm{\ell} + 1)} \cdot \norm{\ell} && \text{（} n \ge N \text{）}\\
-&\le \frac{\eps}{2} + \frac{\eps}{2} = \eps.
+&\le M \cdot \frac{\eps}{2(M + 1)} + \frac{\eps}{2(\norm{\ell} + 1)} \cdot \norm{\ell} && \text{（} n \ge N \text{）}\\
+&< \frac{\eps}{2} + \frac{\eps}{2} = \eps. && \text{（} \tfrac{M}{M+1} < 1,\ \tfrac{\norm{\ell}}{\norm{\ell}+1} < 1 \text{）}
 \end{aligned}$$
 
 四条结论都已证明。
@@ -470,7 +470,7 @@ $$\begin{aligned}
 ::: fr
 ▷ Méthode : chaque point suit le schéma « on traduit les hypothèses → inégalité triangulaire → choix de $N$ ».
 
-**1 (Unicité)**　▷ On veut montrer que $\norm{\ell - \ell'} = 0$ ; pour cela, on montre que ce réel positif est inférieur à tout $\eps > 0$.
+**1 (Unicité)**　On veut montrer que $\norm{\ell - \ell'} = 0$ ; pour cela, on montre que ce réel positif est inférieur à tout $\eps > 0$.
 
 Soit $\eps > 0$. Comme $u_n \to \ell$, il existe $N_1$ tel que pour tout $n \ge N_1$, $\norm{u_n - \ell} < \frac{\eps}{2}$ ; comme $u_n \to \ell'$, il existe $N_2$ tel que pour tout $n \ge N_2$, $\norm{u_n - \ell'} < \frac{\eps}{2}$. Pour $n = \max(N_1, N_2)$ :
 $$\norm{\ell - \ell'} \le \norm{\ell - u_n} + \norm{u_n - \ell'} < \frac{\eps}{2} + \frac{\eps}{2} = \eps.$$
@@ -492,8 +492,8 @@ $$\lambda_n u_n - \lambda \ell = \lambda_n (u_n - \ell) + (\lambda_n - \lambda)\
 Soit $\eps > 0$. Soit $N_1$ tel que $\norm{u_n - \ell} < \frac{\eps}{2(M + 1)}$ pour $n \ge N_1$, et $N_2$ tel que $\abs{\lambda_n - \lambda} < \frac{\eps}{2(\norm{\ell} + 1)}$ pour $n \ge N_2$ (on ajoute 1 aux dénominateurs pour traiter les cas $M = 0$ ou $\ell = 0$). Posons $N = \max(N_1, N_2)$ ; pour $n \ge N$,
 $$\begin{aligned}
 \norm{\lambda_n u_n - \lambda \ell} &\le \abs{\lambda_n}\,\norm{u_n - \ell} + \abs{\lambda_n - \lambda}\,\norm{\ell} && \text{(inégalité triangulaire, homogénéité)}\\
-&< M \cdot \frac{\eps}{2(M + 1)} + \frac{\eps}{2(\norm{\ell} + 1)} \cdot \norm{\ell} && \text{(} n \ge N \text{)}\\
-&\le \frac{\eps}{2} + \frac{\eps}{2} = \eps.
+&\le M \cdot \frac{\eps}{2(M + 1)} + \frac{\eps}{2(\norm{\ell} + 1)} \cdot \norm{\ell} && \text{(} n \ge N \text{)}\\
+&< \frac{\eps}{2} + \frac{\eps}{2} = \eps. && \text{(} \tfrac{M}{M+1} < 1,\ \tfrac{\norm{\ell}}{\norm{\ell}+1} < 1 \text{)}
 \end{aligned}$$
 
 Les quatre points sont démontrés.
@@ -612,6 +612,8 @@ $$\exists \varphi : \N \to \N \text{ strictement croissante},\quad u_{\varphi(n)
 :::
 
 ::: proof
+▷ 思路：第 1 条对 $n$ 归纳；第 2 条直接验证严格递增；第 3 条把 $\varphi(n) \ge n$ 代入收敛的定义。
+
 **1**　对 $n$ 归纳。**初始化**：$\varphi(0) \in \N$，所以 $\varphi(0) \ge 0$。**递推**：设 $\varphi(n) \ge n$。由严格递增，$\varphi(n + 1) > \varphi(n) \ge n$；$\varphi(n+1)$ 是整数且严格大于 $n$，所以 $\varphi(n + 1) \ge n + 1$。
 
 **2**　若 $n < m$，则 $\psi(n) < \psi(m)$（$\psi$ 严格递增），再由 $\varphi$ 严格递增，$\varphi(\psi(n)) < \varphi(\psi(m))$。令 $v_n = u_{\varphi(n)}$，则 $v_{\psi(n)} = u_{\varphi(\psi(n))}$，所以它是 $(v_n)$ 的子列，也是 $(u_n)$ 的（抽取函数 $\varphi \circ \psi$）子列。
@@ -622,6 +624,8 @@ $$\exists \varphi : \N \to \N \text{ strictement croissante},\quad u_{\varphi(n)
 :::
 
 ::: fr
+▷ Méthode : le point 1 se montre par récurrence sur $n$ ; le point 2 se vérifie directement ; pour le point 3, on injecte $\varphi(n) \ge n$ dans la définition de la convergence.
+
 **1**　Par récurrence sur $n$. **Initialisation** : $\varphi(0) \in \N$, donc $\varphi(0) \ge 0$. **Hérédité** : supposons $\varphi(n) \ge n$. Par stricte croissance, $\varphi(n + 1) > \varphi(n) \ge n$ ; comme $\varphi(n+1)$ est un entier strictement supérieur à $n$, on a $\varphi(n + 1) \ge n + 1$.
 
 **2**　Si $n < m$, alors $\psi(n) < \psi(m)$ ($\psi$ strictement croissante), puis $\varphi(\psi(n)) < \varphi(\psi(m))$ ($\varphi$ strictement croissante). Posons $v_n = u_{\varphi(n)}$ ; alors $v_{\psi(n)} = u_{\varphi(\psi(n))}$, qui est donc extraite de $(v_n)$, et aussi de $(u_n)$ (par l'extractrice $\varphi \circ \psi$).
@@ -777,6 +781,8 @@ Soient $A \subset E$ et $a \in E$.
 :::
 
 ::: proof
+▷ 思路：第 1 条用「内部是含于 $A$ 的开集之并」；第 2 条用「闭包是包含 $A$ 的闭集之交」，两个方向都证逆否命题；第 3 条由前两条逐项翻译得到。
+
 **1**　(⇒) $\mathring{A}$ 是开集且 $a \in \mathring{A}$，所以存在 $r > 0$ 使 $B(a, r) \subset \mathring{A}$；而 $\mathring{A}$ 是 $A$ 的子集的并，$\mathring{A} \subset A$。(⇐) $B(a, r)$ 是开集（{@c1-ouverts-stab}）且包含于 $A$，所以它是定义中参与求并的集合之一，$a \in B(a, r) \subset \mathring{A}$。
 
 **2**　两个方向都证逆否命题。
@@ -791,6 +797,8 @@ $$a \in E \setminus \overline{A} \overset{(2)}{\iff} \exists r > 0,\ B(a, r) \ca
 :::
 
 ::: fr
+▷ Méthode : le point 1 utilise « l'intérieur est la réunion des ouverts contenus dans $A$ » ; le point 2 utilise « l'adhérence est l'intersection des fermés contenant $A$ », et on montre les deux implications par contraposée ; le point 3 se déduit des deux premiers par traduction terme à terme.
+
 **1**　(⇒) $\mathring{A}$ est ouvert et $a \in \mathring{A}$, donc il existe $r > 0$ tel que $B(a, r) \subset \mathring{A}$ ; et $\mathring{A} \subset A$ comme réunion de parties de $A$. (⇐) $B(a, r)$ est un ouvert ({@fr:c1-ouverts-stab}) contenu dans $A$ ; c'est donc l'un des ouverts de la réunion qui définit $\mathring{A}$, et $a \in B(a, r) \subset \mathring{A}$.
 
 **2**　On montre les deux implications par contraposée.
@@ -862,9 +870,9 @@ Soit $A \subset E$ non vide. Pour $x \in E$, on pose $d(x, A) = \inf_{a \in A} \
 :::
 
 ::: proof
-**1**　▷ 证 $d(x, A) \le \norm{x - y} + d(y, A)$，再交换 $x, y$。
+▷ 思路：第 1 条先证 $d(x, A) \le \norm{x - y} + d(y, A)$，再交换 $x, y$；第 2 条用下确界的刻画（「比下确界大的数不是下界」）与 {@c1-carac-int-adh} 第 2 条。
 
-设 $a \in A$。由下确界的定义与三角不等式，
+**1**　设 $a \in A$。由下确界的定义与三角不等式，
 $$d(x, A) \le \norm{x - a} \le \norm{x - y} + \norm{y - a}.$$
 所以 $d(x, A) - \norm{x - y} \le \norm{y - a}$ 对一切 $a \in A$ 成立，即 $d(x, A) - \norm{x - y}$ 是集合 $\{\norm{y - a} : a \in A\}$ 的一个下界。下确界是最大的下界，所以 $d(x, A) - \norm{x - y} \le d(y, A)$。交换 $x$ 与 $y$ 的位置（$\norm{y - x} = \norm{x - y}$），得 $d(y, A) - \norm{x - y} \le d(x, A)$。两式合起来即为结论。
 
@@ -874,9 +882,9 @@ $$d(x, A) \le \norm{x - a} \le \norm{x - y} + \norm{y - a}.$$
 :::
 
 ::: fr
-**1**　▷ On montre $d(x, A) \le \norm{x - y} + d(y, A)$, puis on échange $x$ et $y$.
+▷ Méthode : pour le point 1, on montre d'abord $d(x, A) \le \norm{x - y} + d(y, A)$, puis on échange $x$ et $y$ ; pour le point 2, on utilise la caractérisation de la borne inférieure (« un réel strictement supérieur à la borne inférieure n'est pas un minorant ») et le point 2 du {@fr:c1-carac-int-adh}.
 
-Soit $a \in A$. Par définition de la borne inférieure et par l'inégalité triangulaire,
+**1**　Soit $a \in A$. Par définition de la borne inférieure et par l'inégalité triangulaire,
 $$d(x, A) \le \norm{x - a} \le \norm{x - y} + \norm{y - a}.$$
 Ainsi $d(x, A) - \norm{x - y} \le \norm{y - a}$ pour tout $a \in A$ : le réel $d(x, A) - \norm{x - y}$ est un minorant de $\{\norm{y - a} : a \in A\}$. La borne inférieure étant le plus grand des minorants, $d(x, A) - \norm{x - y} \le d(y, A)$. En échangeant $x$ et $y$ (et puisque $\norm{y - x} = \norm{x - y}$), on obtient $d(y, A) - \norm{x - y} \le d(x, A)$. Les deux inégalités donnent le résultat.
 
@@ -910,6 +918,8 @@ Soient $A \subset E$ et $V \subset A$.
 :::
 
 ::: proof
+▷ 思路：(⇐) 把每一点处的小球并起来，得到所需的开集 $U$；第 2 条是关于补集的集合恒等式。
+
 **1**　(⇒) 设 $V = U \cap A$，$U$ 开，$a \in V$。则 $a \in U$，存在 $r > 0$ 使 $B(a, r) \subset U$，于是 $B(a, r) \cap A \subset U \cap A = V$。
 
 (⇐) 对每个 $a \in V$ 取 $r_a > 0$ 使 $B(a, r_a) \cap A \subset V$。令 $U = \bigcup_{a \in V} B(a, r_a)$，它是开球的并，是开集（{@c1-ouverts-stab}）。一方面 $U \cap A = \bigcup_{a \in V} \big(B(a, r_a) \cap A\big) \subset V$；另一方面每个 $a \in V$ 属于 $B(a, r_a) \cap A \subset U \cap A$。所以 $V = U \cap A$。
@@ -918,6 +928,8 @@ Soient $A \subset E$ et $V \subset A$.
 :::
 
 ::: fr
+▷ Méthode : pour (⇐), on réunit les petites boules centrées en chaque point pour obtenir l'ouvert $U$ cherché ; le point 2 est une identité ensembliste sur les complémentaires.
+
 **1**　(⇒) Soient $V = U \cap A$ avec $U$ ouvert, et $a \in V$. Alors $a \in U$, donc il existe $r > 0$ tel que $B(a, r) \subset U$, d'où $B(a, r) \cap A \subset U \cap A = V$.
 
 (⇐) Pour chaque $a \in V$, choisissons $r_a > 0$ tel que $B(a, r_a) \cap A \subset V$. Posons $U = \bigcup_{a \in V} B(a, r_a)$ ; c'est une réunion de boules ouvertes, donc un ouvert ({@fr:c1-ouverts-stab}). D'une part $U \cap A = \bigcup_{a \in V} \big(B(a, r_a) \cap A\big) \subset V$ ; d'autre part tout $a \in V$ appartient à $B(a, r_a) \cap A \subset U \cap A$. Donc $V = U \cap A$.
@@ -1190,6 +1202,8 @@ $$\forall \eps > 0,\ \exists \delta > 0,\ \forall x, y \in A,\quad \norm{x - y} 
 :::
 
 ::: proof
+▷ 思路：Lipschitz 常数直接给出 $\delta = \frac{\eps}{k+1}$；在一致连续的定义中固定 $y = a$，就得到在 $a$ 处的连续性。
+
 **1**　设 $f$ 是 $k$-Lipschitz 的，$\eps > 0$。令 $\delta = \frac{\eps}{k + 1} > 0$（分母用 $k + 1$ 是为了包括 $k = 0$ 的情形）。若 $\norm{x - y} < \delta$，则
 $$\norm{f(x) - f(y)} \le k\norm{x - y} \le k\delta = \frac{k}{k+1}\eps < \eps.$$
 所以 $f$ 一致连续。设 $f$ 一致连续，$a \in A$，$\eps > 0$。取一致连续定义中的 $\delta$，并令 $y = a$：对 $x \in A$，$\norm{x - a} < \delta \Rightarrow \norm{f(x) - f(a)} < \eps$。这就是 $f$ 在 $a$ 连续。
@@ -1198,6 +1212,8 @@ $$\norm{f(x) - f(y)} \le k\norm{x - y} \le k\delta = \frac{k}{k+1}\eps < \eps.$$
 :::
 
 ::: fr
+▷ Méthode : la constante de Lipschitz donne directement $\delta = \frac{\eps}{k+1}$ ; dans la définition de la continuité uniforme, on fixe $y = a$ pour obtenir la continuité en $a$.
+
 **1**　Soient $f$ $k$-lipschitzienne et $\eps > 0$. Posons $\delta = \frac{\eps}{k + 1} > 0$ (le dénominateur $k + 1$ permet d'inclure le cas $k = 0$). Si $\norm{x - y} < \delta$, alors
 $$\norm{f(x) - f(y)} \le k\norm{x - y} \le k\delta = \frac{k}{k+1}\eps < \eps.$$
 Donc $f$ est uniformément continue. Soient maintenant $f$ uniformément continue, $a \in A$ et $\eps > 0$. On prend le $\delta$ de la définition de la continuité uniforme, avec $y = a$ : pour $x \in A$, $\norm{x - a} < \delta \Rightarrow \norm{f(x) - f(a)} < \eps$. C'est la continuité de $f$ en $a$.
@@ -1309,6 +1325,8 @@ Soient $E \ne \{0\}$ et $u \in \Lin_c(E, F)$.
 :::
 
 ::: proof
+▷ 思路：一切从第 1 条出发——$\norm{u}$ 是 $\norm{u(x)} \le C\norm{x}$ 中最小的常数 $C$；范数公理与次乘性都由「上确界是最小的上界」得到。
+
 **1**　对 $x \ne 0$，由上确界的定义，$\frac{\norm{u(x)}}{\norm{x}} \le \norm{u}$，即 $\norm{u(x)} \le \norm{u}\,\norm{x}$；对 $x = 0$，两边都为 $0$。所以 $C = \norm{u}$ 满足条件。反之，若 $C$ 满足条件，则对一切 $x \ne 0$，$\frac{\norm{u(x)}}{\norm{x}} \le C$，即 $C$ 是上界，而上确界是最小的上界，所以 $\norm{u} \le C$。
 
 **2**　先说明 $\Lin_c(E, F)$ 是向量空间：两个连续线性映射的和、连续线性映射的数乘仍是线性的，并且由 {@c1-cont-operations} 仍连续。
@@ -1323,6 +1341,8 @@ $$\norm{v(u(x))} \le \norm{v}\,\norm{u(x)} \le \norm{v}\,\norm{u}\,\norm{x}.$$
 :::
 
 ::: fr
+▷ Méthode : tout repose sur le point 1 — $\norm{u}$ est la plus petite constante $C$ telle que $\norm{u(x)} \le C\norm{x}$ ; les axiomes de norme et la sous-multiplicativité découlent de « la borne supérieure est le plus petit des majorants ».
+
 **1**　Pour $x \ne 0$, par définition de la borne supérieure, $\frac{\norm{u(x)}}{\norm{x}} \le \norm{u}$, c'est-à-dire $\norm{u(x)} \le \norm{u}\,\norm{x}$ ; pour $x = 0$, les deux membres sont nuls. Donc $C = \norm{u}$ convient. Réciproquement, si $C$ convient, alors pour tout $x \ne 0$, $\frac{\norm{u(x)}}{\norm{x}} \le C$ : $C$ est un majorant, et la borne supérieure est le plus petit des majorants, donc $\norm{u} \le C$.
 
 **2**　Remarquons d'abord que $\Lin_c(E, F)$ est un espace vectoriel : la somme de deux applications linéaires continues et le produit d'une application linéaire continue par un scalaire sont linéaires, et continus d'après la {@fr:c1-cont-operations}.
@@ -1412,6 +1432,8 @@ Il en est de même pour un produit fini $E_1 \times \cdots \times E_p$ d'evn (av
 :::
 
 ::: proof
+▷ 思路：每个分量的范数都不超过乘积范数，而乘积范数是分量范数的最大值；两个方向都由此得到。
+
 **范数**　分离性：$\max\big(\norm{x}_E, \norm{y}_F\big) = 0 \iff \norm{x}_E = \norm{y}_F = 0 \iff (x, y) = (0, 0)$。齐次性：$\max(\abs\lambda a, \abs\lambda b) = \abs\lambda \max(a, b)$（$a, b \ge 0$）。三角不等式：
 $$\norm{x + x'}_E \le \norm{x}_E + \norm{x'}_E \le N(x, y) + N(x', y'),$$
 同样（把 $x, E$ 换成 $y, F$）$\norm{y + y'}_F \le N(x, y) + N(x', y')$；取两者的最大值，$N\big((x,y) + (x',y')\big) \le N(x, y) + N(x', y')$。
@@ -1422,6 +1444,8 @@ $$\norm{x + x'}_E \le \norm{x}_E + \norm{x'}_E \le N(x, y) + N(x', y'),$$
 :::
 
 ::: fr
+▷ Méthode : la norme de chaque composante est majorée par la norme produit, qui est le maximum des normes des composantes ; les deux sens en découlent.
+
 **Norme**　Séparation : $\max\big(\norm{x}_E, \norm{y}_F\big) = 0 \iff \norm{x}_E = \norm{y}_F = 0 \iff (x, y) = (0, 0)$. Homogénéité : $\max(\abs\lambda a, \abs\lambda b) = \abs\lambda \max(a, b)$ pour $a, b \ge 0$. Inégalité triangulaire :
 $$\norm{x + x'}_E \le \norm{x}_E + \norm{x'}_E \le N(x, y) + N(x', y'),$$
 et de même (en remplaçant $x, E$ par $y, F$) $\norm{y + y'}_F \le N(x, y) + N(x', y')$ ; en prenant le maximum, $N\big((x,y) + (x',y')\big) \le N(x, y) + N(x', y')$.
@@ -1793,7 +1817,7 @@ La boule unité fermée d'un evn $E$ est compacte si et seulement si $E$ est de 
 :::
 
 ::: sketch
-关键是 **Riesz 引理**（{@c1-lemme-riesz}）：若 $F \subsetneq E$ 是闭子空间，则存在单位向量 $x$，使 $d(x, F) \ge \frac12$。若 $E$ 无穷维，归纳地取单位向量 $x_{n+1}$，使它与 $\Vect(x_0, \dots, x_n)$（有限维，所以是闭集）的距离 $\ge \frac12$。数列 $(x_n)$ 两两距离 $\ge \frac12$，没有收敛子列。
+▷ 思路：关键是 **Riesz 引理**（{@c1-lemme-riesz}）：若 $F \subsetneq E$ 是闭子空间，则存在单位向量 $x$，使 $d(x, F) \ge \frac12$。若 $E$ 无穷维，归纳地取单位向量 $x_{n+1}$，使它与 $\Vect(x_0, \dots, x_n)$（有限维，所以是闭集）的距离 $\ge \frac12$。数列 $(x_n)$ 两两距离 $\ge \frac12$，没有收敛子列。
 
 **(⇐)**　$E$ 有限维时，$\overline{B}(0, 1)$ 是有界闭集（{@c1-ouverts-stab}），由 {@cor-dimfinie} 第 1 条是紧集。
 
@@ -1807,7 +1831,7 @@ La boule unité fermée d'un evn $E$ est compacte si et seulement si $E$ est de 
 :::
 
 ::: fr
-Le point clé est le **lemme de Riesz** ({@fr:c1-lemme-riesz}) : si $F \subsetneq E$ est un sous-espace fermé, il existe un vecteur unitaire $x$ tel que $d(x, F) \ge \frac12$. Si $E$ est de dimension infinie, on choisit par récurrence un vecteur unitaire $x_{n+1}$ à distance $\ge \frac12$ de $\Vect(x_0, \dots, x_n)$ (de dimension finie, donc fermé). La suite $(x_n)$ a ses termes deux à deux à distance $\ge \frac12$ et n'admet aucune suite extraite convergente.
+▷ Méthode : le point clé est le **lemme de Riesz** ({@fr:c1-lemme-riesz}) : si $F \subsetneq E$ est un sous-espace fermé, il existe un vecteur unitaire $x$ tel que $d(x, F) \ge \frac12$. Si $E$ est de dimension infinie, on choisit par récurrence un vecteur unitaire $x_{n+1}$ à distance $\ge \frac12$ de $\Vect(x_0, \dots, x_n)$ (de dimension finie, donc fermé). La suite $(x_n)$ a ses termes deux à deux à distance $\ge \frac12$ et n'admet aucune suite extraite convergente.
 
 **(⇐)**　Si $E$ est de dimension finie, $\overline{B}(0, 1)$ est fermée et bornée ({@fr:c1-ouverts-stab}), donc compacte d'après le point 1 du {@fr:cor-dimfinie}.
 
@@ -1891,6 +1915,8 @@ Soit $(u_n)$ une suite de $E$.
 :::
 
 ::: proof
+▷ 思路：第 1–3 条与收敛数列的相应结论（{@c1-suites-prop}）证法相同，都是「三角不等式 + 选 $N$」；第 3 条用 $\varphi(n) \ge n$ 把子列与原数列联系起来；第 4 条把常数从一个范数搬到另一个范数。
+
 **1**　设 $u_n \to \ell$，$\eps > 0$。取 $N$ 使 $n \ge N$ 时 $\norm{u_n - \ell} < \frac\eps2$。对 $p, q \ge N$：$\norm{u_p - u_q} \le \norm{u_p - \ell} + \norm{\ell - u_q} < \eps$。
 
 **2**　取 $\eps = 1$：存在 $N_1$ 使 $p, q \ge N_1$ 时 $\norm{u_p - u_q} < 1$。取 $q = N_1$：对 $p \ge N_1$，$\norm{u_p} \le \norm{u_p - u_{N_1}} + \norm{u_{N_1}} < 1 + \norm{u_{N_1}}$。令 $M = \max\big(\norm{u_0}, \dots, \norm{u_{N_1 - 1}},\ 1 + \norm{u_{N_1}}\big)$，则对一切 $n$，$\norm{u_n} \le M$。
@@ -1906,6 +1932,8 @@ Soit $(u_n)$ une suite de $E$.
 :::
 
 ::: fr
+▷ Méthode : les points 1 à 3 se démontrent comme les résultats analogues pour les suites convergentes ({@fr:c1-suites-prop}) : « inégalité triangulaire + choix de $N$ » ; dans le point 3, l'inégalité $\varphi(n) \ge n$ relie la suite extraite à la suite elle-même ; le point 4 transporte les constantes d'une norme à l'autre.
+
 **1**　Supposons $u_n \to \ell$ et soit $\eps > 0$. Soit $N$ tel que $\norm{u_n - \ell} < \frac\eps2$ pour $n \ge N$. Pour $p, q \ge N$ : $\norm{u_p - u_q} \le \norm{u_p - \ell} + \norm{\ell - u_q} < \eps$.
 
 **2**　Pour $\eps = 1$ : il existe $N_1$ tel que pour $p, q \ge N_1$, $\norm{u_p - u_q} < 1$. Avec $q = N_1$ : pour $p \ge N_1$, $\norm{u_p} \le \norm{u_p - u_{N_1}} + \norm{u_{N_1}} < 1 + \norm{u_{N_1}}$. Posons $M = \max\big(\norm{u_0}, \dots, \norm{u_{N_1 - 1}},\ 1 + \norm{u_{N_1}}\big)$ ; alors $\norm{u_n} \le M$ pour tout $n$.
@@ -2295,10 +2323,14 @@ Si $A$ est connexe par arcs et $f : A \to \R$ est continue, alors $f(A)$ est un 
 :::
 
 ::: proof
+▷ 思路：把 {@image-connexe} 的两部分接起来。
+
 由 {@image-connexe}（第一部分），$f(A)$ 是 $\R$ 的道路连通子集；再由 {@image-connexe}（第二部分），它是区间。
 :::
 
 ::: fr
+▷ Méthode : on enchaîne les deux parties du {@fr:image-connexe}.
+
 D'après le {@fr:image-connexe} (première partie), $f(A)$ est une partie connexe par arcs de $\R$ ; d'après la seconde partie du même théorème, c'est un intervalle.
 :::
 
@@ -2353,7 +2385,7 @@ Dans un espace de Banach, une intersection dénombrable d'ouverts denses est den
 :::
 
 ::: sketch
-设 $U_n$ 是稠密开集，$B_0$ 是任一开球。由稠密性 $B_0 \cap U_1 \ne \varnothing$，它是开集，含一个闭球 $\overline{B}_1$，半径 $\le 1$。依次取 $\overline{B}_{n} \subset B_{n-1} \cap U_n$，半径 $\le \frac1n$。球心构成 Cauchy 列，极限属于所有 $\overline{B}_n$，从而属于 $B_0 \cap \bigcap U_n$。
+▷ 思路：设 $U_n$ 是稠密开集，$B_0$ 是任一开球。由稠密性 $B_0 \cap U_1 \ne \varnothing$，它是开集，含一个闭球 $\overline{B}_1$，半径 $\le 1$。依次取 $\overline{B}_{n} \subset B_{n-1} \cap U_n$，半径 $\le \frac1n$。球心构成 Cauchy 列，极限属于所有 $\overline{B}_n$，从而属于 $B_0 \cap \bigcap U_n$。
 
 下面把每一步写清楚。设 $E$ 是 Banach 空间，$(U_n)_{n \ge 1}$ 是稠密开集。
 
@@ -2371,7 +2403,7 @@ $$\overline{B}(a_n, r_n) \subset B(a_{n-1}, r_{n-1}) \cap U_n.$$
 :::
 
 ::: fr
-Soient $U_n$ des ouverts denses et $B_0$ une boule ouverte quelconque. Par densité, $B_0 \cap U_1 \ne \varnothing$ ; c'est un ouvert, qui contient une boule fermée $\overline{B}_1$ de rayon $\le 1$. On choisit successivement $\overline{B}_{n} \subset B_{n-1} \cap U_n$ de rayon $\le \frac1n$. Les centres forment une suite de Cauchy dont la limite appartient à toutes les $\overline{B}_n$, donc à $B_0 \cap \bigcap U_n$.
+▷ Méthode : soient $U_n$ des ouverts denses et $B_0$ une boule ouverte quelconque. Par densité, $B_0 \cap U_1 \ne \varnothing$ ; c'est un ouvert, qui contient une boule fermée $\overline{B}_1$ de rayon $\le 1$. On choisit successivement $\overline{B}_{n} \subset B_{n-1} \cap U_n$ de rayon $\le \frac1n$. Les centres forment une suite de Cauchy dont la limite appartient à toutes les $\overline{B}_n$, donc à $B_0 \cap \bigcap U_n$.
 
 Détaillons chaque étape. Soient $E$ un espace de Banach et $(U_n)_{n \ge 1}$ des ouverts denses.
 
