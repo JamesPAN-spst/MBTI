@@ -500,3 +500,400 @@ On fait tendre $m$ vers $+\infty$ : les intégrales aux extrémités convergent 
 $$\int_0^{1/2}\frac{\dd t}{t^\alpha\abs{\ln t}^\beta} = \int_2^{+\infty}\frac{u^\alpha}{(\ln u)^\beta}\cdot\frac{\dd u}{u^2} = \int_2^{+\infty}\frac{\dd u}{u^{2-\alpha}(\ln u)^\beta}.$$
 由 {@bertrand-integrales}，收敛当且仅当 $2 - \alpha > 1$，或 $2 - \alpha = 1$ 且 $\beta > 1$，即 **$\alpha < 1$，或 $\alpha = 1$ 且 $\beta > 1$**。注意在 $0$ 处与在 $+\infty$ 处，$\alpha$ 的临界方向相反。
 :::
+
+## 绝对收敛与可积函数
+
+对变号的函数，比较定理不能直接用。第一步总是看 $\abs f$：若 $\int\abs f$ 收敛，则 $\int f$ 收敛（与级数的绝对收敛相同）。但存在收敛而不绝对收敛的积分，最典型的是 $\int_0^{+\infty}\frac{\sin t}{t}\,\dd t$；处理这类积分要利用正负抵消，工具是分部积分（Abel 判别法）。
+
+::: def id=def-integrable zh="可积函数" en="Integrable function" fr="Fonction intégrable" ru="Абсолютно интегрируемая функция"
+设 $f$ 在区间 $I$ 上分段连续。称 $f$ 在 $I$ 上**可积**（intégrable），如果 $\int_I \abs{f}$ 收敛；此时也说 $\int_I f$ **绝对收敛**。$I$ 上可积的分段连续函数构成向量空间（{@c6-l1-ev}），记为 $L^1(I)$。收敛但不绝对收敛的积分称为**半收敛**的。
+
+白话：「可积」比「积分收敛」强，它要求 $\abs f$ 下方的面积有限，正负抵消不算数。对非负函数，两者相同。
+:::
+
+::: fr
+Soit $f$ continue par morceaux sur un intervalle $I$. On dit que $f$ est **intégrable** sur $I$ si $\int_I \abs{f}$ converge ; on dit aussi que $\int_I f$ est **absolument convergente**. Les fonctions continues par morceaux intégrables sur $I$ forment un espace vectoriel ({@fr:c6-l1-ev}), noté $L^1(I)$. Une intégrale convergente mais non absolument convergente est dite **semi-convergente**.
+
+Autrement dit, « intégrable » est plus fort que « d'intégrale convergente » : on demande que l'aire sous $\abs f$ soit finie, sans compter sur les compensations de signe. Pour une fonction positive, les deux notions coïncident.
+:::
+
+::: ex id=c6-ex-integrable lvl=1
+1. $t \mapsto \e^{-t}\sin t$ 在 $[0, +\infty[$ 上可积：$\abs{\e^{-t}\sin t} \le \e^{-t}$，后者积分收敛（{@comparaison-integrales}）。
+2. $t \mapsto \frac{1}{\sqrt t}$ 在 $]0, 1]$ 上可积（非负，$\alpha = \frac12 < 1$）。
+3. **非例子**：$t \mapsto \frac{\sin t}{t}$ 在 $[1, +\infty[$ 上积分收敛，但**不可积**（{@sinc}）。
+4. **非例子**：$t \mapsto \frac1t$ 在 $[1, +\infty[$ 上不可积，虽然它趋于 $0$。
+:::
+
+::: prop id=c6-l1-ev zh="可积函数的比较与线性" en="Comparison and linearity for integrable functions" fr="Comparaison et linéarité pour les fonctions intégrables" ru="Сравнение и линейность для абсолютно интегрируемых функций" lvl=1
+设 $I$ 是区间。
+
+1. 若 $f$ 在 $I$ 上分段连续，$g$ 在 $I$ 上可积，且 $\abs f \le g$，则 $f$ 可积。
+2. $L^1(I)$ 是向量空间：若 $f, g$ 可积，$\lambda \in \K$，则 $f + \lambda g$ 可积。
+:::
+
+::: fr
+Soit $I$ un intervalle.
+
+1. Si $f$ est continue par morceaux sur $I$, $g$ intégrable sur $I$ et $\abs f \le g$, alors $f$ est intégrable.
+2. $L^1(I)$ est un espace vectoriel : si $f, g$ sont intégrables et $\lambda \in \K$, alors $f + \lambda g$ est intégrable.
+:::
+
+::: proof
+▷ 思路：两条都是对非负函数 $\abs f$ 用比较定理。
+
+**1.**　$0 \le \abs f \le g$，$\int_I g$ 收敛。由比较定理 {@comparaison-integrales} 第 1 条（对 $]a, b[$ 型区间在中间分开，两端分别用），$\int_I\abs f$ 收敛。
+
+**2.**　$f + \lambda g$ 分段连续，且由三角不等式 $\abs{f + \lambda g} \le \abs f + \abs\lambda\abs g$。右边的积分收敛（{@c6-proprietes} 第 1 条），由 1，$f + \lambda g$ 可积。零函数可积，所以 $L^1(I)$ 是分段连续函数空间的子空间。
+:::
+
+::: fr
+▷ Méthode : dans les deux cas, on applique le théorème de comparaison à la fonction positive $\abs f$.
+
+**1.**　On a $0 \le \abs f \le g$ et $\int_I g$ converge. D'après le point 1 de {@fr:comparaison-integrales} (pour un intervalle du type $]a, b[$, on coupe au milieu et on traite chaque extrémité), $\int_I\abs f$ converge.
+
+**2.**　$f + \lambda g$ est continue par morceaux et, par l'inégalité triangulaire, $\abs{f + \lambda g} \le \abs f + \abs\lambda\abs g$. L'intégrale du membre de droite converge ({@fr:c6-proprietes}, point 1) ; d'après 1, $f + \lambda g$ est intégrable. La fonction nulle est intégrable, donc $L^1(I)$ est un sous-espace vectoriel de l'espace des fonctions continues par morceaux.
+:::
+
+::: thm id=integrable-convergente zh="绝对收敛蕴含收敛" en="Absolute convergence implies convergence" fr="Une intégrale absolument convergente est convergente" ru="Абсолютно сходящийся интеграл сходится" lvl=1
+若 $f$ 在 $I$ 上可积，则 $\int_I f$ 收敛，且 $\Big|\int_I f\Big| \le \int_I \abs{f}$。
+:::
+
+::: fr
+Si $f$ est intégrable sur $I$, alors $\int_I f$ converge et $\Big|\int_I f\Big| \le \int_I \abs{f}$.
+:::
+
+::: proof
+▷ 思路：用 Cauchy 准则 {@cauchy-integrale}：$\big|\int_x^y f\big| \le \int_x^y\abs f$，而后者可以任意小。这个证明对复值函数直接成立，不必拆成正部、负部或实部、虚部。
+
+先设 $I = [a, b[$。
+
+**第 1 步（翻译假设）**　$\int_a^b\abs f$ 收敛。由 Cauchy 准则（必要性），对 $\eps > 0$，存在 $c \in [a, b[$，使对 $c \le x \le y < b$，$\int_x^y\abs f < \eps$。
+
+**第 2 步（$f$ 满足 Cauchy 准则）**　对 $x, y \in [c, b[$（不妨 $x \le y$），由闭区间上积分的三角不等式，
+$$\Big|\int_x^y f\Big| \le \int_x^y\abs f < \eps.$$
+由 Cauchy 准则（充分性），$\int_a^b f$ 收敛。
+
+**第 3 步（不等式）**　对 $x \in [a, b[$，$\big|\int_a^x f\big| \le \int_a^x\abs f \le \int_a^b\abs f$（后一个不等式：$\int_a^x\abs f$ 递增趋于 $\int_a^b\abs f$，{@c6-positif-borne}）。令 $x \to b^-$，由模的连续性，$\big|\int_a^b f\big| \le \int_a^b\abs f$。
+
+**第 4 步（其他区间）**　$]a, b]$ 的情形把 $x \to b^-$ 换成 $x \to a^+$，论证相同。对 $]a, b[$，在 $c$ 处分开，两半分别由前面的情形收敛，且 $\big|\int_a^c f + \int_c^b f\big| \le \int_a^c\abs f + \int_c^b\abs f = \int_a^b\abs f$。
+:::
+
+::: fr
+▷ Méthode : on utilise le critère de Cauchy ({@fr:cauchy-integrale}) : $\big|\int_x^y f\big| \le \int_x^y\abs f$, et ce dernier est arbitrairement petit. La preuve vaut directement pour les fonctions complexes, sans passer par parties positive et négative ni parties réelle et imaginaire.
+
+Supposons d'abord $I = [a, b[$.
+
+**Étape 1 (on traduit l'hypothèse)**　$\int_a^b\abs f$ converge. D'après le critère de Cauchy (condition nécessaire), pour $\eps > 0$, il existe $c \in [a, b[$ tel que pour $c \le x \le y < b$, $\int_x^y\abs f < \eps$.
+
+**Étape 2 ($f$ vérifie le critère de Cauchy)**　Pour $x, y \in [c, b[$ (disons $x \le y$), par l'inégalité triangulaire sur un segment,
+$$\Big|\int_x^y f\Big| \le \int_x^y\abs f < \eps.$$
+D'après le critère de Cauchy (condition suffisante), $\int_a^b f$ converge.
+
+**Étape 3 (inégalité)**　Pour $x \in [a, b[$, $\big|\int_a^x f\big| \le \int_a^x\abs f \le \int_a^b\abs f$ (la seconde inégalité car $\int_a^x\abs f$ croît vers $\int_a^b\abs f$, {@fr:c6-positif-borne}). En faisant $x \to b^-$, par continuité du module, $\big|\int_a^b f\big| \le \int_a^b\abs f$.
+
+**Étape 4 (autres intervalles)**　Pour $]a, b]$, on remplace $x \to b^-$ par $x \to a^+$. Pour $]a, b[$, on coupe en $c$ : les deux moitiés convergent d'après ce qui précède, et $\big|\int_a^c f + \int_c^b f\big| \le \int_a^c\abs f + \int_c^b\abs f = \int_a^b\abs f$.
+:::
+
+::: ex id=sinc zh="Dirichlet 积分的收敛性" lvl=1
+$\int_0^{+\infty}\frac{\sin t}{t}\,\dd t$ 收敛但不绝对收敛。
+
+**$0$ 处。** $\frac{\sin t}{t} \to 1$（$t \to 0^+$），所以在 $0$ 处是假问题（{@c6-faux-probleme}），$\int_0^1\frac{\sin t}{t}\,\dd t$ 收敛。只需讨论 $[1, +\infty[$。
+
+**收敛。** 在 $[1, x]$ 上分部积分（$u = \frac1t$，$v' = \sin t$，$v = -\cos t$）：
+$$\int_1^x \frac{\sin t}{t}\,\dd t = \Big[-\frac{\cos t}{t}\Big]_1^x - \int_1^x\frac{\cos t}{t^2}\,\dd t = \cos 1 - \frac{\cos x}{x} - \int_1^x\frac{\cos t}{t^2}\,\dd t.$$
+$x \to +\infty$ 时，$\big|\frac{\cos x}{x}\big| \le \frac1x \to 0$；$\big|\frac{\cos t}{t^2}\big| \le \frac{1}{t^2}$，所以 $\int_1^{+\infty}\frac{\cos t}{t^2}\,\dd t$ 绝对收敛，从而收敛（{@integrable-convergente}）。右边有有限极限，所以左边收敛。
+
+**不绝对收敛。** 对 $k \ge 1$，在 $[k\pi, (k+1)\pi]$ 上 $\frac1t \ge \frac{1}{(k+1)\pi}$，且 $\int_{k\pi}^{(k+1)\pi}\abs{\sin t}\,\dd t = 2$，所以
+$$\int_\pi^{(N+1)\pi}\frac{\abs{\sin t}}{t}\,\dd t = \sum_{k=1}^N\int_{k\pi}^{(k+1)\pi}\frac{\abs{\sin t}}{t}\,\dd t \ge \frac2\pi\sum_{k=1}^N\frac{1}{k+1} \xrightarrow[N \to \infty]{} +\infty.$$
+所以 $x \mapsto \int_\pi^x\frac{\abs{\sin t}}{t}\,\dd t$ 无界，由 {@c6-positif-borne}，$\int_\pi^{+\infty}\frac{\abs{\sin t}}{t}\,\dd t$ 发散。
+
+其值为 $\frac{\pi}{2}$（Dirichlet 积分，第 7 章 {@dirichlet-integrale}）。
+:::
+
+::: thm id=c6-abel-integrales zh="积分的 Abel 判别法" en="Dirichlet's test for improper integrals" fr="Règle d'Abel pour les intégrales" ru="Признак Дирихле для несобственных интегралов" lvl=1
+设 $f : [a, +\infty[ \to \K$ 连续，$g : [a, +\infty[ \to \R$ 是 $\Cc^1$ 的，且
+
+1. $f$ 的积分有界：存在 $M \ge 0$，使对一切 $x \ge a$，$\Big|\int_a^x f\Big| \le M$；
+2. $g$ 递减，且 $g(t) \to 0$（$t \to +\infty$）。
+
+则 $\int_a^{+\infty} f\,g$ 收敛。
+:::
+
+::: fr
+Soient $f : [a, +\infty[ \to \K$ continue et $g : [a, +\infty[ \to \R$ de classe $\Cc^1$ telles que
+
+1. les intégrales de $f$ sont bornées : il existe $M \ge 0$ tel que pour tout $x \ge a$, $\Big|\int_a^x f\Big| \le M$ ;
+2. $g$ est décroissante et $g(t) \to 0$ quand $t \to +\infty$.
+
+Alors $\int_a^{+\infty} f\,g$ converge.
+:::
+
+::: proof
+▷ 思路：令 $F(x) = \int_a^x f$，分部积分把 $\int fg$ 变成 $Fg$ 与 $\int Fg'$；前者趋于 $0$，后者绝对收敛，因为 $\abs{Fg'} \le M(-g')$，而 $\int(-g')$ 是望远镜式的。这是级数的 Dirichlet 判别法 {@dirichlet-series} 的连续版本（Abel 变换 ↔ 分部积分）。
+
+**第 1 步（翻译假设）**　令 $F(x) = \int_a^x f$。$f$ 连续，所以 $F$ 是 $\Cc^1$ 的，$F' = f$，且 $\abs F \le M$。$g$ 递减趋于 $0$，所以 $g \ge 0$，$g' \le 0$。
+
+**第 2 步（分部积分）**　对 $x \ge a$，
+$$\int_a^x f\,g = \big[F g\big]_a^x - \int_a^x F\,g' = F(x)g(x) - \int_a^x F\,g'\qquad(F(a) = 0).$$
+
+**第 3 步（边界项）**　$\abs{F(x)g(x)} \le M g(x) \to 0$（$x \to +\infty$）。
+
+**第 4 步（积分项）**　$\abs{F g'} \le M(-g')$。而 $\int_a^x(-g') = g(a) - g(x) \to g(a)$，所以 $\int_a^{+\infty}(-g')$ 收敛（$-g' \ge 0$）。由 {@c6-l1-ev} 第 1 条，$Fg'$ 在 $[a, +\infty[$ 上可积；由 {@integrable-convergente}，$\int_a^x F g'$ 在 $x \to +\infty$ 时有有限极限。
+
+由第 2–4 步，$\int_a^x f g$ 有有限极限，即 $\int_a^{+\infty} fg$ 收敛。
+:::
+
+::: fr
+▷ Méthode : avec $F(x) = \int_a^x f$, une intégration par parties transforme $\int fg$ en $Fg$ et $\int Fg'$ ; le premier terme tend vers $0$, le second est absolument convergent car $\abs{Fg'} \le M(-g')$ et $\int(-g')$ est « télescopique ». C'est la version continue de la règle d'Abel pour les séries ({@fr:dirichlet-series}) : la transformation d'Abel devient l'intégration par parties.
+
+**Étape 1 (on traduit les hypothèses)**　Posons $F(x) = \int_a^x f$. Comme $f$ est continue, $F$ est de classe $\Cc^1$, $F' = f$ et $\abs F \le M$. Comme $g$ décroît vers $0$, $g \ge 0$ et $g' \le 0$.
+
+**Étape 2 (intégration par parties)**　Pour $x \ge a$,
+$$\int_a^x f\,g = \big[F g\big]_a^x - \int_a^x F\,g' = F(x)g(x) - \int_a^x F\,g'\qquad(F(a) = 0).$$
+
+**Étape 3 (terme de bord)**　$\abs{F(x)g(x)} \le M g(x) \to 0$ quand $x \to +\infty$.
+
+**Étape 4 (terme intégral)**　$\abs{F g'} \le M(-g')$. Or $\int_a^x(-g') = g(a) - g(x) \to g(a)$, donc $\int_a^{+\infty}(-g')$ converge ($-g' \ge 0$). D'après le point 1 de {@fr:c6-l1-ev}, $Fg'$ est intégrable sur $[a, +\infty[$ ; d'après {@fr:integrable-convergente}, $\int_a^x F g'$ admet une limite finie quand $x \to +\infty$.
+
+D'après les étapes 2 à 4, $\int_a^x f g$ admet une limite finie : $\int_a^{+\infty} fg$ converge.
+:::
+
+::: ex id=c6-ex-abel zh="$\int_1^{+\infty}\frac{\sin t}{t^\alpha}\,\dd t$" lvl=1
+设 $\alpha > 0$。取 $f = \sin$，$g(t) = t^{-\alpha}$：$\big|\int_1^x\sin t\,\dd t\big| = \abs{\cos 1 - \cos x} \le 2$，$g$ 是 $\Cc^1$ 的、递减、趋于 $0$。由 {@c6-abel-integrales}，$\int_1^{+\infty}\frac{\sin t}{t^\alpha}\,\dd t$ **收敛**。
+
+**绝对收敛当且仅当 $\alpha > 1$。** 若 $\alpha > 1$，$\frac{\abs{\sin t}}{t^\alpha} \le \frac{1}{t^\alpha}$，可积。若 $0 < \alpha \le 1$，对 $t \ge 1$，$t^\alpha \le t$，所以 $\frac{\abs{\sin t}}{t^\alpha} \ge \frac{\abs{\sin t}}{t}$，后者不可积（{@sinc}），由比较定理不可积。（$\alpha \le 0$ 时，$\frac{\sin t}{t^\alpha}$ 不趋于 $0$ 且在每个 $[2k\pi + \frac\pi6, 2k\pi + \frac{5\pi}6]$ 上 $\ge \frac12$，由 Cauchy 准则发散。）
+:::
+
+::: cex id=c6-cex-equiv-signe lvl=1
+**比较定理第 3 条对变号函数不成立。** 在 $[1, +\infty[$ 上令
+$$u(t) = \frac{\sin t}{\sqrt t},\qquad v(t) = \frac{\sin t}{\sqrt t} + \frac{\sin^2 t}{t} = u(t)\Big(1 + \frac{\sin t}{\sqrt t}\Big).$$
+因为 $\frac{\sin t}{\sqrt t} \to 0$，$v \sim u$（$t \to +\infty$）。$\int_1^{+\infty}u$ 收敛（{@c6-ex-abel}，$\alpha = \frac12$）。但 $\frac{\sin^2 t}{t} = \frac{1}{2t} - \frac{\cos 2t}{2t}$，其中 $\int_1^{+\infty}\frac{\cos 2t}{2t}\,\dd t$ 收敛（{@c6-abel-integrales}，$f(t) = \cos 2t$），$\int_1^{+\infty}\frac{\dd t}{2t}$ 发散，所以 $\int_1^{+\infty}\frac{\sin^2 t}{t}\,\dd t$ 发散（{@c6-proprietes} 第 3 条），$\int_1^{+\infty}v = \int u + \int\frac{\sin^2 t}{t}$ 也发散。这是级数反例 {@cex-equiv-signe} 的积分版本。
+:::
+
+::: cex id=c6-cex-produit lvl=1
+**可积函数的乘积不一定可积；$L^1$ 与「平方可积」互不包含。**
+
+1. $f(t) = \frac{1}{\sqrt t}$ 在 $]0, 1]$ 上可积（$\alpha = \frac12 < 1$），但 $f^2 = \frac1t$ 在 $]0, 1]$ 上不可积。
+2. $g(t) = \frac1t$ 在 $[1, +\infty[$ 上不可积，但 $g^2 = \frac{1}{t^2}$ 可积。
+
+（若 $f$ 可积且**有界**，$\abs f \le M$，则 $\abs f^2 \le M\abs f$，由 {@c6-l1-ev} 第 1 条，$f^2$ 可积。）
+:::
+
+::: q
+（第 5 章 Riemann–Lebesgue 引理在无界区间上的版本）设 $g$ 在 $[0, +\infty[$ 上可积。证明 $\int_0^{+\infty} g(t)\,\e^{\ii\lambda t}\,\dd t \to 0$（$\lambda \to \pm\infty$）。
+:::
+
+::: ans
+$\abs{g(t)\e^{\ii\lambda t}} = \abs{g(t)}$，所以积分绝对收敛（{@integrable-convergente}）。设 $\eps > 0$。由 {@c6-positif-borne}，$\int_0^A\abs g \to \int_0^{+\infty}\abs g$，所以可取 $A > 0$ 使 $\int_A^{+\infty}\abs g \le \eps$。于是
+$$\Big|\int_0^{+\infty} g\,\e^{\ii\lambda t}\Big| \le \Big|\int_0^A g\,\e^{\ii\lambda t}\Big| + \int_A^{+\infty}\abs g \le \Big|\int_0^A g\,\e^{\ii\lambda t}\Big| + \eps.$$
+由 {@riemann-lebesgue}（闭区间 $[0, A]$），第一项在 $\abs\lambda$ 充分大时 $\le \eps$。所以 $\abs\lambda$ 充分大时整个积分 $\le 2\eps$。这里「截断」是处理无界区间的标准手法：先用可积性把尾部变小，再在闭区间上用已知结论。
+:::
+
+## 分部积分与变量替换
+
+计算广义积分的两个基本工具与闭区间上相同，只是多了一步取极限。实践中最安全的做法是：**先在闭子区间上做分部积分或换元，再取极限**；下面两个定理把这个过程一次性写好。本节最后用它们研究 Euler 的 $\Gamma$ 函数。
+
+::: thm id=ipp-generalisee zh="广义分部积分" en="Integration by parts on an interval" fr="Intégration par parties généralisée" ru="Интегрирование по частям в несобственном интеграле" lvl=1
+设 $u, v \in \Cc^1(]a, b[)$（$-\infty \le a < b \le +\infty$），且 $uv$ 在 $a^+$ 和 $b^-$ 处有有限极限。则 $\int_a^b u'v$ 与 $\int_a^b uv'$ 同敛散，收敛时
+$$\int_a^b u'v = \big[uv\big]_a^b - \int_a^b uv',\qquad \big[uv\big]_a^b = \lim_{b^-} uv - \lim_{a^+} uv.$$
+:::
+
+::: fr
+Soient $u, v \in \Cc^1(]a, b[)$ ($-\infty \le a < b \le +\infty$) telles que $uv$ admette des limites finies en $a^+$ et en $b^-$. Alors $\int_a^b u'v$ et $\int_a^b uv'$ sont de même nature et, en cas de convergence,
+$$\int_a^b u'v = \big[uv\big]_a^b - \int_a^b uv',\qquad \big[uv\big]_a^b = \lim_{b^-} uv - \lim_{a^+} uv.$$
+:::
+
+::: proof
+▷ 思路：在闭子区间上做普通的分部积分，然后让端点趋于 $a$、$b$。边界项有极限，所以另外两项「同时有极限或同时没有」。
+
+固定 $c \in\, ]a, b[$，记 $L_a = \lim_{a^+}uv$，$L_b = \lim_{b^-}uv$。$u'v$ 与 $uv'$ 在 $]a, b[$ 上连续。
+
+**第 1 步（$a$ 端）**　对 $x \in\, ]a, c]$，由闭区间上的分部积分，
+$$\int_x^c u'v = u(c)v(c) - u(x)v(x) - \int_x^c uv'.$$
+$x \to a^+$ 时 $u(x)v(x) \to L_a$，所以 $\int_x^c u'v$ 有有限极限当且仅当 $\int_x^c uv'$ 有，即 $\int_a^c u'v$ 与 $\int_a^c uv'$ 同敛散；收敛时 $\int_a^c u'v = u(c)v(c) - L_a - \int_a^c uv'$。
+
+**第 2 步（$b$ 端）**　把第 1 步中的 $[x, c]$ 换成 $[c, y]$（$y \to b^-$），得到 $\int_c^b u'v$ 与 $\int_c^b uv'$ 同敛散，收敛时 $\int_c^b u'v = L_b - u(c)v(c) - \int_c^b uv'$。
+
+**第 3 步（合并）**　由定义 {@def-integrale-generalisee}，$\int_a^b u'v$ 收敛当且仅当两半都收敛，对 $uv'$ 也一样；由第 1、2 步，两者同敛散。收敛时把两式相加，$u(c)v(c)$ 抵消，得 $\int_a^b u'v = L_b - L_a - \int_a^b uv'$。
+:::
+
+::: fr
+▷ Méthode : on intègre par parties sur un segment, puis on fait tendre les bornes vers $a$ et $b$. Le terme de bord ayant une limite, les deux autres termes ont une limite « en même temps ».
+
+Fixons $c \in\, ]a, b[$ et notons $L_a = \lim_{a^+}uv$, $L_b = \lim_{b^-}uv$. Les fonctions $u'v$ et $uv'$ sont continues sur $]a, b[$.
+
+**Étape 1 (extrémité $a$)**　Pour $x \in\, ]a, c]$, l'intégration par parties sur un segment donne
+$$\int_x^c u'v = u(c)v(c) - u(x)v(x) - \int_x^c uv'.$$
+Quand $x \to a^+$, $u(x)v(x) \to L_a$ ; donc $\int_x^c u'v$ a une limite finie si et seulement si $\int_x^c uv'$ en a une : $\int_a^c u'v$ et $\int_a^c uv'$ sont de même nature, et en cas de convergence $\int_a^c u'v = u(c)v(c) - L_a - \int_a^c uv'$.
+
+**Étape 2 (extrémité $b$)**　En remplaçant $[x, c]$ par $[c, y]$ ($y \to b^-$), on obtient que $\int_c^b u'v$ et $\int_c^b uv'$ sont de même nature et, en cas de convergence, $\int_c^b u'v = L_b - u(c)v(c) - \int_c^b uv'$.
+
+**Étape 3 (recollement)**　Par définition ({@fr:def-integrale-generalisee}), $\int_a^b u'v$ converge si et seulement si ses deux moitiés convergent, et de même pour $uv'$ ; d'après les étapes 1 et 2, les deux intégrales sont de même nature. En cas de convergence, on additionne : $u(c)v(c)$ disparaît et $\int_a^b u'v = L_b - L_a - \int_a^b uv'$.
+:::
+
+::: rem
+**边界项的假设不能去掉。** 在 $[0, +\infty[$ 上取 $u = \sin$，$v = 1$：$\int_0^{+\infty}uv' = \int_0^{+\infty}0 = 0$ 收敛，而 $\int_0^{+\infty}u'v = \int_0^{+\infty}\cos t\,\dd t$ 发散；这里 $uv = \sin$ 在 $+\infty$ 处没有极限。实践中，若不确定边界项是否收敛，就回到闭区间 $[x, y]$ 上写出等式，再逐项讨论极限（如 {@sinc}）。
+:::
+
+::: thm id=changement-variable-gen zh="广义变量替换" en="Change of variables" fr="Changement de variable" ru="Замена переменной в несобственном интеграле" lvl=1
+设 $\varphi : ]\alpha, \beta[ \to ]a, b[$ 是 $\Cc^1$ 的严格单调双射，$f$ 在 $]a, b[$ 上分段连续。则 $\int_a^b f(t)\,\dd t$ 与 $\int_\alpha^\beta f(\varphi(u))\abs{\varphi'(u)}\,\dd u$ 同敛散，收敛时相等。
+:::
+
+::: fr
+Soit $\varphi : ]\alpha, \beta[ \to ]a, b[$ une bijection strictement monotone de classe $\Cc^1$, et $f$ continue par morceaux sur $]a, b[$. Alors $\int_a^b f(t)\,\dd t$ et $\int_\alpha^\beta f(\varphi(u))\abs{\varphi'(u)}\,\dd u$ sont de même nature et égales en cas de convergence.
+:::
+
+::: proof
+▷ 思路：在闭子区间上用 L1 的换元公式，再取极限。$\varphi$ 是连续的严格单调双射，它的逆 $\varphi^{-1}$ 也是，所以「$u \to \beta^-$」与「$t = \varphi(u)$ 趋于对应的端点」是一回事；绝对值处理了递减的情形。
+
+固定 $\gamma \in\, ]\alpha, \beta[$，令 $c = \varphi(\gamma)$。
+
+**情形 1（$\varphi$ 递增）**　此时 $\varphi(u) \to b^-$（$u \to \beta^-$），$\varphi(u) \to a^+$（$u \to \alpha^+$），对 $\varphi^{-1}$ 也有相应的结论（单调双射在端点处的极限是端点），且 $\abs{\varphi'} = \varphi'$。
+
+1. **闭区间上的公式**：对 $y \in [\gamma, \beta[$，$\int_c^{\varphi(y)} f(t)\,\dd t = \int_\gamma^y f(\varphi(u))\varphi'(u)\,\dd u$。（L1 的换元公式；$f$ 分段连续时，在 $f$ 的间断点处分开，它们在 $\varphi$ 下的原像也只有有限个。）
+2. **(⇐)** 设 $\int_\gamma^\beta f(\varphi)\varphi'$ 收敛于 $L$。对 $t \in [c, b[$，令 $y = \varphi^{-1}(t)$；$t \to b^-$ 时 $y \to \beta^-$，由 1 与复合函数的极限，$\int_c^t f = \int_\gamma^{\varphi^{-1}(t)} f(\varphi)\varphi' \to L$。
+3. **(⇒)** 设 $\int_c^b f$ 收敛于 $L'$。$y \to \beta^-$ 时 $\varphi(y) \to b^-$，由 1，$\int_\gamma^y f(\varphi)\varphi' = \int_c^{\varphi(y)} f \to L'$。
+4. **$a$ 端**：把 $[\gamma, y]$ 换成 $[x, \gamma]$（$x \to \alpha^+$），论证相同。两端合并即得结论。
+
+**情形 2（$\varphi$ 递减）**　此时 $\varphi(u) \to a^+$（$u \to \beta^-$），$\varphi(u) \to b^-$（$u \to \alpha^+$），$\abs{\varphi'} = -\varphi'$。对 $y \in [\gamma, \beta[$，L1 的换元公式给出
+$$\int_{\varphi(y)}^{c} f(t)\,\dd t = -\int_\gamma^y f(\varphi(u))\varphi'(u)\,\dd u = \int_\gamma^y f(\varphi(u))\abs{\varphi'(u)}\,\dd u,$$
+所以 $\int_a^c f$ 与 $\int_\gamma^\beta f(\varphi)\abs{\varphi'}$ 同敛散且相等（与情形 1 的第 2、3 步相同）；$b$ 端与 $\int_\alpha^\gamma$ 对应。两端合并即得结论。
+:::
+
+::: fr
+▷ Méthode : on applique la formule de changement de variable de L1 sur un segment, puis on passe à la limite. $\varphi$ est une bijection continue strictement monotone, de même que $\varphi^{-1}$, donc « $u \to \beta^-$ » équivaut à « $t = \varphi(u)$ tend vers l'extrémité correspondante » ; la valeur absolue traite le cas décroissant.
+
+Fixons $\gamma \in\, ]\alpha, \beta[$ et posons $c = \varphi(\gamma)$.
+
+**Cas 1 ($\varphi$ croissante)**　Alors $\varphi(u) \to b^-$ quand $u \to \beta^-$ et $\varphi(u) \to a^+$ quand $u \to \alpha^+$, et de même pour $\varphi^{-1}$ (une bijection monotone a pour limites aux bornes les bornes de l'intervalle image) ; de plus $\abs{\varphi'} = \varphi'$.
+
+1. **Formule sur un segment** : pour $y \in [\gamma, \beta[$, $\int_c^{\varphi(y)} f(t)\,\dd t = \int_\gamma^y f(\varphi(u))\varphi'(u)\,\dd u$. (Formule de L1 ; si $f$ est seulement continue par morceaux, on découpe aux points de discontinuité de $f$, dont les antécédents par $\varphi$ sont en nombre fini.)
+2. **(⇐)** Supposons que $\int_\gamma^\beta f(\varphi)\varphi'$ converge vers $L$. Pour $t \in [c, b[$, posons $y = \varphi^{-1}(t)$ ; quand $t \to b^-$, $y \to \beta^-$, donc, d'après 1 et par composition des limites, $\int_c^t f = \int_\gamma^{\varphi^{-1}(t)} f(\varphi)\varphi' \to L$.
+3. **(⇒)** Supposons que $\int_c^b f$ converge vers $L'$. Quand $y \to \beta^-$, $\varphi(y) \to b^-$, donc d'après 1, $\int_\gamma^y f(\varphi)\varphi' = \int_c^{\varphi(y)} f \to L'$.
+4. **Extrémité $a$** : on remplace $[\gamma, y]$ par $[x, \gamma]$ ($x \to \alpha^+$), avec le même argument. On recolle les deux extrémités.
+
+**Cas 2 ($\varphi$ décroissante)**　Alors $\varphi(u) \to a^+$ quand $u \to \beta^-$, $\varphi(u) \to b^-$ quand $u \to \alpha^+$, et $\abs{\varphi'} = -\varphi'$. Pour $y \in [\gamma, \beta[$, la formule de L1 donne
+$$\int_{\varphi(y)}^{c} f(t)\,\dd t = -\int_\gamma^y f(\varphi(u))\varphi'(u)\,\dd u = \int_\gamma^y f(\varphi(u))\abs{\varphi'(u)}\,\dd u,$$
+donc $\int_a^c f$ et $\int_\gamma^\beta f(\varphi)\abs{\varphi'}$ sont de même nature et égales (mêmes étapes 2 et 3 que dans le cas 1) ; l'extrémité $b$ correspond à $\int_\alpha^\gamma$. On recolle les deux extrémités.
+:::
+
+::: ex id=c6-ex-changement zh="换元的四个例子" lvl=1
+1. **$\int_0^1\frac{\dd t}{\sqrt{1 - t^2}} = \frac\pi2$。** $\varphi(u) = \sin u$ 是 $]0, \frac\pi2[ \to ]0, 1[$ 的 $\Cc^1$ 递增双射，$\frac{\varphi'(u)}{\sqrt{1 - \sin^2 u}} = \frac{\cos u}{\cos u} = 1$（$\cos u > 0$）。所以积分 $= \int_0^{\pi/2}1\,\dd u = \frac\pi2$。
+2. **$\int_0^1\frac{\dd t}{\sqrt{t(1-t)}} = \pi$。** $\varphi(\theta) = \sin^2\theta$ 是 $]0, \frac\pi2[ \to ]0, 1[$ 的 $\Cc^1$ 递增双射，$\varphi'(\theta) = 2\sin\theta\cos\theta$，$\sqrt{\varphi(1 - \varphi)} = \sin\theta\cos\theta$，被积函数变为 $2$，积分 $= \int_0^{\pi/2}2\,\dd\theta = \pi$。
+3. **$\int_0^{+\infty}\e^{-\sqrt t}\,\dd t = 2$。** $\varphi(u) = u^2$ 是 $]0, +\infty[$ 到自身的 $\Cc^1$ 递增双射：积分 $= \int_0^{+\infty}2u\,\e^{-u}\,\dd u$。由 {@ipp-generalisee}（$u \mapsto -2u\e^{-u}$ 在 $0$ 与 $+\infty$ 处的极限都是 $0$），$\int_0^{+\infty}2u\,\e^{-u}\,\dd u = \int_0^{+\infty}2\,\e^{-u}\,\dd u = 2$。
+4. **$\int_0^{+\infty}\frac{\ln t}{1 + t^2}\,\dd t = 0$。** 先证收敛：在 $0$ 处 $\big|\frac{\ln t}{1 + t^2}\big| \le \abs{\ln t}$，可积（{@riemann-integrales}）；在 $+\infty$ 处 $0 \le \frac{\ln t}{1 + t^2} \le \frac{\ln t}{t^2}$，可积（{@c6-ex-comparaison}）。记积分为 $I$。$\varphi(u) = \frac1u$ 是 $]0, +\infty[$ 到自身的 $\Cc^1$ 递减双射，$\abs{\varphi'(u)} = \frac{1}{u^2}$：
+$$I = \int_0^{+\infty}\frac{\ln(1/u)}{1 + 1/u^2}\cdot\frac{\dd u}{u^2} = \int_0^{+\infty}\frac{-\ln u}{u^2 + 1}\,\dd u = -I,$$
+所以 $I = 0$。
+:::
+
+::: rem
+**先证收敛，再换元。** 第 4 例中「$I = -I$，所以 $I = 0$」的论证要求 $I$ 是一个数。若不先证收敛，同样的换元 $t = -u$ 会「证明」$\int_{-\infty}^{+\infty}t\,\dd t = 0$，而这个积分发散（§1 的反例）。
+:::
+
+::: q
+证明 $\int_0^{+\infty}\sin(t^2)\,\dd t$ 收敛，尽管 $\sin(t^2)$ 在 $+\infty$ 处不趋于 $0$。这与 Barbălat 引理 {@c6-barbalat} 矛盾吗？
+:::
+
+::: ans
+在 $[0, 1]$ 上被积函数连续，没有问题。在 $[1, +\infty[$ 上，$\varphi(u) = \sqrt u$ 是 $]1, +\infty[$ 到自身的 $\Cc^1$ 递增双射，$\varphi'(u) = \frac{1}{2\sqrt u}$，由 {@changement-variable-gen}，$\int_1^{+\infty}\sin(t^2)\,\dd t$ 与 $\int_1^{+\infty}\frac{\sin u}{2\sqrt u}\,\dd u$ 同敛散；后者由 {@c6-ex-abel}（$\alpha = \frac12$）收敛。另一方面，$t_k = \sqrt{\frac\pi2 + 2k\pi} \to +\infty$ 处 $\sin(t_k^2) = 1$，所以 $\sin(t^2) \not\to 0$。不矛盾：$\sin(t^2)$ 在 $[0, +\infty[$ 上**不**一致连续（$t^2$ 增加 $\frac\pi2$ 时 $\sin(t^2)$ 从 $0$ 变到 $1$，对应的 $t$ 的增量约为 $\frac{\pi}{4t} \to 0$）。这个积分（Fresnel 积分）的值是 $\sqrt{\pi/8}$，用复分析计算。
+:::
+
+::: def id=def-gamma zh="Γ 函数" en="Gamma function" fr="Fonction Gamma d'Euler" ru="Гамма-функция Эйлера"
+对 $x > 0$，
+$$\Gamma(x) = \int_0^{+\infty} t^{x-1}\e^{-t}\,\dd t.$$
+（积分对 $x > 0$ 收敛，见 {@c6-gamma-definie}。）
+
+白话：$\Gamma$ 把阶乘 $n \mapsto n!$ 「插值」成 $]0, +\infty[$ 上的光滑函数（{@gamma-factorielle}）。
+:::
+
+::: fr
+Pour $x > 0$,
+$$\Gamma(x) = \int_0^{+\infty} t^{x-1}\e^{-t}\,\dd t.$$
+(L'intégrale converge pour $x > 0$, cf. {@fr:c6-gamma-definie}.)
+
+Autrement dit, $\Gamma$ « interpole » la factorielle $n \mapsto n!$ par une fonction régulière sur $]0, +\infty[$ ({@fr:gamma-factorielle}).
+:::
+
+::: prop id=c6-gamma-definie zh="Γ 积分的收敛域" en="Domain of convergence of the Gamma integral" fr="Domaine de définition de Γ" ru="Область сходимости интеграла для гамма-функции" lvl=1
+对 $x \in \R$，$\int_0^{+\infty}t^{x-1}\e^{-t}\,\dd t$ 收敛当且仅当 $x > 0$。
+:::
+
+::: fr
+Pour $x \in \R$, l'intégrale $\int_0^{+\infty}t^{x-1}\e^{-t}\,\dd t$ converge si et seulement si $x > 0$.
+:::
+
+::: proof
+▷ 思路：被积函数在 $]0, +\infty[$ 上连续且为正，有两个问题点，在 $1$ 处分开：$0$ 处与 $t^{x-1}$ 比较（这里决定 $x > 0$），$+\infty$ 处 $\e^{-t}$ 压倒一切幂次。
+
+记 $h(t) = t^{x-1}\e^{-t} > 0$。
+
+**第 1 步（$0$ 处）**　$\e^{-t} \to 1$（$t \to 0^+$），所以 $h(t) \sim t^{x-1} = \frac{1}{t^{1-x}}$。由 {@riemann-integrales}，$\int_0^1\frac{\dd t}{t^{1-x}}$ 收敛当且仅当 $1 - x < 1$，即 $x > 0$。由比较定理第 3 条，$\int_0^1 h$ 收敛当且仅当 $x > 0$。
+
+**第 2 步（$+\infty$ 处）**　$t^2h(t) = t^{x+1}\e^{-t} \to 0$（指数压倒幂次），所以 $h(t) = O\big(\frac{1}{t^2}\big)$。$\int_1^{+\infty}\frac{\dd t}{t^2}$ 收敛，由比较定理第 2 条，$\int_1^{+\infty} h$ 对一切 $x$ 收敛。
+
+由定义 {@def-integrale-generalisee}，$\int_0^{+\infty} h$ 收敛当且仅当两半都收敛，即 $x > 0$。
+:::
+
+::: fr
+▷ Méthode : l'intégrande est continue et strictement positive sur $]0, +\infty[$, avec deux bornes impropres ; on coupe en $1$. En $0$, on compare à $t^{x-1}$ (c'est là que se joue la condition $x > 0$) ; en $+\infty$, l'exponentielle l'emporte sur toute puissance.
+
+Notons $h(t) = t^{x-1}\e^{-t} > 0$.
+
+**Étape 1 (en $0$)**　$\e^{-t} \to 1$ quand $t \to 0^+$, donc $h(t) \sim t^{x-1} = \frac{1}{t^{1-x}}$. D'après {@fr:riemann-integrales}, $\int_0^1\frac{\dd t}{t^{1-x}}$ converge si et seulement si $1 - x < 1$, c'est-à-dire $x > 0$. D'après le point 3 du théorème de comparaison, $\int_0^1 h$ converge si et seulement si $x > 0$.
+
+**Étape 2 (en $+\infty$)**　$t^2h(t) = t^{x+1}\e^{-t} \to 0$ (croissances comparées), donc $h(t) = O\big(\frac{1}{t^2}\big)$. Comme $\int_1^{+\infty}\frac{\dd t}{t^2}$ converge, le point 2 du théorème de comparaison montre que $\int_1^{+\infty} h$ converge pour tout $x$.
+
+Par définition ({@fr:def-integrale-generalisee}), $\int_0^{+\infty} h$ converge si et seulement si les deux moitiés convergent, c'est-à-dire si et seulement si $x > 0$.
+:::
+
+::: prop id=gamma-factorielle zh="Γ 函数与阶乘" en="Gamma and the factorial" fr="Fonction Γ et factorielle" ru="Гамма-функция и факториал" lvl=1
+对 $x > 0$，$\Gamma(x + 1) = x\,\Gamma(x)$；$\Gamma(1) = 1$；从而对 $n \in \N$，$\Gamma(n + 1) = n!$。
+:::
+
+::: fr
+Pour $x > 0$, $\Gamma(x + 1) = x\,\Gamma(x)$ ; $\Gamma(1) = 1$ ; par conséquent, pour $n \in \N$, $\Gamma(n + 1) = n!$.
+:::
+
+::: proof
+▷ 思路：对 $t^x\e^{-t}$ 用广义分部积分，把 $t^x$ 求导；边界项在两端都为 $0$。
+
+**第 1 步（分部积分）**　设 $x > 0$。在 $]0, +\infty[$ 上取 $u(t) = -\e^{-t}$，$v(t) = t^x$，都是 $\Cc^1$ 的，$u'v = t^x\e^{-t}$，$uv' = -x\,t^{x-1}\e^{-t}$。
+
+**第 2 步（边界项）**　$uv = -t^x\e^{-t}$：$t \to 0^+$ 时 $\to 0$（因为 $x > 0$）；$t \to +\infty$ 时 $\to 0$（指数压倒幂次）。所以 $\big[uv\big]_0^{+\infty} = 0$。
+
+**第 3 步（应用 {@ipp-generalisee}）**　$\int_0^{+\infty}uv' = -x\,\Gamma(x)$ 收敛（{@c6-gamma-definie}），所以 $\int_0^{+\infty}u'v$ 也收敛，且
+$$\Gamma(x + 1) = \int_0^{+\infty}t^x\e^{-t}\,\dd t = 0 - \int_0^{+\infty}\big(-x\,t^{x-1}\e^{-t}\big)\,\dd t = x\,\Gamma(x).$$
+
+**第 4 步（阶乘）**　$\Gamma(1) = \int_0^{+\infty}\e^{-t}\,\dd t = 1$（{@riemann-integrales}）。**初始化**：$\Gamma(0 + 1) = 1 = 0!$。**递推**：若 $\Gamma(n) = (n-1)!$（$n \ge 1$），则 $\Gamma(n + 1) = n\,\Gamma(n) = n!$。
+:::
+
+::: fr
+▷ Méthode : intégration par parties généralisée sur $t^x\e^{-t}$, en dérivant $t^x$ ; le terme de bord est nul aux deux extrémités.
+
+**Étape 1 (intégration par parties)**　Soit $x > 0$. Sur $]0, +\infty[$, posons $u(t) = -\e^{-t}$ et $v(t) = t^x$, de classe $\Cc^1$, avec $u'v = t^x\e^{-t}$ et $uv' = -x\,t^{x-1}\e^{-t}$.
+
+**Étape 2 (terme de bord)**　$uv = -t^x\e^{-t}$ tend vers $0$ quand $t \to 0^+$ (car $x > 0$) et quand $t \to +\infty$ (croissances comparées). Donc $\big[uv\big]_0^{+\infty} = 0$.
+
+**Étape 3 (application de {@fr:ipp-generalisee})**　$\int_0^{+\infty}uv' = -x\,\Gamma(x)$ converge ({@fr:c6-gamma-definie}), donc $\int_0^{+\infty}u'v$ converge aussi et
+$$\Gamma(x + 1) = \int_0^{+\infty}t^x\e^{-t}\,\dd t = 0 - \int_0^{+\infty}\big(-x\,t^{x-1}\e^{-t}\big)\,\dd t = x\,\Gamma(x).$$
+
+**Étape 4 (factorielle)**　$\Gamma(1) = \int_0^{+\infty}\e^{-t}\,\dd t = 1$ ({@fr:riemann-integrales}). **Initialisation** : $\Gamma(0 + 1) = 1 = 0!$. **Hérédité** : si $\Gamma(n) = (n-1)!$ ($n \ge 1$), alors $\Gamma(n + 1) = n\,\Gamma(n) = n!$.
+:::
+
+::: ex id=c6-ex-gamma-demi zh="$\Gamma(\frac12) = \sqrt\pi$" lvl=1
+$\varphi(u) = u^2$ 是 $]0, +\infty[$ 到自身的 $\Cc^1$ 递增双射。由 {@changement-variable-gen} 和 Gauss 积分 {@gauss}，
+$$\Gamma\big(\tfrac12\big) = \int_0^{+\infty}t^{-1/2}\e^{-t}\,\dd t = \int_0^{+\infty}u^{-1}\e^{-u^2}\cdot 2u\,\dd u = 2\int_0^{+\infty}\e^{-u^2}\,\dd u = \sqrt\pi.$$
+由 {@gamma-factorielle} 反复使用 $\Gamma(x + 1) = x\Gamma(x)$：
+$$\Gamma\big(n + \tfrac12\big) = \Big(n - \tfrac12\Big)\Big(n - \tfrac32\Big)\cdots\tfrac12\,\Gamma\big(\tfrac12\big) = \frac{1\cdot 3\cdots(2n-1)}{2^n}\sqrt\pi = \frac{(2n)!}{4^n\,n!}\sqrt\pi.$$
+（最后一步：$1\cdot 3\cdots(2n - 1) = \frac{(2n)!}{2\cdot 4\cdots 2n} = \frac{(2n)!}{2^n n!}$。）例如 $\Gamma(\frac32) = \frac{\sqrt\pi}{2}$。
+:::
+
+::: q
+求 $\int_0^1(\ln t)^n\,\dd t$（$n \in \N$）。
+:::
+
+::: ans
+$\varphi(u) = \e^{-u}$ 是 $]0, +\infty[ \to ]0, 1[$ 的 $\Cc^1$ 递减双射，$\abs{\varphi'(u)} = \e^{-u}$，$\ln\varphi(u) = -u$。由 {@changement-variable-gen} 和 {@gamma-factorielle}，
+$$\int_0^1(\ln t)^n\,\dd t = \int_0^{+\infty}(-u)^n\e^{-u}\,\dd u = (-1)^n\,\Gamma(n + 1) = (-1)^n\,n!.$$
+（收敛性也由换元定理一并得到。）$n = 1$ 时为 $-1$，与 {@riemann-integrales} 一致。
+:::
