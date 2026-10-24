@@ -278,7 +278,7 @@ p.meta { color: var(--muted); font-size: 0.94em; padding-left: 12px; border-left
 .proof.ans > summary { color: var(--c-hist); background: color-mix(in srgb, var(--c-hist) 10%, transparent); }
 
 /* —— 术语对照 —— */
-.glossary { margin: 40px 0 24px; padding: 18px 20px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); overflow-x: auto; }
+.glossary { position: relative; margin: 40px 0 24px; padding: 18px 20px; border-radius: 18px; background: var(--surface); border: 1px solid var(--line); overflow-x: auto; }
 .glossary .blk-kind { color: var(--accent); }
 .glossary table { width: 100%; border-collapse: collapse; font-size: 14px; margin-top: 10px; min-width: 560px; }
 .glossary th, .glossary td { text-align: left; padding: 7px 10px; border-bottom: 1px solid var(--line); vertical-align: top; }
