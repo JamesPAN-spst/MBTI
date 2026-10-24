@@ -897,3 +897,211 @@ $\varphi(u) = \e^{-u}$ 是 $]0, +\infty[ \to ]0, 1[$ 的 $\Cc^1$ 递减双射，
 $$\int_0^1(\ln t)^n\,\dd t = \int_0^{+\infty}(-u)^n\e^{-u}\,\dd u = (-1)^n\,\Gamma(n + 1) = (-1)^n\,n!.$$
 （收敛性也由换元定理一并得到。）$n = 1$ 时为 $-1$，与 {@riemann-integrales} 一致。
 :::
+
+## 控制收敛与逐项积分
+
+第 3 章的 {@integration-unif} 要求闭区间和一致收敛；在无界区间上，或只有逐点收敛时，结论可能失败（{@cex-bosse}）。以下两个定理来自 Lebesgue 积分论。法国 MP 大纲把它们作为**已承认的定理**使用（théorèmes admis），因为它们的证明需要测度论，但它们的应用完全不需要。使用时的关键只有一点：找到一个**与 $n$ 无关**的可积控制函数。
+
+::: thm id=cv-dominee zh="控制收敛定理" en="Dominated convergence theorem" fr="Théorème de convergence dominée" ru="Теорема Лебега о мажорированной сходимости" lvl=3 ref="L3 积分论；Rudin, *Real and Complex Analysis*，定理 1.34；Briane–Pagès, *Théorie de l'intégration*"
+设 $(f_n)$ 是 $I$ 上分段连续的函数列，满足：
+
+1. $(f_n)$ 在 $I$ 上逐点收敛到分段连续的函数 $f$；
+2. （控制条件）存在 $I$ 上可积的非负函数 $\varphi$，使 $\abs{f_n} \le \varphi$ 对一切 $n$ 成立（$\varphi$ 不依赖于 $n$）。
+
+则 $f_n$、$f$ 都在 $I$ 上可积，且
+$$\int_I f_n \xrightarrow[n \to \infty]{} \int_I f.$$
+:::
+
+::: fr
+Soit $(f_n)$ une suite de fonctions continues par morceaux sur $I$ telle que :
+
+1. $(f_n)$ converge simplement sur $I$ vers une fonction $f$ continue par morceaux ;
+2. (hypothèse de domination) il existe une fonction $\varphi$ positive et intégrable sur $I$ telle que $\abs{f_n} \le \varphi$ pour tout $n$ ($\varphi$ ne dépend pas de $n$).
+
+Alors les $f_n$ et $f$ sont intégrables sur $I$ et
+$$\int_I f_n \xrightarrow[n \to \infty]{} \int_I f.$$
+:::
+
+::: rem
+1. **与 {@integration-unif} 比较。** 这里只需要**逐点**收敛，区间可以是无界的；代价是需要一个可积的控制函数。在法国教材中，这是讨论「极限与积分交换」最常用的工具。第 7 章会把它推广到连续参数。
+2. **「$f$ 分段连续」在本章的框架里不能省。** 令 $f_n$ 为 $\{\frac pq \in [0, 1] : 1 \le q \le n\}$（有限集）的指示函数，它们分段连续，$\abs{f_n} \le 1$，逐点收敛到 $\mathbf{1}_{\Q \cap [0, 1]}$；后者不是分段连续的，甚至不是 Riemann 可积的，「$\int f$」在本章没有意义。（Lebesgue 理论中它的积分为 $0$，与 $\int f_n = 0$ 一致。）
+3. **可积性的部分是容易的。** 由 $\abs{f_n} \le \varphi$ 和 {@c6-l1-ev}，每个 $f_n$ 可积；令 $n \to \infty$ 得 $\abs f \le \varphi$，所以 $f$ 也可积。已承认的只是积分的收敛。
+:::
+
+::: ex id=ex-cv-dominee zh="$\int_0^n(1 - \frac tn)^n\,\dd t \to 1$" lvl=1
+求 $\lim_{n \to \infty}\int_0^n\Big(1 - \frac tn\Big)^n\,\dd t$。
+
+**第 1 步（化为固定区间）**　令 $f_n(t) = (1 - \frac tn)^n\mathbf{1}_{[0,n]}(t)$，$t \in [0, +\infty[$。在 $t = n$ 处两边的值都是 $0$，所以 $f_n$ 在 $[0, +\infty[$ 上连续，且 $\int_0^{+\infty}f_n = \int_0^n(1 - \frac tn)^n\,\dd t$。
+
+**第 2 步（逐点极限）**　固定 $t \ge 0$。对 $n > t$，$f_n(t) = \exp\big(n\ln(1 - \frac tn)\big)$，而 $n\ln(1 - \frac tn) = n\big(-\frac tn + o(\frac1n)\big) \to -t$，所以 $f_n(t) \to \e^{-t}$。
+
+**第 3 步（控制）**　对 $u \in [0, 1[$，$\ln(1 - u) \le -u$（凹函数在切线下方）。所以对 $t \in [0, n[$，$f_n(t) = \exp\big(n\ln(1 - \frac tn)\big) \le \exp(-t)$；对 $t \ge n$，$f_n(t) = 0 \le \e^{-t}$。于是 $0 \le f_n \le \varphi$，$\varphi(t) = \e^{-t}$ 在 $[0, +\infty[$ 上可积，且与 $n$ 无关。
+
+**第 4 步（结论）**　由控制收敛定理，极限为 $\int_0^{+\infty}\e^{-t}\,\dd t = 1$。
+
+（验证：换元 $t = nu$ 给出精确值 $\int_0^n(1 - \frac tn)^n\,\dd t = n\int_0^1(1 - u)^n\,\dd u = \frac{n}{n+1} \to 1$。）
+:::
+
+::: cex id=cex-domination lvl=1
+**控制条件不能省略。** 在 $]0, 1]$ 上令 $f_n = n\,\mathbf{1}_{]0, 1/n]}$（分段连续）。
+
+1. **逐点收敛到 $0$**：固定 $t \in\, ]0, 1]$，对 $n > \frac1t$，$t \notin\, ]0, \frac1n]$，$f_n(t) = 0$。
+2. **积分不收敛到 $0$**：$\int_0^1 f_n = n\cdot\frac1n = 1$ 对一切 $n$ 成立。
+3. **没有可积的控制函数**：若 $\abs{f_n} \le \varphi$ 对一切 $n$ 成立，则 $\varphi(t) \ge \sup_n f_n(t)$。对 $t \in\, ]0, 1]$，令 $n = E(\frac1t) \ge 1$，则 $\frac1n \ge t$，$f_n(t) = n$；又 $E(y) \ge \frac y2$ 对 $y \ge 1$ 成立（$1 \le y < 2$ 时 $E(y) = 1 \ge \frac y2$；$y \ge 2$ 时 $E(y) > y - 1 \ge \frac y2$）。所以 $\varphi(t) \ge \frac{1}{2t}$，由比较定理与 {@riemann-integrales}，$\varphi$ 在 $]0, 1]$ 上不可积。
+
+{@cex-bosse} 也是同样的现象：质量集中在越来越窄的区间上，「逃逸」到边界。
+:::
+
+::: thm id=integration-terme-a-terme zh="逐项积分定理" en="Term-by-term integration theorem" fr="Théorème d'intégration terme à terme" ru="Теорема о почленном интегрировании ряда" lvl=3 ref="L3 积分论（单调收敛定理的推论）；Rudin, *Real and Complex Analysis*，定理 1.38"
+设 $f_n$ 在 $I$ 上分段连续且可积，$\sum f_n$ 逐点收敛到分段连续的函数 $f$，并且
+$$\sum_{n}\int_I \abs{f_n} < +\infty.$$
+则 $f$ 在 $I$ 上可积，且 $\displaystyle\int_I \sum_n f_n = \sum_n\int_I f_n$。
+:::
+
+::: fr
+Soit $(f_n)$ une suite de fonctions continues par morceaux et intégrables sur $I$ telle que $\sum f_n$ converge simplement vers une fonction $f$ continue par morceaux, et
+$$\sum_{n}\int_I \abs{f_n} < +\infty.$$
+Alors $f$ est intégrable sur $I$ et $\displaystyle\int_I \sum_n f_n = \sum_n\int_I f_n$.
+:::
+
+::: ex id=ex-zeta2-integrale zh="$\int_0^{+\infty}\frac{t}{\e^t - 1}\,\dd t = \zeta(2)$" lvl=1
+$$\int_0^{+\infty}\frac{t}{\e^t - 1}\,\dd t = \zeta(2) = \frac{\pi^2}{6}.$$
+
+**第 1 步（展开）**　对 $t > 0$，$0 < \e^{-t} < 1$，由几何级数，$\frac{1}{\e^t - 1} = \frac{\e^{-t}}{1 - \e^{-t}} = \sum_{n \ge 1}\e^{-nt}$，所以 $\frac{t}{\e^t - 1} = \sum_{n \ge 1}f_n(t)$，$f_n(t) = t\,\e^{-nt} \ge 0$。和函数在 $]0, +\infty[$ 上连续。
+
+**第 2 步（逐项的积分）**　换元 $u = nt$ 并用 {@gamma-factorielle}：$\int_0^{+\infty}t\,\e^{-nt}\,\dd t = \frac{1}{n^2}\int_0^{+\infty}u\,\e^{-u}\,\dd u = \frac{\Gamma(2)}{n^2} = \frac{1}{n^2}$。
+
+**第 3 步（条件）**　$\sum_n\int_0^{+\infty}\abs{f_n} = \sum_{n \ge 1}\frac{1}{n^2} < +\infty$。由逐项积分定理，
+$$\int_0^{+\infty}\frac{t}{\e^t - 1}\,\dd t = \sum_{n \ge 1}\frac{1}{n^2} = \zeta(2) = \frac{\pi^2}{6},$$
+最后一步是第 5 章的 {@bale}。
+
+一般地，对 $s > 1$，同样的计算（$\int_0^{+\infty}t^{s-1}\e^{-nt}\,\dd t = \frac{\Gamma(s)}{n^s}$）给出 $\int_0^{+\infty}\frac{t^{s-1}}{\e^t - 1}\,\dd t = \Gamma(s)\zeta(s)$。
+:::
+
+::: ex id=c6-ex-ln2 zh="条件不满足时：对部分和用控制收敛" lvl=1
+1. **逐项积分定理适用。** 对 $t \in\, ]0, 1]$，$\frac{\ln(1 + t)}{t} = \sum_{n \ge 1}\frac{(-1)^{n+1}t^{n-1}}{n}$（第 4 章，$\ln(1 + t)$ 的幂级数展开）。$\int_0^1\frac{t^{n-1}}{n}\,\dd t = \frac{1}{n^2}$，$\sum\frac{1}{n^2} < \infty$，所以
+$$\int_0^1\frac{\ln(1 + t)}{t}\,\dd t = \sum_{n \ge 1}\frac{(-1)^{n+1}}{n^2} = \Big(1 - \frac{2}{4}\Big)\zeta(2) = \frac{\pi^2}{12}.$$
+（$\sum\frac{(-1)^{n+1}}{n^2} = \zeta(2) - 2\sum_{n\ \text{偶}}\frac{1}{n^2} = \zeta(2) - \frac{\zeta(2)}{2}$。）
+2. **逐项积分定理不适用，但控制收敛适用。** 在 $I = [0, 1[$ 上，$\frac{1}{1 + t} = \sum_{n \ge 0}(-t)^n$，而 $\sum_n\int_0^1 t^n\,\dd t = \sum_n\frac{1}{n+1} = +\infty$。改为对**部分和** $S_N(t) = \sum_{n=0}^N(-t)^n = \frac{1 - (-t)^{N+1}}{1 + t}$ 用控制收敛定理：$S_N(t) \to \frac{1}{1 + t}$（$t \in [0, 1[$），且 $\abs{S_N(t)} \le \frac{2}{1 + t} \le 2$，常数 $2$ 在 $[0, 1[$ 上可积。所以
+$$\sum_{n=0}^N\frac{(-1)^n}{n+1} = \int_0^1 S_N \xrightarrow[N \to \infty]{} \int_0^1\frac{\dd t}{1 + t} = \ln 2,$$
+即 $1 - \frac12 + \frac13 - \cdots = \ln 2$（对比第 4 章 {@ln2}）。
+:::
+
+::: thm id=cv-monotone zh="单调收敛定理" en="Monotone convergence theorem" fr="Théorème de convergence monotone" ru="Теорема Беппо Леви о монотонной сходимости" lvl=3 ref="L3 积分论；Rudin, *Real and Complex Analysis*，定理 1.26"
+设 $0 \le f_0 \le f_1 \le \cdots$ 逐点收敛到 $f$（均为分段连续）。则 $\int_I f_n \to \int_I f$（在 $[0, +\infty]$ 中，即两边可以同时为 $+\infty$）。逐项积分定理对非负函数项级数的情形是它的直接推论。
+:::
+
+::: fr
+Soit $0 \le f_0 \le f_1 \le \cdots$ une suite de fonctions (continues par morceaux) convergeant simplement vers $f$ (continue par morceaux). Alors $\int_I f_n \to \int_I f$ dans $[0, +\infty]$ (les deux membres pouvant valoir $+\infty$). Le théorème d'intégration terme à terme pour les séries de fonctions positives en est une conséquence immédiate.
+:::
+
+::: q
+求 $\displaystyle\lim_{n \to \infty}\int_0^{+\infty}\frac{n\sin(t/n)}{t(1 + t^2)}\,\dd t$。
+:::
+
+::: ans
+令 $f_n(t) = \frac{n\sin(t/n)}{t(1 + t^2)}$（$t > 0$），它在 $]0, +\infty[$ 上连续。**逐点**：$n\sin\frac tn \to t$，所以 $f_n(t) \to \frac{1}{1 + t^2}$。**控制**：$\abs{\sin x} \le \abs x$ 给出 $\abs{n\sin\frac tn} \le t$，所以 $\abs{f_n(t)} \le \frac{1}{1 + t^2}$，与 $n$ 无关，且 $\int_0^{+\infty}\frac{\dd t}{1 + t^2} = \lim_{x \to +\infty}\Arctan x = \frac\pi2$ 收敛。由控制收敛定理，极限为 $\frac\pi2$。（数值：$n = 100$ 时积分约为 $1.563$，$\frac\pi2 \approx 1.571$。）
+:::
+
+::: q
+求 $\displaystyle\lim_{n \to \infty}\int_0^{+\infty}\e^{-t^n}\,\dd t$。
+:::
+
+::: ans
+**逐点**：$0 \le t < 1$ 时 $t^n \to 0$，$\e^{-t^n} \to 1$；$t > 1$ 时 $t^n \to +\infty$，$\e^{-t^n} \to 0$；$t = 1$ 时恒为 $\e^{-1}$。极限函数 $f = \mathbf{1}_{[0, 1[} + \e^{-1}\mathbf{1}_{\{1\}}$ 分段连续。**控制**（$n \ge 1$）：$t \le 1$ 时 $\e^{-t^n} \le 1$；$t \ge 1$ 时 $t^n \ge t$，$\e^{-t^n} \le \e^{-t}$。所以 $\varphi = \mathbf{1}_{[0,1]} + \e^{-t}\mathbf{1}_{]1, +\infty[}$ 是可积的控制函数。由控制收敛定理，极限为 $\int_0^{+\infty}f = 1$。
+:::
+
+::: hist zh="从 Riemann 到 Lebesgue"
+Riemann 积分的缺陷在于极限运算：可积函数的逐点极限（即使有界）未必 Riemann 可积，例如有理数的指示函数是阶梯函数序列的逐点极限（上面注中的 $f_n$）。Lebesgue 在 1902 年的博士论文中用测度重建了积分，得到控制收敛定理和完备的 $L^1$ 空间（对比 {@cex-c01-l1}）。本章的「已承认定理」正是这个理论在分段连续函数上的投影。
+:::
+
+## 方法总结
+
+本章的方法按「想证明什么」归类如下。
+
+**如何证明 $\int_I f$ 收敛**
+
+1. 找出所有问题点，在它们之间分开，逐个讨论（{@def-integrale-generalisee}）；有界函数在有限端点处是假问题（{@c6-faux-probleme}）。
+2. 能直接求原函数时，计算 $\int_a^x f$ 再取极限（{@riemann-integrales}）。
+3. $f \ge 0$（或在问题点附近定号）：求等价量或上界，与 Riemann 积分、Bertrand 积分比较（{@comparaison-integrales}、{@bertrand-integrales}）。常用的上界：$\e^{-t^2} \le \e^{-t}$（$t \ge 1$），$\ln t = o(t^\eps)$，$t^k\e^{-t} = o(t^{-2})$。
+4. $f$ 变号：先证绝对收敛（{@integrable-convergente}）；不行再用分部积分或 Abel 判别法（{@sinc}、{@c6-abel-integrales}）。
+5. 换元化为已知积分（{@changement-variable-gen}），例如 $\int\sin(t^2)$ 化为 $\int\frac{\sin u}{\sqrt u}$。
+6. 理论性的证明（如 {@integrable-convergente}、{@c6-barbalat}）用 Cauchy 准则（{@cauchy-integrale}）。
+
+**如何证明 $\int_I f$ 发散 / $f$ 不可积**
+
+1. $f \ge 0$ 且（在问题点附近）$f \ge g \ge 0$，$\int g$ 发散（比较定理第 1 条）。
+2. $f$ 在 $+\infty$ 处有非零极限（{@c6-limite-infini}）。
+3. 违反 Cauchy 准则：找到 $x_n, y_n \to b$ 使 $\big|\int_{x_n}^{y_n} f\big| \ge \eps$（{@c6-ex-abel} 中 $\alpha \le 0$ 的情形）。
+4. 收敛 + 发散 = 发散（{@c6-proprietes} 第 3 条），例如 $\frac{\sin^2 t}{t} = \frac{1}{2t} - \frac{\cos 2t}{2t}$。
+5. 否定可积：把 $\int\abs f$ 切成一段段的和，与发散级数比较（{@sinc}、{@c6-serie-integrale-pos}）。
+
+**如何交换极限与积分**
+
+1. 闭区间上一致收敛：{@integration-unif}。
+2. 否则用控制收敛（{@cv-dominee}）：先求逐点极限，再找与 $n$ 无关的可积控制函数。常用不等式：$\abs{\sin x} \le \abs x$，$\ln(1 + u) \le u$，$\ln(1 - u) \le -u$，$t \ge 1$ 时 $t^n \ge t$。
+3. 级数：若 $\sum\int\abs{f_n} < \infty$，逐项积分（{@integration-terme-a-terme}）；否则对部分和用控制收敛（{@c6-ex-ln2}）；非负项用单调收敛（{@cv-monotone}）。
+4. 否定交换：质量逃逸的反例（{@cex-domination}、{@cex-bosse}）。
+
+::: rem zh="常见错误"
+1. 「$\int_a^{+\infty} f$ 收敛 ⟹ $f \to 0$」：错。三角形脉冲、$\sin(t^2)$ 都是反例（§1 的注）；只有加上「$f$ 有极限」或「$f$ 一致连续」才对（{@c6-limite-infini}、{@c6-barbalat}）。
+2. 对变号函数用等价量判断敛散：{@c6-cex-equiv-signe}。
+3. 用对称截断代替定义：$\int_{-x}^{x} t\,\dd t = 0$ 不说明 $\int_{-\infty}^{+\infty} t\,\dd t$ 收敛（Cauchy 主值，§1 的反例）。
+4. 先换元、后检查收敛：「$I = -I$ 所以 $I = 0$」要求 $I$ 收敛（§4 的注）。
+5. 控制函数依赖于 $n$，或直接用「$\abs{f_n} \le \sup_n\abs{f_n}$」而不检查 $\sup_n\abs{f_n}$ 是否可积（{@cex-domination}）。
+6. 分部积分时把两个发散的积分相减；边界项没有极限时 {@ipp-generalisee} 不适用，应回到闭区间 $[x, y]$ 上处理。
+:::
+
+::: read
+- Г. М. Фихтенгольц,《Курс дифференциального и интегрального исчисления》，第 II 卷：«Несобственные интегралы»。对各种收敛判别法（比较、Abel、Dirichlet）和大量经典积分（Euler、Fresnel、Dirichlet 积分）有极详细的计算，是本章最好的苏联参考。
+- В. А. Зорич,《Математический анализ》，第 I 卷：«Несобственный интеграл»。简洁地从 Cauchy 准则出发建立整个理论，与本章 §1、§3 的证明路线相同。
+- Б. П. Демидович,《Сборник задач и упражнений по математическому анализу》：«Несобственные интегралы»。大量判断敛散性与计算广义积分的习题，按难度排列，适合练「找等价量」。
+- X. Gourdon,《Les maths en tête : Analyse》：« Intégration sur un intervalle quelconque »。法国 MP 风格的证明与经典习题（包括控制收敛定理的典型应用），写法最接近法国考试的要求。
+- M. Briane, G. Pagès,《Théorie de l'intégration》：théorème de convergence dominée, théorème de convergence monotone。L3 测度论教材，本章两个 ★★★ 定理的完整证明在这里。
+- W. Rudin,《Real and Complex Analysis》：Lebesgue integration, convergence theorems。英文的标准参考，控制收敛与单调收敛定理的经典表述。
+:::
+
+::: glossary
+| 中文 | Français | English | Русский |
+|---|---|---|---|
+| 广义积分（反常积分） | intégrale généralisée (f.), intégrale impropre (f.) | improper integral | несобственный интеграл |
+| 收敛 | convergence (f.) | convergence | сходимость |
+| 发散 | divergence (f.) | divergence | расходимость |
+| 分段连续函数 | fonction continue par morceaux (f.) | piecewise continuous function | кусочно-непрерывная функция |
+| 闭子区间 | segment (m.) | compact subinterval | отрезок |
+| 原函数 | primitive (f.) | antiderivative | первообразная |
+| Chasles 关系 | relation de Chasles (f.) | additivity with respect to the interval | аддитивность интеграла |
+| Cauchy 准则 | critère de Cauchy (m.) | Cauchy criterion | критерий Коши |
+| Cauchy 主值 | valeur principale de Cauchy (f.) | Cauchy principal value | главное значение по Коши |
+| 假问题（可去的端点） | faux problème (m.) | removable endpoint singularity | устранимая особенность |
+| 比较定理 | théorème de comparaison (m.) | comparison test | признак сравнения |
+| 等价 | équivalence (f.) ; fonctions équivalentes | asymptotic equivalence | эквивалентность |
+| 大 $O$ / 小 $o$ | grand O / petit o (m.) | big O / little o | О большое / о малое |
+| Riemann 积分（参考积分） | intégrale de Riemann (f.) | $p$-integral | эталонный интеграл $\int\frac{dx}{x^\alpha}$ |
+| Bertrand 积分 | intégrale de Bertrand (f.) | Bertrand integral | интеграл Бертрана |
+| 可积函数 | fonction intégrable (f.) | integrable function | абсолютно интегрируемая функция |
+| 绝对收敛 | convergence absolue (f.) | absolute convergence | абсолютная сходимость |
+| 半收敛（条件收敛） | semi-convergence (f.) | conditional convergence | условная сходимость |
+| Abel 判别法 | règle d'Abel (f.) | Dirichlet's test | признак Дирихле |
+| 分部积分 | intégration par parties (f.) | integration by parts | интегрирование по частям |
+| 变量替换 | changement de variable (m.) | change of variables | замена переменной |
+| Γ 函数 | fonction Gamma (f.) | Gamma function | гамма-функция |
+| Gauss 积分 | intégrale de Gauss (f.) | Gaussian integral | интеграл Эйлера — Пуассона |
+| Dirichlet 积分 | intégrale de Dirichlet (f.) | Dirichlet integral | интеграл Дирихле |
+| Fresnel 积分 | intégrale de Fresnel (f.) | Fresnel integral | интеграл Френеля |
+| Barbălat 引理 | lemme de Barbălat (m.) | Barbălat's lemma | лемма Барбалата |
+| 一致连续性 | continuité uniforme (f.) | uniform continuity | равномерная непрерывность |
+| 级数–积分比较 | comparaison série–intégrale (f.) | integral test | интегральный признак Коши — Маклорена |
+| 余项 | reste (m.) | remainder | остаток ряда |
+| 单调极限定理 | théorème de la limite monotone (m.) | monotone limit theorem | теорема о пределе монотонной функции |
+| 逐点收敛 | convergence simple (f.) | pointwise convergence | поточечная сходимость |
+| 控制收敛定理 | théorème de convergence dominée (m.) | dominated convergence theorem | теорема Лебега о мажорированной сходимости |
+| 控制条件 | hypothèse de domination (f.) | domination hypothesis | условие мажорирования |
+| 控制函数 | fonction dominante (f.) | dominating function | интегрируемая мажоранта |
+| 逐项积分 | intégration terme à terme (f.) | term-by-term integration | почленное интегрирование |
+| 单调收敛定理 | théorème de convergence monotone (m.) | monotone convergence theorem | теорема Беппо Леви |
+| 已承认的定理 | théorème admis (m.) | theorem stated without proof | теорема, принимаемая без доказательства |
+| 截断 | troncature (f.) | truncation | срезка |
+| 取极限 | passer à la limite | pass to the limit | перейти к пределу |
+| 控制（动词） | dominer | dominate | мажорировать |
+:::
